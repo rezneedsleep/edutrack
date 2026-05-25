@@ -1,72 +1,108 @@
-import { auth } from "@/lib/auth"
-import prisma from "@/lib/prisma"
-import { redirect } from "next/navigation"
-import { AlertTriangle, HardDrive, Clock, ShieldAlert } from "lucide-react"
+'use client'
 
-export default async function MaintenancePage() {
-  const session = await auth()
-  const role = (session?.user as any)?.role
+import Link from "next/link"
+import { motion } from "framer-motion"
+import { Clock, ShieldAlert, Home, ArrowLeft } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
-  // If user is ADMIN, they can bypass maintenance mode
-  // But this page itself is just the view.
-  
+export default function MaintenancePage() {
   return (
-    <div className="min-h-screen bg-zinc-950 text-white flex items-center justify-center p-6 selection:bg-primary selection:text-white">
-      <div className="max-w-3xl w-full">
-        <div className="relative">
-          <div className="absolute -top-24 -left-20 h-64 w-64 bg-primary/10 rounded-full blur-[120px] animate-pulse" />
-          <div className="absolute -bottom-24 -right-20 h-64 w-64 bg-blue-500/10 rounded-full blur-[120px] animate-pulse delay-700" />
-          
-          <div className="space-y-12 relative z-10">
-            <div>
-              <div className="flex items-center gap-4 mb-8">
-                 <div className="h-14 w-14 bg-primary/10 border border-primary/20 flex items-center justify-center rounded-none rotate-3">
-                    <ShieldAlert className="h-8 w-8 text-primary" />
-                 </div>
-                 <div className="h-[2px] w-20 bg-primary/30" />
-              </div>
-              
-              <h1 className="text-8xl font-black uppercase italic tracking-tighter leading-none mb-6">
-                Website Under <br />
-                <span className="text-primary">Maintenance.</span>
-              </h1>
-              
-              <div className="flex flex-wrap gap-8 items-center text-zinc-500">
-                <div className="flex items-center gap-3">
-                   <Clock className="h-4 w-4" />
-                   <span className="text-[10px] font-black uppercase tracking-widest italic">Est. Finish: 4/19/2026</span>
-                </div>
-                <div className="flex items-center gap-3">
-                   <HardDrive className="h-4 w-4" />
-                   <span className="text-[10px] font-black uppercase tracking-widest italic">Status: Development</span>
-                </div>
-              </div>
-            </div>
+    <div className="min-h-screen bg-[#FDFCF7] text-[#1E293B] flex items-center justify-center p-6 relative overflow-hidden font-sans antialiased">
+      {/* Decorative background elements */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 opacity-60">
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-[#5483B3]/10 blur-[120px] rounded-full animate-pulse" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-[#C1E8FF]/40 blur-[120px] rounded-full animate-pulse delay-700" />
+      </div>
 
-            <div className="bg-white/5 border border-white/5 p-10 space-y-6 rounded-none backdrop-blur-xl">
-               <p className="text-xl font-medium leading-relaxed text-zinc-300">
-                 "lagi di development tmen2 — Mohon maaf atas ketidaknyamanannya, kami sedang melakukan optimasi infrastruktur untuk pengalaman belajar yang lebih baik."
-               </p>
-               <div className="pt-6 border-t border-white/5 flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                     <div className="h-2 w-2 bg-primary rounded-full animate-ping" />
-                     <span className="text-[10px] font-black uppercase tracking-[0.3em] text-primary">System Updating</span>
-                  </div>
-                  <p className="text-[10px] font-black uppercase tracking-widest text-zinc-600">EduTrack Core v2.4.0</p>
-               </div>
-            </div>
-
-            <div className="flex justify-start pt-4">
-               <div className="group relative">
-                  <div className="absolute -inset-1 bg-gradient-to-r from-primary to-blue-600 rounded-none blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
-                  <button className="relative px-10 h-16 bg-black text-white font-black uppercase tracking-[0.2em] text-xs rounded-none border border-white/10 flex items-center gap-4">
-                     Check API Status
-                     <AlertTriangle className="h-4 w-4 text-primary" />
-                  </button>
-               </div>
-            </div>
+      <div className="max-w-2xl w-full text-center space-y-10 relative z-10">
+        {/* Logo Section */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="flex justify-center"
+        >
+          <div className="flex items-center gap-3">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 50" className="h-10 w-auto" fill="none">
+              <text x="0" y="40" fontFamily="Inter, system-ui, sans-serif" fontSize="42" fontWeight="800" letterSpacing="-2" fill="#1E293B">
+                Edu<tspan fontWeight="800" fill="#5483B3">track</tspan>
+              </text>
+            </svg>
           </div>
+        </motion.div>
+
+        {/* Maintenance Visual */}
+        <div className="relative pt-6">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6 }}
+            className="flex flex-col items-center justify-center space-y-6"
+          >
+            <div className="h-24 w-24 bg-white border border-[#E2E8F0] rounded-full shadow-lg flex items-center justify-center mb-2 animate-bounce">
+              <ShieldAlert className="h-12 w-12 text-[#5483B3]" />
+            </div>
+            
+            <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-[#0F172A] font-serif leading-tight">
+              Pemeliharaan Sistem<br />Sedang Berlangsung
+            </h2>
+            
+            <p className="text-[#64748B] font-semibold max-w-md mx-auto leading-relaxed text-sm">
+              Mohon maaf atas ketidaknyamanannya. Kami sedang melakukan peningkatan infrastruktur dan pemeliharaan rutin untuk memberikan pelayanan terbaik bagi sekolah Anda.
+            </p>
+          </motion.div>
         </div>
+
+        {/* Info Box */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 0.6 }}
+          className="bg-white border border-[#E2E8F0] p-8 rounded-3xl shadow-sm space-y-4 max-w-lg mx-auto"
+        >
+          <div className="flex items-center justify-between text-xs font-bold text-[#64748B] pb-3 border-b border-[#F1F5F9]">
+            <div className="flex items-center gap-2">
+              <Clock className="h-4 w-4 text-[#5483B3]" />
+              <span>Status: Pemeliharaan Rutin</span>
+            </div>
+            <div className="h-2 w-2 bg-[#5483B3] rounded-full animate-ping" />
+          </div>
+          <p className="text-xs text-[#64748B] leading-relaxed text-left">
+            Akses masuk saat ini dibatasi hanya untuk Administrator. Sistem akan kembali online untuk Guru, Siswa, dan Pelatih setelah proses sinkronisasi database selesai.
+          </p>
+          <div className="pt-2 flex justify-between items-center text-[10px] font-black uppercase tracking-widest text-[#94A3B8]">
+            <span>EduTrack Core v2.4.0</span>
+            <span>Est. Selesai: Hari ini</span>
+          </div>
+        </motion.div>
+
+        {/* Action Buttons */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5, duration: 0.5 }}
+          className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4"
+        >
+          <Button 
+            asChild
+            className="bg-[#1E293B] hover:bg-[#334155] text-white font-bold h-12 px-8 rounded-xl transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#1E293B]/20 active:scale-[0.98] w-full sm:w-auto text-xs gap-2"
+          >
+            <Link href="/login">
+              <ArrowLeft className="h-4 w-4" />
+              Masuk sebagai Admin
+            </Link>
+          </Button>
+          <Button 
+            variant="outline"
+            asChild
+            className="border-[#CBD5E1] hover:border-[#1E293B] hover:bg-white text-slate-700 hover:text-[#1E293B] font-bold h-12 px-8 rounded-xl transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md hover:shadow-slate-200 active:scale-[0.98] w-full sm:w-auto text-xs gap-2"
+          >
+            <Link href="/">
+              <Home className="h-4 w-4" />
+              Kembali ke Beranda
+            </Link>
+          </Button>
+        </motion.div>
       </div>
     </div>
   )

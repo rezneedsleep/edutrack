@@ -44,7 +44,7 @@ export async function PATCH(req: Request) {
     const settings = await prisma.settings.upsert({
       where: { id: 'global' },
       update: { 
-        appName, 
+        appName: 'EduTrack', 
         school, 
         timezone, 
         maintenanceMode, 
@@ -56,7 +56,7 @@ export async function PATCH(req: Request) {
       },
       create: { 
         id: 'global', 
-        appName, 
+        appName: 'EduTrack', 
         school, 
         timezone, 
         maintenanceMode, 
@@ -67,6 +67,18 @@ export async function PATCH(req: Request) {
         securityLog 
       }
     })
+
+    // Update all users and classes school name if changed
+    if (school) {
+      await prisma.$transaction([
+        prisma.user.updateMany({
+          data: { school: school }
+        }),
+        prisma.class.updateMany({
+          data: { school: school }
+        })
+      ])
+    }
 
     return NextResponse.json(settings)
   } catch (error) {

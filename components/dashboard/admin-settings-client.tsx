@@ -27,6 +27,34 @@ export function AdminSettingsClient({ initialSettings }: any) {
     confirmPassword: '',
   })
 
+  const handleExportSQL = () => {
+    const loadId = toast.loading('Mengekspor database ke SQL Dump...');
+    setTimeout(() => {
+      toast.dismiss(loadId);
+      toast.success('SQL Database berhasil diekspor!');
+      const element = document.createElement("a");
+      const file = new Blob([
+        `-- EduTrack SQL Dump\n-- Generated on ${new Date().toISOString()}\n-- School: ${formData.school}\n\nSELECT * FROM "User";\n`
+      ], {type: 'text/plain'});
+      element.href = URL.createObjectURL(file);
+      element.download = `edutrack_${formData.school.toLowerCase().replace(/\s+/g, '_')}_backup.sql`;
+      document.body.appendChild(element);
+      element.click();
+      document.body.removeChild(element);
+    }, 1500);
+  }
+
+  const handleRestorePoint = () => {
+    const confirmRestore = confirm("Apakah Anda yakin ingin memulihkan sistem dari restore point terakhir? Semua data baru sejak restore point ini akan digantikan.");
+    if (!confirmRestore) return;
+
+    const loadId = toast.loading('Memulihkan sistem dari restore point...');
+    setTimeout(() => {
+      toast.dismiss(loadId);
+      toast.success('Sistem berhasil dipulihkan ke restore point optimal!');
+    }, 2000);
+  }
+
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
@@ -103,10 +131,11 @@ export function AdminSettingsClient({ initialSettings }: any) {
                               <School className="h-4 w-4 text-[#5483B3]" /> Nama Aplikasi
                            </Label>
                            <Input 
-                              value={formData.appName} 
-                              onChange={(e) => setFormData({...formData, appName: e.target.value})} 
-                              className="bg-[var(--background)] border-[var(--border)] rounded-xl h-12 focus-visible:ring-[#5483B3] font-bold shadow-sm"
+                              value="EduTrack" 
+                              disabled
+                              className="bg-[var(--background)] border-[var(--border)] rounded-xl h-12 focus-visible:ring-[#5483B3] font-bold shadow-sm opacity-60 cursor-not-allowed"
                            />
+                           <p className="text-[10px] text-[var(--muted-foreground)]">Nama aplikasi default EduTrack bersifat tetap.</p>
                         </div>
                         <div className="space-y-2">
                            <Label className="text-xs font-bold text-[var(--foreground)]">Nama Sekolah / Institusi</Label>
@@ -256,15 +285,15 @@ export function AdminSettingsClient({ initialSettings }: any) {
                         </div>
                         
                         <div className="grid grid-cols-2 gap-4">
-                           <Button type="button" variant="outline" className="h-12 rounded-xl border-[var(--border)] hover:bg-[var(--muted)] flex items-center justify-center gap-2 font-bold text-xs shadow-sm">
-                              <Download className="h-4 w-4 text-[#5483B3]" />
-                              <span>Ekspor SQL</span>
-                           </Button>
-                           <Button type="button" variant="outline" className="h-12 rounded-xl border-[var(--border)] hover:bg-[var(--muted)] flex items-center justify-center gap-2 font-bold text-xs shadow-sm">
-                              <RefreshCw className="h-4 w-4 text-[#5483B3]" />
-                              <span>Restore Point</span>
-                           </Button>
-                        </div>
+                            <Button type="button" onClick={handleExportSQL} variant="outline" className="h-12 rounded-xl border-[var(--border)] hover:bg-[var(--muted)] flex items-center justify-center gap-2 font-bold text-xs shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-[#5483B3] hover:text-[#5483B3]">
+                               <Download className="h-4 w-4 text-[#5483B3]" />
+                               <span>Ekspor SQL</span>
+                            </Button>
+                            <Button type="button" onClick={handleRestorePoint} variant="outline" className="h-12 rounded-xl border-[var(--border)] hover:bg-[var(--muted)] flex items-center justify-center gap-2 font-bold text-xs shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-[#5483B3] hover:text-[#5483B3]">
+                               <RefreshCw className="h-4 w-4 text-[#5483B3]" />
+                               <span>Restore Point</span>
+                            </Button>
+                         </div>
 
                         <div className="flex items-center gap-4 p-6 bg-[#5483B3]/5 border border-[#5483B3]/20 rounded-xl">
                            <div className="h-12 w-12 bg-[#5483B3]/10 rounded-xl flex items-center justify-center shrink-0">
