@@ -40,7 +40,12 @@ export default function LandingPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#FDFCF7] text-[#1E293B] selection:bg-[#5483B3] selection:text-white font-sans antialiased overflow-x-hidden">
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className="min-h-screen bg-[#FDFCF7] text-[#1E293B] selection:bg-[#5483B3] selection:text-white font-sans antialiased overflow-x-hidden"
+    >
       {/* Navbar */}
       <nav className="fixed top-0 w-full z-50 bg-[#FDFCF7]/80 backdrop-blur-xl border-b border-[#E2E8F0] h-20 transition-all duration-300">
         <div className="container mx-auto px-6 h-full flex items-center justify-between">
@@ -393,6 +398,6 @@ export default function LandingPage() {
             </div>
          </div>
       </footer>
-    </div>
+    </motion.div>
   )
 }

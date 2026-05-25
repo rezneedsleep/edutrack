@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import { motion } from 'framer-motion'
 import { 
   GraduationCap, 
   ArrowLeft, 
@@ -46,7 +47,12 @@ export default function DocsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#FDFCF7] text-[#1E293B] font-sans antialiased">
+    <motion.div 
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, ease: 'easeOut' }}
+      className="min-h-screen bg-[#FDFCF7] text-[#1E293B] font-sans antialiased"
+    >
       {/* Navbar */}
       <header className="sticky top-0 w-full z-50 bg-[#FDFCF7]/90 backdrop-blur-xl border-b border-[#E2E8F0] h-20">
         <div className="container mx-auto px-6 h-full flex items-center justify-between">
@@ -70,7 +76,12 @@ export default function DocsPage() {
       <div className="container mx-auto px-6 py-12 max-w-7xl">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
           {/* Sidebar Navigation */}
-          <aside className="lg:col-span-1 space-y-3 lg:sticky lg:top-32 h-fit">
+          <motion.aside 
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
+            className="lg:col-span-1 space-y-3 lg:sticky lg:top-32 h-fit"
+          >
             <p className="text-[10px] font-black uppercase tracking-widest text-[#94A3B8] px-3 mb-4">DAFTAR ISI DOKUMENTASI</p>
             <nav className="space-y-1">
               {sections.map((section) => (
@@ -88,10 +99,15 @@ export default function DocsPage() {
                 </button>
               ))}
             </nav>
-          </aside>
+          </motion.aside>
 
           {/* Main Content Area */}
-          <main className="lg:col-span-3 space-y-16">
+          <motion.main 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.2, ease: 'easeOut' }}
+            className="lg:col-span-3 space-y-16"
+          >
             {/* Overview Section */}
             <section id="overview" className="space-y-6 scroll-mt-32">
               <div className="space-y-3">
@@ -316,7 +332,7 @@ export default function DocsPage() {
                 </div>
               </div>
             </section>
-          </main>
+          </motion.main>
         </div>
       </div>
 
@@ -324,6 +340,6 @@ export default function DocsPage() {
       <footer className="py-8 bg-[#1E293B] text-[#94A3B8] border-t border-[#334155] text-center text-xs">
         <p>© {new Date().getFullYear()} EduTrack — Dikembangkan oleh Davin Maritza. Hak Cipta Dilindungi.</p>
       </footer>
-    </div>
+    </motion.div>
   )
 }

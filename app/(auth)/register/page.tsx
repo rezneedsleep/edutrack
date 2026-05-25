@@ -60,9 +60,19 @@ export default function RegisterPage() {
 
   if (isRegistrationDisabled) {
     return (
-      <div className="flex min-h-screen bg-[#FDFCF7]">
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        className="flex min-h-screen bg-[#FDFCF7] overflow-hidden"
+      >
         {/* Left side - App Mockup/Branding */}
-        <div className="hidden lg:flex lg:w-1/2 bg-[#1E293B] relative overflow-hidden flex-col justify-between p-12 text-white">
+        <motion.div 
+          initial={{ x: -80, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="hidden lg:flex lg:w-1/2 bg-[#1E293B] relative overflow-hidden flex-col justify-between p-12 text-white"
+        >
           <div className="absolute inset-0 bg-dot-pattern opacity-10 mix-blend-overlay" />
           <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-br from-white/5 via-transparent to-transparent pointer-events-none" />
           
@@ -89,11 +99,16 @@ export default function RegisterPage() {
             <span>Keamanan Data Terjamin</span>
             <div className="h-px flex-1 bg-white/10" />
           </div>
-        </div>
+        </motion.div>
   
         {/* Right side - Disabled Message */}
         <div className="w-full lg:w-1/2 flex items-center justify-center p-8 bg-[#FDFCF7]">
-          <div className="w-full max-w-md text-center space-y-6 bg-white border border-[#E2E8F0] p-8 md:p-10 rounded-3xl shadow-sm">
+          <motion.div 
+            initial={{ opacity: 0, x: 80 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="w-full max-w-md text-center space-y-6 bg-white border border-[#E2E8F0] p-8 md:p-10 rounded-3xl shadow-sm"
+          >
             <div className="inline-flex h-16 w-16 bg-rose-100 text-rose-600 rounded-full items-center justify-center">
               <AlertTriangle className="h-8 w-8" />
             </div>
@@ -105,16 +120,26 @@ export default function RegisterPage() {
             <Button asChild className="w-full h-11 bg-[#1E293B] hover:bg-[#334155] text-white font-bold rounded-xl shadow-sm text-xs">
               <Link href="/login">Kembali ke Halaman Login</Link>
             </Button>
-          </div>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
     )
   }
 
   return (
-    <div className="flex min-h-screen bg-[#FDFCF7]">
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className="flex min-h-screen bg-[#FDFCF7] overflow-hidden"
+    >
       {/* Left side - App Mockup/Branding */}
-      <div className="hidden lg:flex lg:w-1/2 bg-[#1E293B] relative overflow-hidden flex-col justify-between p-12 text-white">
+      <motion.div 
+        initial={{ x: -80, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        className="hidden lg:flex lg:w-1/2 bg-[#1E293B] relative overflow-hidden flex-col justify-between p-12 text-white"
+      >
         <div className="absolute inset-0 bg-dot-pattern opacity-10 mix-blend-overlay" />
         <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-br from-white/5 via-transparent to-transparent pointer-events-none" />
         
@@ -128,12 +153,7 @@ export default function RegisterPage() {
         </Link>
 
         <div className="relative z-10 space-y-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="space-y-4"
-          >
+          <div className="space-y-4">
             <h1 className="text-5xl font-bold tracking-tight leading-[1.1] font-serif">
               Mulai Perjalanan<br />
               Belajar Anda.
@@ -141,7 +161,7 @@ export default function RegisterPage() {
             <p className="text-sm text-slate-300 font-medium max-w-sm leading-relaxed">
               Bergabunglah dengan ekosistem pendidikan digital terlengkap. Pantau progres, kelola tugas, dan tingkatkan performa akademik.
             </p>
-          </motion.div>
+          </div>
           
           <div className="flex bg-white/5 border border-white/10 p-6 rounded-3xl gap-8 inline-flex">
             <div className="space-y-1">
@@ -159,11 +179,16 @@ export default function RegisterPage() {
           <span>Keamanan Data Terjamin</span>
           <div className="h-px flex-1 bg-white/10" />
         </div>
-      </div>
+      </motion.div>
 
       {/* Right side - Register Form */}
       <div className="w-full lg:w-1/2 flex items-center justify-center p-8 bg-[#FDFCF7]">
-        <div className="w-full max-w-md space-y-8 bg-white border border-[#E2E8F0] p-8 md:p-10 rounded-3xl shadow-sm">
+        <motion.div 
+          initial={{ opacity: 0, x: 80 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="w-full max-w-md space-y-8 bg-white border border-[#E2E8F0] p-8 md:p-10 rounded-3xl shadow-sm"
+        >
           <div className="space-y-2 text-center lg:text-left">
             <h2 className="text-3xl font-bold tracking-tight text-[#0F172A] font-serif">Buat Akun Baru</h2>
             <p className="text-xs text-[#64748B] font-semibold">Lengkapi data di bawah ini untuk bergabung dengan EduTrack.</p>
@@ -281,8 +306,8 @@ export default function RegisterPage() {
               Sudah punya akun? <Link href="/login" className="font-bold text-[#1E293B] hover:underline">Masuk di sini</Link>
             </p>
           </form>
-        </div>
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   )
 }
