@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { GraduationCap, Twitter, Instagram, Linkedin, Youtube } from 'lucide-react'
+import { GraduationCap, Twitter, Instagram, Linkedin, Youtube, Github } from 'lucide-react'
 
 const footerLinks = {
   product: [
@@ -22,8 +22,9 @@ const footerLinks = {
 }
 
 const socialLinks = [
-  { label: 'Twitter', href: '#', icon: Twitter },
-  { label: 'Instagram', href: '#', icon: Instagram },
+  { label: 'Twitter', href: 'https://x.com/workwithsuzirz', icon: Twitter },
+  { label: 'Instagram', href: 'https://instagram.com/davinmaritza', icon: Instagram },
+  { label: 'GitHub', href: 'https://github.com/davinmaritza', icon: Github },
   { label: 'LinkedIn', href: '#', icon: Linkedin },
   { label: 'YouTube', href: '#', icon: Youtube },
 ]
