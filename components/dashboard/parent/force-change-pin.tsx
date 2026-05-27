@@ -17,7 +17,7 @@ export function ForceChangePin({ studentId }: { studentId: string }) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    
+      
     if (pin.length < 6) {
       toast.error("PIN harus minimal 6 karakter")
       return
