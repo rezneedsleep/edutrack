@@ -705,6 +705,9 @@ export function AdminUsersClient({ initialUsers, classes, subjects = [], fixedRo
         </div>
       </div>
 
+      </div>
+      </div>
+
       {/* FLOATING ACTION BAR FOR SELECTION */}
       <AnimatePresence>
         {selectedIds.length > 0 && (
