@@ -230,14 +230,31 @@ export default async function Page() {
     })
   ])
 
+  const formatRole = (role: string) => {
+    if (role === 'GURU_BK') return 'Guru BK'
+    return role.split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ')
+  }
+
+  const roleColors: Record<string, string> = {
+    STUDENT: '#3b82f6', SISWA: '#3b82f6',
+    TEACHER: '#10b981', GURU_MAPEL: '#10b981',
+    PARENT: '#f59e0b', ORANG_TUA: '#f59e0b',
+    COACH: '#8b5cf6',
+    ADMIN: '#ef4444', SUPER_ADMIN: '#dc2626',
+    WAKASEK_KURIKULUM: '#0ea5e9', WAKASEK_KESISWAAN: '#0284c7', WAKASEK_HUBIN: '#0369a1',
+    KETUA_YAYASAN: '#6366f1', BENDAHARA_YAYASAN: '#4f46e5',
+    KEPALA_SEKOLAH: '#8b5cf6',
+    BENDAHARA_SEKOLAH: '#14b8a6', TATA_USAHA: '#f97316',
+    WALI_KELAS: '#22c55e', GURU_BK: '#84cc16',
+    KAPROG: '#eab308', KEPALA_LAB: '#d946ef', STAF_SARPRAS: '#ec4899',
+    PANITIA_PPDB: '#f43f5e', PUSTAKAWAN: '#a855f7', PETUGAS_UKS: '#06b6d4',
+    ALUMNI: '#64748b'
+  }
+
   const chartData = roleDistribution.map(item => ({
-    name: item.role,
+    name: formatRole(item.role),
     value: item._count.role,
-    fill: item.role === 'STUDENT' ? '#3b82f6' : 
-          item.role === 'TEACHER' ? '#10b981' : 
-          item.role === 'PARENT' ? '#f59e0b' : 
-          item.role === 'COACH' ? '#8b5cf6' : 
-          item.role === 'ADMIN' ? '#ef4444' : '#64748b'
+    fill: roleColors[item.role] || '#94a3b8'
   }))
 
   return (

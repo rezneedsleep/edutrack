@@ -24,8 +24,16 @@ export function AdminBillingClient({ students, billings }: { students: any[], bi
   const [editOpen, setEditOpen] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
 
-  // Status Filter
+  // Status & Filters
   const [filterStatus, setFilterStatus] = useState("ALL")
+  const [filterClass, setFilterClass] = useState("ALL")
+  const [searchName, setSearchName] = useState("")
+  
+  // Extract unique classes from students
+  const classes = Array.from(new Set(students.map(s => s.class?.id).filter(Boolean))).map(id => {
+    const studentWithClass = students.find(s => s.class?.id === id)
+    return { id, name: studentWithClass?.class?.name }
+  })
 
   // Checkboxes
   const [selectedIds, setSelectedIds] = useState<string[]>([])
@@ -51,8 +59,10 @@ export function AdminBillingClient({ students, billings }: { students: any[], bi
 
   // Filtering
   const filteredBillings = billings.filter(bill => {
-    if (filterStatus === "ALL") return true
-    return bill.status === filterStatus
+    const matchStatus = filterStatus === "ALL" || bill.status === filterStatus
+    const matchClass = filterClass === "ALL" || bill.student.class?.id === filterClass
+    const matchName = bill.student.name.toLowerCase().includes(searchName.toLowerCase())
+    return matchStatus && matchClass && matchName
   })
 
   const isAllSelected = filteredBillings.length > 0 && selectedIds.length === filteredBillings.length
@@ -265,21 +275,37 @@ export function AdminBillingClient({ students, billings }: { students: any[], bi
           <CardTitle className="text-sm font-bold text-[var(--foreground)] flex items-center gap-2">
             <Wallet className="h-4 w-4 text-[#5483B3]" /> Daftar Tagihan Siswa
           </CardTitle>
-          
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             {selectedIds.length > 0 && (
               <Button onClick={() => handleDelete(selectedIds)} variant="destructive" size="sm" className="h-8 gap-2">
-                <Trash2 className="h-4 w-4" /> Hapus {selectedIds.length} Terpilih
+                <Trash2 className="h-4 w-4" /> Hapus {selectedIds.length}
               </Button>
             )}
+            <Input 
+              placeholder="Cari nama siswa..." 
+              value={searchName} 
+              onChange={e => setSearchName(e.target.value)} 
+              className="h-8 w-[150px] text-xs bg-[var(--background)]"
+            />
+            <Select value={filterClass} onValueChange={setFilterClass}>
+              <SelectTrigger className="w-[120px] h-8 text-xs bg-[var(--background)]">
+                <SelectValue placeholder="Semua Kelas" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="ALL">Semua Kelas</SelectItem>
+                {classes.map(c => (
+                  <SelectItem key={c.id} value={c.id}>{c.name}</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
             <Select value={filterStatus} onValueChange={setFilterStatus}>
-              <SelectTrigger className="w-[180px] h-8 text-xs bg-[var(--background)]">
+              <SelectTrigger className="w-[130px] h-8 text-xs bg-[var(--background)]">
                 <SelectValue placeholder="Filter Status" />
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="ALL">Semua Status</SelectItem>
                 <SelectItem value="UNPAID">Belum Bayar</SelectItem>
-                <SelectItem value="PENDING">Proses (Menunggu)</SelectItem>
+                <SelectItem value="PENDING">Proses</SelectItem>
                 <SelectItem value="PAID">Lunas</SelectItem>
               </SelectContent>
             </Select>

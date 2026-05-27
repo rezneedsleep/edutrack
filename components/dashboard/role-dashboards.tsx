@@ -37,7 +37,7 @@ export function KepalaSekolahDashboard({ stats, recentUsers, teacherStats }: any
             <Card className="bg-[var(--card)] border border-[var(--border)] rounded-2xl">
               <CardContent className="p-4 text-center">
                 <div className="mx-auto h-10 w-10 rounded-xl flex items-center justify-center mb-2" style={{ backgroundColor: `${card.color}15`, color: card.color }}>
-                  <card.icon className="h-5 w-5" />
+                  {(() => { const Icon = card.icon; return <Icon className="h-5 w-5" / />; })()}
                 </div>
                 <p className="text-2xl font-extrabold text-[var(--foreground)]">{card.value}</p>
                 <p className="text-[10px] font-bold uppercase tracking-wider text-[var(--muted-foreground)] mt-1">{card.label}</p>
@@ -88,7 +88,7 @@ export function KepalaSekolahDashboard({ stats, recentUsers, teacherStats }: any
           <Link key={link.href} href={link.href}>
             <Card className="bg-[var(--card)] border border-[var(--border)] rounded-2xl hover:border-[#5483B3]/50 transition-colors cursor-pointer">
               <CardContent className="p-4 flex items-center gap-3">
-                <link.icon className="h-5 w-5 text-[#5483B3]" />
+                {(() => { const Icon = link.icon; return <Icon className="h-5 w-5 text-[#5483B3]" / />; })()}
                 <span className="text-sm font-bold text-[var(--foreground)]">{link.label}</span>
                 <ChevronRight className="h-4 w-4 ml-auto text-[var(--muted-foreground)]" />
               </CardContent>
@@ -125,7 +125,7 @@ export function KetuaYayasanDashboard({ stats, financeSummary }: any) {
             <Card className="bg-[var(--card)] border border-[var(--border)] rounded-2xl">
               <CardContent className="p-5 text-center">
                 <div className="mx-auto h-12 w-12 rounded-xl flex items-center justify-center mb-3" style={{ backgroundColor: `${card.color}15`, color: card.color }}>
-                  <card.icon className="h-6 w-6" />
+                  {(() => { const Icon = card.icon; return <Icon className="h-6 w-6" / />; })()}
                 </div>
                 <p className="text-3xl font-extrabold text-[var(--foreground)]">{card.value}</p>
                 <p className="text-[10px] font-bold uppercase tracking-wider text-[var(--muted-foreground)] mt-1">{card.label}</p>
@@ -190,7 +190,7 @@ export function WakasekKurikulumDashboard({ stats, schedules, subjects }: any) {
             <Card className="bg-[var(--card)] border border-[var(--border)] rounded-2xl">
               <CardContent className="p-4 text-center">
                 <div className="mx-auto h-10 w-10 rounded-xl flex items-center justify-center mb-2" style={{ backgroundColor: `${card.color}15`, color: card.color }}>
-                  <card.icon className="h-5 w-5" />
+                  {(() => { const Icon = card.icon; return <Icon className="h-5 w-5" / />; })()}
                 </div>
                 <p className="text-2xl font-extrabold">{card.value}</p>
                 <p className="text-[10px] font-bold uppercase tracking-wider text-[var(--muted-foreground)] mt-1">{card.label}</p>
@@ -211,7 +211,7 @@ export function WakasekKurikulumDashboard({ stats, schedules, subjects }: any) {
             <Card className="bg-[var(--card)] border border-[var(--border)] rounded-2xl hover:border-[#5483B3]/50 transition-all cursor-pointer h-full">
               <CardContent className="p-5 flex items-start gap-4">
                 <div className="h-11 w-11 rounded-xl flex items-center justify-center shrink-0" style={{ backgroundColor: `${item.color}15`, color: item.color }}>
-                  <item.icon className="h-5 w-5" />
+                  {(() => { const Icon = item.icon; return <Icon className="h-5 w-5" / />; })()}
                 </div>
                 <div>
                   <p className="text-sm font-bold text-[var(--foreground)]">{item.label}</p>
@@ -277,7 +277,7 @@ export function WakasekKesiswaanDashboard({ stats, attendanceSummary, recentStud
             <Card className="bg-[var(--card)] border border-[var(--border)] rounded-2xl">
               <CardContent className="p-4 text-center">
                 <div className="mx-auto h-10 w-10 rounded-xl flex items-center justify-center mb-2" style={{ backgroundColor: `${card.color}15`, color: card.color }}>
-                  <card.icon className="h-5 w-5" />
+                  {(() => { const Icon = card.icon; return <Icon className="h-5 w-5" / />; })()}
                 </div>
                 <p className="text-2xl font-extrabold">{card.value}</p>
                 <p className="text-[10px] font-bold uppercase tracking-wider text-[var(--muted-foreground)] mt-1">{card.label}</p>
@@ -370,7 +370,7 @@ export function WakasekHubinDashboard({ stats, alumniStats, ekskulCount }: any) 
             <Card className="bg-[var(--card)] border border-[var(--border)] rounded-2xl">
               <CardContent className="p-4 text-center">
                 <div className="mx-auto h-10 w-10 rounded-xl flex items-center justify-center mb-2" style={{ backgroundColor: `${card.color}15`, color: card.color }}>
-                  <card.icon className="h-5 w-5" />
+                  {(() => { const Icon = card.icon; return <Icon className="h-5 w-5" / />; })()}
                 </div>
                 <p className="text-2xl font-extrabold">{card.value}</p>
                 <p className="text-[10px] font-bold uppercase tracking-wider text-[var(--muted-foreground)] mt-1">{card.label}</p>
@@ -432,7 +432,7 @@ export function BendaharaSekolahDashboard({ financeSummary, recentBillings }: an
             <Card className="bg-[var(--card)] border border-[var(--border)] rounded-2xl">
               <CardContent className="p-4 text-center">
                 <div className="mx-auto h-10 w-10 rounded-xl flex items-center justify-center mb-2" style={{ backgroundColor: `${card.color}15`, color: card.color }}>
-                  <card.icon className="h-5 w-5" />
+                  {(() => { const Icon = card.icon; return <Icon className="h-5 w-5" / />; })()}
                 </div>
                 <p className="text-xl font-extrabold">{card.value}</p>
                 <p className="text-[10px] font-bold uppercase tracking-wider text-[var(--muted-foreground)] mt-1">{card.label}</p>
@@ -551,7 +551,7 @@ export function TataUsahaDashboard({ stats, recentUsers }: any) {
             <Card className="bg-[var(--card)] border border-[var(--border)] rounded-2xl">
               <CardContent className="p-4 text-center">
                 <div className="mx-auto h-10 w-10 rounded-xl flex items-center justify-center mb-2" style={{ backgroundColor: `${card.color}15`, color: card.color }}>
-                  <card.icon className="h-5 w-5" />
+                  {(() => { const Icon = card.icon; return <Icon className="h-5 w-5" / />; })()}
                 </div>
                 <p className="text-2xl font-extrabold">{card.value}</p>
                 <p className="text-[10px] font-bold uppercase tracking-wider text-[var(--muted-foreground)] mt-1">{card.label}</p>
@@ -571,7 +571,7 @@ export function TataUsahaDashboard({ stats, recentUsers }: any) {
             <Card className="bg-[var(--card)] border border-[var(--border)] rounded-2xl hover:border-[#5483B3]/50 transition-all cursor-pointer">
               <CardContent className="p-5 flex items-start gap-4">
                 <div className="h-11 w-11 rounded-xl flex items-center justify-center shrink-0" style={{ backgroundColor: `${item.color}15`, color: item.color }}>
-                  <item.icon className="h-5 w-5" />
+                  {(() => { const Icon = item.icon; return <Icon className="h-5 w-5" / />; })()}
                 </div>
                 <div>
                   <p className="text-sm font-bold">{item.label}</p>
@@ -634,7 +634,7 @@ export function KaprogDashboard({ stats, subjects }: any) {
             <Card className="bg-[var(--card)] border border-[var(--border)] rounded-2xl">
               <CardContent className="p-5 text-center">
                 <div className="mx-auto h-10 w-10 rounded-xl flex items-center justify-center mb-2" style={{ backgroundColor: `${card.color}15`, color: card.color }}>
-                  <card.icon className="h-5 w-5" />
+                  {(() => { const Icon = card.icon; return <Icon className="h-5 w-5" / />; })()}
                 </div>
                 <p className="text-2xl font-extrabold">{card.value}</p>
                 <p className="text-[10px] font-bold uppercase tracking-wider text-[var(--muted-foreground)] mt-1">{card.label}</p>
@@ -690,7 +690,7 @@ export function OperationalDashboard({ roleName, roleDesc, stats }: any) {
             <Card className="bg-[var(--card)] border border-[var(--border)] rounded-2xl">
               <CardContent className="p-4 text-center">
                 <div className="mx-auto h-10 w-10 rounded-xl flex items-center justify-center mb-2" style={{ backgroundColor: `${card.color}15`, color: card.color }}>
-                  <card.icon className="h-5 w-5" />
+                  {(() => { const Icon = card.icon; return <Icon className="h-5 w-5" / />; })()}
                 </div>
                 <p className="text-2xl font-extrabold">{card.value}</p>
                 <p className="text-[10px] font-bold uppercase tracking-wider text-[var(--muted-foreground)] mt-1">{card.label}</p>
@@ -732,7 +732,7 @@ export function WaliKelasDashboard({ stats, classStudents, className: kelasName 
             <Card className="bg-[var(--card)] border border-[var(--border)] rounded-2xl">
               <CardContent className="p-4 text-center">
                 <div className="mx-auto h-10 w-10 rounded-xl flex items-center justify-center mb-2" style={{ backgroundColor: `${card.color}15`, color: card.color }}>
-                  <card.icon className="h-5 w-5" />
+                  {(() => { const Icon = card.icon; return <Icon className="h-5 w-5" / />; })()}
                 </div>
                 <p className="text-2xl font-extrabold">{card.value}</p>
                 <p className="text-[10px] font-bold uppercase tracking-wider text-[var(--muted-foreground)] mt-1">{card.label}</p>
@@ -820,7 +820,7 @@ export function GuruBkDashboard({ stats, recentNotes }: any) {
             <Card className="bg-[var(--card)] border border-[var(--border)] rounded-2xl">
               <CardContent className="p-5 text-center">
                 <div className="mx-auto h-10 w-10 rounded-xl flex items-center justify-center mb-2" style={{ backgroundColor: `${card.color}15`, color: card.color }}>
-                  <card.icon className="h-5 w-5" />
+                  {(() => { const Icon = card.icon; return <Icon className="h-5 w-5" / />; })()}
                 </div>
                 <p className="text-2xl font-extrabold">{card.value}</p>
                 <p className="text-[10px] font-bold uppercase tracking-wider text-[var(--muted-foreground)] mt-1">{card.label}</p>
