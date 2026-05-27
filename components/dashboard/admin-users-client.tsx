@@ -522,23 +522,6 @@ export function AdminUsersClient({ initialUsers, classes, subjects = [], fixedRo
 
   return (
     <div className="flex flex-col space-y-6 pb-20 w-full animate-in fade-in slide-in-from-bottom-4 duration-500">
-      {/* LEFT SIDEBAR (Icon only) */}
-      <div className="w-16 bg-white rounded-2xl shadow-sm flex flex-col items-center py-6 gap-6 mr-4">
-        <div className="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center text-white font-bold mb-4">
-          <ShieldCheck className="h-5 w-5" />
-        </div>
-        <div className="flex flex-col gap-6 text-[var(--muted-foreground)]">
-          <button className="hover:text-purple-600 transition-colors"><LayoutDashboard className="h-5 w-5" /></button>
-          <button className="hover:text-purple-600 transition-colors"><Calendar className="h-5 w-5" /></button>
-          <button className="text-purple-600 relative">
-            <Users className="h-5 w-5" />
-            <span className="absolute -right-1 -top-1 w-2 h-2 bg-purple-600 rounded-full"></span>
-          </button>
-          <button className="hover:text-purple-600 transition-colors"><MessageSquare className="h-5 w-5" /></button>
-          <button className="hover:text-purple-600 transition-colors"><Settings className="h-5 w-5" /></button>
-        </div>
-      </div>
-
       {/* MAIN CONTENT */}
       <div className="flex-1 flex flex-col min-w-0 bg-white rounded-2xl shadow-sm border border-gray-100/50">
         
