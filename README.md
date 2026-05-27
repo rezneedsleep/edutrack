@@ -82,6 +82,7 @@ Sebelum menjalankan proyek ini, pastikan Anda telah menginstal:
    - **Guru:** `guru@demo.com`
    - **Pelatih Ekskul:** `pelatih@demo.com`
    - **Siswa:** `siswa@demo.com`
+   - **Orang Tua:** `ortu@demo.com`
    - *Kata Sandi (Semua Akun):* `password123`
 
 6. **Jalankan server pengembangan (Development Server):**

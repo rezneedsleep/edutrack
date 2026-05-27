@@ -73,6 +73,21 @@ async function main() {
   })
   console.log('✅ Siswa Demo berhasil dibuat:', student.email)
 
+  // Buat Orang Tua Demo
+  const parent = await prisma.user.upsert({
+    where: { email: 'ortu@demo.com' },
+    update: { password: hashedPassword },
+    create: {
+      email: 'ortu@demo.com',
+      name: 'Orang Tua Demo',
+      password: hashedPassword,
+      role: Role.PARENT,
+      school: 'SMK Demo',
+      phone: '08129876543'
+    },
+  })
+  console.log('✅ Orang Tua Demo berhasil dibuat:', parent.email)
+
   console.log('🎉 Seeding selesai! Anda dapat login dengan akun-akun tersebut menggunakan password: password123')
 }
 
