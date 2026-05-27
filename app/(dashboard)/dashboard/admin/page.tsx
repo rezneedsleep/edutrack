@@ -12,8 +12,15 @@ export default async function Page() {
   }
 
   const role = (session.user as any)?.role
+  // if (!RBAC.canAccessAdminDashboard(role)) {
+  //   redirect("/dashboard")
+  // }
   if (!RBAC.canAccessAdminDashboard(role)) {
-    redirect("/dashboard")
+    return (
+      <div style={{ backgroundColor: 'red', color: 'white', padding: '50px', fontSize: '24px', fontWeight: 'bold' }}>
+        ERROR RBAC BLOCK! Role Anda saat ini adalah: {role || 'UNDEFINED'}
+      </div>
+    )
   }
 
   // Fetch Admin Stats
