@@ -12,14 +12,19 @@ import {
   Terminal,
   Database,
   Mail,
-  MessageSquare
+  MessageSquare,
+  GraduationCap,
+  HeartPulse,
+  Library,
+  Briefcase,
+  Users
 } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
 import { Button } from '@/components/ui/button'
 
 interface HelpClientProps {
-  role: 'ADMIN' | 'TEACHER' | 'STUDENT'
+  role: string
 }
 
 export function HelpClient({ role }: HelpClientProps) {
@@ -37,6 +42,9 @@ export function HelpClient({ role }: HelpClientProps) {
     hidden: { opacity: 0, y: 15 },
     show: { opacity: 1, y: 0 }
   }
+
+  // Helper to check if role matches or includes a specific string
+  const isRole = (r: string) => role === r || role.includes(r)
 
   return (
     <div className="max-w-4xl mx-auto space-y-10 pb-20">
@@ -62,7 +70,7 @@ export function HelpClient({ role }: HelpClientProps) {
         className="grid gap-8"
       >
         {/* Role Specific Content */}
-        {role === 'ADMIN' && (
+        {isRole('ADMIN') && (
           <motion.div variants={item} className="space-y-5">
             <div className="flex items-center gap-3 mb-2">
               <div className="h-10 w-10 bg-[#5483B3]/10 rounded-xl flex items-center justify-center">
@@ -96,35 +104,11 @@ export function HelpClient({ role }: HelpClientProps) {
                   <p>Pastikan setiap kelas memiliki jadwal yang valid. Mapel harus dihubungkan dengan minimal satu Guru Utama agar materi dapat diunggah dan diakses siswa.</p>
                 </AccordionContent>
               </AccordionItem>
-
-              <AccordionItem value="technical" className="border border-[var(--border)] bg-[var(--card)] px-5 rounded-xl shadow-sm overflow-hidden data-[state=open]:border-[#5483B3]/30 transition-colors">
-                <AccordionTrigger className="hover:no-underline text-sm font-bold text-[var(--foreground)] py-4">
-                  Sinkronisasi & Pemeliharaan
-                </AccordionTrigger>
-                <AccordionContent className="text-[var(--muted-foreground)] leading-relaxed text-sm space-y-4 pb-5 pt-1">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="flex gap-3 bg-[var(--muted)]/40 p-4 rounded-xl border border-[var(--border)]">
-                        <Terminal className="h-5 w-5 text-[#5483B3] shrink-0" />
-                        <div>
-                            <p className="text-[var(--foreground)] font-bold text-xs mb-1">Prisma CLI</p>
-                            <p className="text-[10px] font-mono bg-[var(--card)] border border-[var(--border)] px-2 py-1 rounded text-[var(--muted-foreground)]">npx prisma db pull && npx prisma generate</p>
-                        </div>
-                    </div>
-                    <div className="flex gap-3 bg-[var(--muted)]/40 p-4 rounded-xl border border-[var(--border)]">
-                        <Database className="h-5 w-5 text-[#5483B3] shrink-0" />
-                        <div>
-                            <p className="text-[var(--foreground)] font-bold text-xs mb-1">Database Monitoring</p>
-                            <p className="text-[10px] font-mono bg-[var(--card)] border border-[var(--border)] px-2 py-1 rounded text-[var(--muted-foreground)]">npx prisma studio</p>
-                        </div>
-                    </div>
-                  </div>
-                </AccordionContent>
-              </AccordionItem>
             </Accordion>
           </motion.div>
         )}
 
-        {role === 'TEACHER' && (
+        {isRole('TEACHER') && (
           <motion.div variants={item} className="space-y-5">
             <div className="flex items-center gap-3 mb-2">
               <div className="h-10 w-10 bg-[#5483B3]/10 rounded-xl flex items-center justify-center">
@@ -155,7 +139,7 @@ export function HelpClient({ role }: HelpClientProps) {
           </motion.div>
         )}
 
-        {role === 'STUDENT' && (
+        {isRole('STUDENT') && (
           <motion.div variants={item} className="space-y-5">
             <div className="flex items-center gap-3 mb-2">
               <div className="h-10 w-10 bg-[#5483B3]/10 rounded-xl flex items-center justify-center">
@@ -180,6 +164,116 @@ export function HelpClient({ role }: HelpClientProps) {
                 </AccordionTrigger>
                 <AccordionContent className="text-[var(--muted-foreground)] leading-relaxed text-sm space-y-4 pb-5 pt-1">
                   <p>Klik menu <span className="bg-[var(--muted)] text-[var(--foreground)] px-2 py-0.5 rounded font-semibold text-xs">Tugas</span>, pilih tugas yang aktif, dan klik tombol <span className="bg-[var(--muted)] text-[var(--foreground)] px-2 py-0.5 rounded font-semibold text-xs">Serahkan Tugas</span>. Anda bisa mengunggah file dokumen atau mengirimkan jawaban berbentuk teks.</p>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </motion.div>
+        )}
+
+        {isRole('PARENT') && (
+          <motion.div variants={item} className="space-y-5">
+            <div className="flex items-center gap-3 mb-2">
+              <div className="h-10 w-10 bg-[#5483B3]/10 rounded-xl flex items-center justify-center">
+                <Users className="h-5 w-5 text-[#5483B3]" />
+              </div>
+              <h2 className="text-xl font-bold text-[var(--foreground)]">Panduan Orang Tua</h2>
+            </div>
+
+            <Accordion type="single" collapsible className="w-full space-y-3">
+              <AccordionItem value="pantau" className="border border-[var(--border)] bg-[var(--card)] px-5 rounded-xl shadow-sm overflow-hidden data-[state=open]:border-[#5483B3]/30 transition-colors">
+                <AccordionTrigger className="hover:no-underline text-sm font-bold text-[var(--foreground)] py-4">
+                  Memantau Aktivitas Anak
+                </AccordionTrigger>
+                <AccordionContent className="text-[var(--muted-foreground)] leading-relaxed text-sm space-y-4 pb-5 pt-1">
+                  <p>Anda dapat melihat laporan nilai, absensi, dan tagihan SPP anak Anda langsung dari dashboard utama. Jika Anda memiliki PIN keamanan, masukkan di bagian "Tagihan SPP" untuk melihat detail pembayaran.</p>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </motion.div>
+        )}
+
+        {isRole('PUSTAKAWAN') && (
+          <motion.div variants={item} className="space-y-5">
+            <div className="flex items-center gap-3 mb-2">
+              <div className="h-10 w-10 bg-[#5483B3]/10 rounded-xl flex items-center justify-center">
+                <Library className="h-5 w-5 text-[#5483B3]" />
+              </div>
+              <h2 className="text-xl font-bold text-[var(--foreground)]">Panduan Pustakawan</h2>
+            </div>
+
+            <Accordion type="single" collapsible className="w-full space-y-3">
+              <AccordionItem value="buku" className="border border-[var(--border)] bg-[var(--card)] px-5 rounded-xl shadow-sm overflow-hidden data-[state=open]:border-[#5483B3]/30 transition-colors">
+                <AccordionTrigger className="hover:no-underline text-sm font-bold text-[var(--foreground)] py-4">
+                  Kelola Inventaris Buku & Peminjaman
+                </AccordionTrigger>
+                <AccordionContent className="text-[var(--muted-foreground)] leading-relaxed text-sm space-y-4 pb-5 pt-1">
+                  <p>Tambahkan koleksi buku sekolah Anda di tab "Katalog Buku". Untuk transaksi peminjaman dan pengembalian, gunakan tab "Sirkulasi" lalu ubah status peminjaman siswa menjadi "BORROWED" atau "RETURNED".</p>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </motion.div>
+        )}
+
+        {isRole('UKS') && (
+          <motion.div variants={item} className="space-y-5">
+            <div className="flex items-center gap-3 mb-2">
+              <div className="h-10 w-10 bg-[#5483B3]/10 rounded-xl flex items-center justify-center">
+                <HeartPulse className="h-5 w-5 text-[#5483B3]" />
+              </div>
+              <h2 className="text-xl font-bold text-[var(--foreground)]">Panduan Staf UKS</h2>
+            </div>
+
+            <Accordion type="single" collapsible className="w-full space-y-3">
+              <AccordionItem value="medis" className="border border-[var(--border)] bg-[var(--card)] px-5 rounded-xl shadow-sm overflow-hidden data-[state=open]:border-[#5483B3]/30 transition-colors">
+                <AccordionTrigger className="hover:no-underline text-sm font-bold text-[var(--foreground)] py-4">
+                  Rekam Medis & Stok Obat
+                </AccordionTrigger>
+                <AccordionContent className="text-[var(--muted-foreground)] leading-relaxed text-sm space-y-4 pb-5 pt-1">
+                  <p>Pastikan stok obat di UKS Anda selalu tercatat dalam sistem. Saat siswa sakit, buatlah laporan baru di tab "Kunjungan Pasien" untuk mendokumentasikan obat yang diberikan dan riwayat keluhan.</p>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </motion.div>
+        )}
+
+        {isRole('ALUMNI') && (
+          <motion.div variants={item} className="space-y-5">
+            <div className="flex items-center gap-3 mb-2">
+              <div className="h-10 w-10 bg-[#5483B3]/10 rounded-xl flex items-center justify-center">
+                <Briefcase className="h-5 w-5 text-[#5483B3]" />
+              </div>
+              <h2 className="text-xl font-bold text-[var(--foreground)]">Panduan Alumni</h2>
+            </div>
+
+            <Accordion type="single" collapsible className="w-full space-y-3">
+              <AccordionItem value="tracer" className="border border-[var(--border)] bg-[var(--card)] px-5 rounded-xl shadow-sm overflow-hidden data-[state=open]:border-[#5483B3]/30 transition-colors">
+                <AccordionTrigger className="hover:no-underline text-sm font-bold text-[var(--foreground)] py-4">
+                  Tracer Study & Lowongan Kerja
+                </AccordionTrigger>
+                <AccordionContent className="text-[var(--muted-foreground)] leading-relaxed text-sm space-y-4 pb-5 pt-1">
+                  <p>Lengkapi profil alumni Anda untuk memudahkan sekolah mendata lulusan. Anda juga bisa menemukan info lowongan kerja eksklusif untuk lulusan sekolah di tab "Peluang Karir".</p>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </motion.div>
+        )}
+
+        {(isRole('KEPSEK') || isRole('WAKASEK') || isRole('YAYASAN')) && (
+          <motion.div variants={item} className="space-y-5">
+            <div className="flex items-center gap-3 mb-2">
+              <div className="h-10 w-10 bg-[#5483B3]/10 rounded-xl flex items-center justify-center">
+                <Shield className="h-5 w-5 text-[#5483B3]" />
+              </div>
+              <h2 className="text-xl font-bold text-[var(--foreground)]">Panduan Manajemen</h2>
+            </div>
+
+            <Accordion type="single" collapsible className="w-full space-y-3">
+              <AccordionItem value="laporan" className="border border-[var(--border)] bg-[var(--card)] px-5 rounded-xl shadow-sm overflow-hidden data-[state=open]:border-[#5483B3]/30 transition-colors">
+                <AccordionTrigger className="hover:no-underline text-sm font-bold text-[var(--foreground)] py-4">
+                  Supervisi Laporan & Ekspor PDF
+                </AccordionTrigger>
+                <AccordionContent className="text-[var(--muted-foreground)] leading-relaxed text-sm space-y-4 pb-5 pt-1">
+                  <p>Sebagai tim manajemen (Kepsek / Yayasan / Wakasek), Anda memiliki hak istimewa untuk mengekspor berbagai macam laporan sistem EduTrack ke format PDF dengan mengeklik tombol "Export PDF" di halaman pelaporan.</p>
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
