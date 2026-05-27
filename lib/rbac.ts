@@ -1,7 +1,10 @@
 export const RBAC = {
-  // Helper for case-insensitive check
-  check: (role: string | undefined, allowedRoles: string[]) => 
-    allowedRoles.includes((role || '').toUpperCase()),
+  // Helper for case-insensitive check and robust string matching
+  check: (role: string | undefined, allowedRoles: string[]) => {
+    if (!role) return false;
+    const normalizedRole = role.toUpperCase().replace(/[\s\-]/g, '_');
+    return allowedRoles.includes(normalizedRole);
+  },
 
   // 1. Super Admin Level (Absolute access)
   isSuperAdmin: (role?: string) => RBAC.check(role, ['SUPER_ADMIN']),
