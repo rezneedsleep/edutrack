@@ -60,33 +60,19 @@ export default function LandingPage() {
               </svg>
             </Link>
 
-            {/* Individual / Company Pill Toggle */}
-            <div className="hidden lg:flex items-center bg-[#F1F5F9] border border-[#E2E8F0] rounded-full p-1 ml-4 shadow-inner">
-              <button 
-                onClick={() => setActiveTab('individual')}
-                className={`text-xs font-bold px-4 py-1.5 rounded-full transition-all duration-300 ${activeTab === 'individual' ? 'bg-[#1E293B] text-white shadow-sm' : 'text-[#64748B] hover:text-[#1E293B]'}`}
-              >
-                Siswa & Guru
-              </button>
-              <button 
-                onClick={() => setActiveTab('company')}
-                className={`text-xs font-bold px-4 py-1.5 rounded-full transition-all duration-300 ${activeTab === 'company' ? 'bg-[#1E293B] text-white shadow-sm' : 'text-[#64748B] hover:text-[#1E293B]'}`}
-              >
-                Institusi & Sekolah
-              </button>
-            </div>
+
           </div>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-8 text-[13px] font-bold text-[#64748B]">
-            <Link href="/docs" className="hover:text-[#1E293B] transition-colors">Fitur</Link>
+            <Link href="/fitur" className="hover:text-[#1E293B] transition-colors">Fitur</Link>
             <div className="relative group cursor-pointer flex items-center gap-1 hover:text-[#1E293B] transition-colors py-2">
               <span className="flex items-center gap-1">Layanan <ChevronDown className="h-3 w-3 transition-transform duration-200 group-hover:rotate-180" /></span>
               
               {/* Dropdown Menu */}
               <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-72 bg-white border border-slate-100 rounded-2xl shadow-xl opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 z-50 p-3">
                 <div className="space-y-1">
-                  <Link href="/docs" className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-slate-50 transition-colors">
+                  <Link href="/layanan" className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-slate-50 transition-colors">
                     <div className="h-8 w-8 rounded-lg bg-blue-50 text-blue-500 flex items-center justify-center shrink-0 mt-0.5">
                       <BookOpen className="h-4 w-4" />
                     </div>
@@ -95,7 +81,7 @@ export default function LandingPage() {
                       <p className="text-[10px] text-slate-400 font-medium mt-0.5 leading-normal">Ruang kelas online dan materi belajar interaktif.</p>
                     </div>
                   </Link>
-                  <Link href="/docs" className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-slate-50 transition-colors">
+                  <Link href="/layanan" className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-slate-50 transition-colors">
                     <div className="h-8 w-8 rounded-lg bg-green-50 text-green-500 flex items-center justify-center shrink-0 mt-0.5">
                       <Calendar className="h-4 w-4" />
                     </div>
@@ -104,7 +90,7 @@ export default function LandingPage() {
                       <p className="text-[10px] text-slate-400 font-medium mt-0.5 leading-normal">Kehadiran dan rekapitulasi siswa otomatis.</p>
                     </div>
                   </Link>
-                  <Link href="/docs" className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-slate-50 transition-colors">
+                  <Link href="/layanan" className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-slate-50 transition-colors">
                     <div className="h-8 w-8 rounded-lg bg-purple-50 text-purple-500 flex items-center justify-center shrink-0 mt-0.5">
                       <FileText className="h-4 w-4" />
                     </div>
@@ -113,7 +99,7 @@ export default function LandingPage() {
                       <p className="text-[10px] text-slate-400 font-medium mt-0.5 leading-normal">Pengumpulan dan sistem penilaian terpusat.</p>
                     </div>
                   </Link>
-                  <Link href="/docs" className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-slate-50 transition-colors">
+                  <Link href="/layanan" className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-slate-50 transition-colors">
                     <div className="h-8 w-8 rounded-lg bg-orange-50 text-orange-500 flex items-center justify-center shrink-0 mt-0.5">
                       <Sparkles className="h-4 w-4" />
                     </div>
@@ -125,8 +111,8 @@ export default function LandingPage() {
                 </div>
               </div>
             </div>
-            <Link href="/docs" className="hover:text-[#1E293B] transition-colors">Cara Kerja</Link>
-            <Link href="/docs" className="hover:text-[#1E293B] transition-colors">Bantuan & FAQ</Link>
+            <Link href="/cara-kerja" className="hover:text-[#1E293B] transition-colors">Cara Kerja</Link>
+            <Link href="/bantuan" className="hover:text-[#1E293B] transition-colors">Bantuan & FAQ</Link>
           </div>
 
           {/* Right Action */}
@@ -412,9 +398,10 @@ export default function LandingPage() {
                    <div className="space-y-4">
                       <h5 className="text-[10px] font-black uppercase tracking-wider text-white">Platform</h5>
                       <div className="flex flex-col gap-2.5 text-xs font-semibold text-[#94A3B8]">
-                         <Link href="/docs" className="hover:text-white transition-colors">Fitur Utama</Link>
-                         <Link href="/docs" className="hover:text-white transition-colors">Cara Kerja</Link>
-                         <Link href="/docs" className="hover:text-white transition-colors">Bantuan</Link>
+                         <Link href="/fitur" className="hover:text-white transition-colors">Fitur Utama</Link>
+                         <Link href="/layanan" className="hover:text-white transition-colors">Layanan</Link>
+                         <Link href="/cara-kerja" className="hover:text-white transition-colors">Cara Kerja</Link>
+                         <Link href="/bantuan" className="hover:text-white transition-colors">Bantuan & FAQ</Link>
                       </div>
                   </div>
                   <div className="space-y-4">

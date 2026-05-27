@@ -30,8 +30,10 @@ import {
   Phone,
   MapPin,
   Fingerprint,
-  User
+  User,
+  FileText
 } from 'lucide-react'
+import Link from 'next/link'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -89,6 +91,7 @@ export function AdminUsersClient({ initialUsers, classes, subjects = [], fixedRo
     subjectId: '',
     image: '',
     nis: '',
+    parentPin: '123456',
     noAbsen: '',
     phone: '',
     gender: 'Laki-laki',
@@ -180,7 +183,7 @@ export function AdminUsersClient({ initialUsers, classes, subjects = [], fixedRo
         setUsers([newUser, ...users])
         toast.success('User berhasil ditambahkan')
         setIsAddOpen(false)
-        setFormData({ name: '', email: '', password: '', role: fixedRole || 'STUDENT', school: 'SMKN 13 Bandung', classId: '', subjectId: '', image: '', nis: '', noAbsen: '', phone: '', gender: 'Laki-laki', address: '', position: '', affiliations: '', canEditMaterials: false, canEditAssignments: false })
+        setFormData({ name: '', email: '', password: '', role: fixedRole || 'STUDENT', school: 'SMKN 13 Bandung', classId: '', subjectId: '', image: '', nis: '', parentPin: '123456', noAbsen: '', phone: '', gender: 'Laki-laki', address: '', position: '', affiliations: '', canEditMaterials: false, canEditAssignments: false })
       } else {
         const err = await res.text()
         toast.error(err || 'Gagal menambahkan user')
@@ -395,6 +398,7 @@ export function AdminUsersClient({ initialUsers, classes, subjects = [], fixedRo
       subjectId: '',
       image: '',
       nis: '',
+      parentPin: '123456',
       noAbsen: '',
       phone: '',
       gender: 'Laki-laki',
@@ -419,6 +423,7 @@ export function AdminUsersClient({ initialUsers, classes, subjects = [], fixedRo
       subjectId: user.teacherSubjects?.[0]?.id || '',
       image: user.image || '',
       nis: user.nis || '',
+      parentPin: user.parentPin || '123456',
       noAbsen: user.noAbsen?.toString() || '',
       phone: user.phone || '',
       gender: user.gender || 'Laki-laki',
@@ -622,7 +627,7 @@ export function AdminUsersClient({ initialUsers, classes, subjects = [], fixedRo
                           </div>
                         </div>
 
-                        <div className={cn("grid grid-cols-1 gap-5", formData.role === 'STUDENT' ? "md:grid-cols-3" : "md:grid-cols-2")}>
+                        <div className={cn("grid grid-cols-1 gap-5", formData.role === 'STUDENT' ? "md:grid-cols-4" : "md:grid-cols-2")}>
                           <div className="space-y-2">
                             <Label className="text-xs font-bold text-[var(--foreground)] flex items-center gap-2">
                               <Fingerprint className="h-3.5 w-3.5 text-[#5483B3]" /> {fixedRole === 'STUDENT' ? 'NIS' : 'NIP / ID'}
@@ -643,6 +648,14 @@ export function AdminUsersClient({ initialUsers, classes, subjects = [], fixedRo
                             </Label>
                             <Input value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value})} className="bg-[var(--card)] border-[var(--border)] rounded-xl h-11 text-sm focus-visible:ring-[#5483B3]" placeholder="08xxxxxxxxxx" />
                           </div>
+                          {formData.role === 'STUDENT' && (
+                            <div className="space-y-2">
+                              <Label className="text-xs font-bold text-[var(--foreground)] flex items-center gap-2">
+                                <Key className="h-3.5 w-3.5 text-[#5483B3]" /> PIN Orang Tua
+                              </Label>
+                              <Input value={formData.parentPin} onChange={(e) => setFormData({...formData, parentPin: e.target.value})} className="bg-[var(--card)] border-[var(--border)] rounded-xl h-11 text-sm focus-visible:ring-[#5483B3]" placeholder="123456" />
+                            </div>
+                          )}
                         </div>
                       </div>
                     </div>
@@ -920,6 +933,18 @@ export function AdminUsersClient({ initialUsers, classes, subjects = [], fixedRo
                               </TableCell>
                               <TableCell className="text-right pr-4 md:pr-6">
                                  <div className="flex items-center justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    {user.role === 'STUDENT' && (
+                                      <Link href={`/dashboard/reports/${user.id}/print`} target="_blank">
+                                        <Button 
+                                           variant="ghost" 
+                                           size="icon" 
+                                           className="h-8 w-8 rounded-lg hover:bg-[var(--muted)] hover:text-[#5483B3] transition-colors"
+                                           title="Cetak Rapor"
+                                        >
+                                           <FileText className="h-4 w-4 text-[#5483B3]" />
+                                        </Button>
+                                      </Link>
+                                    )}
                                     <Button 
                                        variant="ghost" 
                                        size="icon" 
@@ -1008,7 +1033,7 @@ export function AdminUsersClient({ initialUsers, classes, subjects = [], fixedRo
                     </div>
                   </div>
 
-                  <div className={cn("grid grid-cols-1 gap-5", selectedUser?.role === 'STUDENT' ? "md:grid-cols-3" : "md:grid-cols-2")}>
+                  <div className={cn("grid grid-cols-1 gap-5", selectedUser?.role === 'STUDENT' ? "md:grid-cols-4" : "md:grid-cols-2")}>
                     <div className="space-y-2">
                       <Label className="text-xs font-bold text-[var(--foreground)] flex items-center gap-2">
                         <Fingerprint className="h-3.5 w-3.5 text-[#5483B3]" /> {selectedUser?.role === 'STUDENT' ? 'NIS' : 'NIP / ID'}
@@ -1029,6 +1054,14 @@ export function AdminUsersClient({ initialUsers, classes, subjects = [], fixedRo
                       </Label>
                       <Input value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value})} className="bg-[var(--card)] border-[var(--border)] rounded-xl h-11 text-sm focus-visible:ring-[#5483B3]" />
                     </div>
+                    {selectedUser?.role === 'STUDENT' && (
+                      <div className="space-y-2">
+                        <Label className="text-xs font-bold text-[var(--foreground)] flex items-center gap-2">
+                          <Key className="h-3.5 w-3.5 text-[#5483B3]" /> PIN Orang Tua
+                        </Label>
+                        <Input value={formData.parentPin} onChange={(e) => setFormData({...formData, parentPin: e.target.value})} className="bg-[var(--card)] border-[var(--border)] rounded-xl h-11 text-sm focus-visible:ring-[#5483B3]" />
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

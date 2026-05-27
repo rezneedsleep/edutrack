@@ -168,7 +168,8 @@ export namespace $Enums {
   TEACHER: 'TEACHER',
   ADMIN: 'ADMIN',
   COACH: 'COACH',
-  USER: 'USER'
+  USER: 'USER',
+  PARENT: 'PARENT'
 };
 
 export type Role = (typeof Role)[keyof typeof Role]
@@ -3982,6 +3983,7 @@ export namespace Prisma {
     gender: string | null
     address: string | null
     emailVerified: Date | null
+    parentPin: string | null
     position: string | null
     canEditMaterials: boolean | null
     canEditAssignments: boolean | null
@@ -4007,6 +4009,7 @@ export namespace Prisma {
     gender: string | null
     address: string | null
     emailVerified: Date | null
+    parentPin: string | null
     position: string | null
     canEditMaterials: boolean | null
     canEditAssignments: boolean | null
@@ -4033,6 +4036,7 @@ export namespace Prisma {
     gender: number
     address: number
     emailVerified: number
+    parentPin: number
     position: number
     affiliations: number
     canEditMaterials: number
@@ -4069,6 +4073,7 @@ export namespace Prisma {
     gender?: true
     address?: true
     emailVerified?: true
+    parentPin?: true
     position?: true
     canEditMaterials?: true
     canEditAssignments?: true
@@ -4094,6 +4099,7 @@ export namespace Prisma {
     gender?: true
     address?: true
     emailVerified?: true
+    parentPin?: true
     position?: true
     canEditMaterials?: true
     canEditAssignments?: true
@@ -4120,6 +4126,7 @@ export namespace Prisma {
     gender?: true
     address?: true
     emailVerified?: true
+    parentPin?: true
     position?: true
     affiliations?: true
     canEditMaterials?: true
@@ -4234,6 +4241,7 @@ export namespace Prisma {
     gender: string | null
     address: string | null
     emailVerified: Date | null
+    parentPin: string | null
     position: string | null
     affiliations: string[]
     canEditMaterials: boolean
@@ -4280,6 +4288,7 @@ export namespace Prisma {
     gender?: boolean
     address?: boolean
     emailVerified?: boolean
+    parentPin?: boolean
     position?: boolean
     affiliations?: boolean
     canEditMaterials?: boolean
@@ -4332,6 +4341,7 @@ export namespace Prisma {
     gender?: boolean
     address?: boolean
     emailVerified?: boolean
+    parentPin?: boolean
     position?: boolean
     affiliations?: boolean
     canEditMaterials?: boolean
@@ -4360,6 +4370,7 @@ export namespace Prisma {
     gender?: boolean
     address?: boolean
     emailVerified?: boolean
+    parentPin?: boolean
     position?: boolean
     affiliations?: boolean
     canEditMaterials?: boolean
@@ -4446,6 +4457,7 @@ export namespace Prisma {
       gender: string | null
       address: string | null
       emailVerified: Date | null
+      parentPin: string | null
       position: string | null
       affiliations: string[]
       canEditMaterials: boolean
@@ -4887,6 +4899,7 @@ export namespace Prisma {
     readonly gender: FieldRef<"User", 'String'>
     readonly address: FieldRef<"User", 'String'>
     readonly emailVerified: FieldRef<"User", 'DateTime'>
+    readonly parentPin: FieldRef<"User", 'String'>
     readonly position: FieldRef<"User", 'String'>
     readonly affiliations: FieldRef<"User", 'String[]'>
     readonly canEditMaterials: FieldRef<"User", 'Boolean'>
@@ -33468,6 +33481,7 @@ export namespace Prisma {
     gender: 'gender',
     address: 'address',
     emailVerified: 'emailVerified',
+    parentPin: 'parentPin',
     position: 'position',
     affiliations: 'affiliations',
     canEditMaterials: 'canEditMaterials',
@@ -34049,6 +34063,7 @@ export namespace Prisma {
     gender?: StringNullableFilter<"User"> | string | null
     address?: StringNullableFilter<"User"> | string | null
     emailVerified?: DateTimeNullableFilter<"User"> | Date | string | null
+    parentPin?: StringNullableFilter<"User"> | string | null
     position?: StringNullableFilter<"User"> | string | null
     affiliations?: StringNullableListFilter<"User">
     canEditMaterials?: BoolFilter<"User"> | boolean
@@ -34100,6 +34115,7 @@ export namespace Prisma {
     gender?: SortOrderInput | SortOrder
     address?: SortOrderInput | SortOrder
     emailVerified?: SortOrderInput | SortOrder
+    parentPin?: SortOrderInput | SortOrder
     position?: SortOrderInput | SortOrder
     affiliations?: SortOrder
     canEditMaterials?: SortOrder
@@ -34154,6 +34170,7 @@ export namespace Prisma {
     gender?: StringNullableFilter<"User"> | string | null
     address?: StringNullableFilter<"User"> | string | null
     emailVerified?: DateTimeNullableFilter<"User"> | Date | string | null
+    parentPin?: StringNullableFilter<"User"> | string | null
     position?: StringNullableFilter<"User"> | string | null
     affiliations?: StringNullableListFilter<"User">
     canEditMaterials?: BoolFilter<"User"> | boolean
@@ -34205,6 +34222,7 @@ export namespace Prisma {
     gender?: SortOrderInput | SortOrder
     address?: SortOrderInput | SortOrder
     emailVerified?: SortOrderInput | SortOrder
+    parentPin?: SortOrderInput | SortOrder
     position?: SortOrderInput | SortOrder
     affiliations?: SortOrder
     canEditMaterials?: SortOrder
@@ -34240,6 +34258,7 @@ export namespace Prisma {
     gender?: StringNullableWithAggregatesFilter<"User"> | string | null
     address?: StringNullableWithAggregatesFilter<"User"> | string | null
     emailVerified?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
+    parentPin?: StringNullableWithAggregatesFilter<"User"> | string | null
     position?: StringNullableWithAggregatesFilter<"User"> | string | null
     affiliations?: StringNullableListFilter<"User">
     canEditMaterials?: BoolWithAggregatesFilter<"User"> | boolean
@@ -36231,6 +36250,7 @@ export namespace Prisma {
     gender?: string | null
     address?: string | null
     emailVerified?: Date | string | null
+    parentPin?: string | null
     position?: string | null
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
@@ -36282,6 +36302,7 @@ export namespace Prisma {
     gender?: string | null
     address?: string | null
     emailVerified?: Date | string | null
+    parentPin?: string | null
     position?: string | null
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
@@ -36331,6 +36352,7 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
@@ -36382,6 +36404,7 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
@@ -36432,6 +36455,7 @@ export namespace Prisma {
     gender?: string | null
     address?: string | null
     emailVerified?: Date | string | null
+    parentPin?: string | null
     position?: string | null
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
@@ -36458,6 +36482,7 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
@@ -36485,6 +36510,7 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
@@ -38847,6 +38873,7 @@ export namespace Prisma {
     gender?: SortOrder
     address?: SortOrder
     emailVerified?: SortOrder
+    parentPin?: SortOrder
     position?: SortOrder
     affiliations?: SortOrder
     canEditMaterials?: SortOrder
@@ -38877,6 +38904,7 @@ export namespace Prisma {
     gender?: SortOrder
     address?: SortOrder
     emailVerified?: SortOrder
+    parentPin?: SortOrder
     position?: SortOrder
     canEditMaterials?: SortOrder
     canEditAssignments?: SortOrder
@@ -38902,6 +38930,7 @@ export namespace Prisma {
     gender?: SortOrder
     address?: SortOrder
     emailVerified?: SortOrder
+    parentPin?: SortOrder
     position?: SortOrder
     canEditMaterials?: SortOrder
     canEditAssignments?: SortOrder
@@ -44484,6 +44513,7 @@ export namespace Prisma {
     gender?: string | null
     address?: string | null
     emailVerified?: Date | string | null
+    parentPin?: string | null
     position?: string | null
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
@@ -44534,6 +44564,7 @@ export namespace Prisma {
     gender?: string | null
     address?: string | null
     emailVerified?: Date | string | null
+    parentPin?: string | null
     position?: string | null
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
@@ -44587,6 +44618,7 @@ export namespace Prisma {
     gender?: string | null
     address?: string | null
     emailVerified?: Date | string | null
+    parentPin?: string | null
     position?: string | null
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
@@ -44637,6 +44669,7 @@ export namespace Prisma {
     gender?: string | null
     address?: string | null
     emailVerified?: Date | string | null
+    parentPin?: string | null
     position?: string | null
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
@@ -44701,6 +44734,7 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
@@ -44751,6 +44785,7 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
@@ -44810,6 +44845,7 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
@@ -44860,6 +44896,7 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
@@ -44908,6 +44945,7 @@ export namespace Prisma {
     gender?: string | null
     address?: string | null
     emailVerified?: Date | string | null
+    parentPin?: string | null
     position?: string | null
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
@@ -44958,6 +44996,7 @@ export namespace Prisma {
     gender?: string | null
     address?: string | null
     emailVerified?: Date | string | null
+    parentPin?: string | null
     position?: string | null
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
@@ -45022,6 +45061,7 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
@@ -45072,6 +45112,7 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
@@ -45198,6 +45239,7 @@ export namespace Prisma {
     gender?: string | null
     address?: string | null
     emailVerified?: Date | string | null
+    parentPin?: string | null
     position?: string | null
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
@@ -45247,6 +45289,7 @@ export namespace Prisma {
     gender?: string | null
     address?: string | null
     emailVerified?: Date | string | null
+    parentPin?: string | null
     position?: string | null
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
@@ -45422,6 +45465,7 @@ export namespace Prisma {
     gender?: StringNullableFilter<"User"> | string | null
     address?: StringNullableFilter<"User"> | string | null
     emailVerified?: DateTimeNullableFilter<"User"> | Date | string | null
+    parentPin?: StringNullableFilter<"User"> | string | null
     position?: StringNullableFilter<"User"> | string | null
     affiliations?: StringNullableListFilter<"User">
     canEditMaterials?: BoolFilter<"User"> | boolean
@@ -45558,6 +45602,7 @@ export namespace Prisma {
     gender?: string | null
     address?: string | null
     emailVerified?: Date | string | null
+    parentPin?: string | null
     position?: string | null
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
@@ -45608,6 +45653,7 @@ export namespace Prisma {
     gender?: string | null
     address?: string | null
     emailVerified?: Date | string | null
+    parentPin?: string | null
     position?: string | null
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
@@ -45796,6 +45842,7 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
@@ -45846,6 +45893,7 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
@@ -46170,6 +46218,7 @@ export namespace Prisma {
     gender?: string | null
     address?: string | null
     emailVerified?: Date | string | null
+    parentPin?: string | null
     position?: string | null
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
@@ -46220,6 +46269,7 @@ export namespace Prisma {
     gender?: string | null
     address?: string | null
     emailVerified?: Date | string | null
+    parentPin?: string | null
     position?: string | null
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
@@ -46321,6 +46371,7 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
@@ -46371,6 +46422,7 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
@@ -46454,6 +46506,7 @@ export namespace Prisma {
     gender?: string | null
     address?: string | null
     emailVerified?: Date | string | null
+    parentPin?: string | null
     position?: string | null
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
@@ -46504,6 +46557,7 @@ export namespace Prisma {
     gender?: string | null
     address?: string | null
     emailVerified?: Date | string | null
+    parentPin?: string | null
     position?: string | null
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
@@ -46609,6 +46663,7 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
@@ -46659,6 +46714,7 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
@@ -46771,6 +46827,7 @@ export namespace Prisma {
     gender?: string | null
     address?: string | null
     emailVerified?: Date | string | null
+    parentPin?: string | null
     position?: string | null
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
@@ -46821,6 +46878,7 @@ export namespace Prisma {
     gender?: string | null
     address?: string | null
     emailVerified?: Date | string | null
+    parentPin?: string | null
     position?: string | null
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
@@ -46961,6 +47019,7 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
@@ -47011,6 +47070,7 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
@@ -47123,6 +47183,7 @@ export namespace Prisma {
     gender?: string | null
     address?: string | null
     emailVerified?: Date | string | null
+    parentPin?: string | null
     position?: string | null
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
@@ -47173,6 +47234,7 @@ export namespace Prisma {
     gender?: string | null
     address?: string | null
     emailVerified?: Date | string | null
+    parentPin?: string | null
     position?: string | null
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
@@ -47313,6 +47375,7 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
@@ -47363,6 +47426,7 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
@@ -47411,6 +47475,7 @@ export namespace Prisma {
     gender?: string | null
     address?: string | null
     emailVerified?: Date | string | null
+    parentPin?: string | null
     position?: string | null
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
@@ -47461,6 +47526,7 @@ export namespace Prisma {
     gender?: string | null
     address?: string | null
     emailVerified?: Date | string | null
+    parentPin?: string | null
     position?: string | null
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
@@ -47514,6 +47580,7 @@ export namespace Prisma {
     gender?: string | null
     address?: string | null
     emailVerified?: Date | string | null
+    parentPin?: string | null
     position?: string | null
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
@@ -47564,6 +47631,7 @@ export namespace Prisma {
     gender?: string | null
     address?: string | null
     emailVerified?: Date | string | null
+    parentPin?: string | null
     position?: string | null
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
@@ -47680,6 +47748,7 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
@@ -47730,6 +47799,7 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
@@ -47789,6 +47859,7 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
@@ -47839,6 +47910,7 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
@@ -47932,6 +48004,7 @@ export namespace Prisma {
     gender?: string | null
     address?: string | null
     emailVerified?: Date | string | null
+    parentPin?: string | null
     position?: string | null
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
@@ -47982,6 +48055,7 @@ export namespace Prisma {
     gender?: string | null
     address?: string | null
     emailVerified?: Date | string | null
+    parentPin?: string | null
     position?: string | null
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
@@ -48075,6 +48149,7 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
@@ -48125,6 +48200,7 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
@@ -48337,6 +48413,7 @@ export namespace Prisma {
     gender?: string | null
     address?: string | null
     emailVerified?: Date | string | null
+    parentPin?: string | null
     position?: string | null
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
@@ -48387,6 +48464,7 @@ export namespace Prisma {
     gender?: string | null
     address?: string | null
     emailVerified?: Date | string | null
+    parentPin?: string | null
     position?: string | null
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
@@ -48482,6 +48560,7 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
@@ -48532,6 +48611,7 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
@@ -48675,6 +48755,7 @@ export namespace Prisma {
     gender?: string | null
     address?: string | null
     emailVerified?: Date | string | null
+    parentPin?: string | null
     position?: string | null
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
@@ -48725,6 +48806,7 @@ export namespace Prisma {
     gender?: string | null
     address?: string | null
     emailVerified?: Date | string | null
+    parentPin?: string | null
     position?: string | null
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
@@ -48962,6 +49044,7 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
@@ -49012,6 +49095,7 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
@@ -49133,6 +49217,7 @@ export namespace Prisma {
     gender?: string | null
     address?: string | null
     emailVerified?: Date | string | null
+    parentPin?: string | null
     position?: string | null
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
@@ -49183,6 +49268,7 @@ export namespace Prisma {
     gender?: string | null
     address?: string | null
     emailVerified?: Date | string | null
+    parentPin?: string | null
     position?: string | null
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
@@ -49320,6 +49406,7 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
@@ -49370,6 +49457,7 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
@@ -49434,6 +49522,7 @@ export namespace Prisma {
     gender?: string | null
     address?: string | null
     emailVerified?: Date | string | null
+    parentPin?: string | null
     position?: string | null
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
@@ -49484,6 +49573,7 @@ export namespace Prisma {
     gender?: string | null
     address?: string | null
     emailVerified?: Date | string | null
+    parentPin?: string | null
     position?: string | null
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
@@ -49618,6 +49708,7 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
@@ -49668,6 +49759,7 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
@@ -49798,6 +49890,7 @@ export namespace Prisma {
     gender?: string | null
     address?: string | null
     emailVerified?: Date | string | null
+    parentPin?: string | null
     position?: string | null
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
@@ -49848,6 +49941,7 @@ export namespace Prisma {
     gender?: string | null
     address?: string | null
     emailVerified?: Date | string | null
+    parentPin?: string | null
     position?: string | null
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
@@ -49933,6 +50027,7 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
@@ -49983,6 +50078,7 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
@@ -50104,6 +50200,7 @@ export namespace Prisma {
     gender?: string | null
     address?: string | null
     emailVerified?: Date | string | null
+    parentPin?: string | null
     position?: string | null
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
@@ -50154,6 +50251,7 @@ export namespace Prisma {
     gender?: string | null
     address?: string | null
     emailVerified?: Date | string | null
+    parentPin?: string | null
     position?: string | null
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
@@ -50218,6 +50316,7 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
@@ -50268,6 +50367,7 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
@@ -50316,6 +50416,7 @@ export namespace Prisma {
     gender?: string | null
     address?: string | null
     emailVerified?: Date | string | null
+    parentPin?: string | null
     position?: string | null
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
@@ -50366,6 +50467,7 @@ export namespace Prisma {
     gender?: string | null
     address?: string | null
     emailVerified?: Date | string | null
+    parentPin?: string | null
     position?: string | null
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
@@ -50430,6 +50532,7 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
@@ -50480,6 +50583,7 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
@@ -50528,6 +50632,7 @@ export namespace Prisma {
     gender?: string | null
     address?: string | null
     emailVerified?: Date | string | null
+    parentPin?: string | null
     position?: string | null
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
@@ -50578,6 +50683,7 @@ export namespace Prisma {
     gender?: string | null
     address?: string | null
     emailVerified?: Date | string | null
+    parentPin?: string | null
     position?: string | null
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
@@ -50642,6 +50748,7 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
@@ -50692,6 +50799,7 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
@@ -50740,6 +50848,7 @@ export namespace Prisma {
     gender?: string | null
     address?: string | null
     emailVerified?: Date | string | null
+    parentPin?: string | null
     position?: string | null
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
@@ -50790,6 +50899,7 @@ export namespace Prisma {
     gender?: string | null
     address?: string | null
     emailVerified?: Date | string | null
+    parentPin?: string | null
     position?: string | null
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
@@ -50854,6 +50964,7 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
@@ -50904,6 +51015,7 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
@@ -50952,6 +51064,7 @@ export namespace Prisma {
     gender?: string | null
     address?: string | null
     emailVerified?: Date | string | null
+    parentPin?: string | null
     position?: string | null
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
@@ -51002,6 +51115,7 @@ export namespace Prisma {
     gender?: string | null
     address?: string | null
     emailVerified?: Date | string | null
+    parentPin?: string | null
     position?: string | null
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
@@ -51129,6 +51243,7 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
@@ -51179,6 +51294,7 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
@@ -51278,6 +51394,7 @@ export namespace Prisma {
     gender?: string | null
     address?: string | null
     emailVerified?: Date | string | null
+    parentPin?: string | null
     position?: string | null
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
@@ -51328,6 +51445,7 @@ export namespace Prisma {
     gender?: string | null
     address?: string | null
     emailVerified?: Date | string | null
+    parentPin?: string | null
     position?: string | null
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
@@ -51447,6 +51565,7 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
@@ -51497,6 +51616,7 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
@@ -51621,6 +51741,7 @@ export namespace Prisma {
     gender?: string | null
     address?: string | null
     emailVerified?: Date | string | null
+    parentPin?: string | null
     position?: string | null
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
@@ -51671,6 +51792,7 @@ export namespace Prisma {
     gender?: string | null
     address?: string | null
     emailVerified?: Date | string | null
+    parentPin?: string | null
     position?: string | null
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
@@ -51766,6 +51888,7 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
@@ -51816,6 +51939,7 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
@@ -52751,6 +52875,7 @@ export namespace Prisma {
     gender?: string | null
     address?: string | null
     emailVerified?: Date | string | null
+    parentPin?: string | null
     position?: string | null
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
@@ -52883,6 +53008,7 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
@@ -52932,6 +53058,7 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
@@ -52981,6 +53108,7 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean

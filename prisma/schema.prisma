@@ -30,6 +30,7 @@ model User {
   gender             String?
   address            String?
   emailVerified      DateTime?
+  parentPin          String?                @default("123456")
   accounts           Account[]
   sessions           Session[]
   teacherAssignments Assignment[]           @relation("TeacherAssignments")
@@ -394,6 +395,7 @@ enum Role {
   ADMIN
   COACH
   USER
+  PARENT
 }
 
 enum AssignmentStatus {

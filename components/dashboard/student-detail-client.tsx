@@ -66,6 +66,13 @@ export function StudentDetailClient({ student }: any) {
           </motion.div>
         </div>
         <div className="flex items-center gap-3">
+          {student.role === 'STUDENT' && (
+            <Link href={`/dashboard/reports/${student.id}/print`} target="_blank">
+              <Button className="bg-[#5483B3] hover:bg-[#3B6FA0] text-white rounded-xl font-bold text-xs h-10 px-4 shadow-sm flex items-center gap-2">
+                <FileText className="h-4 w-4" /> Cetak Rapor Digital
+              </Button>
+            </Link>
+          )}
           <Badge className="bg-[#5483B3]/10 text-[#5483B3] hover:bg-[#5483B3]/20 border-none rounded-lg text-[11px] font-bold uppercase px-3 py-1.5 shadow-sm transition-colors">
             ID: {student.id.substring(0, 8)}
           </Badge>
@@ -118,6 +125,14 @@ export function StudentDetailClient({ student }: any) {
                   </p>
                   <p className="text-sm font-semibold text-[var(--foreground)] uppercase">{student.nis || '-'}</p>
                 </div>
+                {student.role === 'STUDENT' && (
+                  <div className="space-y-1.5">
+                    <p className="text-[11px] font-bold uppercase tracking-widest text-[var(--muted-foreground)] flex items-center justify-center lg:justify-start gap-2">
+                      <Fingerprint className="h-3.5 w-3.5 text-[#5483B3]" /> PIN Orang Tua
+                    </p>
+                    <p className="text-sm font-mono font-semibold text-[var(--foreground)]">{student.parentPin || '123456'}</p>
+                  </div>
+                )}
                 <div className="space-y-1.5">
                   <p className="text-[11px] font-bold uppercase tracking-widest text-[var(--muted-foreground)] flex items-center justify-center lg:justify-start gap-2">
                     <Phone className="h-3.5 w-3.5 text-[#5483B3]" /> Nomor Telepon

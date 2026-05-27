@@ -11,7 +11,7 @@ export async function POST(req: Request) {
 
   try {
     const body = await req.json()
-    const { name, email, password, role, school, classId, subjectId, image, nis, phone, gender, address } = body
+    const { name, email, password, role, school, classId, subjectId, image, nis, phone, gender, address, parentPin } = body
 
     if (!email || !password || !name) {
       return new NextResponse("Missing information", { status: 400 })
@@ -37,6 +37,7 @@ export async function POST(req: Request) {
         classId: classId || null,
         image: image || null,
         nis: nis || null,
+        parentPin: parentPin || "123456",
         noAbsen: body.noAbsen ? parseInt(body.noAbsen) : null,
         phone: phone || null,
         gender: gender || null,

@@ -21,6 +21,7 @@ export default function LoginPage() {
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
   const [isLoginMaintenance, setIsLoginMaintenance] = useState(false)
+  const [loginType, setLoginType] = useState<'user' | 'parent'>('user')
 
   useEffect(() => {
     if (error === 'AccessDenied' || error === 'Callback') {
@@ -52,7 +53,7 @@ export default function LoginPage() {
         if (result.error.includes("pemeliharaan") || result.error.includes("Maintenance")) {
           toast.error('Akses ditutup: Halaman login sedang dalam pemeliharaan')
         } else {
-          toast.error('Email atau password salah')
+          toast.error(loginType === 'parent' ? 'NIS Siswa atau PIN salah' : 'Email atau password salah')
         }
       } else {
         toast.success('Login berhasil! Mengalihkan...')
@@ -133,6 +134,23 @@ export default function LoginPage() {
             <p className="text-xs text-[#64748B] font-semibold">Masuk ke akun EduTrack Anda untuk melanjutkan.</p>
           </div>
 
+          <div className="flex bg-[#F1F5F9] border border-[#E2E8F0] rounded-xl p-1 shadow-inner">
+            <button 
+              type="button"
+              onClick={() => { setLoginType('user'); setEmail(''); setPassword(''); }}
+              className={`flex-1 text-[11px] font-bold py-1.5 rounded-lg transition-all duration-300 ${loginType === 'user' ? 'bg-[#1E293B] text-white shadow-sm' : 'text-[#64748B] hover:text-[#1E293B]'}`}
+            >
+              Akun Sekolah
+            </button>
+            <button 
+              type="button"
+              onClick={() => { setLoginType('parent'); setEmail(''); setPassword(''); }}
+              className={`flex-1 text-[11px] font-bold py-1.5 rounded-lg transition-all duration-300 ${loginType === 'parent' ? 'bg-[#1E293B] text-white shadow-sm' : 'text-[#64748B] hover:text-[#1E293B]'}`}
+            >
+              Wali Murid (Orang Tua)
+            </button>
+          </div>
+
           <form onSubmit={handleLogin} className="space-y-6">
             {isLoginMaintenance && (
               <div className="p-4 bg-amber-500/10 border border-amber-500/20 text-amber-700 rounded-2xl text-xs font-bold flex items-center gap-3">
@@ -144,13 +162,15 @@ export default function LoginPage() {
             )}
             <div className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="email" className="text-xs font-bold text-[#0F172A]">Alamat Email</Label>
+                <Label htmlFor="email" className="text-xs font-bold text-[#0F172A]">
+                  {loginType === 'parent' ? "NIS Siswa (Nomor Induk Siswa)" : "Alamat Email"}
+                </Label>
                 <div className="relative">
                   <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 h-5 w-5 text-[#64748B]" />
                   <Input
                     id="email"
-                    type="email"
-                    placeholder="nama@sekolah.sch.id"
+                    type={loginType === 'parent' ? "text" : "email"}
+                    placeholder={loginType === 'parent' ? "Contoh: 12209432" : "nama@sekolah.sch.id"}
                     className="pl-11 h-11 bg-[#F8FAFC] border-[#E2E8F0] focus:bg-white focus:border-[#1E293B] focus:ring-2 focus:ring-[#1E293B]/5 rounded-xl transition-all text-xs"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -158,18 +178,22 @@ export default function LoginPage() {
                   />
                 </div>
               </div>
-
+ 
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <Label htmlFor="password" className="text-xs font-bold text-[#0F172A]">Password</Label>
-                  <Link href="#" className="text-[10px] font-black uppercase text-[#5483B3] hover:underline">Lupa Password?</Link>
+                  <Label htmlFor="password" className="text-xs font-bold text-[#0F172A]">
+                    {loginType === 'parent' ? "PIN Orang Tua" : "Password"}
+                  </Label>
+                  {loginType !== 'parent' && (
+                    <Link href="#" className="text-[10px] font-black uppercase text-[#5483B3] hover:underline">Lupa Password?</Link>
+                  )}
                 </div>
                 <div className="relative">
                   <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 h-5 w-5 text-[#64748B]" />
                   <Input
                     id="password"
                     type={showPassword ? "text" : "password"}
-                    placeholder="••••••••"
+                    placeholder={loginType === 'parent' ? "PIN 6 digit" : "••••••••"}
                     className="pl-11 pr-11 h-11 bg-[#F8FAFC] border-[#E2E8F0] focus:bg-white focus:border-[#1E293B] focus:ring-2 focus:ring-[#1E293B]/5 rounded-xl transition-all text-xs"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}

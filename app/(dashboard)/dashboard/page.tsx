@@ -20,6 +20,10 @@ export default async function Page() {
     redirect("/dashboard/admin")
   }
 
+  if (role === 'PARENT') {
+    redirect("/dashboard/parent")
+  }
+
   if (role === 'USER') {
     return <GuestDashboard user={session.user} />
   }

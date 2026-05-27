@@ -15,7 +15,7 @@ export async function PATCH(
 
   try {
     const body = await req.json()
-    const { name, email, role, school, classId, subjectId, image, nis, phone, gender, address, password } = body
+    const { name, email, role, school, classId, subjectId, image, nis, phone, gender, address, password, parentPin } = body
 
     if (!userId) {
         return new NextResponse("User ID missing", { status: 400 })
@@ -50,7 +50,8 @@ export async function PATCH(
       position: body.position !== undefined ? body.position : undefined,
       affiliations: body.affiliations !== undefined ? body.affiliations : undefined,
       canEditMaterials: body.canEditMaterials !== undefined ? body.canEditMaterials : undefined,
-      canEditAssignments: body.canEditAssignments !== undefined ? body.canEditAssignments : undefined
+      canEditAssignments: body.canEditAssignments !== undefined ? body.canEditAssignments : undefined,
+      parentPin: parentPin !== undefined ? parentPin : undefined
     }
 
     // If password is provided, hash it and update it

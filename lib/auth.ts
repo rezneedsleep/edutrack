@@ -18,12 +18,24 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) return null
         
-        const user = await prisma.user.findUnique({
+        let user = await prisma.user.findUnique({
           where: { email: credentials.email as string },
           include: { class: true }
         })
         
-        if (!user || !user.password) return null
+        let isParentLogin = false
+        if (!user) {
+          // Attempt to find by NIS for parent login
+          user = await prisma.user.findFirst({
+            where: { nis: credentials.email as string },
+            include: { class: true }
+          })
+          if (user) {
+            isParentLogin = true
+          }
+        }
+        
+        if (!user) return null
         if (!user.isActive) throw new Error("Akun kamu disuspend")
 
         // Check system maintenance and login maintenance modes
@@ -31,10 +43,32 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           where: { id: 'global' }
         })
 
-        if (user.role !== 'ADMIN' && (settings?.maintenanceMode || settings?.loginMaintenance)) {
+        if (!isParentLogin && user.role !== 'ADMIN' && (settings?.maintenanceMode || settings?.loginMaintenance)) {
           throw new Error("Halaman login sedang dalam pemeliharaan.")
         }
         
+        if (isParentLogin) {
+          // Parent PIN verification (plain text match)
+          const pinValid = credentials.password === user.parentPin
+          if (!pinValid) return null
+          
+          await prisma.user.update({
+            where: { id: user.id },
+            data: { lastActiveAt: new Date() }
+          })
+
+          return {
+            id: user.id,
+            name: `Orang Tua - ${user.name}`,
+            email: user.email,
+            role: 'PARENT',
+            school: user.school,
+            classId: user.classId,
+            image: user.image
+          }
+        }
+
+        if (!user.password) return null
         const passwordValid = await bcrypt.compare(
           credentials.password as string,
           user.password
@@ -105,7 +139,10 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             select: { role: true, school: true, classId: true, image: true }
           })
           if (dbUser) {
-            token.role = dbUser.role
+            // Keep role as 'PARENT' if the token currently belongs to a parent session
+            if (token.role !== 'PARENT') {
+              token.role = dbUser.role
+            }
             token.school = dbUser.school
             token.classId = dbUser.classId
             token.image = dbUser.image
