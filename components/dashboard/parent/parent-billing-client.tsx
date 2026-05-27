@@ -12,6 +12,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { toast } from "sonner"
 import { useRouter } from "next/navigation"
+import { createBrowserClient } from "@supabase/ssr"
 
 export function ParentBillingClient({ billings, bankSettings }: { billings: any[], bankSettings?: any }) {
   const router = useRouter()
@@ -28,20 +29,25 @@ export function ParentBillingClient({ billings, bankSettings }: { billings: any[
 
     setIsUploading(true)
     try {
-      const uploadData = new FormData()
-      uploadData.append("file", proofFile)
+      const supabase = createBrowserClient(
+        process.env.NEXT_PUBLIC_SUPABASE_URL!,
+        process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!
+      )
 
-      const uploadRes = await fetch("/api/upload", {
-        method: "POST",
-        body: uploadData
-      })
+      const fileExt = proofFile.name.split('.').pop()
+      const filename = `${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExt}`
 
-      if (!uploadRes.ok) {
-        throw new Error("Gagal mengunggah file")
+      const { data: uploadData, error: uploadError } = await supabase.storage
+        .from('uploads')
+        .upload(filename, proofFile, { upsert: false })
+
+      if (uploadError) {
+        console.error(uploadError)
+        throw new Error("Gagal mengunggah file ke server storage")
       }
 
-      const uploadResult = await uploadRes.json()
-      const finalUrl = uploadResult.url
+      const { data: { publicUrl } } = supabase.storage.from('uploads').getPublicUrl(filename)
+      const finalUrl = publicUrl
 
       const res = await fetch("/api/parent/billing", {
         method: "PUT",

@@ -14,6 +14,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { toast } from "sonner"
 import { useRouter } from "next/navigation"
 import { CalendarDays, FileCheck, FileX, Paperclip, Clock } from "lucide-react"
+import { createBrowserClient } from "@supabase/ssr"
 
 export function ParentAbsenceClient({ requests }: { requests: any[] }) {
   const router = useRouter()
@@ -34,17 +35,24 @@ export function ParentAbsenceClient({ requests }: { requests: any[] }) {
     try {
       let finalUrl = ""
       if (attachmentFile) {
-        const uploadData = new FormData()
-        uploadData.append("file", attachmentFile)
+        const supabase = createBrowserClient(
+          process.env.NEXT_PUBLIC_SUPABASE_URL!,
+          process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!
+        )
 
-        const uploadRes = await fetch("/api/upload", {
-          method: "POST",
-          body: uploadData
-        })
+        const fileExt = attachmentFile.name.split('.').pop()
+        const filename = `${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExt}`
 
-        if (!uploadRes.ok) throw new Error("Gagal mengunggah file lampiran")
-        const uploadResult = await uploadRes.json()
-        finalUrl = uploadResult.url
+        const { error: uploadError } = await supabase.storage
+          .from('uploads')
+          .upload(filename, attachmentFile, { upsert: false })
+
+        if (uploadError) {
+          console.error(uploadError)
+          throw new Error("Gagal mengunggah file lampiran")
+        }
+        const { data: { publicUrl } } = supabase.storage.from('uploads').getPublicUrl(filename)
+        finalUrl = publicUrl
       }
 
       const res = await fetch("/api/parent/requests", {
