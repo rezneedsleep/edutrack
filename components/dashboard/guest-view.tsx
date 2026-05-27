@@ -1,5 +1,7 @@
 'use client'
 
+import { useEffect } from 'react'
+
 import { motion } from 'framer-motion'
 import { 
   Shield, 
@@ -48,6 +50,17 @@ export function GuestDashboard({ user }: any) {
       bg: 'bg-amber-500/10',
     },
   ]
+
+  useEffect(() => {
+    // FORCE CLEAR SERVICE WORKER
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(function(registrations) {
+        for(let registration of registrations) {
+          registration.unregister()
+        }
+      })
+    }
+  }, [])
 
   return (
     <div className="space-y-10 pb-20 max-w-5xl mx-auto">
