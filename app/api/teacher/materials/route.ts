@@ -29,6 +29,33 @@ export async function POST(req: Request) {
       }
     })
 
+    // Email Notification
+    try {
+      const targetClass = classId === "all" ? null : classId;
+      const students = await prisma.user.findMany({
+        where: {
+          role: 'STUDENT',
+          ...(targetClass ? { classId: targetClass } : {})
+        },
+        select: { email: true }
+      });
+      
+      const emails = students.map(s => s.email).filter(Boolean);
+      if (emails.length > 0) {
+        const { sendEmail } = await import("@/lib/email");
+        await sendEmail({
+          to: emails,
+          subject: `Materi Baru: ${material.title}`,
+          html: `<p>Halo, ada materi baru yang diunggah oleh guru Anda.</p>
+                 <p><strong>Judul:</strong> ${material.title}</p>
+                 <p><strong>Deskripsi:</strong> ${material.description}</p>
+                 <p>Silakan login ke EduTrack untuk melihat materi selengkapnya.</p>`
+        });
+      }
+    } catch (emailError) {
+      console.error("[EMAIL_ERROR]", emailError);
+    }
+
     return NextResponse.json(material)
   } catch (error) {
     console.error("[MATERIALS_POST]", error)

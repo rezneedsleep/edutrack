@@ -34,6 +34,33 @@ export async function POST(req: Request) {
       include: { subject: true, class: true, teacher: true }
     })
 
+    // Email Notification
+    try {
+      const targetClass = classId === "all" || !classId ? null : classId;
+      const students = await prisma.user.findMany({
+        where: {
+          role: 'STUDENT',
+          ...(targetClass ? { classId: targetClass } : {})
+        },
+        select: { email: true }
+      });
+      
+      const emails = students.map(s => s.email).filter(Boolean);
+      if (emails.length > 0) {
+        const { sendEmail } = await import("@/lib/email");
+        await sendEmail({
+          to: emails,
+          subject: `Tugas Baru: ${assignment.title}`,
+          html: `<p>Halo, ada tugas baru dari guru Anda yang harus dikerjakan.</p>
+                 <p><strong>Judul:</strong> ${assignment.title}</p>
+                 <p><strong>Tenggat Waktu:</strong> ${new Date(deadline).toLocaleString('id-ID')}</p>
+                 <p>Silakan login ke EduTrack untuk mengumpulkan tugas Anda.</p>`
+        });
+      }
+    } catch (emailError) {
+      console.error("[EMAIL_ERROR]", emailError);
+    }
+
     console.log("[ASSIGNMENT_SUCCESS] Created:", assignment.id)
     return NextResponse.json(assignment)
   } catch (error: any) {

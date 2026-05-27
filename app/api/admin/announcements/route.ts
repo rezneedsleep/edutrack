@@ -53,6 +53,29 @@ export async function POST(req: Request) {
       }))
     })
 
+    // Email Notification
+    try {
+      const activeUsersWithEmail = await prisma.user.findMany({
+        where: { isActive: true },
+        select: { email: true }
+      });
+      const emails = activeUsersWithEmail.map(u => u.email).filter(Boolean);
+      
+      if (emails.length > 0) {
+        const { sendEmail } = await import("@/lib/email");
+        await sendEmail({
+          to: emails,
+          subject: `Pengumuman Admin: ${announcement.title}`,
+          html: `<p>Halo, ada pengumuman baru dari Administrator.</p>
+                 <p><strong>Topik:</strong> ${announcement.title}</p>
+                 <p><strong>Pesan:</strong> ${announcement.message}</p>
+                 <p>Silakan login ke EduTrack untuk info lebih lanjut.</p>`
+        });
+      }
+    } catch (emailError) {
+      console.error("[EMAIL_ERROR]", emailError);
+    }
+
     return NextResponse.json({ success: true, count: users.length, announcement })
   } catch (error) {
     console.error("[ADMIN_ANNOUNCEMENT_POST]", error)

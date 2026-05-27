@@ -158,6 +158,26 @@ export type DiscussionThread = $Result.DefaultSelection<Prisma.$DiscussionThread
  * 
  */
 export type DiscussionReply = $Result.DefaultSelection<Prisma.$DiscussionReplyPayload>
+/**
+ * Model Exam
+ * 
+ */
+export type Exam = $Result.DefaultSelection<Prisma.$ExamPayload>
+/**
+ * Model ExamQuestion
+ * 
+ */
+export type ExamQuestion = $Result.DefaultSelection<Prisma.$ExamQuestionPayload>
+/**
+ * Model ExamAttempt
+ * 
+ */
+export type ExamAttempt = $Result.DefaultSelection<Prisma.$ExamAttemptPayload>
+/**
+ * Model ExamAnswer
+ * 
+ */
+export type ExamAnswer = $Result.DefaultSelection<Prisma.$ExamAnswerPayload>
 
 /**
  * Enums
@@ -205,6 +225,23 @@ export const NotificationType: {
 
 export type NotificationType = (typeof NotificationType)[keyof typeof NotificationType]
 
+
+export const ExamStatus: {
+  DRAFT: 'DRAFT',
+  PUBLISHED: 'PUBLISHED',
+  CLOSED: 'CLOSED'
+};
+
+export type ExamStatus = (typeof ExamStatus)[keyof typeof ExamStatus]
+
+
+export const AttemptStatus: {
+  ONGOING: 'ONGOING',
+  COMPLETED: 'COMPLETED'
+};
+
+export type AttemptStatus = (typeof AttemptStatus)[keyof typeof AttemptStatus]
+
 }
 
 export type Role = $Enums.Role
@@ -222,6 +259,14 @@ export const AssignmentStatus: typeof $Enums.AssignmentStatus
 export type NotificationType = $Enums.NotificationType
 
 export const NotificationType: typeof $Enums.NotificationType
+
+export type ExamStatus = $Enums.ExamStatus
+
+export const ExamStatus: typeof $Enums.ExamStatus
+
+export type AttemptStatus = $Enums.AttemptStatus
+
+export const AttemptStatus: typeof $Enums.AttemptStatus
 
 /**
  * ##  Prisma Client ʲˢ
@@ -635,6 +680,46 @@ export class PrismaClient<
     * ```
     */
   get discussionReply(): Prisma.DiscussionReplyDelegate<ExtArgs>;
+
+  /**
+   * `prisma.exam`: Exposes CRUD operations for the **Exam** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Exams
+    * const exams = await prisma.exam.findMany()
+    * ```
+    */
+  get exam(): Prisma.ExamDelegate<ExtArgs>;
+
+  /**
+   * `prisma.examQuestion`: Exposes CRUD operations for the **ExamQuestion** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ExamQuestions
+    * const examQuestions = await prisma.examQuestion.findMany()
+    * ```
+    */
+  get examQuestion(): Prisma.ExamQuestionDelegate<ExtArgs>;
+
+  /**
+   * `prisma.examAttempt`: Exposes CRUD operations for the **ExamAttempt** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ExamAttempts
+    * const examAttempts = await prisma.examAttempt.findMany()
+    * ```
+    */
+  get examAttempt(): Prisma.ExamAttemptDelegate<ExtArgs>;
+
+  /**
+   * `prisma.examAnswer`: Exposes CRUD operations for the **ExamAnswer** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ExamAnswers
+    * const examAnswers = await prisma.examAnswer.findMany()
+    * ```
+    */
+  get examAnswer(): Prisma.ExamAnswerDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -1104,7 +1189,11 @@ export namespace Prisma {
     CalendarReminder: 'CalendarReminder',
     Document: 'Document',
     DiscussionThread: 'DiscussionThread',
-    DiscussionReply: 'DiscussionReply'
+    DiscussionReply: 'DiscussionReply',
+    Exam: 'Exam',
+    ExamQuestion: 'ExamQuestion',
+    ExamAttempt: 'ExamAttempt',
+    ExamAnswer: 'ExamAnswer'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1120,7 +1209,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "user" | "userNote" | "attendance" | "class" | "subject" | "topic" | "progressLog" | "userSubject" | "classSchedule" | "material" | "extracurricular" | "extracurricularMember" | "extracurricularSession" | "extracurricularAttendance" | "assignment" | "assignmentSubmission" | "comment" | "notification" | "announcement" | "operator" | "settings" | "account" | "session" | "verificationToken" | "passwordResetToken" | "calendarReminder" | "document" | "discussionThread" | "discussionReply"
+      modelProps: "user" | "userNote" | "attendance" | "class" | "subject" | "topic" | "progressLog" | "userSubject" | "classSchedule" | "material" | "extracurricular" | "extracurricularMember" | "extracurricularSession" | "extracurricularAttendance" | "assignment" | "assignmentSubmission" | "comment" | "notification" | "announcement" | "operator" | "settings" | "account" | "session" | "verificationToken" | "passwordResetToken" | "calendarReminder" | "document" | "discussionThread" | "discussionReply" | "exam" | "examQuestion" | "examAttempt" | "examAnswer"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -3154,6 +3243,286 @@ export namespace Prisma {
           }
         }
       }
+      Exam: {
+        payload: Prisma.$ExamPayload<ExtArgs>
+        fields: Prisma.ExamFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ExamFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExamPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ExamFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExamPayload>
+          }
+          findFirst: {
+            args: Prisma.ExamFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExamPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ExamFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExamPayload>
+          }
+          findMany: {
+            args: Prisma.ExamFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExamPayload>[]
+          }
+          create: {
+            args: Prisma.ExamCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExamPayload>
+          }
+          createMany: {
+            args: Prisma.ExamCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ExamCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExamPayload>[]
+          }
+          delete: {
+            args: Prisma.ExamDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExamPayload>
+          }
+          update: {
+            args: Prisma.ExamUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExamPayload>
+          }
+          deleteMany: {
+            args: Prisma.ExamDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ExamUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.ExamUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExamPayload>
+          }
+          aggregate: {
+            args: Prisma.ExamAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateExam>
+          }
+          groupBy: {
+            args: Prisma.ExamGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ExamGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ExamCountArgs<ExtArgs>
+            result: $Utils.Optional<ExamCountAggregateOutputType> | number
+          }
+        }
+      }
+      ExamQuestion: {
+        payload: Prisma.$ExamQuestionPayload<ExtArgs>
+        fields: Prisma.ExamQuestionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ExamQuestionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExamQuestionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ExamQuestionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExamQuestionPayload>
+          }
+          findFirst: {
+            args: Prisma.ExamQuestionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExamQuestionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ExamQuestionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExamQuestionPayload>
+          }
+          findMany: {
+            args: Prisma.ExamQuestionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExamQuestionPayload>[]
+          }
+          create: {
+            args: Prisma.ExamQuestionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExamQuestionPayload>
+          }
+          createMany: {
+            args: Prisma.ExamQuestionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ExamQuestionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExamQuestionPayload>[]
+          }
+          delete: {
+            args: Prisma.ExamQuestionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExamQuestionPayload>
+          }
+          update: {
+            args: Prisma.ExamQuestionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExamQuestionPayload>
+          }
+          deleteMany: {
+            args: Prisma.ExamQuestionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ExamQuestionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.ExamQuestionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExamQuestionPayload>
+          }
+          aggregate: {
+            args: Prisma.ExamQuestionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateExamQuestion>
+          }
+          groupBy: {
+            args: Prisma.ExamQuestionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ExamQuestionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ExamQuestionCountArgs<ExtArgs>
+            result: $Utils.Optional<ExamQuestionCountAggregateOutputType> | number
+          }
+        }
+      }
+      ExamAttempt: {
+        payload: Prisma.$ExamAttemptPayload<ExtArgs>
+        fields: Prisma.ExamAttemptFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ExamAttemptFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExamAttemptPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ExamAttemptFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExamAttemptPayload>
+          }
+          findFirst: {
+            args: Prisma.ExamAttemptFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExamAttemptPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ExamAttemptFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExamAttemptPayload>
+          }
+          findMany: {
+            args: Prisma.ExamAttemptFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExamAttemptPayload>[]
+          }
+          create: {
+            args: Prisma.ExamAttemptCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExamAttemptPayload>
+          }
+          createMany: {
+            args: Prisma.ExamAttemptCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ExamAttemptCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExamAttemptPayload>[]
+          }
+          delete: {
+            args: Prisma.ExamAttemptDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExamAttemptPayload>
+          }
+          update: {
+            args: Prisma.ExamAttemptUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExamAttemptPayload>
+          }
+          deleteMany: {
+            args: Prisma.ExamAttemptDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ExamAttemptUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.ExamAttemptUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExamAttemptPayload>
+          }
+          aggregate: {
+            args: Prisma.ExamAttemptAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateExamAttempt>
+          }
+          groupBy: {
+            args: Prisma.ExamAttemptGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ExamAttemptGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ExamAttemptCountArgs<ExtArgs>
+            result: $Utils.Optional<ExamAttemptCountAggregateOutputType> | number
+          }
+        }
+      }
+      ExamAnswer: {
+        payload: Prisma.$ExamAnswerPayload<ExtArgs>
+        fields: Prisma.ExamAnswerFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ExamAnswerFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExamAnswerPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ExamAnswerFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExamAnswerPayload>
+          }
+          findFirst: {
+            args: Prisma.ExamAnswerFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExamAnswerPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ExamAnswerFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExamAnswerPayload>
+          }
+          findMany: {
+            args: Prisma.ExamAnswerFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExamAnswerPayload>[]
+          }
+          create: {
+            args: Prisma.ExamAnswerCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExamAnswerPayload>
+          }
+          createMany: {
+            args: Prisma.ExamAnswerCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ExamAnswerCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExamAnswerPayload>[]
+          }
+          delete: {
+            args: Prisma.ExamAnswerDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExamAnswerPayload>
+          }
+          update: {
+            args: Prisma.ExamAnswerUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExamAnswerPayload>
+          }
+          deleteMany: {
+            args: Prisma.ExamAnswerDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ExamAnswerUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.ExamAnswerUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExamAnswerPayload>
+          }
+          aggregate: {
+            args: Prisma.ExamAnswerAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateExamAnswer>
+          }
+          groupBy: {
+            args: Prisma.ExamAnswerGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ExamAnswerGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ExamAnswerCountArgs<ExtArgs>
+            result: $Utils.Optional<ExamAnswerCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -3337,6 +3706,8 @@ export namespace Prisma {
     documents: number
     discussionThreads: number
     discussionReplies: number
+    teacherExams: number
+    examAttempts: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3362,6 +3733,8 @@ export namespace Prisma {
     documents?: boolean | UserCountOutputTypeCountDocumentsArgs
     discussionThreads?: boolean | UserCountOutputTypeCountDiscussionThreadsArgs
     discussionReplies?: boolean | UserCountOutputTypeCountDiscussionRepliesArgs
+    teacherExams?: boolean | UserCountOutputTypeCountTeacherExamsArgs
+    examAttempts?: boolean | UserCountOutputTypeCountExamAttemptsArgs
   }
 
   // Custom InputTypes
@@ -3529,6 +3902,20 @@ export namespace Prisma {
     where?: DiscussionReplyWhereInput
   }
 
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountTeacherExamsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ExamWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountExamAttemptsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ExamAttemptWhereInput
+  }
+
 
   /**
    * Count Type ClassCountOutputType
@@ -3540,6 +3927,7 @@ export namespace Prisma {
     students: number
     materials: number
     discussionThreads: number
+    exams: number
   }
 
   export type ClassCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3548,6 +3936,7 @@ export namespace Prisma {
     students?: boolean | ClassCountOutputTypeCountStudentsArgs
     materials?: boolean | ClassCountOutputTypeCountMaterialsArgs
     discussionThreads?: boolean | ClassCountOutputTypeCountDiscussionThreadsArgs
+    exams?: boolean | ClassCountOutputTypeCountExamsArgs
   }
 
   // Custom InputTypes
@@ -3596,6 +3985,13 @@ export namespace Prisma {
     where?: DiscussionThreadWhereInput
   }
 
+  /**
+   * ClassCountOutputType without action
+   */
+  export type ClassCountOutputTypeCountExamsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ExamWhereInput
+  }
+
 
   /**
    * Count Type SubjectCountOutputType
@@ -3607,6 +4003,7 @@ export namespace Prisma {
     topics: number
     userSubjects: number
     materials: number
+    exams: number
   }
 
   export type SubjectCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3615,6 +4012,7 @@ export namespace Prisma {
     topics?: boolean | SubjectCountOutputTypeCountTopicsArgs
     userSubjects?: boolean | SubjectCountOutputTypeCountUserSubjectsArgs
     materials?: boolean | SubjectCountOutputTypeCountMaterialsArgs
+    exams?: boolean | SubjectCountOutputTypeCountExamsArgs
   }
 
   // Custom InputTypes
@@ -3661,6 +4059,13 @@ export namespace Prisma {
    */
   export type SubjectCountOutputTypeCountMaterialsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: MaterialWhereInput
+  }
+
+  /**
+   * SubjectCountOutputType without action
+   */
+  export type SubjectCountOutputTypeCountExamsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ExamWhereInput
   }
 
 
@@ -3936,6 +4341,108 @@ export namespace Prisma {
    */
   export type DiscussionThreadCountOutputTypeCountRepliesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: DiscussionReplyWhereInput
+  }
+
+
+  /**
+   * Count Type ExamCountOutputType
+   */
+
+  export type ExamCountOutputType = {
+    questions: number
+    attempts: number
+  }
+
+  export type ExamCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    questions?: boolean | ExamCountOutputTypeCountQuestionsArgs
+    attempts?: boolean | ExamCountOutputTypeCountAttemptsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * ExamCountOutputType without action
+   */
+  export type ExamCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExamCountOutputType
+     */
+    select?: ExamCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * ExamCountOutputType without action
+   */
+  export type ExamCountOutputTypeCountQuestionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ExamQuestionWhereInput
+  }
+
+  /**
+   * ExamCountOutputType without action
+   */
+  export type ExamCountOutputTypeCountAttemptsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ExamAttemptWhereInput
+  }
+
+
+  /**
+   * Count Type ExamQuestionCountOutputType
+   */
+
+  export type ExamQuestionCountOutputType = {
+    answers: number
+  }
+
+  export type ExamQuestionCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    answers?: boolean | ExamQuestionCountOutputTypeCountAnswersArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * ExamQuestionCountOutputType without action
+   */
+  export type ExamQuestionCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExamQuestionCountOutputType
+     */
+    select?: ExamQuestionCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * ExamQuestionCountOutputType without action
+   */
+  export type ExamQuestionCountOutputTypeCountAnswersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ExamAnswerWhereInput
+  }
+
+
+  /**
+   * Count Type ExamAttemptCountOutputType
+   */
+
+  export type ExamAttemptCountOutputType = {
+    answers: number
+  }
+
+  export type ExamAttemptCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    answers?: boolean | ExamAttemptCountOutputTypeCountAnswersArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * ExamAttemptCountOutputType without action
+   */
+  export type ExamAttemptCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExamAttemptCountOutputType
+     */
+    select?: ExamAttemptCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * ExamAttemptCountOutputType without action
+   */
+  export type ExamAttemptCountOutputTypeCountAnswersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ExamAnswerWhereInput
   }
 
 
@@ -4317,6 +4824,8 @@ export namespace Prisma {
     documents?: boolean | User$documentsArgs<ExtArgs>
     discussionThreads?: boolean | User$discussionThreadsArgs<ExtArgs>
     discussionReplies?: boolean | User$discussionRepliesArgs<ExtArgs>
+    teacherExams?: boolean | User$teacherExamsArgs<ExtArgs>
+    examAttempts?: boolean | User$examAttemptsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -4402,6 +4911,8 @@ export namespace Prisma {
     documents?: boolean | User$documentsArgs<ExtArgs>
     discussionThreads?: boolean | User$discussionThreadsArgs<ExtArgs>
     discussionReplies?: boolean | User$discussionRepliesArgs<ExtArgs>
+    teacherExams?: boolean | User$teacherExamsArgs<ExtArgs>
+    examAttempts?: boolean | User$examAttemptsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4435,6 +4946,8 @@ export namespace Prisma {
       documents: Prisma.$DocumentPayload<ExtArgs>[]
       discussionThreads: Prisma.$DiscussionThreadPayload<ExtArgs>[]
       discussionReplies: Prisma.$DiscussionReplyPayload<ExtArgs>[]
+      teacherExams: Prisma.$ExamPayload<ExtArgs>[]
+      examAttempts: Prisma.$ExamAttemptPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -4850,6 +5363,8 @@ export namespace Prisma {
     documents<T extends User$documentsArgs<ExtArgs> = {}>(args?: Subset<T, User$documentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DocumentPayload<ExtArgs>, T, "findMany"> | Null>
     discussionThreads<T extends User$discussionThreadsArgs<ExtArgs> = {}>(args?: Subset<T, User$discussionThreadsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DiscussionThreadPayload<ExtArgs>, T, "findMany"> | Null>
     discussionReplies<T extends User$discussionRepliesArgs<ExtArgs> = {}>(args?: Subset<T, User$discussionRepliesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DiscussionReplyPayload<ExtArgs>, T, "findMany"> | Null>
+    teacherExams<T extends User$teacherExamsArgs<ExtArgs> = {}>(args?: Subset<T, User$teacherExamsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ExamPayload<ExtArgs>, T, "findMany"> | Null>
+    examAttempts<T extends User$examAttemptsArgs<ExtArgs> = {}>(args?: Subset<T, User$examAttemptsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ExamAttemptPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5689,6 +6204,46 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: DiscussionReplyScalarFieldEnum | DiscussionReplyScalarFieldEnum[]
+  }
+
+  /**
+   * User.teacherExams
+   */
+  export type User$teacherExamsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Exam
+     */
+    select?: ExamSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExamInclude<ExtArgs> | null
+    where?: ExamWhereInput
+    orderBy?: ExamOrderByWithRelationInput | ExamOrderByWithRelationInput[]
+    cursor?: ExamWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ExamScalarFieldEnum | ExamScalarFieldEnum[]
+  }
+
+  /**
+   * User.examAttempts
+   */
+  export type User$examAttemptsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExamAttempt
+     */
+    select?: ExamAttemptSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExamAttemptInclude<ExtArgs> | null
+    where?: ExamAttemptWhereInput
+    orderBy?: ExamAttemptOrderByWithRelationInput | ExamAttemptOrderByWithRelationInput[]
+    cursor?: ExamAttemptWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ExamAttemptScalarFieldEnum | ExamAttemptScalarFieldEnum[]
   }
 
   /**
@@ -7829,6 +8384,7 @@ export namespace Prisma {
     students?: boolean | Class$studentsArgs<ExtArgs>
     materials?: boolean | Class$materialsArgs<ExtArgs>
     discussionThreads?: boolean | Class$discussionThreadsArgs<ExtArgs>
+    exams?: boolean | Class$examsArgs<ExtArgs>
     _count?: boolean | ClassCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["class"]>
 
@@ -7854,6 +8410,7 @@ export namespace Prisma {
     students?: boolean | Class$studentsArgs<ExtArgs>
     materials?: boolean | Class$materialsArgs<ExtArgs>
     discussionThreads?: boolean | Class$discussionThreadsArgs<ExtArgs>
+    exams?: boolean | Class$examsArgs<ExtArgs>
     _count?: boolean | ClassCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ClassIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -7866,6 +8423,7 @@ export namespace Prisma {
       students: Prisma.$UserPayload<ExtArgs>[]
       materials: Prisma.$MaterialPayload<ExtArgs>[]
       discussionThreads: Prisma.$DiscussionThreadPayload<ExtArgs>[]
+      exams: Prisma.$ExamPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -8242,6 +8800,7 @@ export namespace Prisma {
     students<T extends Class$studentsArgs<ExtArgs> = {}>(args?: Subset<T, Class$studentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany"> | Null>
     materials<T extends Class$materialsArgs<ExtArgs> = {}>(args?: Subset<T, Class$materialsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MaterialPayload<ExtArgs>, T, "findMany"> | Null>
     discussionThreads<T extends Class$discussionThreadsArgs<ExtArgs> = {}>(args?: Subset<T, Class$discussionThreadsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DiscussionThreadPayload<ExtArgs>, T, "findMany"> | Null>
+    exams<T extends Class$examsArgs<ExtArgs> = {}>(args?: Subset<T, Class$examsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ExamPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -8690,6 +9249,26 @@ export namespace Prisma {
   }
 
   /**
+   * Class.exams
+   */
+  export type Class$examsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Exam
+     */
+    select?: ExamSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExamInclude<ExtArgs> | null
+    where?: ExamWhereInput
+    orderBy?: ExamOrderByWithRelationInput | ExamOrderByWithRelationInput[]
+    cursor?: ExamWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ExamScalarFieldEnum | ExamScalarFieldEnum[]
+  }
+
+  /**
    * Class without action
    */
   export type ClassDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -8898,6 +9477,7 @@ export namespace Prisma {
     topics?: boolean | Subject$topicsArgs<ExtArgs>
     userSubjects?: boolean | Subject$userSubjectsArgs<ExtArgs>
     materials?: boolean | Subject$materialsArgs<ExtArgs>
+    exams?: boolean | Subject$examsArgs<ExtArgs>
     _count?: boolean | SubjectCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["subject"]>
 
@@ -8931,6 +9511,7 @@ export namespace Prisma {
     topics?: boolean | Subject$topicsArgs<ExtArgs>
     userSubjects?: boolean | Subject$userSubjectsArgs<ExtArgs>
     materials?: boolean | Subject$materialsArgs<ExtArgs>
+    exams?: boolean | Subject$examsArgs<ExtArgs>
     _count?: boolean | SubjectCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type SubjectIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -8946,6 +9527,7 @@ export namespace Prisma {
       topics: Prisma.$TopicPayload<ExtArgs>[]
       userSubjects: Prisma.$UserSubjectPayload<ExtArgs>[]
       materials: Prisma.$MaterialPayload<ExtArgs>[]
+      exams: Prisma.$ExamPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -9326,6 +9908,7 @@ export namespace Prisma {
     topics<T extends Subject$topicsArgs<ExtArgs> = {}>(args?: Subset<T, Subject$topicsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TopicPayload<ExtArgs>, T, "findMany"> | Null>
     userSubjects<T extends Subject$userSubjectsArgs<ExtArgs> = {}>(args?: Subset<T, Subject$userSubjectsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserSubjectPayload<ExtArgs>, T, "findMany"> | Null>
     materials<T extends Subject$materialsArgs<ExtArgs> = {}>(args?: Subset<T, Subject$materialsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MaterialPayload<ExtArgs>, T, "findMany"> | Null>
+    exams<T extends Subject$examsArgs<ExtArgs> = {}>(args?: Subset<T, Subject$examsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ExamPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -9793,6 +10376,26 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: MaterialScalarFieldEnum | MaterialScalarFieldEnum[]
+  }
+
+  /**
+   * Subject.exams
+   */
+  export type Subject$examsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Exam
+     */
+    select?: ExamSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExamInclude<ExtArgs> | null
+    where?: ExamWhereInput
+    orderBy?: ExamOrderByWithRelationInput | ExamOrderByWithRelationInput[]
+    cursor?: ExamWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ExamScalarFieldEnum | ExamScalarFieldEnum[]
   }
 
   /**
@@ -33459,6 +34062,4199 @@ export namespace Prisma {
 
 
   /**
+   * Model Exam
+   */
+
+  export type AggregateExam = {
+    _count: ExamCountAggregateOutputType | null
+    _avg: ExamAvgAggregateOutputType | null
+    _sum: ExamSumAggregateOutputType | null
+    _min: ExamMinAggregateOutputType | null
+    _max: ExamMaxAggregateOutputType | null
+  }
+
+  export type ExamAvgAggregateOutputType = {
+    durationMin: number | null
+  }
+
+  export type ExamSumAggregateOutputType = {
+    durationMin: number | null
+  }
+
+  export type ExamMinAggregateOutputType = {
+    id: string | null
+    title: string | null
+    description: string | null
+    classId: string | null
+    subjectId: string | null
+    teacherId: string | null
+    startTime: Date | null
+    endTime: Date | null
+    durationMin: number | null
+    isStrict: boolean | null
+    status: $Enums.ExamStatus | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ExamMaxAggregateOutputType = {
+    id: string | null
+    title: string | null
+    description: string | null
+    classId: string | null
+    subjectId: string | null
+    teacherId: string | null
+    startTime: Date | null
+    endTime: Date | null
+    durationMin: number | null
+    isStrict: boolean | null
+    status: $Enums.ExamStatus | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ExamCountAggregateOutputType = {
+    id: number
+    title: number
+    description: number
+    classId: number
+    subjectId: number
+    teacherId: number
+    startTime: number
+    endTime: number
+    durationMin: number
+    isStrict: number
+    status: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type ExamAvgAggregateInputType = {
+    durationMin?: true
+  }
+
+  export type ExamSumAggregateInputType = {
+    durationMin?: true
+  }
+
+  export type ExamMinAggregateInputType = {
+    id?: true
+    title?: true
+    description?: true
+    classId?: true
+    subjectId?: true
+    teacherId?: true
+    startTime?: true
+    endTime?: true
+    durationMin?: true
+    isStrict?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ExamMaxAggregateInputType = {
+    id?: true
+    title?: true
+    description?: true
+    classId?: true
+    subjectId?: true
+    teacherId?: true
+    startTime?: true
+    endTime?: true
+    durationMin?: true
+    isStrict?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ExamCountAggregateInputType = {
+    id?: true
+    title?: true
+    description?: true
+    classId?: true
+    subjectId?: true
+    teacherId?: true
+    startTime?: true
+    endTime?: true
+    durationMin?: true
+    isStrict?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type ExamAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Exam to aggregate.
+     */
+    where?: ExamWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Exams to fetch.
+     */
+    orderBy?: ExamOrderByWithRelationInput | ExamOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ExamWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Exams from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Exams.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Exams
+    **/
+    _count?: true | ExamCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ExamAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ExamSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ExamMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ExamMaxAggregateInputType
+  }
+
+  export type GetExamAggregateType<T extends ExamAggregateArgs> = {
+        [P in keyof T & keyof AggregateExam]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateExam[P]>
+      : GetScalarType<T[P], AggregateExam[P]>
+  }
+
+
+
+
+  export type ExamGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ExamWhereInput
+    orderBy?: ExamOrderByWithAggregationInput | ExamOrderByWithAggregationInput[]
+    by: ExamScalarFieldEnum[] | ExamScalarFieldEnum
+    having?: ExamScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ExamCountAggregateInputType | true
+    _avg?: ExamAvgAggregateInputType
+    _sum?: ExamSumAggregateInputType
+    _min?: ExamMinAggregateInputType
+    _max?: ExamMaxAggregateInputType
+  }
+
+  export type ExamGroupByOutputType = {
+    id: string
+    title: string
+    description: string | null
+    classId: string | null
+    subjectId: string
+    teacherId: string
+    startTime: Date
+    endTime: Date
+    durationMin: number
+    isStrict: boolean
+    status: $Enums.ExamStatus
+    createdAt: Date
+    updatedAt: Date
+    _count: ExamCountAggregateOutputType | null
+    _avg: ExamAvgAggregateOutputType | null
+    _sum: ExamSumAggregateOutputType | null
+    _min: ExamMinAggregateOutputType | null
+    _max: ExamMaxAggregateOutputType | null
+  }
+
+  type GetExamGroupByPayload<T extends ExamGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ExamGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ExamGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ExamGroupByOutputType[P]>
+            : GetScalarType<T[P], ExamGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ExamSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    classId?: boolean
+    subjectId?: boolean
+    teacherId?: boolean
+    startTime?: boolean
+    endTime?: boolean
+    durationMin?: boolean
+    isStrict?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    class?: boolean | Exam$classArgs<ExtArgs>
+    subject?: boolean | SubjectDefaultArgs<ExtArgs>
+    teacher?: boolean | UserDefaultArgs<ExtArgs>
+    questions?: boolean | Exam$questionsArgs<ExtArgs>
+    attempts?: boolean | Exam$attemptsArgs<ExtArgs>
+    _count?: boolean | ExamCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["exam"]>
+
+  export type ExamSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    classId?: boolean
+    subjectId?: boolean
+    teacherId?: boolean
+    startTime?: boolean
+    endTime?: boolean
+    durationMin?: boolean
+    isStrict?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    class?: boolean | Exam$classArgs<ExtArgs>
+    subject?: boolean | SubjectDefaultArgs<ExtArgs>
+    teacher?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["exam"]>
+
+  export type ExamSelectScalar = {
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    classId?: boolean
+    subjectId?: boolean
+    teacherId?: boolean
+    startTime?: boolean
+    endTime?: boolean
+    durationMin?: boolean
+    isStrict?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type ExamInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    class?: boolean | Exam$classArgs<ExtArgs>
+    subject?: boolean | SubjectDefaultArgs<ExtArgs>
+    teacher?: boolean | UserDefaultArgs<ExtArgs>
+    questions?: boolean | Exam$questionsArgs<ExtArgs>
+    attempts?: boolean | Exam$attemptsArgs<ExtArgs>
+    _count?: boolean | ExamCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type ExamIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    class?: boolean | Exam$classArgs<ExtArgs>
+    subject?: boolean | SubjectDefaultArgs<ExtArgs>
+    teacher?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $ExamPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Exam"
+    objects: {
+      class: Prisma.$ClassPayload<ExtArgs> | null
+      subject: Prisma.$SubjectPayload<ExtArgs>
+      teacher: Prisma.$UserPayload<ExtArgs>
+      questions: Prisma.$ExamQuestionPayload<ExtArgs>[]
+      attempts: Prisma.$ExamAttemptPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      title: string
+      description: string | null
+      classId: string | null
+      subjectId: string
+      teacherId: string
+      startTime: Date
+      endTime: Date
+      durationMin: number
+      isStrict: boolean
+      status: $Enums.ExamStatus
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["exam"]>
+    composites: {}
+  }
+
+  type ExamGetPayload<S extends boolean | null | undefined | ExamDefaultArgs> = $Result.GetResult<Prisma.$ExamPayload, S>
+
+  type ExamCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<ExamFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: ExamCountAggregateInputType | true
+    }
+
+  export interface ExamDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Exam'], meta: { name: 'Exam' } }
+    /**
+     * Find zero or one Exam that matches the filter.
+     * @param {ExamFindUniqueArgs} args - Arguments to find a Exam
+     * @example
+     * // Get one Exam
+     * const exam = await prisma.exam.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ExamFindUniqueArgs>(args: SelectSubset<T, ExamFindUniqueArgs<ExtArgs>>): Prisma__ExamClient<$Result.GetResult<Prisma.$ExamPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one Exam that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {ExamFindUniqueOrThrowArgs} args - Arguments to find a Exam
+     * @example
+     * // Get one Exam
+     * const exam = await prisma.exam.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ExamFindUniqueOrThrowArgs>(args: SelectSubset<T, ExamFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ExamClient<$Result.GetResult<Prisma.$ExamPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first Exam that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExamFindFirstArgs} args - Arguments to find a Exam
+     * @example
+     * // Get one Exam
+     * const exam = await prisma.exam.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ExamFindFirstArgs>(args?: SelectSubset<T, ExamFindFirstArgs<ExtArgs>>): Prisma__ExamClient<$Result.GetResult<Prisma.$ExamPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first Exam that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExamFindFirstOrThrowArgs} args - Arguments to find a Exam
+     * @example
+     * // Get one Exam
+     * const exam = await prisma.exam.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ExamFindFirstOrThrowArgs>(args?: SelectSubset<T, ExamFindFirstOrThrowArgs<ExtArgs>>): Prisma__ExamClient<$Result.GetResult<Prisma.$ExamPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more Exams that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExamFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Exams
+     * const exams = await prisma.exam.findMany()
+     * 
+     * // Get first 10 Exams
+     * const exams = await prisma.exam.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const examWithIdOnly = await prisma.exam.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ExamFindManyArgs>(args?: SelectSubset<T, ExamFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ExamPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a Exam.
+     * @param {ExamCreateArgs} args - Arguments to create a Exam.
+     * @example
+     * // Create one Exam
+     * const Exam = await prisma.exam.create({
+     *   data: {
+     *     // ... data to create a Exam
+     *   }
+     * })
+     * 
+     */
+    create<T extends ExamCreateArgs>(args: SelectSubset<T, ExamCreateArgs<ExtArgs>>): Prisma__ExamClient<$Result.GetResult<Prisma.$ExamPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many Exams.
+     * @param {ExamCreateManyArgs} args - Arguments to create many Exams.
+     * @example
+     * // Create many Exams
+     * const exam = await prisma.exam.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ExamCreateManyArgs>(args?: SelectSubset<T, ExamCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Exams and returns the data saved in the database.
+     * @param {ExamCreateManyAndReturnArgs} args - Arguments to create many Exams.
+     * @example
+     * // Create many Exams
+     * const exam = await prisma.exam.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Exams and only return the `id`
+     * const examWithIdOnly = await prisma.exam.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ExamCreateManyAndReturnArgs>(args?: SelectSubset<T, ExamCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ExamPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a Exam.
+     * @param {ExamDeleteArgs} args - Arguments to delete one Exam.
+     * @example
+     * // Delete one Exam
+     * const Exam = await prisma.exam.delete({
+     *   where: {
+     *     // ... filter to delete one Exam
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ExamDeleteArgs>(args: SelectSubset<T, ExamDeleteArgs<ExtArgs>>): Prisma__ExamClient<$Result.GetResult<Prisma.$ExamPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one Exam.
+     * @param {ExamUpdateArgs} args - Arguments to update one Exam.
+     * @example
+     * // Update one Exam
+     * const exam = await prisma.exam.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ExamUpdateArgs>(args: SelectSubset<T, ExamUpdateArgs<ExtArgs>>): Prisma__ExamClient<$Result.GetResult<Prisma.$ExamPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more Exams.
+     * @param {ExamDeleteManyArgs} args - Arguments to filter Exams to delete.
+     * @example
+     * // Delete a few Exams
+     * const { count } = await prisma.exam.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ExamDeleteManyArgs>(args?: SelectSubset<T, ExamDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Exams.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExamUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Exams
+     * const exam = await prisma.exam.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ExamUpdateManyArgs>(args: SelectSubset<T, ExamUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Exam.
+     * @param {ExamUpsertArgs} args - Arguments to update or create a Exam.
+     * @example
+     * // Update or create a Exam
+     * const exam = await prisma.exam.upsert({
+     *   create: {
+     *     // ... data to create a Exam
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Exam we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ExamUpsertArgs>(args: SelectSubset<T, ExamUpsertArgs<ExtArgs>>): Prisma__ExamClient<$Result.GetResult<Prisma.$ExamPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of Exams.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExamCountArgs} args - Arguments to filter Exams to count.
+     * @example
+     * // Count the number of Exams
+     * const count = await prisma.exam.count({
+     *   where: {
+     *     // ... the filter for the Exams we want to count
+     *   }
+     * })
+    **/
+    count<T extends ExamCountArgs>(
+      args?: Subset<T, ExamCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ExamCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Exam.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExamAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ExamAggregateArgs>(args: Subset<T, ExamAggregateArgs>): Prisma.PrismaPromise<GetExamAggregateType<T>>
+
+    /**
+     * Group by Exam.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExamGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ExamGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ExamGroupByArgs['orderBy'] }
+        : { orderBy?: ExamGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ExamGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetExamGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Exam model
+   */
+  readonly fields: ExamFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Exam.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ExamClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    class<T extends Exam$classArgs<ExtArgs> = {}>(args?: Subset<T, Exam$classArgs<ExtArgs>>): Prisma__ClassClient<$Result.GetResult<Prisma.$ClassPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
+    subject<T extends SubjectDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SubjectDefaultArgs<ExtArgs>>): Prisma__SubjectClient<$Result.GetResult<Prisma.$SubjectPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    teacher<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    questions<T extends Exam$questionsArgs<ExtArgs> = {}>(args?: Subset<T, Exam$questionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ExamQuestionPayload<ExtArgs>, T, "findMany"> | Null>
+    attempts<T extends Exam$attemptsArgs<ExtArgs> = {}>(args?: Subset<T, Exam$attemptsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ExamAttemptPayload<ExtArgs>, T, "findMany"> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Exam model
+   */ 
+  interface ExamFieldRefs {
+    readonly id: FieldRef<"Exam", 'String'>
+    readonly title: FieldRef<"Exam", 'String'>
+    readonly description: FieldRef<"Exam", 'String'>
+    readonly classId: FieldRef<"Exam", 'String'>
+    readonly subjectId: FieldRef<"Exam", 'String'>
+    readonly teacherId: FieldRef<"Exam", 'String'>
+    readonly startTime: FieldRef<"Exam", 'DateTime'>
+    readonly endTime: FieldRef<"Exam", 'DateTime'>
+    readonly durationMin: FieldRef<"Exam", 'Int'>
+    readonly isStrict: FieldRef<"Exam", 'Boolean'>
+    readonly status: FieldRef<"Exam", 'ExamStatus'>
+    readonly createdAt: FieldRef<"Exam", 'DateTime'>
+    readonly updatedAt: FieldRef<"Exam", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Exam findUnique
+   */
+  export type ExamFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Exam
+     */
+    select?: ExamSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExamInclude<ExtArgs> | null
+    /**
+     * Filter, which Exam to fetch.
+     */
+    where: ExamWhereUniqueInput
+  }
+
+  /**
+   * Exam findUniqueOrThrow
+   */
+  export type ExamFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Exam
+     */
+    select?: ExamSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExamInclude<ExtArgs> | null
+    /**
+     * Filter, which Exam to fetch.
+     */
+    where: ExamWhereUniqueInput
+  }
+
+  /**
+   * Exam findFirst
+   */
+  export type ExamFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Exam
+     */
+    select?: ExamSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExamInclude<ExtArgs> | null
+    /**
+     * Filter, which Exam to fetch.
+     */
+    where?: ExamWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Exams to fetch.
+     */
+    orderBy?: ExamOrderByWithRelationInput | ExamOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Exams.
+     */
+    cursor?: ExamWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Exams from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Exams.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Exams.
+     */
+    distinct?: ExamScalarFieldEnum | ExamScalarFieldEnum[]
+  }
+
+  /**
+   * Exam findFirstOrThrow
+   */
+  export type ExamFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Exam
+     */
+    select?: ExamSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExamInclude<ExtArgs> | null
+    /**
+     * Filter, which Exam to fetch.
+     */
+    where?: ExamWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Exams to fetch.
+     */
+    orderBy?: ExamOrderByWithRelationInput | ExamOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Exams.
+     */
+    cursor?: ExamWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Exams from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Exams.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Exams.
+     */
+    distinct?: ExamScalarFieldEnum | ExamScalarFieldEnum[]
+  }
+
+  /**
+   * Exam findMany
+   */
+  export type ExamFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Exam
+     */
+    select?: ExamSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExamInclude<ExtArgs> | null
+    /**
+     * Filter, which Exams to fetch.
+     */
+    where?: ExamWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Exams to fetch.
+     */
+    orderBy?: ExamOrderByWithRelationInput | ExamOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Exams.
+     */
+    cursor?: ExamWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Exams from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Exams.
+     */
+    skip?: number
+    distinct?: ExamScalarFieldEnum | ExamScalarFieldEnum[]
+  }
+
+  /**
+   * Exam create
+   */
+  export type ExamCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Exam
+     */
+    select?: ExamSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExamInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Exam.
+     */
+    data: XOR<ExamCreateInput, ExamUncheckedCreateInput>
+  }
+
+  /**
+   * Exam createMany
+   */
+  export type ExamCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Exams.
+     */
+    data: ExamCreateManyInput | ExamCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Exam createManyAndReturn
+   */
+  export type ExamCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Exam
+     */
+    select?: ExamSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many Exams.
+     */
+    data: ExamCreateManyInput | ExamCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExamIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Exam update
+   */
+  export type ExamUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Exam
+     */
+    select?: ExamSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExamInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Exam.
+     */
+    data: XOR<ExamUpdateInput, ExamUncheckedUpdateInput>
+    /**
+     * Choose, which Exam to update.
+     */
+    where: ExamWhereUniqueInput
+  }
+
+  /**
+   * Exam updateMany
+   */
+  export type ExamUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Exams.
+     */
+    data: XOR<ExamUpdateManyMutationInput, ExamUncheckedUpdateManyInput>
+    /**
+     * Filter which Exams to update
+     */
+    where?: ExamWhereInput
+  }
+
+  /**
+   * Exam upsert
+   */
+  export type ExamUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Exam
+     */
+    select?: ExamSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExamInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Exam to update in case it exists.
+     */
+    where: ExamWhereUniqueInput
+    /**
+     * In case the Exam found by the `where` argument doesn't exist, create a new Exam with this data.
+     */
+    create: XOR<ExamCreateInput, ExamUncheckedCreateInput>
+    /**
+     * In case the Exam was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ExamUpdateInput, ExamUncheckedUpdateInput>
+  }
+
+  /**
+   * Exam delete
+   */
+  export type ExamDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Exam
+     */
+    select?: ExamSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExamInclude<ExtArgs> | null
+    /**
+     * Filter which Exam to delete.
+     */
+    where: ExamWhereUniqueInput
+  }
+
+  /**
+   * Exam deleteMany
+   */
+  export type ExamDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Exams to delete
+     */
+    where?: ExamWhereInput
+  }
+
+  /**
+   * Exam.class
+   */
+  export type Exam$classArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Class
+     */
+    select?: ClassSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClassInclude<ExtArgs> | null
+    where?: ClassWhereInput
+  }
+
+  /**
+   * Exam.questions
+   */
+  export type Exam$questionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExamQuestion
+     */
+    select?: ExamQuestionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExamQuestionInclude<ExtArgs> | null
+    where?: ExamQuestionWhereInput
+    orderBy?: ExamQuestionOrderByWithRelationInput | ExamQuestionOrderByWithRelationInput[]
+    cursor?: ExamQuestionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ExamQuestionScalarFieldEnum | ExamQuestionScalarFieldEnum[]
+  }
+
+  /**
+   * Exam.attempts
+   */
+  export type Exam$attemptsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExamAttempt
+     */
+    select?: ExamAttemptSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExamAttemptInclude<ExtArgs> | null
+    where?: ExamAttemptWhereInput
+    orderBy?: ExamAttemptOrderByWithRelationInput | ExamAttemptOrderByWithRelationInput[]
+    cursor?: ExamAttemptWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ExamAttemptScalarFieldEnum | ExamAttemptScalarFieldEnum[]
+  }
+
+  /**
+   * Exam without action
+   */
+  export type ExamDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Exam
+     */
+    select?: ExamSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExamInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ExamQuestion
+   */
+
+  export type AggregateExamQuestion = {
+    _count: ExamQuestionCountAggregateOutputType | null
+    _avg: ExamQuestionAvgAggregateOutputType | null
+    _sum: ExamQuestionSumAggregateOutputType | null
+    _min: ExamQuestionMinAggregateOutputType | null
+    _max: ExamQuestionMaxAggregateOutputType | null
+  }
+
+  export type ExamQuestionAvgAggregateOutputType = {
+    points: number | null
+    order: number | null
+  }
+
+  export type ExamQuestionSumAggregateOutputType = {
+    points: number | null
+    order: number | null
+  }
+
+  export type ExamQuestionMinAggregateOutputType = {
+    id: string | null
+    examId: string | null
+    questionText: string | null
+    type: string | null
+    correctAnswer: string | null
+    points: number | null
+    order: number | null
+  }
+
+  export type ExamQuestionMaxAggregateOutputType = {
+    id: string | null
+    examId: string | null
+    questionText: string | null
+    type: string | null
+    correctAnswer: string | null
+    points: number | null
+    order: number | null
+  }
+
+  export type ExamQuestionCountAggregateOutputType = {
+    id: number
+    examId: number
+    questionText: number
+    type: number
+    options: number
+    correctAnswer: number
+    points: number
+    order: number
+    _all: number
+  }
+
+
+  export type ExamQuestionAvgAggregateInputType = {
+    points?: true
+    order?: true
+  }
+
+  export type ExamQuestionSumAggregateInputType = {
+    points?: true
+    order?: true
+  }
+
+  export type ExamQuestionMinAggregateInputType = {
+    id?: true
+    examId?: true
+    questionText?: true
+    type?: true
+    correctAnswer?: true
+    points?: true
+    order?: true
+  }
+
+  export type ExamQuestionMaxAggregateInputType = {
+    id?: true
+    examId?: true
+    questionText?: true
+    type?: true
+    correctAnswer?: true
+    points?: true
+    order?: true
+  }
+
+  export type ExamQuestionCountAggregateInputType = {
+    id?: true
+    examId?: true
+    questionText?: true
+    type?: true
+    options?: true
+    correctAnswer?: true
+    points?: true
+    order?: true
+    _all?: true
+  }
+
+  export type ExamQuestionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ExamQuestion to aggregate.
+     */
+    where?: ExamQuestionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ExamQuestions to fetch.
+     */
+    orderBy?: ExamQuestionOrderByWithRelationInput | ExamQuestionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ExamQuestionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ExamQuestions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ExamQuestions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ExamQuestions
+    **/
+    _count?: true | ExamQuestionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ExamQuestionAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ExamQuestionSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ExamQuestionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ExamQuestionMaxAggregateInputType
+  }
+
+  export type GetExamQuestionAggregateType<T extends ExamQuestionAggregateArgs> = {
+        [P in keyof T & keyof AggregateExamQuestion]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateExamQuestion[P]>
+      : GetScalarType<T[P], AggregateExamQuestion[P]>
+  }
+
+
+
+
+  export type ExamQuestionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ExamQuestionWhereInput
+    orderBy?: ExamQuestionOrderByWithAggregationInput | ExamQuestionOrderByWithAggregationInput[]
+    by: ExamQuestionScalarFieldEnum[] | ExamQuestionScalarFieldEnum
+    having?: ExamQuestionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ExamQuestionCountAggregateInputType | true
+    _avg?: ExamQuestionAvgAggregateInputType
+    _sum?: ExamQuestionSumAggregateInputType
+    _min?: ExamQuestionMinAggregateInputType
+    _max?: ExamQuestionMaxAggregateInputType
+  }
+
+  export type ExamQuestionGroupByOutputType = {
+    id: string
+    examId: string
+    questionText: string
+    type: string
+    options: JsonValue
+    correctAnswer: string
+    points: number
+    order: number
+    _count: ExamQuestionCountAggregateOutputType | null
+    _avg: ExamQuestionAvgAggregateOutputType | null
+    _sum: ExamQuestionSumAggregateOutputType | null
+    _min: ExamQuestionMinAggregateOutputType | null
+    _max: ExamQuestionMaxAggregateOutputType | null
+  }
+
+  type GetExamQuestionGroupByPayload<T extends ExamQuestionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ExamQuestionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ExamQuestionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ExamQuestionGroupByOutputType[P]>
+            : GetScalarType<T[P], ExamQuestionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ExamQuestionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    examId?: boolean
+    questionText?: boolean
+    type?: boolean
+    options?: boolean
+    correctAnswer?: boolean
+    points?: boolean
+    order?: boolean
+    exam?: boolean | ExamDefaultArgs<ExtArgs>
+    answers?: boolean | ExamQuestion$answersArgs<ExtArgs>
+    _count?: boolean | ExamQuestionCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["examQuestion"]>
+
+  export type ExamQuestionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    examId?: boolean
+    questionText?: boolean
+    type?: boolean
+    options?: boolean
+    correctAnswer?: boolean
+    points?: boolean
+    order?: boolean
+    exam?: boolean | ExamDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["examQuestion"]>
+
+  export type ExamQuestionSelectScalar = {
+    id?: boolean
+    examId?: boolean
+    questionText?: boolean
+    type?: boolean
+    options?: boolean
+    correctAnswer?: boolean
+    points?: boolean
+    order?: boolean
+  }
+
+  export type ExamQuestionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    exam?: boolean | ExamDefaultArgs<ExtArgs>
+    answers?: boolean | ExamQuestion$answersArgs<ExtArgs>
+    _count?: boolean | ExamQuestionCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type ExamQuestionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    exam?: boolean | ExamDefaultArgs<ExtArgs>
+  }
+
+  export type $ExamQuestionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ExamQuestion"
+    objects: {
+      exam: Prisma.$ExamPayload<ExtArgs>
+      answers: Prisma.$ExamAnswerPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      examId: string
+      questionText: string
+      type: string
+      options: Prisma.JsonValue
+      correctAnswer: string
+      points: number
+      order: number
+    }, ExtArgs["result"]["examQuestion"]>
+    composites: {}
+  }
+
+  type ExamQuestionGetPayload<S extends boolean | null | undefined | ExamQuestionDefaultArgs> = $Result.GetResult<Prisma.$ExamQuestionPayload, S>
+
+  type ExamQuestionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<ExamQuestionFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: ExamQuestionCountAggregateInputType | true
+    }
+
+  export interface ExamQuestionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ExamQuestion'], meta: { name: 'ExamQuestion' } }
+    /**
+     * Find zero or one ExamQuestion that matches the filter.
+     * @param {ExamQuestionFindUniqueArgs} args - Arguments to find a ExamQuestion
+     * @example
+     * // Get one ExamQuestion
+     * const examQuestion = await prisma.examQuestion.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ExamQuestionFindUniqueArgs>(args: SelectSubset<T, ExamQuestionFindUniqueArgs<ExtArgs>>): Prisma__ExamQuestionClient<$Result.GetResult<Prisma.$ExamQuestionPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one ExamQuestion that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {ExamQuestionFindUniqueOrThrowArgs} args - Arguments to find a ExamQuestion
+     * @example
+     * // Get one ExamQuestion
+     * const examQuestion = await prisma.examQuestion.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ExamQuestionFindUniqueOrThrowArgs>(args: SelectSubset<T, ExamQuestionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ExamQuestionClient<$Result.GetResult<Prisma.$ExamQuestionPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first ExamQuestion that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExamQuestionFindFirstArgs} args - Arguments to find a ExamQuestion
+     * @example
+     * // Get one ExamQuestion
+     * const examQuestion = await prisma.examQuestion.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ExamQuestionFindFirstArgs>(args?: SelectSubset<T, ExamQuestionFindFirstArgs<ExtArgs>>): Prisma__ExamQuestionClient<$Result.GetResult<Prisma.$ExamQuestionPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first ExamQuestion that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExamQuestionFindFirstOrThrowArgs} args - Arguments to find a ExamQuestion
+     * @example
+     * // Get one ExamQuestion
+     * const examQuestion = await prisma.examQuestion.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ExamQuestionFindFirstOrThrowArgs>(args?: SelectSubset<T, ExamQuestionFindFirstOrThrowArgs<ExtArgs>>): Prisma__ExamQuestionClient<$Result.GetResult<Prisma.$ExamQuestionPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more ExamQuestions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExamQuestionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ExamQuestions
+     * const examQuestions = await prisma.examQuestion.findMany()
+     * 
+     * // Get first 10 ExamQuestions
+     * const examQuestions = await prisma.examQuestion.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const examQuestionWithIdOnly = await prisma.examQuestion.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ExamQuestionFindManyArgs>(args?: SelectSubset<T, ExamQuestionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ExamQuestionPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a ExamQuestion.
+     * @param {ExamQuestionCreateArgs} args - Arguments to create a ExamQuestion.
+     * @example
+     * // Create one ExamQuestion
+     * const ExamQuestion = await prisma.examQuestion.create({
+     *   data: {
+     *     // ... data to create a ExamQuestion
+     *   }
+     * })
+     * 
+     */
+    create<T extends ExamQuestionCreateArgs>(args: SelectSubset<T, ExamQuestionCreateArgs<ExtArgs>>): Prisma__ExamQuestionClient<$Result.GetResult<Prisma.$ExamQuestionPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many ExamQuestions.
+     * @param {ExamQuestionCreateManyArgs} args - Arguments to create many ExamQuestions.
+     * @example
+     * // Create many ExamQuestions
+     * const examQuestion = await prisma.examQuestion.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ExamQuestionCreateManyArgs>(args?: SelectSubset<T, ExamQuestionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ExamQuestions and returns the data saved in the database.
+     * @param {ExamQuestionCreateManyAndReturnArgs} args - Arguments to create many ExamQuestions.
+     * @example
+     * // Create many ExamQuestions
+     * const examQuestion = await prisma.examQuestion.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ExamQuestions and only return the `id`
+     * const examQuestionWithIdOnly = await prisma.examQuestion.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ExamQuestionCreateManyAndReturnArgs>(args?: SelectSubset<T, ExamQuestionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ExamQuestionPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a ExamQuestion.
+     * @param {ExamQuestionDeleteArgs} args - Arguments to delete one ExamQuestion.
+     * @example
+     * // Delete one ExamQuestion
+     * const ExamQuestion = await prisma.examQuestion.delete({
+     *   where: {
+     *     // ... filter to delete one ExamQuestion
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ExamQuestionDeleteArgs>(args: SelectSubset<T, ExamQuestionDeleteArgs<ExtArgs>>): Prisma__ExamQuestionClient<$Result.GetResult<Prisma.$ExamQuestionPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one ExamQuestion.
+     * @param {ExamQuestionUpdateArgs} args - Arguments to update one ExamQuestion.
+     * @example
+     * // Update one ExamQuestion
+     * const examQuestion = await prisma.examQuestion.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ExamQuestionUpdateArgs>(args: SelectSubset<T, ExamQuestionUpdateArgs<ExtArgs>>): Prisma__ExamQuestionClient<$Result.GetResult<Prisma.$ExamQuestionPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more ExamQuestions.
+     * @param {ExamQuestionDeleteManyArgs} args - Arguments to filter ExamQuestions to delete.
+     * @example
+     * // Delete a few ExamQuestions
+     * const { count } = await prisma.examQuestion.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ExamQuestionDeleteManyArgs>(args?: SelectSubset<T, ExamQuestionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ExamQuestions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExamQuestionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ExamQuestions
+     * const examQuestion = await prisma.examQuestion.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ExamQuestionUpdateManyArgs>(args: SelectSubset<T, ExamQuestionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one ExamQuestion.
+     * @param {ExamQuestionUpsertArgs} args - Arguments to update or create a ExamQuestion.
+     * @example
+     * // Update or create a ExamQuestion
+     * const examQuestion = await prisma.examQuestion.upsert({
+     *   create: {
+     *     // ... data to create a ExamQuestion
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ExamQuestion we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ExamQuestionUpsertArgs>(args: SelectSubset<T, ExamQuestionUpsertArgs<ExtArgs>>): Prisma__ExamQuestionClient<$Result.GetResult<Prisma.$ExamQuestionPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of ExamQuestions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExamQuestionCountArgs} args - Arguments to filter ExamQuestions to count.
+     * @example
+     * // Count the number of ExamQuestions
+     * const count = await prisma.examQuestion.count({
+     *   where: {
+     *     // ... the filter for the ExamQuestions we want to count
+     *   }
+     * })
+    **/
+    count<T extends ExamQuestionCountArgs>(
+      args?: Subset<T, ExamQuestionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ExamQuestionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ExamQuestion.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExamQuestionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ExamQuestionAggregateArgs>(args: Subset<T, ExamQuestionAggregateArgs>): Prisma.PrismaPromise<GetExamQuestionAggregateType<T>>
+
+    /**
+     * Group by ExamQuestion.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExamQuestionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ExamQuestionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ExamQuestionGroupByArgs['orderBy'] }
+        : { orderBy?: ExamQuestionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ExamQuestionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetExamQuestionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ExamQuestion model
+   */
+  readonly fields: ExamQuestionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ExamQuestion.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ExamQuestionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    exam<T extends ExamDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ExamDefaultArgs<ExtArgs>>): Prisma__ExamClient<$Result.GetResult<Prisma.$ExamPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    answers<T extends ExamQuestion$answersArgs<ExtArgs> = {}>(args?: Subset<T, ExamQuestion$answersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ExamAnswerPayload<ExtArgs>, T, "findMany"> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ExamQuestion model
+   */ 
+  interface ExamQuestionFieldRefs {
+    readonly id: FieldRef<"ExamQuestion", 'String'>
+    readonly examId: FieldRef<"ExamQuestion", 'String'>
+    readonly questionText: FieldRef<"ExamQuestion", 'String'>
+    readonly type: FieldRef<"ExamQuestion", 'String'>
+    readonly options: FieldRef<"ExamQuestion", 'Json'>
+    readonly correctAnswer: FieldRef<"ExamQuestion", 'String'>
+    readonly points: FieldRef<"ExamQuestion", 'Int'>
+    readonly order: FieldRef<"ExamQuestion", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ExamQuestion findUnique
+   */
+  export type ExamQuestionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExamQuestion
+     */
+    select?: ExamQuestionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExamQuestionInclude<ExtArgs> | null
+    /**
+     * Filter, which ExamQuestion to fetch.
+     */
+    where: ExamQuestionWhereUniqueInput
+  }
+
+  /**
+   * ExamQuestion findUniqueOrThrow
+   */
+  export type ExamQuestionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExamQuestion
+     */
+    select?: ExamQuestionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExamQuestionInclude<ExtArgs> | null
+    /**
+     * Filter, which ExamQuestion to fetch.
+     */
+    where: ExamQuestionWhereUniqueInput
+  }
+
+  /**
+   * ExamQuestion findFirst
+   */
+  export type ExamQuestionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExamQuestion
+     */
+    select?: ExamQuestionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExamQuestionInclude<ExtArgs> | null
+    /**
+     * Filter, which ExamQuestion to fetch.
+     */
+    where?: ExamQuestionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ExamQuestions to fetch.
+     */
+    orderBy?: ExamQuestionOrderByWithRelationInput | ExamQuestionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ExamQuestions.
+     */
+    cursor?: ExamQuestionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ExamQuestions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ExamQuestions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ExamQuestions.
+     */
+    distinct?: ExamQuestionScalarFieldEnum | ExamQuestionScalarFieldEnum[]
+  }
+
+  /**
+   * ExamQuestion findFirstOrThrow
+   */
+  export type ExamQuestionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExamQuestion
+     */
+    select?: ExamQuestionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExamQuestionInclude<ExtArgs> | null
+    /**
+     * Filter, which ExamQuestion to fetch.
+     */
+    where?: ExamQuestionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ExamQuestions to fetch.
+     */
+    orderBy?: ExamQuestionOrderByWithRelationInput | ExamQuestionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ExamQuestions.
+     */
+    cursor?: ExamQuestionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ExamQuestions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ExamQuestions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ExamQuestions.
+     */
+    distinct?: ExamQuestionScalarFieldEnum | ExamQuestionScalarFieldEnum[]
+  }
+
+  /**
+   * ExamQuestion findMany
+   */
+  export type ExamQuestionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExamQuestion
+     */
+    select?: ExamQuestionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExamQuestionInclude<ExtArgs> | null
+    /**
+     * Filter, which ExamQuestions to fetch.
+     */
+    where?: ExamQuestionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ExamQuestions to fetch.
+     */
+    orderBy?: ExamQuestionOrderByWithRelationInput | ExamQuestionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ExamQuestions.
+     */
+    cursor?: ExamQuestionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ExamQuestions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ExamQuestions.
+     */
+    skip?: number
+    distinct?: ExamQuestionScalarFieldEnum | ExamQuestionScalarFieldEnum[]
+  }
+
+  /**
+   * ExamQuestion create
+   */
+  export type ExamQuestionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExamQuestion
+     */
+    select?: ExamQuestionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExamQuestionInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ExamQuestion.
+     */
+    data: XOR<ExamQuestionCreateInput, ExamQuestionUncheckedCreateInput>
+  }
+
+  /**
+   * ExamQuestion createMany
+   */
+  export type ExamQuestionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ExamQuestions.
+     */
+    data: ExamQuestionCreateManyInput | ExamQuestionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ExamQuestion createManyAndReturn
+   */
+  export type ExamQuestionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExamQuestion
+     */
+    select?: ExamQuestionSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many ExamQuestions.
+     */
+    data: ExamQuestionCreateManyInput | ExamQuestionCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExamQuestionIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ExamQuestion update
+   */
+  export type ExamQuestionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExamQuestion
+     */
+    select?: ExamQuestionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExamQuestionInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ExamQuestion.
+     */
+    data: XOR<ExamQuestionUpdateInput, ExamQuestionUncheckedUpdateInput>
+    /**
+     * Choose, which ExamQuestion to update.
+     */
+    where: ExamQuestionWhereUniqueInput
+  }
+
+  /**
+   * ExamQuestion updateMany
+   */
+  export type ExamQuestionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ExamQuestions.
+     */
+    data: XOR<ExamQuestionUpdateManyMutationInput, ExamQuestionUncheckedUpdateManyInput>
+    /**
+     * Filter which ExamQuestions to update
+     */
+    where?: ExamQuestionWhereInput
+  }
+
+  /**
+   * ExamQuestion upsert
+   */
+  export type ExamQuestionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExamQuestion
+     */
+    select?: ExamQuestionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExamQuestionInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ExamQuestion to update in case it exists.
+     */
+    where: ExamQuestionWhereUniqueInput
+    /**
+     * In case the ExamQuestion found by the `where` argument doesn't exist, create a new ExamQuestion with this data.
+     */
+    create: XOR<ExamQuestionCreateInput, ExamQuestionUncheckedCreateInput>
+    /**
+     * In case the ExamQuestion was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ExamQuestionUpdateInput, ExamQuestionUncheckedUpdateInput>
+  }
+
+  /**
+   * ExamQuestion delete
+   */
+  export type ExamQuestionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExamQuestion
+     */
+    select?: ExamQuestionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExamQuestionInclude<ExtArgs> | null
+    /**
+     * Filter which ExamQuestion to delete.
+     */
+    where: ExamQuestionWhereUniqueInput
+  }
+
+  /**
+   * ExamQuestion deleteMany
+   */
+  export type ExamQuestionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ExamQuestions to delete
+     */
+    where?: ExamQuestionWhereInput
+  }
+
+  /**
+   * ExamQuestion.answers
+   */
+  export type ExamQuestion$answersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExamAnswer
+     */
+    select?: ExamAnswerSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExamAnswerInclude<ExtArgs> | null
+    where?: ExamAnswerWhereInput
+    orderBy?: ExamAnswerOrderByWithRelationInput | ExamAnswerOrderByWithRelationInput[]
+    cursor?: ExamAnswerWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ExamAnswerScalarFieldEnum | ExamAnswerScalarFieldEnum[]
+  }
+
+  /**
+   * ExamQuestion without action
+   */
+  export type ExamQuestionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExamQuestion
+     */
+    select?: ExamQuestionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExamQuestionInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ExamAttempt
+   */
+
+  export type AggregateExamAttempt = {
+    _count: ExamAttemptCountAggregateOutputType | null
+    _avg: ExamAttemptAvgAggregateOutputType | null
+    _sum: ExamAttemptSumAggregateOutputType | null
+    _min: ExamAttemptMinAggregateOutputType | null
+    _max: ExamAttemptMaxAggregateOutputType | null
+  }
+
+  export type ExamAttemptAvgAggregateOutputType = {
+    score: number | null
+    cheatWarnings: number | null
+  }
+
+  export type ExamAttemptSumAggregateOutputType = {
+    score: number | null
+    cheatWarnings: number | null
+  }
+
+  export type ExamAttemptMinAggregateOutputType = {
+    id: string | null
+    examId: string | null
+    studentId: string | null
+    startTime: Date | null
+    endTime: Date | null
+    status: $Enums.AttemptStatus | null
+    score: number | null
+    cheatWarnings: number | null
+  }
+
+  export type ExamAttemptMaxAggregateOutputType = {
+    id: string | null
+    examId: string | null
+    studentId: string | null
+    startTime: Date | null
+    endTime: Date | null
+    status: $Enums.AttemptStatus | null
+    score: number | null
+    cheatWarnings: number | null
+  }
+
+  export type ExamAttemptCountAggregateOutputType = {
+    id: number
+    examId: number
+    studentId: number
+    startTime: number
+    endTime: number
+    status: number
+    score: number
+    cheatWarnings: number
+    _all: number
+  }
+
+
+  export type ExamAttemptAvgAggregateInputType = {
+    score?: true
+    cheatWarnings?: true
+  }
+
+  export type ExamAttemptSumAggregateInputType = {
+    score?: true
+    cheatWarnings?: true
+  }
+
+  export type ExamAttemptMinAggregateInputType = {
+    id?: true
+    examId?: true
+    studentId?: true
+    startTime?: true
+    endTime?: true
+    status?: true
+    score?: true
+    cheatWarnings?: true
+  }
+
+  export type ExamAttemptMaxAggregateInputType = {
+    id?: true
+    examId?: true
+    studentId?: true
+    startTime?: true
+    endTime?: true
+    status?: true
+    score?: true
+    cheatWarnings?: true
+  }
+
+  export type ExamAttemptCountAggregateInputType = {
+    id?: true
+    examId?: true
+    studentId?: true
+    startTime?: true
+    endTime?: true
+    status?: true
+    score?: true
+    cheatWarnings?: true
+    _all?: true
+  }
+
+  export type ExamAttemptAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ExamAttempt to aggregate.
+     */
+    where?: ExamAttemptWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ExamAttempts to fetch.
+     */
+    orderBy?: ExamAttemptOrderByWithRelationInput | ExamAttemptOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ExamAttemptWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ExamAttempts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ExamAttempts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ExamAttempts
+    **/
+    _count?: true | ExamAttemptCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ExamAttemptAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ExamAttemptSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ExamAttemptMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ExamAttemptMaxAggregateInputType
+  }
+
+  export type GetExamAttemptAggregateType<T extends ExamAttemptAggregateArgs> = {
+        [P in keyof T & keyof AggregateExamAttempt]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateExamAttempt[P]>
+      : GetScalarType<T[P], AggregateExamAttempt[P]>
+  }
+
+
+
+
+  export type ExamAttemptGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ExamAttemptWhereInput
+    orderBy?: ExamAttemptOrderByWithAggregationInput | ExamAttemptOrderByWithAggregationInput[]
+    by: ExamAttemptScalarFieldEnum[] | ExamAttemptScalarFieldEnum
+    having?: ExamAttemptScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ExamAttemptCountAggregateInputType | true
+    _avg?: ExamAttemptAvgAggregateInputType
+    _sum?: ExamAttemptSumAggregateInputType
+    _min?: ExamAttemptMinAggregateInputType
+    _max?: ExamAttemptMaxAggregateInputType
+  }
+
+  export type ExamAttemptGroupByOutputType = {
+    id: string
+    examId: string
+    studentId: string
+    startTime: Date
+    endTime: Date | null
+    status: $Enums.AttemptStatus
+    score: number | null
+    cheatWarnings: number
+    _count: ExamAttemptCountAggregateOutputType | null
+    _avg: ExamAttemptAvgAggregateOutputType | null
+    _sum: ExamAttemptSumAggregateOutputType | null
+    _min: ExamAttemptMinAggregateOutputType | null
+    _max: ExamAttemptMaxAggregateOutputType | null
+  }
+
+  type GetExamAttemptGroupByPayload<T extends ExamAttemptGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ExamAttemptGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ExamAttemptGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ExamAttemptGroupByOutputType[P]>
+            : GetScalarType<T[P], ExamAttemptGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ExamAttemptSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    examId?: boolean
+    studentId?: boolean
+    startTime?: boolean
+    endTime?: boolean
+    status?: boolean
+    score?: boolean
+    cheatWarnings?: boolean
+    exam?: boolean | ExamDefaultArgs<ExtArgs>
+    student?: boolean | UserDefaultArgs<ExtArgs>
+    answers?: boolean | ExamAttempt$answersArgs<ExtArgs>
+    _count?: boolean | ExamAttemptCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["examAttempt"]>
+
+  export type ExamAttemptSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    examId?: boolean
+    studentId?: boolean
+    startTime?: boolean
+    endTime?: boolean
+    status?: boolean
+    score?: boolean
+    cheatWarnings?: boolean
+    exam?: boolean | ExamDefaultArgs<ExtArgs>
+    student?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["examAttempt"]>
+
+  export type ExamAttemptSelectScalar = {
+    id?: boolean
+    examId?: boolean
+    studentId?: boolean
+    startTime?: boolean
+    endTime?: boolean
+    status?: boolean
+    score?: boolean
+    cheatWarnings?: boolean
+  }
+
+  export type ExamAttemptInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    exam?: boolean | ExamDefaultArgs<ExtArgs>
+    student?: boolean | UserDefaultArgs<ExtArgs>
+    answers?: boolean | ExamAttempt$answersArgs<ExtArgs>
+    _count?: boolean | ExamAttemptCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type ExamAttemptIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    exam?: boolean | ExamDefaultArgs<ExtArgs>
+    student?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $ExamAttemptPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ExamAttempt"
+    objects: {
+      exam: Prisma.$ExamPayload<ExtArgs>
+      student: Prisma.$UserPayload<ExtArgs>
+      answers: Prisma.$ExamAnswerPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      examId: string
+      studentId: string
+      startTime: Date
+      endTime: Date | null
+      status: $Enums.AttemptStatus
+      score: number | null
+      cheatWarnings: number
+    }, ExtArgs["result"]["examAttempt"]>
+    composites: {}
+  }
+
+  type ExamAttemptGetPayload<S extends boolean | null | undefined | ExamAttemptDefaultArgs> = $Result.GetResult<Prisma.$ExamAttemptPayload, S>
+
+  type ExamAttemptCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<ExamAttemptFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: ExamAttemptCountAggregateInputType | true
+    }
+
+  export interface ExamAttemptDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ExamAttempt'], meta: { name: 'ExamAttempt' } }
+    /**
+     * Find zero or one ExamAttempt that matches the filter.
+     * @param {ExamAttemptFindUniqueArgs} args - Arguments to find a ExamAttempt
+     * @example
+     * // Get one ExamAttempt
+     * const examAttempt = await prisma.examAttempt.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ExamAttemptFindUniqueArgs>(args: SelectSubset<T, ExamAttemptFindUniqueArgs<ExtArgs>>): Prisma__ExamAttemptClient<$Result.GetResult<Prisma.$ExamAttemptPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one ExamAttempt that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {ExamAttemptFindUniqueOrThrowArgs} args - Arguments to find a ExamAttempt
+     * @example
+     * // Get one ExamAttempt
+     * const examAttempt = await prisma.examAttempt.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ExamAttemptFindUniqueOrThrowArgs>(args: SelectSubset<T, ExamAttemptFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ExamAttemptClient<$Result.GetResult<Prisma.$ExamAttemptPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first ExamAttempt that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExamAttemptFindFirstArgs} args - Arguments to find a ExamAttempt
+     * @example
+     * // Get one ExamAttempt
+     * const examAttempt = await prisma.examAttempt.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ExamAttemptFindFirstArgs>(args?: SelectSubset<T, ExamAttemptFindFirstArgs<ExtArgs>>): Prisma__ExamAttemptClient<$Result.GetResult<Prisma.$ExamAttemptPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first ExamAttempt that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExamAttemptFindFirstOrThrowArgs} args - Arguments to find a ExamAttempt
+     * @example
+     * // Get one ExamAttempt
+     * const examAttempt = await prisma.examAttempt.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ExamAttemptFindFirstOrThrowArgs>(args?: SelectSubset<T, ExamAttemptFindFirstOrThrowArgs<ExtArgs>>): Prisma__ExamAttemptClient<$Result.GetResult<Prisma.$ExamAttemptPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more ExamAttempts that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExamAttemptFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ExamAttempts
+     * const examAttempts = await prisma.examAttempt.findMany()
+     * 
+     * // Get first 10 ExamAttempts
+     * const examAttempts = await prisma.examAttempt.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const examAttemptWithIdOnly = await prisma.examAttempt.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ExamAttemptFindManyArgs>(args?: SelectSubset<T, ExamAttemptFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ExamAttemptPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a ExamAttempt.
+     * @param {ExamAttemptCreateArgs} args - Arguments to create a ExamAttempt.
+     * @example
+     * // Create one ExamAttempt
+     * const ExamAttempt = await prisma.examAttempt.create({
+     *   data: {
+     *     // ... data to create a ExamAttempt
+     *   }
+     * })
+     * 
+     */
+    create<T extends ExamAttemptCreateArgs>(args: SelectSubset<T, ExamAttemptCreateArgs<ExtArgs>>): Prisma__ExamAttemptClient<$Result.GetResult<Prisma.$ExamAttemptPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many ExamAttempts.
+     * @param {ExamAttemptCreateManyArgs} args - Arguments to create many ExamAttempts.
+     * @example
+     * // Create many ExamAttempts
+     * const examAttempt = await prisma.examAttempt.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ExamAttemptCreateManyArgs>(args?: SelectSubset<T, ExamAttemptCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ExamAttempts and returns the data saved in the database.
+     * @param {ExamAttemptCreateManyAndReturnArgs} args - Arguments to create many ExamAttempts.
+     * @example
+     * // Create many ExamAttempts
+     * const examAttempt = await prisma.examAttempt.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ExamAttempts and only return the `id`
+     * const examAttemptWithIdOnly = await prisma.examAttempt.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ExamAttemptCreateManyAndReturnArgs>(args?: SelectSubset<T, ExamAttemptCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ExamAttemptPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a ExamAttempt.
+     * @param {ExamAttemptDeleteArgs} args - Arguments to delete one ExamAttempt.
+     * @example
+     * // Delete one ExamAttempt
+     * const ExamAttempt = await prisma.examAttempt.delete({
+     *   where: {
+     *     // ... filter to delete one ExamAttempt
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ExamAttemptDeleteArgs>(args: SelectSubset<T, ExamAttemptDeleteArgs<ExtArgs>>): Prisma__ExamAttemptClient<$Result.GetResult<Prisma.$ExamAttemptPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one ExamAttempt.
+     * @param {ExamAttemptUpdateArgs} args - Arguments to update one ExamAttempt.
+     * @example
+     * // Update one ExamAttempt
+     * const examAttempt = await prisma.examAttempt.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ExamAttemptUpdateArgs>(args: SelectSubset<T, ExamAttemptUpdateArgs<ExtArgs>>): Prisma__ExamAttemptClient<$Result.GetResult<Prisma.$ExamAttemptPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more ExamAttempts.
+     * @param {ExamAttemptDeleteManyArgs} args - Arguments to filter ExamAttempts to delete.
+     * @example
+     * // Delete a few ExamAttempts
+     * const { count } = await prisma.examAttempt.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ExamAttemptDeleteManyArgs>(args?: SelectSubset<T, ExamAttemptDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ExamAttempts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExamAttemptUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ExamAttempts
+     * const examAttempt = await prisma.examAttempt.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ExamAttemptUpdateManyArgs>(args: SelectSubset<T, ExamAttemptUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one ExamAttempt.
+     * @param {ExamAttemptUpsertArgs} args - Arguments to update or create a ExamAttempt.
+     * @example
+     * // Update or create a ExamAttempt
+     * const examAttempt = await prisma.examAttempt.upsert({
+     *   create: {
+     *     // ... data to create a ExamAttempt
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ExamAttempt we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ExamAttemptUpsertArgs>(args: SelectSubset<T, ExamAttemptUpsertArgs<ExtArgs>>): Prisma__ExamAttemptClient<$Result.GetResult<Prisma.$ExamAttemptPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of ExamAttempts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExamAttemptCountArgs} args - Arguments to filter ExamAttempts to count.
+     * @example
+     * // Count the number of ExamAttempts
+     * const count = await prisma.examAttempt.count({
+     *   where: {
+     *     // ... the filter for the ExamAttempts we want to count
+     *   }
+     * })
+    **/
+    count<T extends ExamAttemptCountArgs>(
+      args?: Subset<T, ExamAttemptCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ExamAttemptCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ExamAttempt.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExamAttemptAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ExamAttemptAggregateArgs>(args: Subset<T, ExamAttemptAggregateArgs>): Prisma.PrismaPromise<GetExamAttemptAggregateType<T>>
+
+    /**
+     * Group by ExamAttempt.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExamAttemptGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ExamAttemptGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ExamAttemptGroupByArgs['orderBy'] }
+        : { orderBy?: ExamAttemptGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ExamAttemptGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetExamAttemptGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ExamAttempt model
+   */
+  readonly fields: ExamAttemptFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ExamAttempt.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ExamAttemptClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    exam<T extends ExamDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ExamDefaultArgs<ExtArgs>>): Prisma__ExamClient<$Result.GetResult<Prisma.$ExamPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    student<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    answers<T extends ExamAttempt$answersArgs<ExtArgs> = {}>(args?: Subset<T, ExamAttempt$answersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ExamAnswerPayload<ExtArgs>, T, "findMany"> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ExamAttempt model
+   */ 
+  interface ExamAttemptFieldRefs {
+    readonly id: FieldRef<"ExamAttempt", 'String'>
+    readonly examId: FieldRef<"ExamAttempt", 'String'>
+    readonly studentId: FieldRef<"ExamAttempt", 'String'>
+    readonly startTime: FieldRef<"ExamAttempt", 'DateTime'>
+    readonly endTime: FieldRef<"ExamAttempt", 'DateTime'>
+    readonly status: FieldRef<"ExamAttempt", 'AttemptStatus'>
+    readonly score: FieldRef<"ExamAttempt", 'Int'>
+    readonly cheatWarnings: FieldRef<"ExamAttempt", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ExamAttempt findUnique
+   */
+  export type ExamAttemptFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExamAttempt
+     */
+    select?: ExamAttemptSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExamAttemptInclude<ExtArgs> | null
+    /**
+     * Filter, which ExamAttempt to fetch.
+     */
+    where: ExamAttemptWhereUniqueInput
+  }
+
+  /**
+   * ExamAttempt findUniqueOrThrow
+   */
+  export type ExamAttemptFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExamAttempt
+     */
+    select?: ExamAttemptSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExamAttemptInclude<ExtArgs> | null
+    /**
+     * Filter, which ExamAttempt to fetch.
+     */
+    where: ExamAttemptWhereUniqueInput
+  }
+
+  /**
+   * ExamAttempt findFirst
+   */
+  export type ExamAttemptFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExamAttempt
+     */
+    select?: ExamAttemptSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExamAttemptInclude<ExtArgs> | null
+    /**
+     * Filter, which ExamAttempt to fetch.
+     */
+    where?: ExamAttemptWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ExamAttempts to fetch.
+     */
+    orderBy?: ExamAttemptOrderByWithRelationInput | ExamAttemptOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ExamAttempts.
+     */
+    cursor?: ExamAttemptWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ExamAttempts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ExamAttempts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ExamAttempts.
+     */
+    distinct?: ExamAttemptScalarFieldEnum | ExamAttemptScalarFieldEnum[]
+  }
+
+  /**
+   * ExamAttempt findFirstOrThrow
+   */
+  export type ExamAttemptFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExamAttempt
+     */
+    select?: ExamAttemptSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExamAttemptInclude<ExtArgs> | null
+    /**
+     * Filter, which ExamAttempt to fetch.
+     */
+    where?: ExamAttemptWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ExamAttempts to fetch.
+     */
+    orderBy?: ExamAttemptOrderByWithRelationInput | ExamAttemptOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ExamAttempts.
+     */
+    cursor?: ExamAttemptWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ExamAttempts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ExamAttempts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ExamAttempts.
+     */
+    distinct?: ExamAttemptScalarFieldEnum | ExamAttemptScalarFieldEnum[]
+  }
+
+  /**
+   * ExamAttempt findMany
+   */
+  export type ExamAttemptFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExamAttempt
+     */
+    select?: ExamAttemptSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExamAttemptInclude<ExtArgs> | null
+    /**
+     * Filter, which ExamAttempts to fetch.
+     */
+    where?: ExamAttemptWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ExamAttempts to fetch.
+     */
+    orderBy?: ExamAttemptOrderByWithRelationInput | ExamAttemptOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ExamAttempts.
+     */
+    cursor?: ExamAttemptWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ExamAttempts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ExamAttempts.
+     */
+    skip?: number
+    distinct?: ExamAttemptScalarFieldEnum | ExamAttemptScalarFieldEnum[]
+  }
+
+  /**
+   * ExamAttempt create
+   */
+  export type ExamAttemptCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExamAttempt
+     */
+    select?: ExamAttemptSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExamAttemptInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ExamAttempt.
+     */
+    data: XOR<ExamAttemptCreateInput, ExamAttemptUncheckedCreateInput>
+  }
+
+  /**
+   * ExamAttempt createMany
+   */
+  export type ExamAttemptCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ExamAttempts.
+     */
+    data: ExamAttemptCreateManyInput | ExamAttemptCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ExamAttempt createManyAndReturn
+   */
+  export type ExamAttemptCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExamAttempt
+     */
+    select?: ExamAttemptSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many ExamAttempts.
+     */
+    data: ExamAttemptCreateManyInput | ExamAttemptCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExamAttemptIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ExamAttempt update
+   */
+  export type ExamAttemptUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExamAttempt
+     */
+    select?: ExamAttemptSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExamAttemptInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ExamAttempt.
+     */
+    data: XOR<ExamAttemptUpdateInput, ExamAttemptUncheckedUpdateInput>
+    /**
+     * Choose, which ExamAttempt to update.
+     */
+    where: ExamAttemptWhereUniqueInput
+  }
+
+  /**
+   * ExamAttempt updateMany
+   */
+  export type ExamAttemptUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ExamAttempts.
+     */
+    data: XOR<ExamAttemptUpdateManyMutationInput, ExamAttemptUncheckedUpdateManyInput>
+    /**
+     * Filter which ExamAttempts to update
+     */
+    where?: ExamAttemptWhereInput
+  }
+
+  /**
+   * ExamAttempt upsert
+   */
+  export type ExamAttemptUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExamAttempt
+     */
+    select?: ExamAttemptSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExamAttemptInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ExamAttempt to update in case it exists.
+     */
+    where: ExamAttemptWhereUniqueInput
+    /**
+     * In case the ExamAttempt found by the `where` argument doesn't exist, create a new ExamAttempt with this data.
+     */
+    create: XOR<ExamAttemptCreateInput, ExamAttemptUncheckedCreateInput>
+    /**
+     * In case the ExamAttempt was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ExamAttemptUpdateInput, ExamAttemptUncheckedUpdateInput>
+  }
+
+  /**
+   * ExamAttempt delete
+   */
+  export type ExamAttemptDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExamAttempt
+     */
+    select?: ExamAttemptSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExamAttemptInclude<ExtArgs> | null
+    /**
+     * Filter which ExamAttempt to delete.
+     */
+    where: ExamAttemptWhereUniqueInput
+  }
+
+  /**
+   * ExamAttempt deleteMany
+   */
+  export type ExamAttemptDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ExamAttempts to delete
+     */
+    where?: ExamAttemptWhereInput
+  }
+
+  /**
+   * ExamAttempt.answers
+   */
+  export type ExamAttempt$answersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExamAnswer
+     */
+    select?: ExamAnswerSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExamAnswerInclude<ExtArgs> | null
+    where?: ExamAnswerWhereInput
+    orderBy?: ExamAnswerOrderByWithRelationInput | ExamAnswerOrderByWithRelationInput[]
+    cursor?: ExamAnswerWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ExamAnswerScalarFieldEnum | ExamAnswerScalarFieldEnum[]
+  }
+
+  /**
+   * ExamAttempt without action
+   */
+  export type ExamAttemptDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExamAttempt
+     */
+    select?: ExamAttemptSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExamAttemptInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ExamAnswer
+   */
+
+  export type AggregateExamAnswer = {
+    _count: ExamAnswerCountAggregateOutputType | null
+    _avg: ExamAnswerAvgAggregateOutputType | null
+    _sum: ExamAnswerSumAggregateOutputType | null
+    _min: ExamAnswerMinAggregateOutputType | null
+    _max: ExamAnswerMaxAggregateOutputType | null
+  }
+
+  export type ExamAnswerAvgAggregateOutputType = {
+    pointsAwarded: number | null
+  }
+
+  export type ExamAnswerSumAggregateOutputType = {
+    pointsAwarded: number | null
+  }
+
+  export type ExamAnswerMinAggregateOutputType = {
+    id: string | null
+    attemptId: string | null
+    questionId: string | null
+    answerText: string | null
+    isCorrect: boolean | null
+    pointsAwarded: number | null
+  }
+
+  export type ExamAnswerMaxAggregateOutputType = {
+    id: string | null
+    attemptId: string | null
+    questionId: string | null
+    answerText: string | null
+    isCorrect: boolean | null
+    pointsAwarded: number | null
+  }
+
+  export type ExamAnswerCountAggregateOutputType = {
+    id: number
+    attemptId: number
+    questionId: number
+    answerText: number
+    isCorrect: number
+    pointsAwarded: number
+    _all: number
+  }
+
+
+  export type ExamAnswerAvgAggregateInputType = {
+    pointsAwarded?: true
+  }
+
+  export type ExamAnswerSumAggregateInputType = {
+    pointsAwarded?: true
+  }
+
+  export type ExamAnswerMinAggregateInputType = {
+    id?: true
+    attemptId?: true
+    questionId?: true
+    answerText?: true
+    isCorrect?: true
+    pointsAwarded?: true
+  }
+
+  export type ExamAnswerMaxAggregateInputType = {
+    id?: true
+    attemptId?: true
+    questionId?: true
+    answerText?: true
+    isCorrect?: true
+    pointsAwarded?: true
+  }
+
+  export type ExamAnswerCountAggregateInputType = {
+    id?: true
+    attemptId?: true
+    questionId?: true
+    answerText?: true
+    isCorrect?: true
+    pointsAwarded?: true
+    _all?: true
+  }
+
+  export type ExamAnswerAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ExamAnswer to aggregate.
+     */
+    where?: ExamAnswerWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ExamAnswers to fetch.
+     */
+    orderBy?: ExamAnswerOrderByWithRelationInput | ExamAnswerOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ExamAnswerWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ExamAnswers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ExamAnswers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ExamAnswers
+    **/
+    _count?: true | ExamAnswerCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ExamAnswerAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ExamAnswerSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ExamAnswerMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ExamAnswerMaxAggregateInputType
+  }
+
+  export type GetExamAnswerAggregateType<T extends ExamAnswerAggregateArgs> = {
+        [P in keyof T & keyof AggregateExamAnswer]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateExamAnswer[P]>
+      : GetScalarType<T[P], AggregateExamAnswer[P]>
+  }
+
+
+
+
+  export type ExamAnswerGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ExamAnswerWhereInput
+    orderBy?: ExamAnswerOrderByWithAggregationInput | ExamAnswerOrderByWithAggregationInput[]
+    by: ExamAnswerScalarFieldEnum[] | ExamAnswerScalarFieldEnum
+    having?: ExamAnswerScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ExamAnswerCountAggregateInputType | true
+    _avg?: ExamAnswerAvgAggregateInputType
+    _sum?: ExamAnswerSumAggregateInputType
+    _min?: ExamAnswerMinAggregateInputType
+    _max?: ExamAnswerMaxAggregateInputType
+  }
+
+  export type ExamAnswerGroupByOutputType = {
+    id: string
+    attemptId: string
+    questionId: string
+    answerText: string
+    isCorrect: boolean
+    pointsAwarded: number
+    _count: ExamAnswerCountAggregateOutputType | null
+    _avg: ExamAnswerAvgAggregateOutputType | null
+    _sum: ExamAnswerSumAggregateOutputType | null
+    _min: ExamAnswerMinAggregateOutputType | null
+    _max: ExamAnswerMaxAggregateOutputType | null
+  }
+
+  type GetExamAnswerGroupByPayload<T extends ExamAnswerGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ExamAnswerGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ExamAnswerGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ExamAnswerGroupByOutputType[P]>
+            : GetScalarType<T[P], ExamAnswerGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ExamAnswerSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    attemptId?: boolean
+    questionId?: boolean
+    answerText?: boolean
+    isCorrect?: boolean
+    pointsAwarded?: boolean
+    attempt?: boolean | ExamAttemptDefaultArgs<ExtArgs>
+    question?: boolean | ExamQuestionDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["examAnswer"]>
+
+  export type ExamAnswerSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    attemptId?: boolean
+    questionId?: boolean
+    answerText?: boolean
+    isCorrect?: boolean
+    pointsAwarded?: boolean
+    attempt?: boolean | ExamAttemptDefaultArgs<ExtArgs>
+    question?: boolean | ExamQuestionDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["examAnswer"]>
+
+  export type ExamAnswerSelectScalar = {
+    id?: boolean
+    attemptId?: boolean
+    questionId?: boolean
+    answerText?: boolean
+    isCorrect?: boolean
+    pointsAwarded?: boolean
+  }
+
+  export type ExamAnswerInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    attempt?: boolean | ExamAttemptDefaultArgs<ExtArgs>
+    question?: boolean | ExamQuestionDefaultArgs<ExtArgs>
+  }
+  export type ExamAnswerIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    attempt?: boolean | ExamAttemptDefaultArgs<ExtArgs>
+    question?: boolean | ExamQuestionDefaultArgs<ExtArgs>
+  }
+
+  export type $ExamAnswerPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ExamAnswer"
+    objects: {
+      attempt: Prisma.$ExamAttemptPayload<ExtArgs>
+      question: Prisma.$ExamQuestionPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      attemptId: string
+      questionId: string
+      answerText: string
+      isCorrect: boolean
+      pointsAwarded: number
+    }, ExtArgs["result"]["examAnswer"]>
+    composites: {}
+  }
+
+  type ExamAnswerGetPayload<S extends boolean | null | undefined | ExamAnswerDefaultArgs> = $Result.GetResult<Prisma.$ExamAnswerPayload, S>
+
+  type ExamAnswerCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<ExamAnswerFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: ExamAnswerCountAggregateInputType | true
+    }
+
+  export interface ExamAnswerDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ExamAnswer'], meta: { name: 'ExamAnswer' } }
+    /**
+     * Find zero or one ExamAnswer that matches the filter.
+     * @param {ExamAnswerFindUniqueArgs} args - Arguments to find a ExamAnswer
+     * @example
+     * // Get one ExamAnswer
+     * const examAnswer = await prisma.examAnswer.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ExamAnswerFindUniqueArgs>(args: SelectSubset<T, ExamAnswerFindUniqueArgs<ExtArgs>>): Prisma__ExamAnswerClient<$Result.GetResult<Prisma.$ExamAnswerPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one ExamAnswer that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {ExamAnswerFindUniqueOrThrowArgs} args - Arguments to find a ExamAnswer
+     * @example
+     * // Get one ExamAnswer
+     * const examAnswer = await prisma.examAnswer.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ExamAnswerFindUniqueOrThrowArgs>(args: SelectSubset<T, ExamAnswerFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ExamAnswerClient<$Result.GetResult<Prisma.$ExamAnswerPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first ExamAnswer that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExamAnswerFindFirstArgs} args - Arguments to find a ExamAnswer
+     * @example
+     * // Get one ExamAnswer
+     * const examAnswer = await prisma.examAnswer.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ExamAnswerFindFirstArgs>(args?: SelectSubset<T, ExamAnswerFindFirstArgs<ExtArgs>>): Prisma__ExamAnswerClient<$Result.GetResult<Prisma.$ExamAnswerPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first ExamAnswer that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExamAnswerFindFirstOrThrowArgs} args - Arguments to find a ExamAnswer
+     * @example
+     * // Get one ExamAnswer
+     * const examAnswer = await prisma.examAnswer.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ExamAnswerFindFirstOrThrowArgs>(args?: SelectSubset<T, ExamAnswerFindFirstOrThrowArgs<ExtArgs>>): Prisma__ExamAnswerClient<$Result.GetResult<Prisma.$ExamAnswerPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more ExamAnswers that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExamAnswerFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ExamAnswers
+     * const examAnswers = await prisma.examAnswer.findMany()
+     * 
+     * // Get first 10 ExamAnswers
+     * const examAnswers = await prisma.examAnswer.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const examAnswerWithIdOnly = await prisma.examAnswer.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ExamAnswerFindManyArgs>(args?: SelectSubset<T, ExamAnswerFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ExamAnswerPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a ExamAnswer.
+     * @param {ExamAnswerCreateArgs} args - Arguments to create a ExamAnswer.
+     * @example
+     * // Create one ExamAnswer
+     * const ExamAnswer = await prisma.examAnswer.create({
+     *   data: {
+     *     // ... data to create a ExamAnswer
+     *   }
+     * })
+     * 
+     */
+    create<T extends ExamAnswerCreateArgs>(args: SelectSubset<T, ExamAnswerCreateArgs<ExtArgs>>): Prisma__ExamAnswerClient<$Result.GetResult<Prisma.$ExamAnswerPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many ExamAnswers.
+     * @param {ExamAnswerCreateManyArgs} args - Arguments to create many ExamAnswers.
+     * @example
+     * // Create many ExamAnswers
+     * const examAnswer = await prisma.examAnswer.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ExamAnswerCreateManyArgs>(args?: SelectSubset<T, ExamAnswerCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ExamAnswers and returns the data saved in the database.
+     * @param {ExamAnswerCreateManyAndReturnArgs} args - Arguments to create many ExamAnswers.
+     * @example
+     * // Create many ExamAnswers
+     * const examAnswer = await prisma.examAnswer.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ExamAnswers and only return the `id`
+     * const examAnswerWithIdOnly = await prisma.examAnswer.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ExamAnswerCreateManyAndReturnArgs>(args?: SelectSubset<T, ExamAnswerCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ExamAnswerPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a ExamAnswer.
+     * @param {ExamAnswerDeleteArgs} args - Arguments to delete one ExamAnswer.
+     * @example
+     * // Delete one ExamAnswer
+     * const ExamAnswer = await prisma.examAnswer.delete({
+     *   where: {
+     *     // ... filter to delete one ExamAnswer
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ExamAnswerDeleteArgs>(args: SelectSubset<T, ExamAnswerDeleteArgs<ExtArgs>>): Prisma__ExamAnswerClient<$Result.GetResult<Prisma.$ExamAnswerPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one ExamAnswer.
+     * @param {ExamAnswerUpdateArgs} args - Arguments to update one ExamAnswer.
+     * @example
+     * // Update one ExamAnswer
+     * const examAnswer = await prisma.examAnswer.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ExamAnswerUpdateArgs>(args: SelectSubset<T, ExamAnswerUpdateArgs<ExtArgs>>): Prisma__ExamAnswerClient<$Result.GetResult<Prisma.$ExamAnswerPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more ExamAnswers.
+     * @param {ExamAnswerDeleteManyArgs} args - Arguments to filter ExamAnswers to delete.
+     * @example
+     * // Delete a few ExamAnswers
+     * const { count } = await prisma.examAnswer.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ExamAnswerDeleteManyArgs>(args?: SelectSubset<T, ExamAnswerDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ExamAnswers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExamAnswerUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ExamAnswers
+     * const examAnswer = await prisma.examAnswer.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ExamAnswerUpdateManyArgs>(args: SelectSubset<T, ExamAnswerUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one ExamAnswer.
+     * @param {ExamAnswerUpsertArgs} args - Arguments to update or create a ExamAnswer.
+     * @example
+     * // Update or create a ExamAnswer
+     * const examAnswer = await prisma.examAnswer.upsert({
+     *   create: {
+     *     // ... data to create a ExamAnswer
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ExamAnswer we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ExamAnswerUpsertArgs>(args: SelectSubset<T, ExamAnswerUpsertArgs<ExtArgs>>): Prisma__ExamAnswerClient<$Result.GetResult<Prisma.$ExamAnswerPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of ExamAnswers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExamAnswerCountArgs} args - Arguments to filter ExamAnswers to count.
+     * @example
+     * // Count the number of ExamAnswers
+     * const count = await prisma.examAnswer.count({
+     *   where: {
+     *     // ... the filter for the ExamAnswers we want to count
+     *   }
+     * })
+    **/
+    count<T extends ExamAnswerCountArgs>(
+      args?: Subset<T, ExamAnswerCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ExamAnswerCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ExamAnswer.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExamAnswerAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ExamAnswerAggregateArgs>(args: Subset<T, ExamAnswerAggregateArgs>): Prisma.PrismaPromise<GetExamAnswerAggregateType<T>>
+
+    /**
+     * Group by ExamAnswer.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExamAnswerGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ExamAnswerGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ExamAnswerGroupByArgs['orderBy'] }
+        : { orderBy?: ExamAnswerGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ExamAnswerGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetExamAnswerGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ExamAnswer model
+   */
+  readonly fields: ExamAnswerFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ExamAnswer.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ExamAnswerClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    attempt<T extends ExamAttemptDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ExamAttemptDefaultArgs<ExtArgs>>): Prisma__ExamAttemptClient<$Result.GetResult<Prisma.$ExamAttemptPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    question<T extends ExamQuestionDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ExamQuestionDefaultArgs<ExtArgs>>): Prisma__ExamQuestionClient<$Result.GetResult<Prisma.$ExamQuestionPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ExamAnswer model
+   */ 
+  interface ExamAnswerFieldRefs {
+    readonly id: FieldRef<"ExamAnswer", 'String'>
+    readonly attemptId: FieldRef<"ExamAnswer", 'String'>
+    readonly questionId: FieldRef<"ExamAnswer", 'String'>
+    readonly answerText: FieldRef<"ExamAnswer", 'String'>
+    readonly isCorrect: FieldRef<"ExamAnswer", 'Boolean'>
+    readonly pointsAwarded: FieldRef<"ExamAnswer", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ExamAnswer findUnique
+   */
+  export type ExamAnswerFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExamAnswer
+     */
+    select?: ExamAnswerSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExamAnswerInclude<ExtArgs> | null
+    /**
+     * Filter, which ExamAnswer to fetch.
+     */
+    where: ExamAnswerWhereUniqueInput
+  }
+
+  /**
+   * ExamAnswer findUniqueOrThrow
+   */
+  export type ExamAnswerFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExamAnswer
+     */
+    select?: ExamAnswerSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExamAnswerInclude<ExtArgs> | null
+    /**
+     * Filter, which ExamAnswer to fetch.
+     */
+    where: ExamAnswerWhereUniqueInput
+  }
+
+  /**
+   * ExamAnswer findFirst
+   */
+  export type ExamAnswerFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExamAnswer
+     */
+    select?: ExamAnswerSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExamAnswerInclude<ExtArgs> | null
+    /**
+     * Filter, which ExamAnswer to fetch.
+     */
+    where?: ExamAnswerWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ExamAnswers to fetch.
+     */
+    orderBy?: ExamAnswerOrderByWithRelationInput | ExamAnswerOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ExamAnswers.
+     */
+    cursor?: ExamAnswerWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ExamAnswers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ExamAnswers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ExamAnswers.
+     */
+    distinct?: ExamAnswerScalarFieldEnum | ExamAnswerScalarFieldEnum[]
+  }
+
+  /**
+   * ExamAnswer findFirstOrThrow
+   */
+  export type ExamAnswerFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExamAnswer
+     */
+    select?: ExamAnswerSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExamAnswerInclude<ExtArgs> | null
+    /**
+     * Filter, which ExamAnswer to fetch.
+     */
+    where?: ExamAnswerWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ExamAnswers to fetch.
+     */
+    orderBy?: ExamAnswerOrderByWithRelationInput | ExamAnswerOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ExamAnswers.
+     */
+    cursor?: ExamAnswerWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ExamAnswers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ExamAnswers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ExamAnswers.
+     */
+    distinct?: ExamAnswerScalarFieldEnum | ExamAnswerScalarFieldEnum[]
+  }
+
+  /**
+   * ExamAnswer findMany
+   */
+  export type ExamAnswerFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExamAnswer
+     */
+    select?: ExamAnswerSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExamAnswerInclude<ExtArgs> | null
+    /**
+     * Filter, which ExamAnswers to fetch.
+     */
+    where?: ExamAnswerWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ExamAnswers to fetch.
+     */
+    orderBy?: ExamAnswerOrderByWithRelationInput | ExamAnswerOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ExamAnswers.
+     */
+    cursor?: ExamAnswerWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ExamAnswers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ExamAnswers.
+     */
+    skip?: number
+    distinct?: ExamAnswerScalarFieldEnum | ExamAnswerScalarFieldEnum[]
+  }
+
+  /**
+   * ExamAnswer create
+   */
+  export type ExamAnswerCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExamAnswer
+     */
+    select?: ExamAnswerSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExamAnswerInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ExamAnswer.
+     */
+    data: XOR<ExamAnswerCreateInput, ExamAnswerUncheckedCreateInput>
+  }
+
+  /**
+   * ExamAnswer createMany
+   */
+  export type ExamAnswerCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ExamAnswers.
+     */
+    data: ExamAnswerCreateManyInput | ExamAnswerCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ExamAnswer createManyAndReturn
+   */
+  export type ExamAnswerCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExamAnswer
+     */
+    select?: ExamAnswerSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many ExamAnswers.
+     */
+    data: ExamAnswerCreateManyInput | ExamAnswerCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExamAnswerIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ExamAnswer update
+   */
+  export type ExamAnswerUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExamAnswer
+     */
+    select?: ExamAnswerSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExamAnswerInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ExamAnswer.
+     */
+    data: XOR<ExamAnswerUpdateInput, ExamAnswerUncheckedUpdateInput>
+    /**
+     * Choose, which ExamAnswer to update.
+     */
+    where: ExamAnswerWhereUniqueInput
+  }
+
+  /**
+   * ExamAnswer updateMany
+   */
+  export type ExamAnswerUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ExamAnswers.
+     */
+    data: XOR<ExamAnswerUpdateManyMutationInput, ExamAnswerUncheckedUpdateManyInput>
+    /**
+     * Filter which ExamAnswers to update
+     */
+    where?: ExamAnswerWhereInput
+  }
+
+  /**
+   * ExamAnswer upsert
+   */
+  export type ExamAnswerUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExamAnswer
+     */
+    select?: ExamAnswerSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExamAnswerInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ExamAnswer to update in case it exists.
+     */
+    where: ExamAnswerWhereUniqueInput
+    /**
+     * In case the ExamAnswer found by the `where` argument doesn't exist, create a new ExamAnswer with this data.
+     */
+    create: XOR<ExamAnswerCreateInput, ExamAnswerUncheckedCreateInput>
+    /**
+     * In case the ExamAnswer was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ExamAnswerUpdateInput, ExamAnswerUncheckedUpdateInput>
+  }
+
+  /**
+   * ExamAnswer delete
+   */
+  export type ExamAnswerDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExamAnswer
+     */
+    select?: ExamAnswerSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExamAnswerInclude<ExtArgs> | null
+    /**
+     * Filter which ExamAnswer to delete.
+     */
+    where: ExamAnswerWhereUniqueInput
+  }
+
+  /**
+   * ExamAnswer deleteMany
+   */
+  export type ExamAnswerDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ExamAnswers to delete
+     */
+    where?: ExamAnswerWhereInput
+  }
+
+  /**
+   * ExamAnswer without action
+   */
+  export type ExamAnswerDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExamAnswer
+     */
+    select?: ExamAnswerSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExamAnswerInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -33870,6 +38666,65 @@ export namespace Prisma {
   export type DiscussionReplyScalarFieldEnum = (typeof DiscussionReplyScalarFieldEnum)[keyof typeof DiscussionReplyScalarFieldEnum]
 
 
+  export const ExamScalarFieldEnum: {
+    id: 'id',
+    title: 'title',
+    description: 'description',
+    classId: 'classId',
+    subjectId: 'subjectId',
+    teacherId: 'teacherId',
+    startTime: 'startTime',
+    endTime: 'endTime',
+    durationMin: 'durationMin',
+    isStrict: 'isStrict',
+    status: 'status',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type ExamScalarFieldEnum = (typeof ExamScalarFieldEnum)[keyof typeof ExamScalarFieldEnum]
+
+
+  export const ExamQuestionScalarFieldEnum: {
+    id: 'id',
+    examId: 'examId',
+    questionText: 'questionText',
+    type: 'type',
+    options: 'options',
+    correctAnswer: 'correctAnswer',
+    points: 'points',
+    order: 'order'
+  };
+
+  export type ExamQuestionScalarFieldEnum = (typeof ExamQuestionScalarFieldEnum)[keyof typeof ExamQuestionScalarFieldEnum]
+
+
+  export const ExamAttemptScalarFieldEnum: {
+    id: 'id',
+    examId: 'examId',
+    studentId: 'studentId',
+    startTime: 'startTime',
+    endTime: 'endTime',
+    status: 'status',
+    score: 'score',
+    cheatWarnings: 'cheatWarnings'
+  };
+
+  export type ExamAttemptScalarFieldEnum = (typeof ExamAttemptScalarFieldEnum)[keyof typeof ExamAttemptScalarFieldEnum]
+
+
+  export const ExamAnswerScalarFieldEnum: {
+    id: 'id',
+    attemptId: 'attemptId',
+    questionId: 'questionId',
+    answerText: 'answerText',
+    isCorrect: 'isCorrect',
+    pointsAwarded: 'pointsAwarded'
+  };
+
+  export type ExamAnswerScalarFieldEnum = (typeof ExamAnswerScalarFieldEnum)[keyof typeof ExamAnswerScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -34036,6 +38891,34 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'ExamStatus'
+   */
+  export type EnumExamStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ExamStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'ExamStatus[]'
+   */
+  export type ListEnumExamStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ExamStatus[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'AttemptStatus'
+   */
+  export type EnumAttemptStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AttemptStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'AttemptStatus[]'
+   */
+  export type ListEnumAttemptStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AttemptStatus[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -34105,6 +38988,8 @@ export namespace Prisma {
     documents?: DocumentListRelationFilter
     discussionThreads?: DiscussionThreadListRelationFilter
     discussionReplies?: DiscussionReplyListRelationFilter
+    teacherExams?: ExamListRelationFilter
+    examAttempts?: ExamAttemptListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -34157,6 +39042,8 @@ export namespace Prisma {
     documents?: DocumentOrderByRelationAggregateInput
     discussionThreads?: DiscussionThreadOrderByRelationAggregateInput
     discussionReplies?: DiscussionReplyOrderByRelationAggregateInput
+    teacherExams?: ExamOrderByRelationAggregateInput
+    examAttempts?: ExamAttemptOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -34212,6 +39099,8 @@ export namespace Prisma {
     documents?: DocumentListRelationFilter
     discussionThreads?: DiscussionThreadListRelationFilter
     discussionReplies?: DiscussionReplyListRelationFilter
+    teacherExams?: ExamListRelationFilter
+    examAttempts?: ExamAttemptListRelationFilter
   }, "id" | "email" | "nis">
 
   export type UserOrderByWithAggregationInput = {
@@ -34426,6 +39315,7 @@ export namespace Prisma {
     students?: UserListRelationFilter
     materials?: MaterialListRelationFilter
     discussionThreads?: DiscussionThreadListRelationFilter
+    exams?: ExamListRelationFilter
   }
 
   export type ClassOrderByWithRelationInput = {
@@ -34439,6 +39329,7 @@ export namespace Prisma {
     students?: UserOrderByRelationAggregateInput
     materials?: MaterialOrderByRelationAggregateInput
     discussionThreads?: DiscussionThreadOrderByRelationAggregateInput
+    exams?: ExamOrderByRelationAggregateInput
   }
 
   export type ClassWhereUniqueInput = Prisma.AtLeast<{
@@ -34456,6 +39347,7 @@ export namespace Prisma {
     students?: UserListRelationFilter
     materials?: MaterialListRelationFilter
     discussionThreads?: DiscussionThreadListRelationFilter
+    exams?: ExamListRelationFilter
   }, "id" | "name_school">
 
   export type ClassOrderByWithAggregationInput = {
@@ -34500,6 +39392,7 @@ export namespace Prisma {
     topics?: TopicListRelationFilter
     userSubjects?: UserSubjectListRelationFilter
     materials?: MaterialListRelationFilter
+    exams?: ExamListRelationFilter
   }
 
   export type SubjectOrderByWithRelationInput = {
@@ -34517,6 +39410,7 @@ export namespace Prisma {
     topics?: TopicOrderByRelationAggregateInput
     userSubjects?: UserSubjectOrderByRelationAggregateInput
     materials?: MaterialOrderByRelationAggregateInput
+    exams?: ExamOrderByRelationAggregateInput
   }
 
   export type SubjectWhereUniqueInput = Prisma.AtLeast<{
@@ -34537,6 +39431,7 @@ export namespace Prisma {
     topics?: TopicListRelationFilter
     userSubjects?: UserSubjectListRelationFilter
     materials?: MaterialListRelationFilter
+    exams?: ExamListRelationFilter
   }, "id">
 
   export type SubjectOrderByWithAggregationInput = {
@@ -36248,6 +41143,335 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"DiscussionReply"> | Date | string
   }
 
+  export type ExamWhereInput = {
+    AND?: ExamWhereInput | ExamWhereInput[]
+    OR?: ExamWhereInput[]
+    NOT?: ExamWhereInput | ExamWhereInput[]
+    id?: StringFilter<"Exam"> | string
+    title?: StringFilter<"Exam"> | string
+    description?: StringNullableFilter<"Exam"> | string | null
+    classId?: StringNullableFilter<"Exam"> | string | null
+    subjectId?: StringFilter<"Exam"> | string
+    teacherId?: StringFilter<"Exam"> | string
+    startTime?: DateTimeFilter<"Exam"> | Date | string
+    endTime?: DateTimeFilter<"Exam"> | Date | string
+    durationMin?: IntFilter<"Exam"> | number
+    isStrict?: BoolFilter<"Exam"> | boolean
+    status?: EnumExamStatusFilter<"Exam"> | $Enums.ExamStatus
+    createdAt?: DateTimeFilter<"Exam"> | Date | string
+    updatedAt?: DateTimeFilter<"Exam"> | Date | string
+    class?: XOR<ClassNullableRelationFilter, ClassWhereInput> | null
+    subject?: XOR<SubjectRelationFilter, SubjectWhereInput>
+    teacher?: XOR<UserRelationFilter, UserWhereInput>
+    questions?: ExamQuestionListRelationFilter
+    attempts?: ExamAttemptListRelationFilter
+  }
+
+  export type ExamOrderByWithRelationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrderInput | SortOrder
+    classId?: SortOrderInput | SortOrder
+    subjectId?: SortOrder
+    teacherId?: SortOrder
+    startTime?: SortOrder
+    endTime?: SortOrder
+    durationMin?: SortOrder
+    isStrict?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    class?: ClassOrderByWithRelationInput
+    subject?: SubjectOrderByWithRelationInput
+    teacher?: UserOrderByWithRelationInput
+    questions?: ExamQuestionOrderByRelationAggregateInput
+    attempts?: ExamAttemptOrderByRelationAggregateInput
+  }
+
+  export type ExamWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ExamWhereInput | ExamWhereInput[]
+    OR?: ExamWhereInput[]
+    NOT?: ExamWhereInput | ExamWhereInput[]
+    title?: StringFilter<"Exam"> | string
+    description?: StringNullableFilter<"Exam"> | string | null
+    classId?: StringNullableFilter<"Exam"> | string | null
+    subjectId?: StringFilter<"Exam"> | string
+    teacherId?: StringFilter<"Exam"> | string
+    startTime?: DateTimeFilter<"Exam"> | Date | string
+    endTime?: DateTimeFilter<"Exam"> | Date | string
+    durationMin?: IntFilter<"Exam"> | number
+    isStrict?: BoolFilter<"Exam"> | boolean
+    status?: EnumExamStatusFilter<"Exam"> | $Enums.ExamStatus
+    createdAt?: DateTimeFilter<"Exam"> | Date | string
+    updatedAt?: DateTimeFilter<"Exam"> | Date | string
+    class?: XOR<ClassNullableRelationFilter, ClassWhereInput> | null
+    subject?: XOR<SubjectRelationFilter, SubjectWhereInput>
+    teacher?: XOR<UserRelationFilter, UserWhereInput>
+    questions?: ExamQuestionListRelationFilter
+    attempts?: ExamAttemptListRelationFilter
+  }, "id">
+
+  export type ExamOrderByWithAggregationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrderInput | SortOrder
+    classId?: SortOrderInput | SortOrder
+    subjectId?: SortOrder
+    teacherId?: SortOrder
+    startTime?: SortOrder
+    endTime?: SortOrder
+    durationMin?: SortOrder
+    isStrict?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: ExamCountOrderByAggregateInput
+    _avg?: ExamAvgOrderByAggregateInput
+    _max?: ExamMaxOrderByAggregateInput
+    _min?: ExamMinOrderByAggregateInput
+    _sum?: ExamSumOrderByAggregateInput
+  }
+
+  export type ExamScalarWhereWithAggregatesInput = {
+    AND?: ExamScalarWhereWithAggregatesInput | ExamScalarWhereWithAggregatesInput[]
+    OR?: ExamScalarWhereWithAggregatesInput[]
+    NOT?: ExamScalarWhereWithAggregatesInput | ExamScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Exam"> | string
+    title?: StringWithAggregatesFilter<"Exam"> | string
+    description?: StringNullableWithAggregatesFilter<"Exam"> | string | null
+    classId?: StringNullableWithAggregatesFilter<"Exam"> | string | null
+    subjectId?: StringWithAggregatesFilter<"Exam"> | string
+    teacherId?: StringWithAggregatesFilter<"Exam"> | string
+    startTime?: DateTimeWithAggregatesFilter<"Exam"> | Date | string
+    endTime?: DateTimeWithAggregatesFilter<"Exam"> | Date | string
+    durationMin?: IntWithAggregatesFilter<"Exam"> | number
+    isStrict?: BoolWithAggregatesFilter<"Exam"> | boolean
+    status?: EnumExamStatusWithAggregatesFilter<"Exam"> | $Enums.ExamStatus
+    createdAt?: DateTimeWithAggregatesFilter<"Exam"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Exam"> | Date | string
+  }
+
+  export type ExamQuestionWhereInput = {
+    AND?: ExamQuestionWhereInput | ExamQuestionWhereInput[]
+    OR?: ExamQuestionWhereInput[]
+    NOT?: ExamQuestionWhereInput | ExamQuestionWhereInput[]
+    id?: StringFilter<"ExamQuestion"> | string
+    examId?: StringFilter<"ExamQuestion"> | string
+    questionText?: StringFilter<"ExamQuestion"> | string
+    type?: StringFilter<"ExamQuestion"> | string
+    options?: JsonFilter<"ExamQuestion">
+    correctAnswer?: StringFilter<"ExamQuestion"> | string
+    points?: IntFilter<"ExamQuestion"> | number
+    order?: IntFilter<"ExamQuestion"> | number
+    exam?: XOR<ExamRelationFilter, ExamWhereInput>
+    answers?: ExamAnswerListRelationFilter
+  }
+
+  export type ExamQuestionOrderByWithRelationInput = {
+    id?: SortOrder
+    examId?: SortOrder
+    questionText?: SortOrder
+    type?: SortOrder
+    options?: SortOrder
+    correctAnswer?: SortOrder
+    points?: SortOrder
+    order?: SortOrder
+    exam?: ExamOrderByWithRelationInput
+    answers?: ExamAnswerOrderByRelationAggregateInput
+  }
+
+  export type ExamQuestionWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ExamQuestionWhereInput | ExamQuestionWhereInput[]
+    OR?: ExamQuestionWhereInput[]
+    NOT?: ExamQuestionWhereInput | ExamQuestionWhereInput[]
+    examId?: StringFilter<"ExamQuestion"> | string
+    questionText?: StringFilter<"ExamQuestion"> | string
+    type?: StringFilter<"ExamQuestion"> | string
+    options?: JsonFilter<"ExamQuestion">
+    correctAnswer?: StringFilter<"ExamQuestion"> | string
+    points?: IntFilter<"ExamQuestion"> | number
+    order?: IntFilter<"ExamQuestion"> | number
+    exam?: XOR<ExamRelationFilter, ExamWhereInput>
+    answers?: ExamAnswerListRelationFilter
+  }, "id">
+
+  export type ExamQuestionOrderByWithAggregationInput = {
+    id?: SortOrder
+    examId?: SortOrder
+    questionText?: SortOrder
+    type?: SortOrder
+    options?: SortOrder
+    correctAnswer?: SortOrder
+    points?: SortOrder
+    order?: SortOrder
+    _count?: ExamQuestionCountOrderByAggregateInput
+    _avg?: ExamQuestionAvgOrderByAggregateInput
+    _max?: ExamQuestionMaxOrderByAggregateInput
+    _min?: ExamQuestionMinOrderByAggregateInput
+    _sum?: ExamQuestionSumOrderByAggregateInput
+  }
+
+  export type ExamQuestionScalarWhereWithAggregatesInput = {
+    AND?: ExamQuestionScalarWhereWithAggregatesInput | ExamQuestionScalarWhereWithAggregatesInput[]
+    OR?: ExamQuestionScalarWhereWithAggregatesInput[]
+    NOT?: ExamQuestionScalarWhereWithAggregatesInput | ExamQuestionScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ExamQuestion"> | string
+    examId?: StringWithAggregatesFilter<"ExamQuestion"> | string
+    questionText?: StringWithAggregatesFilter<"ExamQuestion"> | string
+    type?: StringWithAggregatesFilter<"ExamQuestion"> | string
+    options?: JsonWithAggregatesFilter<"ExamQuestion">
+    correctAnswer?: StringWithAggregatesFilter<"ExamQuestion"> | string
+    points?: IntWithAggregatesFilter<"ExamQuestion"> | number
+    order?: IntWithAggregatesFilter<"ExamQuestion"> | number
+  }
+
+  export type ExamAttemptWhereInput = {
+    AND?: ExamAttemptWhereInput | ExamAttemptWhereInput[]
+    OR?: ExamAttemptWhereInput[]
+    NOT?: ExamAttemptWhereInput | ExamAttemptWhereInput[]
+    id?: StringFilter<"ExamAttempt"> | string
+    examId?: StringFilter<"ExamAttempt"> | string
+    studentId?: StringFilter<"ExamAttempt"> | string
+    startTime?: DateTimeFilter<"ExamAttempt"> | Date | string
+    endTime?: DateTimeNullableFilter<"ExamAttempt"> | Date | string | null
+    status?: EnumAttemptStatusFilter<"ExamAttempt"> | $Enums.AttemptStatus
+    score?: IntNullableFilter<"ExamAttempt"> | number | null
+    cheatWarnings?: IntFilter<"ExamAttempt"> | number
+    exam?: XOR<ExamRelationFilter, ExamWhereInput>
+    student?: XOR<UserRelationFilter, UserWhereInput>
+    answers?: ExamAnswerListRelationFilter
+  }
+
+  export type ExamAttemptOrderByWithRelationInput = {
+    id?: SortOrder
+    examId?: SortOrder
+    studentId?: SortOrder
+    startTime?: SortOrder
+    endTime?: SortOrderInput | SortOrder
+    status?: SortOrder
+    score?: SortOrderInput | SortOrder
+    cheatWarnings?: SortOrder
+    exam?: ExamOrderByWithRelationInput
+    student?: UserOrderByWithRelationInput
+    answers?: ExamAnswerOrderByRelationAggregateInput
+  }
+
+  export type ExamAttemptWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    examId_studentId?: ExamAttemptExamIdStudentIdCompoundUniqueInput
+    AND?: ExamAttemptWhereInput | ExamAttemptWhereInput[]
+    OR?: ExamAttemptWhereInput[]
+    NOT?: ExamAttemptWhereInput | ExamAttemptWhereInput[]
+    examId?: StringFilter<"ExamAttempt"> | string
+    studentId?: StringFilter<"ExamAttempt"> | string
+    startTime?: DateTimeFilter<"ExamAttempt"> | Date | string
+    endTime?: DateTimeNullableFilter<"ExamAttempt"> | Date | string | null
+    status?: EnumAttemptStatusFilter<"ExamAttempt"> | $Enums.AttemptStatus
+    score?: IntNullableFilter<"ExamAttempt"> | number | null
+    cheatWarnings?: IntFilter<"ExamAttempt"> | number
+    exam?: XOR<ExamRelationFilter, ExamWhereInput>
+    student?: XOR<UserRelationFilter, UserWhereInput>
+    answers?: ExamAnswerListRelationFilter
+  }, "id" | "examId_studentId">
+
+  export type ExamAttemptOrderByWithAggregationInput = {
+    id?: SortOrder
+    examId?: SortOrder
+    studentId?: SortOrder
+    startTime?: SortOrder
+    endTime?: SortOrderInput | SortOrder
+    status?: SortOrder
+    score?: SortOrderInput | SortOrder
+    cheatWarnings?: SortOrder
+    _count?: ExamAttemptCountOrderByAggregateInput
+    _avg?: ExamAttemptAvgOrderByAggregateInput
+    _max?: ExamAttemptMaxOrderByAggregateInput
+    _min?: ExamAttemptMinOrderByAggregateInput
+    _sum?: ExamAttemptSumOrderByAggregateInput
+  }
+
+  export type ExamAttemptScalarWhereWithAggregatesInput = {
+    AND?: ExamAttemptScalarWhereWithAggregatesInput | ExamAttemptScalarWhereWithAggregatesInput[]
+    OR?: ExamAttemptScalarWhereWithAggregatesInput[]
+    NOT?: ExamAttemptScalarWhereWithAggregatesInput | ExamAttemptScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ExamAttempt"> | string
+    examId?: StringWithAggregatesFilter<"ExamAttempt"> | string
+    studentId?: StringWithAggregatesFilter<"ExamAttempt"> | string
+    startTime?: DateTimeWithAggregatesFilter<"ExamAttempt"> | Date | string
+    endTime?: DateTimeNullableWithAggregatesFilter<"ExamAttempt"> | Date | string | null
+    status?: EnumAttemptStatusWithAggregatesFilter<"ExamAttempt"> | $Enums.AttemptStatus
+    score?: IntNullableWithAggregatesFilter<"ExamAttempt"> | number | null
+    cheatWarnings?: IntWithAggregatesFilter<"ExamAttempt"> | number
+  }
+
+  export type ExamAnswerWhereInput = {
+    AND?: ExamAnswerWhereInput | ExamAnswerWhereInput[]
+    OR?: ExamAnswerWhereInput[]
+    NOT?: ExamAnswerWhereInput | ExamAnswerWhereInput[]
+    id?: StringFilter<"ExamAnswer"> | string
+    attemptId?: StringFilter<"ExamAnswer"> | string
+    questionId?: StringFilter<"ExamAnswer"> | string
+    answerText?: StringFilter<"ExamAnswer"> | string
+    isCorrect?: BoolFilter<"ExamAnswer"> | boolean
+    pointsAwarded?: IntFilter<"ExamAnswer"> | number
+    attempt?: XOR<ExamAttemptRelationFilter, ExamAttemptWhereInput>
+    question?: XOR<ExamQuestionRelationFilter, ExamQuestionWhereInput>
+  }
+
+  export type ExamAnswerOrderByWithRelationInput = {
+    id?: SortOrder
+    attemptId?: SortOrder
+    questionId?: SortOrder
+    answerText?: SortOrder
+    isCorrect?: SortOrder
+    pointsAwarded?: SortOrder
+    attempt?: ExamAttemptOrderByWithRelationInput
+    question?: ExamQuestionOrderByWithRelationInput
+  }
+
+  export type ExamAnswerWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    attemptId_questionId?: ExamAnswerAttemptIdQuestionIdCompoundUniqueInput
+    AND?: ExamAnswerWhereInput | ExamAnswerWhereInput[]
+    OR?: ExamAnswerWhereInput[]
+    NOT?: ExamAnswerWhereInput | ExamAnswerWhereInput[]
+    attemptId?: StringFilter<"ExamAnswer"> | string
+    questionId?: StringFilter<"ExamAnswer"> | string
+    answerText?: StringFilter<"ExamAnswer"> | string
+    isCorrect?: BoolFilter<"ExamAnswer"> | boolean
+    pointsAwarded?: IntFilter<"ExamAnswer"> | number
+    attempt?: XOR<ExamAttemptRelationFilter, ExamAttemptWhereInput>
+    question?: XOR<ExamQuestionRelationFilter, ExamQuestionWhereInput>
+  }, "id" | "attemptId_questionId">
+
+  export type ExamAnswerOrderByWithAggregationInput = {
+    id?: SortOrder
+    attemptId?: SortOrder
+    questionId?: SortOrder
+    answerText?: SortOrder
+    isCorrect?: SortOrder
+    pointsAwarded?: SortOrder
+    _count?: ExamAnswerCountOrderByAggregateInput
+    _avg?: ExamAnswerAvgOrderByAggregateInput
+    _max?: ExamAnswerMaxOrderByAggregateInput
+    _min?: ExamAnswerMinOrderByAggregateInput
+    _sum?: ExamAnswerSumOrderByAggregateInput
+  }
+
+  export type ExamAnswerScalarWhereWithAggregatesInput = {
+    AND?: ExamAnswerScalarWhereWithAggregatesInput | ExamAnswerScalarWhereWithAggregatesInput[]
+    OR?: ExamAnswerScalarWhereWithAggregatesInput[]
+    NOT?: ExamAnswerScalarWhereWithAggregatesInput | ExamAnswerScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ExamAnswer"> | string
+    attemptId?: StringWithAggregatesFilter<"ExamAnswer"> | string
+    questionId?: StringWithAggregatesFilter<"ExamAnswer"> | string
+    answerText?: StringWithAggregatesFilter<"ExamAnswer"> | string
+    isCorrect?: BoolWithAggregatesFilter<"ExamAnswer"> | boolean
+    pointsAwarded?: IntWithAggregatesFilter<"ExamAnswer"> | number
+  }
+
   export type UserCreateInput = {
     id?: string
     name: string
@@ -36297,6 +41521,8 @@ export namespace Prisma {
     documents?: DocumentCreateNestedManyWithoutUserInput
     discussionThreads?: DiscussionThreadCreateNestedManyWithoutAuthorInput
     discussionReplies?: DiscussionReplyCreateNestedManyWithoutAuthorInput
+    teacherExams?: ExamCreateNestedManyWithoutTeacherInput
+    examAttempts?: ExamAttemptCreateNestedManyWithoutStudentInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -36348,6 +41574,8 @@ export namespace Prisma {
     documents?: DocumentUncheckedCreateNestedManyWithoutUserInput
     discussionThreads?: DiscussionThreadUncheckedCreateNestedManyWithoutAuthorInput
     discussionReplies?: DiscussionReplyUncheckedCreateNestedManyWithoutAuthorInput
+    teacherExams?: ExamUncheckedCreateNestedManyWithoutTeacherInput
+    examAttempts?: ExamAttemptUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type UserUpdateInput = {
@@ -36399,6 +41627,8 @@ export namespace Prisma {
     documents?: DocumentUpdateManyWithoutUserNestedInput
     discussionThreads?: DiscussionThreadUpdateManyWithoutAuthorNestedInput
     discussionReplies?: DiscussionReplyUpdateManyWithoutAuthorNestedInput
+    teacherExams?: ExamUpdateManyWithoutTeacherNestedInput
+    examAttempts?: ExamAttemptUpdateManyWithoutStudentNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -36450,6 +41680,8 @@ export namespace Prisma {
     documents?: DocumentUncheckedUpdateManyWithoutUserNestedInput
     discussionThreads?: DiscussionThreadUncheckedUpdateManyWithoutAuthorNestedInput
     discussionReplies?: DiscussionReplyUncheckedUpdateManyWithoutAuthorNestedInput
+    teacherExams?: ExamUncheckedUpdateManyWithoutTeacherNestedInput
+    examAttempts?: ExamAttemptUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -36683,6 +41915,7 @@ export namespace Prisma {
     students?: UserCreateNestedManyWithoutClassInput
     materials?: MaterialCreateNestedManyWithoutClassInput
     discussionThreads?: DiscussionThreadCreateNestedManyWithoutClassInput
+    exams?: ExamCreateNestedManyWithoutClassInput
   }
 
   export type ClassUncheckedCreateInput = {
@@ -36696,6 +41929,7 @@ export namespace Prisma {
     students?: UserUncheckedCreateNestedManyWithoutClassInput
     materials?: MaterialUncheckedCreateNestedManyWithoutClassInput
     discussionThreads?: DiscussionThreadUncheckedCreateNestedManyWithoutClassInput
+    exams?: ExamUncheckedCreateNestedManyWithoutClassInput
   }
 
   export type ClassUpdateInput = {
@@ -36709,6 +41943,7 @@ export namespace Prisma {
     students?: UserUpdateManyWithoutClassNestedInput
     materials?: MaterialUpdateManyWithoutClassNestedInput
     discussionThreads?: DiscussionThreadUpdateManyWithoutClassNestedInput
+    exams?: ExamUpdateManyWithoutClassNestedInput
   }
 
   export type ClassUncheckedUpdateInput = {
@@ -36722,6 +41957,7 @@ export namespace Prisma {
     students?: UserUncheckedUpdateManyWithoutClassNestedInput
     materials?: MaterialUncheckedUpdateManyWithoutClassNestedInput
     discussionThreads?: DiscussionThreadUncheckedUpdateManyWithoutClassNestedInput
+    exams?: ExamUncheckedUpdateManyWithoutClassNestedInput
   }
 
   export type ClassCreateManyInput = {
@@ -36762,6 +41998,7 @@ export namespace Prisma {
     topics?: TopicCreateNestedManyWithoutSubjectInput
     userSubjects?: UserSubjectCreateNestedManyWithoutSubjectInput
     materials?: MaterialCreateNestedManyWithoutSubjectInput
+    exams?: ExamCreateNestedManyWithoutSubjectInput
   }
 
   export type SubjectUncheckedCreateInput = {
@@ -36778,6 +42015,7 @@ export namespace Prisma {
     topics?: TopicUncheckedCreateNestedManyWithoutSubjectInput
     userSubjects?: UserSubjectUncheckedCreateNestedManyWithoutSubjectInput
     materials?: MaterialUncheckedCreateNestedManyWithoutSubjectInput
+    exams?: ExamUncheckedCreateNestedManyWithoutSubjectInput
   }
 
   export type SubjectUpdateInput = {
@@ -36794,6 +42032,7 @@ export namespace Prisma {
     topics?: TopicUpdateManyWithoutSubjectNestedInput
     userSubjects?: UserSubjectUpdateManyWithoutSubjectNestedInput
     materials?: MaterialUpdateManyWithoutSubjectNestedInput
+    exams?: ExamUpdateManyWithoutSubjectNestedInput
   }
 
   export type SubjectUncheckedUpdateInput = {
@@ -36810,6 +42049,7 @@ export namespace Prisma {
     topics?: TopicUncheckedUpdateManyWithoutSubjectNestedInput
     userSubjects?: UserSubjectUncheckedUpdateManyWithoutSubjectNestedInput
     materials?: MaterialUncheckedUpdateManyWithoutSubjectNestedInput
+    exams?: ExamUncheckedUpdateManyWithoutSubjectNestedInput
   }
 
   export type SubjectCreateManyInput = {
@@ -38557,6 +43797,343 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type ExamCreateInput = {
+    id?: string
+    title: string
+    description?: string | null
+    startTime: Date | string
+    endTime: Date | string
+    durationMin?: number
+    isStrict?: boolean
+    status?: $Enums.ExamStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    class?: ClassCreateNestedOneWithoutExamsInput
+    subject: SubjectCreateNestedOneWithoutExamsInput
+    teacher: UserCreateNestedOneWithoutTeacherExamsInput
+    questions?: ExamQuestionCreateNestedManyWithoutExamInput
+    attempts?: ExamAttemptCreateNestedManyWithoutExamInput
+  }
+
+  export type ExamUncheckedCreateInput = {
+    id?: string
+    title: string
+    description?: string | null
+    classId?: string | null
+    subjectId: string
+    teacherId: string
+    startTime: Date | string
+    endTime: Date | string
+    durationMin?: number
+    isStrict?: boolean
+    status?: $Enums.ExamStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    questions?: ExamQuestionUncheckedCreateNestedManyWithoutExamInput
+    attempts?: ExamAttemptUncheckedCreateNestedManyWithoutExamInput
+  }
+
+  export type ExamUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    durationMin?: IntFieldUpdateOperationsInput | number
+    isStrict?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumExamStatusFieldUpdateOperationsInput | $Enums.ExamStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    class?: ClassUpdateOneWithoutExamsNestedInput
+    subject?: SubjectUpdateOneRequiredWithoutExamsNestedInput
+    teacher?: UserUpdateOneRequiredWithoutTeacherExamsNestedInput
+    questions?: ExamQuestionUpdateManyWithoutExamNestedInput
+    attempts?: ExamAttemptUpdateManyWithoutExamNestedInput
+  }
+
+  export type ExamUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    classId?: NullableStringFieldUpdateOperationsInput | string | null
+    subjectId?: StringFieldUpdateOperationsInput | string
+    teacherId?: StringFieldUpdateOperationsInput | string
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    durationMin?: IntFieldUpdateOperationsInput | number
+    isStrict?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumExamStatusFieldUpdateOperationsInput | $Enums.ExamStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    questions?: ExamQuestionUncheckedUpdateManyWithoutExamNestedInput
+    attempts?: ExamAttemptUncheckedUpdateManyWithoutExamNestedInput
+  }
+
+  export type ExamCreateManyInput = {
+    id?: string
+    title: string
+    description?: string | null
+    classId?: string | null
+    subjectId: string
+    teacherId: string
+    startTime: Date | string
+    endTime: Date | string
+    durationMin?: number
+    isStrict?: boolean
+    status?: $Enums.ExamStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ExamUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    durationMin?: IntFieldUpdateOperationsInput | number
+    isStrict?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumExamStatusFieldUpdateOperationsInput | $Enums.ExamStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ExamUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    classId?: NullableStringFieldUpdateOperationsInput | string | null
+    subjectId?: StringFieldUpdateOperationsInput | string
+    teacherId?: StringFieldUpdateOperationsInput | string
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    durationMin?: IntFieldUpdateOperationsInput | number
+    isStrict?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumExamStatusFieldUpdateOperationsInput | $Enums.ExamStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ExamQuestionCreateInput = {
+    id?: string
+    questionText: string
+    type?: string
+    options?: JsonNullValueInput | InputJsonValue
+    correctAnswer: string
+    points?: number
+    order?: number
+    exam: ExamCreateNestedOneWithoutQuestionsInput
+    answers?: ExamAnswerCreateNestedManyWithoutQuestionInput
+  }
+
+  export type ExamQuestionUncheckedCreateInput = {
+    id?: string
+    examId: string
+    questionText: string
+    type?: string
+    options?: JsonNullValueInput | InputJsonValue
+    correctAnswer: string
+    points?: number
+    order?: number
+    answers?: ExamAnswerUncheckedCreateNestedManyWithoutQuestionInput
+  }
+
+  export type ExamQuestionUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    questionText?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    options?: JsonNullValueInput | InputJsonValue
+    correctAnswer?: StringFieldUpdateOperationsInput | string
+    points?: IntFieldUpdateOperationsInput | number
+    order?: IntFieldUpdateOperationsInput | number
+    exam?: ExamUpdateOneRequiredWithoutQuestionsNestedInput
+    answers?: ExamAnswerUpdateManyWithoutQuestionNestedInput
+  }
+
+  export type ExamQuestionUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    examId?: StringFieldUpdateOperationsInput | string
+    questionText?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    options?: JsonNullValueInput | InputJsonValue
+    correctAnswer?: StringFieldUpdateOperationsInput | string
+    points?: IntFieldUpdateOperationsInput | number
+    order?: IntFieldUpdateOperationsInput | number
+    answers?: ExamAnswerUncheckedUpdateManyWithoutQuestionNestedInput
+  }
+
+  export type ExamQuestionCreateManyInput = {
+    id?: string
+    examId: string
+    questionText: string
+    type?: string
+    options?: JsonNullValueInput | InputJsonValue
+    correctAnswer: string
+    points?: number
+    order?: number
+  }
+
+  export type ExamQuestionUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    questionText?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    options?: JsonNullValueInput | InputJsonValue
+    correctAnswer?: StringFieldUpdateOperationsInput | string
+    points?: IntFieldUpdateOperationsInput | number
+    order?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ExamQuestionUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    examId?: StringFieldUpdateOperationsInput | string
+    questionText?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    options?: JsonNullValueInput | InputJsonValue
+    correctAnswer?: StringFieldUpdateOperationsInput | string
+    points?: IntFieldUpdateOperationsInput | number
+    order?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ExamAttemptCreateInput = {
+    id?: string
+    startTime?: Date | string
+    endTime?: Date | string | null
+    status?: $Enums.AttemptStatus
+    score?: number | null
+    cheatWarnings?: number
+    exam: ExamCreateNestedOneWithoutAttemptsInput
+    student: UserCreateNestedOneWithoutExamAttemptsInput
+    answers?: ExamAnswerCreateNestedManyWithoutAttemptInput
+  }
+
+  export type ExamAttemptUncheckedCreateInput = {
+    id?: string
+    examId: string
+    studentId: string
+    startTime?: Date | string
+    endTime?: Date | string | null
+    status?: $Enums.AttemptStatus
+    score?: number | null
+    cheatWarnings?: number
+    answers?: ExamAnswerUncheckedCreateNestedManyWithoutAttemptInput
+  }
+
+  export type ExamAttemptUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumAttemptStatusFieldUpdateOperationsInput | $Enums.AttemptStatus
+    score?: NullableIntFieldUpdateOperationsInput | number | null
+    cheatWarnings?: IntFieldUpdateOperationsInput | number
+    exam?: ExamUpdateOneRequiredWithoutAttemptsNestedInput
+    student?: UserUpdateOneRequiredWithoutExamAttemptsNestedInput
+    answers?: ExamAnswerUpdateManyWithoutAttemptNestedInput
+  }
+
+  export type ExamAttemptUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    examId?: StringFieldUpdateOperationsInput | string
+    studentId?: StringFieldUpdateOperationsInput | string
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumAttemptStatusFieldUpdateOperationsInput | $Enums.AttemptStatus
+    score?: NullableIntFieldUpdateOperationsInput | number | null
+    cheatWarnings?: IntFieldUpdateOperationsInput | number
+    answers?: ExamAnswerUncheckedUpdateManyWithoutAttemptNestedInput
+  }
+
+  export type ExamAttemptCreateManyInput = {
+    id?: string
+    examId: string
+    studentId: string
+    startTime?: Date | string
+    endTime?: Date | string | null
+    status?: $Enums.AttemptStatus
+    score?: number | null
+    cheatWarnings?: number
+  }
+
+  export type ExamAttemptUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumAttemptStatusFieldUpdateOperationsInput | $Enums.AttemptStatus
+    score?: NullableIntFieldUpdateOperationsInput | number | null
+    cheatWarnings?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ExamAttemptUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    examId?: StringFieldUpdateOperationsInput | string
+    studentId?: StringFieldUpdateOperationsInput | string
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumAttemptStatusFieldUpdateOperationsInput | $Enums.AttemptStatus
+    score?: NullableIntFieldUpdateOperationsInput | number | null
+    cheatWarnings?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ExamAnswerCreateInput = {
+    id?: string
+    answerText: string
+    isCorrect?: boolean
+    pointsAwarded?: number
+    attempt: ExamAttemptCreateNestedOneWithoutAnswersInput
+    question: ExamQuestionCreateNestedOneWithoutAnswersInput
+  }
+
+  export type ExamAnswerUncheckedCreateInput = {
+    id?: string
+    attemptId: string
+    questionId: string
+    answerText: string
+    isCorrect?: boolean
+    pointsAwarded?: number
+  }
+
+  export type ExamAnswerUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    answerText?: StringFieldUpdateOperationsInput | string
+    isCorrect?: BoolFieldUpdateOperationsInput | boolean
+    pointsAwarded?: IntFieldUpdateOperationsInput | number
+    attempt?: ExamAttemptUpdateOneRequiredWithoutAnswersNestedInput
+    question?: ExamQuestionUpdateOneRequiredWithoutAnswersNestedInput
+  }
+
+  export type ExamAnswerUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    attemptId?: StringFieldUpdateOperationsInput | string
+    questionId?: StringFieldUpdateOperationsInput | string
+    answerText?: StringFieldUpdateOperationsInput | string
+    isCorrect?: BoolFieldUpdateOperationsInput | boolean
+    pointsAwarded?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ExamAnswerCreateManyInput = {
+    id?: string
+    attemptId: string
+    questionId: string
+    answerText: string
+    isCorrect?: boolean
+    pointsAwarded?: number
+  }
+
+  export type ExamAnswerUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    answerText?: StringFieldUpdateOperationsInput | string
+    isCorrect?: BoolFieldUpdateOperationsInput | boolean
+    pointsAwarded?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ExamAnswerUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    attemptId?: StringFieldUpdateOperationsInput | string
+    questionId?: StringFieldUpdateOperationsInput | string
+    answerText?: StringFieldUpdateOperationsInput | string
+    isCorrect?: BoolFieldUpdateOperationsInput | boolean
+    pointsAwarded?: IntFieldUpdateOperationsInput | number
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -38792,6 +44369,18 @@ export namespace Prisma {
     none?: DiscussionReplyWhereInput
   }
 
+  export type ExamListRelationFilter = {
+    every?: ExamWhereInput
+    some?: ExamWhereInput
+    none?: ExamWhereInput
+  }
+
+  export type ExamAttemptListRelationFilter = {
+    every?: ExamAttemptWhereInput
+    some?: ExamAttemptWhereInput
+    none?: ExamAttemptWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -38874,6 +44463,14 @@ export namespace Prisma {
   }
 
   export type DiscussionReplyOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ExamOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ExamAttemptOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -40275,6 +45872,260 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
+  export type EnumExamStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.ExamStatus | EnumExamStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.ExamStatus[] | ListEnumExamStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ExamStatus[] | ListEnumExamStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumExamStatusFilter<$PrismaModel> | $Enums.ExamStatus
+  }
+
+  export type ExamQuestionListRelationFilter = {
+    every?: ExamQuestionWhereInput
+    some?: ExamQuestionWhereInput
+    none?: ExamQuestionWhereInput
+  }
+
+  export type ExamQuestionOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ExamCountOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    classId?: SortOrder
+    subjectId?: SortOrder
+    teacherId?: SortOrder
+    startTime?: SortOrder
+    endTime?: SortOrder
+    durationMin?: SortOrder
+    isStrict?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ExamAvgOrderByAggregateInput = {
+    durationMin?: SortOrder
+  }
+
+  export type ExamMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    classId?: SortOrder
+    subjectId?: SortOrder
+    teacherId?: SortOrder
+    startTime?: SortOrder
+    endTime?: SortOrder
+    durationMin?: SortOrder
+    isStrict?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ExamMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    classId?: SortOrder
+    subjectId?: SortOrder
+    teacherId?: SortOrder
+    startTime?: SortOrder
+    endTime?: SortOrder
+    durationMin?: SortOrder
+    isStrict?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ExamSumOrderByAggregateInput = {
+    durationMin?: SortOrder
+  }
+
+  export type EnumExamStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ExamStatus | EnumExamStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.ExamStatus[] | ListEnumExamStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ExamStatus[] | ListEnumExamStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumExamStatusWithAggregatesFilter<$PrismaModel> | $Enums.ExamStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumExamStatusFilter<$PrismaModel>
+    _max?: NestedEnumExamStatusFilter<$PrismaModel>
+  }
+
+  export type ExamRelationFilter = {
+    is?: ExamWhereInput
+    isNot?: ExamWhereInput
+  }
+
+  export type ExamAnswerListRelationFilter = {
+    every?: ExamAnswerWhereInput
+    some?: ExamAnswerWhereInput
+    none?: ExamAnswerWhereInput
+  }
+
+  export type ExamAnswerOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ExamQuestionCountOrderByAggregateInput = {
+    id?: SortOrder
+    examId?: SortOrder
+    questionText?: SortOrder
+    type?: SortOrder
+    options?: SortOrder
+    correctAnswer?: SortOrder
+    points?: SortOrder
+    order?: SortOrder
+  }
+
+  export type ExamQuestionAvgOrderByAggregateInput = {
+    points?: SortOrder
+    order?: SortOrder
+  }
+
+  export type ExamQuestionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    examId?: SortOrder
+    questionText?: SortOrder
+    type?: SortOrder
+    correctAnswer?: SortOrder
+    points?: SortOrder
+    order?: SortOrder
+  }
+
+  export type ExamQuestionMinOrderByAggregateInput = {
+    id?: SortOrder
+    examId?: SortOrder
+    questionText?: SortOrder
+    type?: SortOrder
+    correctAnswer?: SortOrder
+    points?: SortOrder
+    order?: SortOrder
+  }
+
+  export type ExamQuestionSumOrderByAggregateInput = {
+    points?: SortOrder
+    order?: SortOrder
+  }
+
+  export type EnumAttemptStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.AttemptStatus | EnumAttemptStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.AttemptStatus[] | ListEnumAttemptStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AttemptStatus[] | ListEnumAttemptStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumAttemptStatusFilter<$PrismaModel> | $Enums.AttemptStatus
+  }
+
+  export type ExamAttemptExamIdStudentIdCompoundUniqueInput = {
+    examId: string
+    studentId: string
+  }
+
+  export type ExamAttemptCountOrderByAggregateInput = {
+    id?: SortOrder
+    examId?: SortOrder
+    studentId?: SortOrder
+    startTime?: SortOrder
+    endTime?: SortOrder
+    status?: SortOrder
+    score?: SortOrder
+    cheatWarnings?: SortOrder
+  }
+
+  export type ExamAttemptAvgOrderByAggregateInput = {
+    score?: SortOrder
+    cheatWarnings?: SortOrder
+  }
+
+  export type ExamAttemptMaxOrderByAggregateInput = {
+    id?: SortOrder
+    examId?: SortOrder
+    studentId?: SortOrder
+    startTime?: SortOrder
+    endTime?: SortOrder
+    status?: SortOrder
+    score?: SortOrder
+    cheatWarnings?: SortOrder
+  }
+
+  export type ExamAttemptMinOrderByAggregateInput = {
+    id?: SortOrder
+    examId?: SortOrder
+    studentId?: SortOrder
+    startTime?: SortOrder
+    endTime?: SortOrder
+    status?: SortOrder
+    score?: SortOrder
+    cheatWarnings?: SortOrder
+  }
+
+  export type ExamAttemptSumOrderByAggregateInput = {
+    score?: SortOrder
+    cheatWarnings?: SortOrder
+  }
+
+  export type EnumAttemptStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.AttemptStatus | EnumAttemptStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.AttemptStatus[] | ListEnumAttemptStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AttemptStatus[] | ListEnumAttemptStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumAttemptStatusWithAggregatesFilter<$PrismaModel> | $Enums.AttemptStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumAttemptStatusFilter<$PrismaModel>
+    _max?: NestedEnumAttemptStatusFilter<$PrismaModel>
+  }
+
+  export type ExamAttemptRelationFilter = {
+    is?: ExamAttemptWhereInput
+    isNot?: ExamAttemptWhereInput
+  }
+
+  export type ExamQuestionRelationFilter = {
+    is?: ExamQuestionWhereInput
+    isNot?: ExamQuestionWhereInput
+  }
+
+  export type ExamAnswerAttemptIdQuestionIdCompoundUniqueInput = {
+    attemptId: string
+    questionId: string
+  }
+
+  export type ExamAnswerCountOrderByAggregateInput = {
+    id?: SortOrder
+    attemptId?: SortOrder
+    questionId?: SortOrder
+    answerText?: SortOrder
+    isCorrect?: SortOrder
+    pointsAwarded?: SortOrder
+  }
+
+  export type ExamAnswerAvgOrderByAggregateInput = {
+    pointsAwarded?: SortOrder
+  }
+
+  export type ExamAnswerMaxOrderByAggregateInput = {
+    id?: SortOrder
+    attemptId?: SortOrder
+    questionId?: SortOrder
+    answerText?: SortOrder
+    isCorrect?: SortOrder
+    pointsAwarded?: SortOrder
+  }
+
+  export type ExamAnswerMinOrderByAggregateInput = {
+    id?: SortOrder
+    attemptId?: SortOrder
+    questionId?: SortOrder
+    answerText?: SortOrder
+    isCorrect?: SortOrder
+    pointsAwarded?: SortOrder
+  }
+
+  export type ExamAnswerSumOrderByAggregateInput = {
+    pointsAwarded?: SortOrder
+  }
+
   export type UserCreateaffiliationsInput = {
     set: string[]
   }
@@ -40445,6 +46296,20 @@ export namespace Prisma {
     connect?: DiscussionReplyWhereUniqueInput | DiscussionReplyWhereUniqueInput[]
   }
 
+  export type ExamCreateNestedManyWithoutTeacherInput = {
+    create?: XOR<ExamCreateWithoutTeacherInput, ExamUncheckedCreateWithoutTeacherInput> | ExamCreateWithoutTeacherInput[] | ExamUncheckedCreateWithoutTeacherInput[]
+    connectOrCreate?: ExamCreateOrConnectWithoutTeacherInput | ExamCreateOrConnectWithoutTeacherInput[]
+    createMany?: ExamCreateManyTeacherInputEnvelope
+    connect?: ExamWhereUniqueInput | ExamWhereUniqueInput[]
+  }
+
+  export type ExamAttemptCreateNestedManyWithoutStudentInput = {
+    create?: XOR<ExamAttemptCreateWithoutStudentInput, ExamAttemptUncheckedCreateWithoutStudentInput> | ExamAttemptCreateWithoutStudentInput[] | ExamAttemptUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: ExamAttemptCreateOrConnectWithoutStudentInput | ExamAttemptCreateOrConnectWithoutStudentInput[]
+    createMany?: ExamAttemptCreateManyStudentInputEnvelope
+    connect?: ExamAttemptWhereUniqueInput | ExamAttemptWhereUniqueInput[]
+  }
+
   export type AccountUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
@@ -40603,6 +46468,20 @@ export namespace Prisma {
     connectOrCreate?: DiscussionReplyCreateOrConnectWithoutAuthorInput | DiscussionReplyCreateOrConnectWithoutAuthorInput[]
     createMany?: DiscussionReplyCreateManyAuthorInputEnvelope
     connect?: DiscussionReplyWhereUniqueInput | DiscussionReplyWhereUniqueInput[]
+  }
+
+  export type ExamUncheckedCreateNestedManyWithoutTeacherInput = {
+    create?: XOR<ExamCreateWithoutTeacherInput, ExamUncheckedCreateWithoutTeacherInput> | ExamCreateWithoutTeacherInput[] | ExamUncheckedCreateWithoutTeacherInput[]
+    connectOrCreate?: ExamCreateOrConnectWithoutTeacherInput | ExamCreateOrConnectWithoutTeacherInput[]
+    createMany?: ExamCreateManyTeacherInputEnvelope
+    connect?: ExamWhereUniqueInput | ExamWhereUniqueInput[]
+  }
+
+  export type ExamAttemptUncheckedCreateNestedManyWithoutStudentInput = {
+    create?: XOR<ExamAttemptCreateWithoutStudentInput, ExamAttemptUncheckedCreateWithoutStudentInput> | ExamAttemptCreateWithoutStudentInput[] | ExamAttemptUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: ExamAttemptCreateOrConnectWithoutStudentInput | ExamAttemptCreateOrConnectWithoutStudentInput[]
+    createMany?: ExamAttemptCreateManyStudentInputEnvelope
+    connect?: ExamAttemptWhereUniqueInput | ExamAttemptWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -40970,6 +46849,34 @@ export namespace Prisma {
     deleteMany?: DiscussionReplyScalarWhereInput | DiscussionReplyScalarWhereInput[]
   }
 
+  export type ExamUpdateManyWithoutTeacherNestedInput = {
+    create?: XOR<ExamCreateWithoutTeacherInput, ExamUncheckedCreateWithoutTeacherInput> | ExamCreateWithoutTeacherInput[] | ExamUncheckedCreateWithoutTeacherInput[]
+    connectOrCreate?: ExamCreateOrConnectWithoutTeacherInput | ExamCreateOrConnectWithoutTeacherInput[]
+    upsert?: ExamUpsertWithWhereUniqueWithoutTeacherInput | ExamUpsertWithWhereUniqueWithoutTeacherInput[]
+    createMany?: ExamCreateManyTeacherInputEnvelope
+    set?: ExamWhereUniqueInput | ExamWhereUniqueInput[]
+    disconnect?: ExamWhereUniqueInput | ExamWhereUniqueInput[]
+    delete?: ExamWhereUniqueInput | ExamWhereUniqueInput[]
+    connect?: ExamWhereUniqueInput | ExamWhereUniqueInput[]
+    update?: ExamUpdateWithWhereUniqueWithoutTeacherInput | ExamUpdateWithWhereUniqueWithoutTeacherInput[]
+    updateMany?: ExamUpdateManyWithWhereWithoutTeacherInput | ExamUpdateManyWithWhereWithoutTeacherInput[]
+    deleteMany?: ExamScalarWhereInput | ExamScalarWhereInput[]
+  }
+
+  export type ExamAttemptUpdateManyWithoutStudentNestedInput = {
+    create?: XOR<ExamAttemptCreateWithoutStudentInput, ExamAttemptUncheckedCreateWithoutStudentInput> | ExamAttemptCreateWithoutStudentInput[] | ExamAttemptUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: ExamAttemptCreateOrConnectWithoutStudentInput | ExamAttemptCreateOrConnectWithoutStudentInput[]
+    upsert?: ExamAttemptUpsertWithWhereUniqueWithoutStudentInput | ExamAttemptUpsertWithWhereUniqueWithoutStudentInput[]
+    createMany?: ExamAttemptCreateManyStudentInputEnvelope
+    set?: ExamAttemptWhereUniqueInput | ExamAttemptWhereUniqueInput[]
+    disconnect?: ExamAttemptWhereUniqueInput | ExamAttemptWhereUniqueInput[]
+    delete?: ExamAttemptWhereUniqueInput | ExamAttemptWhereUniqueInput[]
+    connect?: ExamAttemptWhereUniqueInput | ExamAttemptWhereUniqueInput[]
+    update?: ExamAttemptUpdateWithWhereUniqueWithoutStudentInput | ExamAttemptUpdateWithWhereUniqueWithoutStudentInput[]
+    updateMany?: ExamAttemptUpdateManyWithWhereWithoutStudentInput | ExamAttemptUpdateManyWithWhereWithoutStudentInput[]
+    deleteMany?: ExamAttemptScalarWhereInput | ExamAttemptScalarWhereInput[]
+  }
+
   export type AccountUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
@@ -41288,6 +47195,34 @@ export namespace Prisma {
     deleteMany?: DiscussionReplyScalarWhereInput | DiscussionReplyScalarWhereInput[]
   }
 
+  export type ExamUncheckedUpdateManyWithoutTeacherNestedInput = {
+    create?: XOR<ExamCreateWithoutTeacherInput, ExamUncheckedCreateWithoutTeacherInput> | ExamCreateWithoutTeacherInput[] | ExamUncheckedCreateWithoutTeacherInput[]
+    connectOrCreate?: ExamCreateOrConnectWithoutTeacherInput | ExamCreateOrConnectWithoutTeacherInput[]
+    upsert?: ExamUpsertWithWhereUniqueWithoutTeacherInput | ExamUpsertWithWhereUniqueWithoutTeacherInput[]
+    createMany?: ExamCreateManyTeacherInputEnvelope
+    set?: ExamWhereUniqueInput | ExamWhereUniqueInput[]
+    disconnect?: ExamWhereUniqueInput | ExamWhereUniqueInput[]
+    delete?: ExamWhereUniqueInput | ExamWhereUniqueInput[]
+    connect?: ExamWhereUniqueInput | ExamWhereUniqueInput[]
+    update?: ExamUpdateWithWhereUniqueWithoutTeacherInput | ExamUpdateWithWhereUniqueWithoutTeacherInput[]
+    updateMany?: ExamUpdateManyWithWhereWithoutTeacherInput | ExamUpdateManyWithWhereWithoutTeacherInput[]
+    deleteMany?: ExamScalarWhereInput | ExamScalarWhereInput[]
+  }
+
+  export type ExamAttemptUncheckedUpdateManyWithoutStudentNestedInput = {
+    create?: XOR<ExamAttemptCreateWithoutStudentInput, ExamAttemptUncheckedCreateWithoutStudentInput> | ExamAttemptCreateWithoutStudentInput[] | ExamAttemptUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: ExamAttemptCreateOrConnectWithoutStudentInput | ExamAttemptCreateOrConnectWithoutStudentInput[]
+    upsert?: ExamAttemptUpsertWithWhereUniqueWithoutStudentInput | ExamAttemptUpsertWithWhereUniqueWithoutStudentInput[]
+    createMany?: ExamAttemptCreateManyStudentInputEnvelope
+    set?: ExamAttemptWhereUniqueInput | ExamAttemptWhereUniqueInput[]
+    disconnect?: ExamAttemptWhereUniqueInput | ExamAttemptWhereUniqueInput[]
+    delete?: ExamAttemptWhereUniqueInput | ExamAttemptWhereUniqueInput[]
+    connect?: ExamAttemptWhereUniqueInput | ExamAttemptWhereUniqueInput[]
+    update?: ExamAttemptUpdateWithWhereUniqueWithoutStudentInput | ExamAttemptUpdateWithWhereUniqueWithoutStudentInput[]
+    updateMany?: ExamAttemptUpdateManyWithWhereWithoutStudentInput | ExamAttemptUpdateManyWithWhereWithoutStudentInput[]
+    deleteMany?: ExamAttemptScalarWhereInput | ExamAttemptScalarWhereInput[]
+  }
+
   export type UserCreateNestedOneWithoutUserNotesInput = {
     create?: XOR<UserCreateWithoutUserNotesInput, UserUncheckedCreateWithoutUserNotesInput>
     connectOrCreate?: UserCreateOrConnectWithoutUserNotesInput
@@ -41369,6 +47304,13 @@ export namespace Prisma {
     connect?: DiscussionThreadWhereUniqueInput | DiscussionThreadWhereUniqueInput[]
   }
 
+  export type ExamCreateNestedManyWithoutClassInput = {
+    create?: XOR<ExamCreateWithoutClassInput, ExamUncheckedCreateWithoutClassInput> | ExamCreateWithoutClassInput[] | ExamUncheckedCreateWithoutClassInput[]
+    connectOrCreate?: ExamCreateOrConnectWithoutClassInput | ExamCreateOrConnectWithoutClassInput[]
+    createMany?: ExamCreateManyClassInputEnvelope
+    connect?: ExamWhereUniqueInput | ExamWhereUniqueInput[]
+  }
+
   export type AssignmentUncheckedCreateNestedManyWithoutClassInput = {
     create?: XOR<AssignmentCreateWithoutClassInput, AssignmentUncheckedCreateWithoutClassInput> | AssignmentCreateWithoutClassInput[] | AssignmentUncheckedCreateWithoutClassInput[]
     connectOrCreate?: AssignmentCreateOrConnectWithoutClassInput | AssignmentCreateOrConnectWithoutClassInput[]
@@ -41402,6 +47344,13 @@ export namespace Prisma {
     connectOrCreate?: DiscussionThreadCreateOrConnectWithoutClassInput | DiscussionThreadCreateOrConnectWithoutClassInput[]
     createMany?: DiscussionThreadCreateManyClassInputEnvelope
     connect?: DiscussionThreadWhereUniqueInput | DiscussionThreadWhereUniqueInput[]
+  }
+
+  export type ExamUncheckedCreateNestedManyWithoutClassInput = {
+    create?: XOR<ExamCreateWithoutClassInput, ExamUncheckedCreateWithoutClassInput> | ExamCreateWithoutClassInput[] | ExamUncheckedCreateWithoutClassInput[]
+    connectOrCreate?: ExamCreateOrConnectWithoutClassInput | ExamCreateOrConnectWithoutClassInput[]
+    createMany?: ExamCreateManyClassInputEnvelope
+    connect?: ExamWhereUniqueInput | ExamWhereUniqueInput[]
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -41482,6 +47431,20 @@ export namespace Prisma {
     deleteMany?: DiscussionThreadScalarWhereInput | DiscussionThreadScalarWhereInput[]
   }
 
+  export type ExamUpdateManyWithoutClassNestedInput = {
+    create?: XOR<ExamCreateWithoutClassInput, ExamUncheckedCreateWithoutClassInput> | ExamCreateWithoutClassInput[] | ExamUncheckedCreateWithoutClassInput[]
+    connectOrCreate?: ExamCreateOrConnectWithoutClassInput | ExamCreateOrConnectWithoutClassInput[]
+    upsert?: ExamUpsertWithWhereUniqueWithoutClassInput | ExamUpsertWithWhereUniqueWithoutClassInput[]
+    createMany?: ExamCreateManyClassInputEnvelope
+    set?: ExamWhereUniqueInput | ExamWhereUniqueInput[]
+    disconnect?: ExamWhereUniqueInput | ExamWhereUniqueInput[]
+    delete?: ExamWhereUniqueInput | ExamWhereUniqueInput[]
+    connect?: ExamWhereUniqueInput | ExamWhereUniqueInput[]
+    update?: ExamUpdateWithWhereUniqueWithoutClassInput | ExamUpdateWithWhereUniqueWithoutClassInput[]
+    updateMany?: ExamUpdateManyWithWhereWithoutClassInput | ExamUpdateManyWithWhereWithoutClassInput[]
+    deleteMany?: ExamScalarWhereInput | ExamScalarWhereInput[]
+  }
+
   export type AssignmentUncheckedUpdateManyWithoutClassNestedInput = {
     create?: XOR<AssignmentCreateWithoutClassInput, AssignmentUncheckedCreateWithoutClassInput> | AssignmentCreateWithoutClassInput[] | AssignmentUncheckedCreateWithoutClassInput[]
     connectOrCreate?: AssignmentCreateOrConnectWithoutClassInput | AssignmentCreateOrConnectWithoutClassInput[]
@@ -41552,6 +47515,20 @@ export namespace Prisma {
     deleteMany?: DiscussionThreadScalarWhereInput | DiscussionThreadScalarWhereInput[]
   }
 
+  export type ExamUncheckedUpdateManyWithoutClassNestedInput = {
+    create?: XOR<ExamCreateWithoutClassInput, ExamUncheckedCreateWithoutClassInput> | ExamCreateWithoutClassInput[] | ExamUncheckedCreateWithoutClassInput[]
+    connectOrCreate?: ExamCreateOrConnectWithoutClassInput | ExamCreateOrConnectWithoutClassInput[]
+    upsert?: ExamUpsertWithWhereUniqueWithoutClassInput | ExamUpsertWithWhereUniqueWithoutClassInput[]
+    createMany?: ExamCreateManyClassInputEnvelope
+    set?: ExamWhereUniqueInput | ExamWhereUniqueInput[]
+    disconnect?: ExamWhereUniqueInput | ExamWhereUniqueInput[]
+    delete?: ExamWhereUniqueInput | ExamWhereUniqueInput[]
+    connect?: ExamWhereUniqueInput | ExamWhereUniqueInput[]
+    update?: ExamUpdateWithWhereUniqueWithoutClassInput | ExamUpdateWithWhereUniqueWithoutClassInput[]
+    updateMany?: ExamUpdateManyWithWhereWithoutClassInput | ExamUpdateManyWithWhereWithoutClassInput[]
+    deleteMany?: ExamScalarWhereInput | ExamScalarWhereInput[]
+  }
+
   export type AssignmentCreateNestedManyWithoutSubjectInput = {
     create?: XOR<AssignmentCreateWithoutSubjectInput, AssignmentUncheckedCreateWithoutSubjectInput> | AssignmentCreateWithoutSubjectInput[] | AssignmentUncheckedCreateWithoutSubjectInput[]
     connectOrCreate?: AssignmentCreateOrConnectWithoutSubjectInput | AssignmentCreateOrConnectWithoutSubjectInput[]
@@ -41593,6 +47570,13 @@ export namespace Prisma {
     connect?: MaterialWhereUniqueInput | MaterialWhereUniqueInput[]
   }
 
+  export type ExamCreateNestedManyWithoutSubjectInput = {
+    create?: XOR<ExamCreateWithoutSubjectInput, ExamUncheckedCreateWithoutSubjectInput> | ExamCreateWithoutSubjectInput[] | ExamUncheckedCreateWithoutSubjectInput[]
+    connectOrCreate?: ExamCreateOrConnectWithoutSubjectInput | ExamCreateOrConnectWithoutSubjectInput[]
+    createMany?: ExamCreateManySubjectInputEnvelope
+    connect?: ExamWhereUniqueInput | ExamWhereUniqueInput[]
+  }
+
   export type AssignmentUncheckedCreateNestedManyWithoutSubjectInput = {
     create?: XOR<AssignmentCreateWithoutSubjectInput, AssignmentUncheckedCreateWithoutSubjectInput> | AssignmentCreateWithoutSubjectInput[] | AssignmentUncheckedCreateWithoutSubjectInput[]
     connectOrCreate?: AssignmentCreateOrConnectWithoutSubjectInput | AssignmentCreateOrConnectWithoutSubjectInput[]
@@ -41626,6 +47610,13 @@ export namespace Prisma {
     connectOrCreate?: MaterialCreateOrConnectWithoutSubjectInput | MaterialCreateOrConnectWithoutSubjectInput[]
     createMany?: MaterialCreateManySubjectInputEnvelope
     connect?: MaterialWhereUniqueInput | MaterialWhereUniqueInput[]
+  }
+
+  export type ExamUncheckedCreateNestedManyWithoutSubjectInput = {
+    create?: XOR<ExamCreateWithoutSubjectInput, ExamUncheckedCreateWithoutSubjectInput> | ExamCreateWithoutSubjectInput[] | ExamUncheckedCreateWithoutSubjectInput[]
+    connectOrCreate?: ExamCreateOrConnectWithoutSubjectInput | ExamCreateOrConnectWithoutSubjectInput[]
+    createMany?: ExamCreateManySubjectInputEnvelope
+    connect?: ExamWhereUniqueInput | ExamWhereUniqueInput[]
   }
 
   export type AssignmentUpdateManyWithoutSubjectNestedInput = {
@@ -41708,6 +47699,20 @@ export namespace Prisma {
     deleteMany?: MaterialScalarWhereInput | MaterialScalarWhereInput[]
   }
 
+  export type ExamUpdateManyWithoutSubjectNestedInput = {
+    create?: XOR<ExamCreateWithoutSubjectInput, ExamUncheckedCreateWithoutSubjectInput> | ExamCreateWithoutSubjectInput[] | ExamUncheckedCreateWithoutSubjectInput[]
+    connectOrCreate?: ExamCreateOrConnectWithoutSubjectInput | ExamCreateOrConnectWithoutSubjectInput[]
+    upsert?: ExamUpsertWithWhereUniqueWithoutSubjectInput | ExamUpsertWithWhereUniqueWithoutSubjectInput[]
+    createMany?: ExamCreateManySubjectInputEnvelope
+    set?: ExamWhereUniqueInput | ExamWhereUniqueInput[]
+    disconnect?: ExamWhereUniqueInput | ExamWhereUniqueInput[]
+    delete?: ExamWhereUniqueInput | ExamWhereUniqueInput[]
+    connect?: ExamWhereUniqueInput | ExamWhereUniqueInput[]
+    update?: ExamUpdateWithWhereUniqueWithoutSubjectInput | ExamUpdateWithWhereUniqueWithoutSubjectInput[]
+    updateMany?: ExamUpdateManyWithWhereWithoutSubjectInput | ExamUpdateManyWithWhereWithoutSubjectInput[]
+    deleteMany?: ExamScalarWhereInput | ExamScalarWhereInput[]
+  }
+
   export type AssignmentUncheckedUpdateManyWithoutSubjectNestedInput = {
     create?: XOR<AssignmentCreateWithoutSubjectInput, AssignmentUncheckedCreateWithoutSubjectInput> | AssignmentCreateWithoutSubjectInput[] | AssignmentUncheckedCreateWithoutSubjectInput[]
     connectOrCreate?: AssignmentCreateOrConnectWithoutSubjectInput | AssignmentCreateOrConnectWithoutSubjectInput[]
@@ -41776,6 +47781,20 @@ export namespace Prisma {
     update?: MaterialUpdateWithWhereUniqueWithoutSubjectInput | MaterialUpdateWithWhereUniqueWithoutSubjectInput[]
     updateMany?: MaterialUpdateManyWithWhereWithoutSubjectInput | MaterialUpdateManyWithWhereWithoutSubjectInput[]
     deleteMany?: MaterialScalarWhereInput | MaterialScalarWhereInput[]
+  }
+
+  export type ExamUncheckedUpdateManyWithoutSubjectNestedInput = {
+    create?: XOR<ExamCreateWithoutSubjectInput, ExamUncheckedCreateWithoutSubjectInput> | ExamCreateWithoutSubjectInput[] | ExamUncheckedCreateWithoutSubjectInput[]
+    connectOrCreate?: ExamCreateOrConnectWithoutSubjectInput | ExamCreateOrConnectWithoutSubjectInput[]
+    upsert?: ExamUpsertWithWhereUniqueWithoutSubjectInput | ExamUpsertWithWhereUniqueWithoutSubjectInput[]
+    createMany?: ExamCreateManySubjectInputEnvelope
+    set?: ExamWhereUniqueInput | ExamWhereUniqueInput[]
+    disconnect?: ExamWhereUniqueInput | ExamWhereUniqueInput[]
+    delete?: ExamWhereUniqueInput | ExamWhereUniqueInput[]
+    connect?: ExamWhereUniqueInput | ExamWhereUniqueInput[]
+    update?: ExamUpdateWithWhereUniqueWithoutSubjectInput | ExamUpdateWithWhereUniqueWithoutSubjectInput[]
+    updateMany?: ExamUpdateManyWithWhereWithoutSubjectInput | ExamUpdateManyWithWhereWithoutSubjectInput[]
+    deleteMany?: ExamScalarWhereInput | ExamScalarWhereInput[]
   }
 
   export type ProgressLogCreateNestedManyWithoutTopicInput = {
@@ -42814,6 +48833,296 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutDiscussionRepliesInput, UserUpdateWithoutDiscussionRepliesInput>, UserUncheckedUpdateWithoutDiscussionRepliesInput>
   }
 
+  export type ClassCreateNestedOneWithoutExamsInput = {
+    create?: XOR<ClassCreateWithoutExamsInput, ClassUncheckedCreateWithoutExamsInput>
+    connectOrCreate?: ClassCreateOrConnectWithoutExamsInput
+    connect?: ClassWhereUniqueInput
+  }
+
+  export type SubjectCreateNestedOneWithoutExamsInput = {
+    create?: XOR<SubjectCreateWithoutExamsInput, SubjectUncheckedCreateWithoutExamsInput>
+    connectOrCreate?: SubjectCreateOrConnectWithoutExamsInput
+    connect?: SubjectWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutTeacherExamsInput = {
+    create?: XOR<UserCreateWithoutTeacherExamsInput, UserUncheckedCreateWithoutTeacherExamsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutTeacherExamsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type ExamQuestionCreateNestedManyWithoutExamInput = {
+    create?: XOR<ExamQuestionCreateWithoutExamInput, ExamQuestionUncheckedCreateWithoutExamInput> | ExamQuestionCreateWithoutExamInput[] | ExamQuestionUncheckedCreateWithoutExamInput[]
+    connectOrCreate?: ExamQuestionCreateOrConnectWithoutExamInput | ExamQuestionCreateOrConnectWithoutExamInput[]
+    createMany?: ExamQuestionCreateManyExamInputEnvelope
+    connect?: ExamQuestionWhereUniqueInput | ExamQuestionWhereUniqueInput[]
+  }
+
+  export type ExamAttemptCreateNestedManyWithoutExamInput = {
+    create?: XOR<ExamAttemptCreateWithoutExamInput, ExamAttemptUncheckedCreateWithoutExamInput> | ExamAttemptCreateWithoutExamInput[] | ExamAttemptUncheckedCreateWithoutExamInput[]
+    connectOrCreate?: ExamAttemptCreateOrConnectWithoutExamInput | ExamAttemptCreateOrConnectWithoutExamInput[]
+    createMany?: ExamAttemptCreateManyExamInputEnvelope
+    connect?: ExamAttemptWhereUniqueInput | ExamAttemptWhereUniqueInput[]
+  }
+
+  export type ExamQuestionUncheckedCreateNestedManyWithoutExamInput = {
+    create?: XOR<ExamQuestionCreateWithoutExamInput, ExamQuestionUncheckedCreateWithoutExamInput> | ExamQuestionCreateWithoutExamInput[] | ExamQuestionUncheckedCreateWithoutExamInput[]
+    connectOrCreate?: ExamQuestionCreateOrConnectWithoutExamInput | ExamQuestionCreateOrConnectWithoutExamInput[]
+    createMany?: ExamQuestionCreateManyExamInputEnvelope
+    connect?: ExamQuestionWhereUniqueInput | ExamQuestionWhereUniqueInput[]
+  }
+
+  export type ExamAttemptUncheckedCreateNestedManyWithoutExamInput = {
+    create?: XOR<ExamAttemptCreateWithoutExamInput, ExamAttemptUncheckedCreateWithoutExamInput> | ExamAttemptCreateWithoutExamInput[] | ExamAttemptUncheckedCreateWithoutExamInput[]
+    connectOrCreate?: ExamAttemptCreateOrConnectWithoutExamInput | ExamAttemptCreateOrConnectWithoutExamInput[]
+    createMany?: ExamAttemptCreateManyExamInputEnvelope
+    connect?: ExamAttemptWhereUniqueInput | ExamAttemptWhereUniqueInput[]
+  }
+
+  export type EnumExamStatusFieldUpdateOperationsInput = {
+    set?: $Enums.ExamStatus
+  }
+
+  export type ClassUpdateOneWithoutExamsNestedInput = {
+    create?: XOR<ClassCreateWithoutExamsInput, ClassUncheckedCreateWithoutExamsInput>
+    connectOrCreate?: ClassCreateOrConnectWithoutExamsInput
+    upsert?: ClassUpsertWithoutExamsInput
+    disconnect?: ClassWhereInput | boolean
+    delete?: ClassWhereInput | boolean
+    connect?: ClassWhereUniqueInput
+    update?: XOR<XOR<ClassUpdateToOneWithWhereWithoutExamsInput, ClassUpdateWithoutExamsInput>, ClassUncheckedUpdateWithoutExamsInput>
+  }
+
+  export type SubjectUpdateOneRequiredWithoutExamsNestedInput = {
+    create?: XOR<SubjectCreateWithoutExamsInput, SubjectUncheckedCreateWithoutExamsInput>
+    connectOrCreate?: SubjectCreateOrConnectWithoutExamsInput
+    upsert?: SubjectUpsertWithoutExamsInput
+    connect?: SubjectWhereUniqueInput
+    update?: XOR<XOR<SubjectUpdateToOneWithWhereWithoutExamsInput, SubjectUpdateWithoutExamsInput>, SubjectUncheckedUpdateWithoutExamsInput>
+  }
+
+  export type UserUpdateOneRequiredWithoutTeacherExamsNestedInput = {
+    create?: XOR<UserCreateWithoutTeacherExamsInput, UserUncheckedCreateWithoutTeacherExamsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutTeacherExamsInput
+    upsert?: UserUpsertWithoutTeacherExamsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutTeacherExamsInput, UserUpdateWithoutTeacherExamsInput>, UserUncheckedUpdateWithoutTeacherExamsInput>
+  }
+
+  export type ExamQuestionUpdateManyWithoutExamNestedInput = {
+    create?: XOR<ExamQuestionCreateWithoutExamInput, ExamQuestionUncheckedCreateWithoutExamInput> | ExamQuestionCreateWithoutExamInput[] | ExamQuestionUncheckedCreateWithoutExamInput[]
+    connectOrCreate?: ExamQuestionCreateOrConnectWithoutExamInput | ExamQuestionCreateOrConnectWithoutExamInput[]
+    upsert?: ExamQuestionUpsertWithWhereUniqueWithoutExamInput | ExamQuestionUpsertWithWhereUniqueWithoutExamInput[]
+    createMany?: ExamQuestionCreateManyExamInputEnvelope
+    set?: ExamQuestionWhereUniqueInput | ExamQuestionWhereUniqueInput[]
+    disconnect?: ExamQuestionWhereUniqueInput | ExamQuestionWhereUniqueInput[]
+    delete?: ExamQuestionWhereUniqueInput | ExamQuestionWhereUniqueInput[]
+    connect?: ExamQuestionWhereUniqueInput | ExamQuestionWhereUniqueInput[]
+    update?: ExamQuestionUpdateWithWhereUniqueWithoutExamInput | ExamQuestionUpdateWithWhereUniqueWithoutExamInput[]
+    updateMany?: ExamQuestionUpdateManyWithWhereWithoutExamInput | ExamQuestionUpdateManyWithWhereWithoutExamInput[]
+    deleteMany?: ExamQuestionScalarWhereInput | ExamQuestionScalarWhereInput[]
+  }
+
+  export type ExamAttemptUpdateManyWithoutExamNestedInput = {
+    create?: XOR<ExamAttemptCreateWithoutExamInput, ExamAttemptUncheckedCreateWithoutExamInput> | ExamAttemptCreateWithoutExamInput[] | ExamAttemptUncheckedCreateWithoutExamInput[]
+    connectOrCreate?: ExamAttemptCreateOrConnectWithoutExamInput | ExamAttemptCreateOrConnectWithoutExamInput[]
+    upsert?: ExamAttemptUpsertWithWhereUniqueWithoutExamInput | ExamAttemptUpsertWithWhereUniqueWithoutExamInput[]
+    createMany?: ExamAttemptCreateManyExamInputEnvelope
+    set?: ExamAttemptWhereUniqueInput | ExamAttemptWhereUniqueInput[]
+    disconnect?: ExamAttemptWhereUniqueInput | ExamAttemptWhereUniqueInput[]
+    delete?: ExamAttemptWhereUniqueInput | ExamAttemptWhereUniqueInput[]
+    connect?: ExamAttemptWhereUniqueInput | ExamAttemptWhereUniqueInput[]
+    update?: ExamAttemptUpdateWithWhereUniqueWithoutExamInput | ExamAttemptUpdateWithWhereUniqueWithoutExamInput[]
+    updateMany?: ExamAttemptUpdateManyWithWhereWithoutExamInput | ExamAttemptUpdateManyWithWhereWithoutExamInput[]
+    deleteMany?: ExamAttemptScalarWhereInput | ExamAttemptScalarWhereInput[]
+  }
+
+  export type ExamQuestionUncheckedUpdateManyWithoutExamNestedInput = {
+    create?: XOR<ExamQuestionCreateWithoutExamInput, ExamQuestionUncheckedCreateWithoutExamInput> | ExamQuestionCreateWithoutExamInput[] | ExamQuestionUncheckedCreateWithoutExamInput[]
+    connectOrCreate?: ExamQuestionCreateOrConnectWithoutExamInput | ExamQuestionCreateOrConnectWithoutExamInput[]
+    upsert?: ExamQuestionUpsertWithWhereUniqueWithoutExamInput | ExamQuestionUpsertWithWhereUniqueWithoutExamInput[]
+    createMany?: ExamQuestionCreateManyExamInputEnvelope
+    set?: ExamQuestionWhereUniqueInput | ExamQuestionWhereUniqueInput[]
+    disconnect?: ExamQuestionWhereUniqueInput | ExamQuestionWhereUniqueInput[]
+    delete?: ExamQuestionWhereUniqueInput | ExamQuestionWhereUniqueInput[]
+    connect?: ExamQuestionWhereUniqueInput | ExamQuestionWhereUniqueInput[]
+    update?: ExamQuestionUpdateWithWhereUniqueWithoutExamInput | ExamQuestionUpdateWithWhereUniqueWithoutExamInput[]
+    updateMany?: ExamQuestionUpdateManyWithWhereWithoutExamInput | ExamQuestionUpdateManyWithWhereWithoutExamInput[]
+    deleteMany?: ExamQuestionScalarWhereInput | ExamQuestionScalarWhereInput[]
+  }
+
+  export type ExamAttemptUncheckedUpdateManyWithoutExamNestedInput = {
+    create?: XOR<ExamAttemptCreateWithoutExamInput, ExamAttemptUncheckedCreateWithoutExamInput> | ExamAttemptCreateWithoutExamInput[] | ExamAttemptUncheckedCreateWithoutExamInput[]
+    connectOrCreate?: ExamAttemptCreateOrConnectWithoutExamInput | ExamAttemptCreateOrConnectWithoutExamInput[]
+    upsert?: ExamAttemptUpsertWithWhereUniqueWithoutExamInput | ExamAttemptUpsertWithWhereUniqueWithoutExamInput[]
+    createMany?: ExamAttemptCreateManyExamInputEnvelope
+    set?: ExamAttemptWhereUniqueInput | ExamAttemptWhereUniqueInput[]
+    disconnect?: ExamAttemptWhereUniqueInput | ExamAttemptWhereUniqueInput[]
+    delete?: ExamAttemptWhereUniqueInput | ExamAttemptWhereUniqueInput[]
+    connect?: ExamAttemptWhereUniqueInput | ExamAttemptWhereUniqueInput[]
+    update?: ExamAttemptUpdateWithWhereUniqueWithoutExamInput | ExamAttemptUpdateWithWhereUniqueWithoutExamInput[]
+    updateMany?: ExamAttemptUpdateManyWithWhereWithoutExamInput | ExamAttemptUpdateManyWithWhereWithoutExamInput[]
+    deleteMany?: ExamAttemptScalarWhereInput | ExamAttemptScalarWhereInput[]
+  }
+
+  export type ExamCreateNestedOneWithoutQuestionsInput = {
+    create?: XOR<ExamCreateWithoutQuestionsInput, ExamUncheckedCreateWithoutQuestionsInput>
+    connectOrCreate?: ExamCreateOrConnectWithoutQuestionsInput
+    connect?: ExamWhereUniqueInput
+  }
+
+  export type ExamAnswerCreateNestedManyWithoutQuestionInput = {
+    create?: XOR<ExamAnswerCreateWithoutQuestionInput, ExamAnswerUncheckedCreateWithoutQuestionInput> | ExamAnswerCreateWithoutQuestionInput[] | ExamAnswerUncheckedCreateWithoutQuestionInput[]
+    connectOrCreate?: ExamAnswerCreateOrConnectWithoutQuestionInput | ExamAnswerCreateOrConnectWithoutQuestionInput[]
+    createMany?: ExamAnswerCreateManyQuestionInputEnvelope
+    connect?: ExamAnswerWhereUniqueInput | ExamAnswerWhereUniqueInput[]
+  }
+
+  export type ExamAnswerUncheckedCreateNestedManyWithoutQuestionInput = {
+    create?: XOR<ExamAnswerCreateWithoutQuestionInput, ExamAnswerUncheckedCreateWithoutQuestionInput> | ExamAnswerCreateWithoutQuestionInput[] | ExamAnswerUncheckedCreateWithoutQuestionInput[]
+    connectOrCreate?: ExamAnswerCreateOrConnectWithoutQuestionInput | ExamAnswerCreateOrConnectWithoutQuestionInput[]
+    createMany?: ExamAnswerCreateManyQuestionInputEnvelope
+    connect?: ExamAnswerWhereUniqueInput | ExamAnswerWhereUniqueInput[]
+  }
+
+  export type ExamUpdateOneRequiredWithoutQuestionsNestedInput = {
+    create?: XOR<ExamCreateWithoutQuestionsInput, ExamUncheckedCreateWithoutQuestionsInput>
+    connectOrCreate?: ExamCreateOrConnectWithoutQuestionsInput
+    upsert?: ExamUpsertWithoutQuestionsInput
+    connect?: ExamWhereUniqueInput
+    update?: XOR<XOR<ExamUpdateToOneWithWhereWithoutQuestionsInput, ExamUpdateWithoutQuestionsInput>, ExamUncheckedUpdateWithoutQuestionsInput>
+  }
+
+  export type ExamAnswerUpdateManyWithoutQuestionNestedInput = {
+    create?: XOR<ExamAnswerCreateWithoutQuestionInput, ExamAnswerUncheckedCreateWithoutQuestionInput> | ExamAnswerCreateWithoutQuestionInput[] | ExamAnswerUncheckedCreateWithoutQuestionInput[]
+    connectOrCreate?: ExamAnswerCreateOrConnectWithoutQuestionInput | ExamAnswerCreateOrConnectWithoutQuestionInput[]
+    upsert?: ExamAnswerUpsertWithWhereUniqueWithoutQuestionInput | ExamAnswerUpsertWithWhereUniqueWithoutQuestionInput[]
+    createMany?: ExamAnswerCreateManyQuestionInputEnvelope
+    set?: ExamAnswerWhereUniqueInput | ExamAnswerWhereUniqueInput[]
+    disconnect?: ExamAnswerWhereUniqueInput | ExamAnswerWhereUniqueInput[]
+    delete?: ExamAnswerWhereUniqueInput | ExamAnswerWhereUniqueInput[]
+    connect?: ExamAnswerWhereUniqueInput | ExamAnswerWhereUniqueInput[]
+    update?: ExamAnswerUpdateWithWhereUniqueWithoutQuestionInput | ExamAnswerUpdateWithWhereUniqueWithoutQuestionInput[]
+    updateMany?: ExamAnswerUpdateManyWithWhereWithoutQuestionInput | ExamAnswerUpdateManyWithWhereWithoutQuestionInput[]
+    deleteMany?: ExamAnswerScalarWhereInput | ExamAnswerScalarWhereInput[]
+  }
+
+  export type ExamAnswerUncheckedUpdateManyWithoutQuestionNestedInput = {
+    create?: XOR<ExamAnswerCreateWithoutQuestionInput, ExamAnswerUncheckedCreateWithoutQuestionInput> | ExamAnswerCreateWithoutQuestionInput[] | ExamAnswerUncheckedCreateWithoutQuestionInput[]
+    connectOrCreate?: ExamAnswerCreateOrConnectWithoutQuestionInput | ExamAnswerCreateOrConnectWithoutQuestionInput[]
+    upsert?: ExamAnswerUpsertWithWhereUniqueWithoutQuestionInput | ExamAnswerUpsertWithWhereUniqueWithoutQuestionInput[]
+    createMany?: ExamAnswerCreateManyQuestionInputEnvelope
+    set?: ExamAnswerWhereUniqueInput | ExamAnswerWhereUniqueInput[]
+    disconnect?: ExamAnswerWhereUniqueInput | ExamAnswerWhereUniqueInput[]
+    delete?: ExamAnswerWhereUniqueInput | ExamAnswerWhereUniqueInput[]
+    connect?: ExamAnswerWhereUniqueInput | ExamAnswerWhereUniqueInput[]
+    update?: ExamAnswerUpdateWithWhereUniqueWithoutQuestionInput | ExamAnswerUpdateWithWhereUniqueWithoutQuestionInput[]
+    updateMany?: ExamAnswerUpdateManyWithWhereWithoutQuestionInput | ExamAnswerUpdateManyWithWhereWithoutQuestionInput[]
+    deleteMany?: ExamAnswerScalarWhereInput | ExamAnswerScalarWhereInput[]
+  }
+
+  export type ExamCreateNestedOneWithoutAttemptsInput = {
+    create?: XOR<ExamCreateWithoutAttemptsInput, ExamUncheckedCreateWithoutAttemptsInput>
+    connectOrCreate?: ExamCreateOrConnectWithoutAttemptsInput
+    connect?: ExamWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutExamAttemptsInput = {
+    create?: XOR<UserCreateWithoutExamAttemptsInput, UserUncheckedCreateWithoutExamAttemptsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutExamAttemptsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type ExamAnswerCreateNestedManyWithoutAttemptInput = {
+    create?: XOR<ExamAnswerCreateWithoutAttemptInput, ExamAnswerUncheckedCreateWithoutAttemptInput> | ExamAnswerCreateWithoutAttemptInput[] | ExamAnswerUncheckedCreateWithoutAttemptInput[]
+    connectOrCreate?: ExamAnswerCreateOrConnectWithoutAttemptInput | ExamAnswerCreateOrConnectWithoutAttemptInput[]
+    createMany?: ExamAnswerCreateManyAttemptInputEnvelope
+    connect?: ExamAnswerWhereUniqueInput | ExamAnswerWhereUniqueInput[]
+  }
+
+  export type ExamAnswerUncheckedCreateNestedManyWithoutAttemptInput = {
+    create?: XOR<ExamAnswerCreateWithoutAttemptInput, ExamAnswerUncheckedCreateWithoutAttemptInput> | ExamAnswerCreateWithoutAttemptInput[] | ExamAnswerUncheckedCreateWithoutAttemptInput[]
+    connectOrCreate?: ExamAnswerCreateOrConnectWithoutAttemptInput | ExamAnswerCreateOrConnectWithoutAttemptInput[]
+    createMany?: ExamAnswerCreateManyAttemptInputEnvelope
+    connect?: ExamAnswerWhereUniqueInput | ExamAnswerWhereUniqueInput[]
+  }
+
+  export type EnumAttemptStatusFieldUpdateOperationsInput = {
+    set?: $Enums.AttemptStatus
+  }
+
+  export type ExamUpdateOneRequiredWithoutAttemptsNestedInput = {
+    create?: XOR<ExamCreateWithoutAttemptsInput, ExamUncheckedCreateWithoutAttemptsInput>
+    connectOrCreate?: ExamCreateOrConnectWithoutAttemptsInput
+    upsert?: ExamUpsertWithoutAttemptsInput
+    connect?: ExamWhereUniqueInput
+    update?: XOR<XOR<ExamUpdateToOneWithWhereWithoutAttemptsInput, ExamUpdateWithoutAttemptsInput>, ExamUncheckedUpdateWithoutAttemptsInput>
+  }
+
+  export type UserUpdateOneRequiredWithoutExamAttemptsNestedInput = {
+    create?: XOR<UserCreateWithoutExamAttemptsInput, UserUncheckedCreateWithoutExamAttemptsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutExamAttemptsInput
+    upsert?: UserUpsertWithoutExamAttemptsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutExamAttemptsInput, UserUpdateWithoutExamAttemptsInput>, UserUncheckedUpdateWithoutExamAttemptsInput>
+  }
+
+  export type ExamAnswerUpdateManyWithoutAttemptNestedInput = {
+    create?: XOR<ExamAnswerCreateWithoutAttemptInput, ExamAnswerUncheckedCreateWithoutAttemptInput> | ExamAnswerCreateWithoutAttemptInput[] | ExamAnswerUncheckedCreateWithoutAttemptInput[]
+    connectOrCreate?: ExamAnswerCreateOrConnectWithoutAttemptInput | ExamAnswerCreateOrConnectWithoutAttemptInput[]
+    upsert?: ExamAnswerUpsertWithWhereUniqueWithoutAttemptInput | ExamAnswerUpsertWithWhereUniqueWithoutAttemptInput[]
+    createMany?: ExamAnswerCreateManyAttemptInputEnvelope
+    set?: ExamAnswerWhereUniqueInput | ExamAnswerWhereUniqueInput[]
+    disconnect?: ExamAnswerWhereUniqueInput | ExamAnswerWhereUniqueInput[]
+    delete?: ExamAnswerWhereUniqueInput | ExamAnswerWhereUniqueInput[]
+    connect?: ExamAnswerWhereUniqueInput | ExamAnswerWhereUniqueInput[]
+    update?: ExamAnswerUpdateWithWhereUniqueWithoutAttemptInput | ExamAnswerUpdateWithWhereUniqueWithoutAttemptInput[]
+    updateMany?: ExamAnswerUpdateManyWithWhereWithoutAttemptInput | ExamAnswerUpdateManyWithWhereWithoutAttemptInput[]
+    deleteMany?: ExamAnswerScalarWhereInput | ExamAnswerScalarWhereInput[]
+  }
+
+  export type ExamAnswerUncheckedUpdateManyWithoutAttemptNestedInput = {
+    create?: XOR<ExamAnswerCreateWithoutAttemptInput, ExamAnswerUncheckedCreateWithoutAttemptInput> | ExamAnswerCreateWithoutAttemptInput[] | ExamAnswerUncheckedCreateWithoutAttemptInput[]
+    connectOrCreate?: ExamAnswerCreateOrConnectWithoutAttemptInput | ExamAnswerCreateOrConnectWithoutAttemptInput[]
+    upsert?: ExamAnswerUpsertWithWhereUniqueWithoutAttemptInput | ExamAnswerUpsertWithWhereUniqueWithoutAttemptInput[]
+    createMany?: ExamAnswerCreateManyAttemptInputEnvelope
+    set?: ExamAnswerWhereUniqueInput | ExamAnswerWhereUniqueInput[]
+    disconnect?: ExamAnswerWhereUniqueInput | ExamAnswerWhereUniqueInput[]
+    delete?: ExamAnswerWhereUniqueInput | ExamAnswerWhereUniqueInput[]
+    connect?: ExamAnswerWhereUniqueInput | ExamAnswerWhereUniqueInput[]
+    update?: ExamAnswerUpdateWithWhereUniqueWithoutAttemptInput | ExamAnswerUpdateWithWhereUniqueWithoutAttemptInput[]
+    updateMany?: ExamAnswerUpdateManyWithWhereWithoutAttemptInput | ExamAnswerUpdateManyWithWhereWithoutAttemptInput[]
+    deleteMany?: ExamAnswerScalarWhereInput | ExamAnswerScalarWhereInput[]
+  }
+
+  export type ExamAttemptCreateNestedOneWithoutAnswersInput = {
+    create?: XOR<ExamAttemptCreateWithoutAnswersInput, ExamAttemptUncheckedCreateWithoutAnswersInput>
+    connectOrCreate?: ExamAttemptCreateOrConnectWithoutAnswersInput
+    connect?: ExamAttemptWhereUniqueInput
+  }
+
+  export type ExamQuestionCreateNestedOneWithoutAnswersInput = {
+    create?: XOR<ExamQuestionCreateWithoutAnswersInput, ExamQuestionUncheckedCreateWithoutAnswersInput>
+    connectOrCreate?: ExamQuestionCreateOrConnectWithoutAnswersInput
+    connect?: ExamQuestionWhereUniqueInput
+  }
+
+  export type ExamAttemptUpdateOneRequiredWithoutAnswersNestedInput = {
+    create?: XOR<ExamAttemptCreateWithoutAnswersInput, ExamAttemptUncheckedCreateWithoutAnswersInput>
+    connectOrCreate?: ExamAttemptCreateOrConnectWithoutAnswersInput
+    upsert?: ExamAttemptUpsertWithoutAnswersInput
+    connect?: ExamAttemptWhereUniqueInput
+    update?: XOR<XOR<ExamAttemptUpdateToOneWithWhereWithoutAnswersInput, ExamAttemptUpdateWithoutAnswersInput>, ExamAttemptUncheckedUpdateWithoutAnswersInput>
+  }
+
+  export type ExamQuestionUpdateOneRequiredWithoutAnswersNestedInput = {
+    create?: XOR<ExamQuestionCreateWithoutAnswersInput, ExamQuestionUncheckedCreateWithoutAnswersInput>
+    connectOrCreate?: ExamQuestionCreateOrConnectWithoutAnswersInput
+    upsert?: ExamQuestionUpsertWithoutAnswersInput
+    connect?: ExamQuestionWhereUniqueInput
+    update?: XOR<XOR<ExamQuestionUpdateToOneWithWhereWithoutAnswersInput, ExamQuestionUpdateWithoutAnswersInput>, ExamQuestionUncheckedUpdateWithoutAnswersInput>
+  }
+
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -43127,6 +49436,40 @@ export namespace Prisma {
     _max?: NestedEnumNotificationTypeFilter<$PrismaModel>
   }
 
+  export type NestedEnumExamStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.ExamStatus | EnumExamStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.ExamStatus[] | ListEnumExamStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ExamStatus[] | ListEnumExamStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumExamStatusFilter<$PrismaModel> | $Enums.ExamStatus
+  }
+
+  export type NestedEnumExamStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ExamStatus | EnumExamStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.ExamStatus[] | ListEnumExamStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ExamStatus[] | ListEnumExamStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumExamStatusWithAggregatesFilter<$PrismaModel> | $Enums.ExamStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumExamStatusFilter<$PrismaModel>
+    _max?: NestedEnumExamStatusFilter<$PrismaModel>
+  }
+
+  export type NestedEnumAttemptStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.AttemptStatus | EnumAttemptStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.AttemptStatus[] | ListEnumAttemptStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AttemptStatus[] | ListEnumAttemptStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumAttemptStatusFilter<$PrismaModel> | $Enums.AttemptStatus
+  }
+
+  export type NestedEnumAttemptStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.AttemptStatus | EnumAttemptStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.AttemptStatus[] | ListEnumAttemptStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AttemptStatus[] | ListEnumAttemptStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumAttemptStatusWithAggregatesFilter<$PrismaModel> | $Enums.AttemptStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumAttemptStatusFilter<$PrismaModel>
+    _max?: NestedEnumAttemptStatusFilter<$PrismaModel>
+  }
+
   export type AccountCreateWithoutUserInput = {
     id?: string
     type: string
@@ -43391,6 +49734,7 @@ export namespace Prisma {
     topics?: TopicCreateNestedManyWithoutSubjectInput
     userSubjects?: UserSubjectCreateNestedManyWithoutSubjectInput
     materials?: MaterialCreateNestedManyWithoutSubjectInput
+    exams?: ExamCreateNestedManyWithoutSubjectInput
   }
 
   export type SubjectUncheckedCreateWithoutTeacherInput = {
@@ -43406,6 +49750,7 @@ export namespace Prisma {
     topics?: TopicUncheckedCreateNestedManyWithoutSubjectInput
     userSubjects?: UserSubjectUncheckedCreateNestedManyWithoutSubjectInput
     materials?: MaterialUncheckedCreateNestedManyWithoutSubjectInput
+    exams?: ExamUncheckedCreateNestedManyWithoutSubjectInput
   }
 
   export type SubjectCreateOrConnectWithoutTeacherInput = {
@@ -43428,6 +49773,7 @@ export namespace Prisma {
     schedules?: ClassScheduleCreateNestedManyWithoutClassInput
     materials?: MaterialCreateNestedManyWithoutClassInput
     discussionThreads?: DiscussionThreadCreateNestedManyWithoutClassInput
+    exams?: ExamCreateNestedManyWithoutClassInput
   }
 
   export type ClassUncheckedCreateWithoutStudentsInput = {
@@ -43440,6 +49786,7 @@ export namespace Prisma {
     schedules?: ClassScheduleUncheckedCreateNestedManyWithoutClassInput
     materials?: MaterialUncheckedCreateNestedManyWithoutClassInput
     discussionThreads?: DiscussionThreadUncheckedCreateNestedManyWithoutClassInput
+    exams?: ExamUncheckedCreateNestedManyWithoutClassInput
   }
 
   export type ClassCreateOrConnectWithoutStudentsInput = {
@@ -43841,6 +50188,82 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type ExamCreateWithoutTeacherInput = {
+    id?: string
+    title: string
+    description?: string | null
+    startTime: Date | string
+    endTime: Date | string
+    durationMin?: number
+    isStrict?: boolean
+    status?: $Enums.ExamStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    class?: ClassCreateNestedOneWithoutExamsInput
+    subject: SubjectCreateNestedOneWithoutExamsInput
+    questions?: ExamQuestionCreateNestedManyWithoutExamInput
+    attempts?: ExamAttemptCreateNestedManyWithoutExamInput
+  }
+
+  export type ExamUncheckedCreateWithoutTeacherInput = {
+    id?: string
+    title: string
+    description?: string | null
+    classId?: string | null
+    subjectId: string
+    startTime: Date | string
+    endTime: Date | string
+    durationMin?: number
+    isStrict?: boolean
+    status?: $Enums.ExamStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    questions?: ExamQuestionUncheckedCreateNestedManyWithoutExamInput
+    attempts?: ExamAttemptUncheckedCreateNestedManyWithoutExamInput
+  }
+
+  export type ExamCreateOrConnectWithoutTeacherInput = {
+    where: ExamWhereUniqueInput
+    create: XOR<ExamCreateWithoutTeacherInput, ExamUncheckedCreateWithoutTeacherInput>
+  }
+
+  export type ExamCreateManyTeacherInputEnvelope = {
+    data: ExamCreateManyTeacherInput | ExamCreateManyTeacherInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ExamAttemptCreateWithoutStudentInput = {
+    id?: string
+    startTime?: Date | string
+    endTime?: Date | string | null
+    status?: $Enums.AttemptStatus
+    score?: number | null
+    cheatWarnings?: number
+    exam: ExamCreateNestedOneWithoutAttemptsInput
+    answers?: ExamAnswerCreateNestedManyWithoutAttemptInput
+  }
+
+  export type ExamAttemptUncheckedCreateWithoutStudentInput = {
+    id?: string
+    examId: string
+    startTime?: Date | string
+    endTime?: Date | string | null
+    status?: $Enums.AttemptStatus
+    score?: number | null
+    cheatWarnings?: number
+    answers?: ExamAnswerUncheckedCreateNestedManyWithoutAttemptInput
+  }
+
+  export type ExamAttemptCreateOrConnectWithoutStudentInput = {
+    where: ExamAttemptWhereUniqueInput
+    create: XOR<ExamAttemptCreateWithoutStudentInput, ExamAttemptUncheckedCreateWithoutStudentInput>
+  }
+
+  export type ExamAttemptCreateManyStudentInputEnvelope = {
+    data: ExamAttemptCreateManyStudentInput | ExamAttemptCreateManyStudentInput[]
+    skipDuplicates?: boolean
+  }
+
   export type AccountUpsertWithWhereUniqueWithoutUserInput = {
     where: AccountWhereUniqueInput
     update: XOR<AccountUpdateWithoutUserInput, AccountUncheckedUpdateWithoutUserInput>
@@ -44135,6 +50558,7 @@ export namespace Prisma {
     schedules?: ClassScheduleUpdateManyWithoutClassNestedInput
     materials?: MaterialUpdateManyWithoutClassNestedInput
     discussionThreads?: DiscussionThreadUpdateManyWithoutClassNestedInput
+    exams?: ExamUpdateManyWithoutClassNestedInput
   }
 
   export type ClassUncheckedUpdateWithoutStudentsInput = {
@@ -44147,6 +50571,7 @@ export namespace Prisma {
     schedules?: ClassScheduleUncheckedUpdateManyWithoutClassNestedInput
     materials?: MaterialUncheckedUpdateManyWithoutClassNestedInput
     discussionThreads?: DiscussionThreadUncheckedUpdateManyWithoutClassNestedInput
+    exams?: ExamUncheckedUpdateManyWithoutClassNestedInput
   }
 
   export type UserNoteUpsertWithWhereUniqueWithoutUserInput = {
@@ -44524,6 +50949,71 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"DiscussionReply"> | Date | string
   }
 
+  export type ExamUpsertWithWhereUniqueWithoutTeacherInput = {
+    where: ExamWhereUniqueInput
+    update: XOR<ExamUpdateWithoutTeacherInput, ExamUncheckedUpdateWithoutTeacherInput>
+    create: XOR<ExamCreateWithoutTeacherInput, ExamUncheckedCreateWithoutTeacherInput>
+  }
+
+  export type ExamUpdateWithWhereUniqueWithoutTeacherInput = {
+    where: ExamWhereUniqueInput
+    data: XOR<ExamUpdateWithoutTeacherInput, ExamUncheckedUpdateWithoutTeacherInput>
+  }
+
+  export type ExamUpdateManyWithWhereWithoutTeacherInput = {
+    where: ExamScalarWhereInput
+    data: XOR<ExamUpdateManyMutationInput, ExamUncheckedUpdateManyWithoutTeacherInput>
+  }
+
+  export type ExamScalarWhereInput = {
+    AND?: ExamScalarWhereInput | ExamScalarWhereInput[]
+    OR?: ExamScalarWhereInput[]
+    NOT?: ExamScalarWhereInput | ExamScalarWhereInput[]
+    id?: StringFilter<"Exam"> | string
+    title?: StringFilter<"Exam"> | string
+    description?: StringNullableFilter<"Exam"> | string | null
+    classId?: StringNullableFilter<"Exam"> | string | null
+    subjectId?: StringFilter<"Exam"> | string
+    teacherId?: StringFilter<"Exam"> | string
+    startTime?: DateTimeFilter<"Exam"> | Date | string
+    endTime?: DateTimeFilter<"Exam"> | Date | string
+    durationMin?: IntFilter<"Exam"> | number
+    isStrict?: BoolFilter<"Exam"> | boolean
+    status?: EnumExamStatusFilter<"Exam"> | $Enums.ExamStatus
+    createdAt?: DateTimeFilter<"Exam"> | Date | string
+    updatedAt?: DateTimeFilter<"Exam"> | Date | string
+  }
+
+  export type ExamAttemptUpsertWithWhereUniqueWithoutStudentInput = {
+    where: ExamAttemptWhereUniqueInput
+    update: XOR<ExamAttemptUpdateWithoutStudentInput, ExamAttemptUncheckedUpdateWithoutStudentInput>
+    create: XOR<ExamAttemptCreateWithoutStudentInput, ExamAttemptUncheckedCreateWithoutStudentInput>
+  }
+
+  export type ExamAttemptUpdateWithWhereUniqueWithoutStudentInput = {
+    where: ExamAttemptWhereUniqueInput
+    data: XOR<ExamAttemptUpdateWithoutStudentInput, ExamAttemptUncheckedUpdateWithoutStudentInput>
+  }
+
+  export type ExamAttemptUpdateManyWithWhereWithoutStudentInput = {
+    where: ExamAttemptScalarWhereInput
+    data: XOR<ExamAttemptUpdateManyMutationInput, ExamAttemptUncheckedUpdateManyWithoutStudentInput>
+  }
+
+  export type ExamAttemptScalarWhereInput = {
+    AND?: ExamAttemptScalarWhereInput | ExamAttemptScalarWhereInput[]
+    OR?: ExamAttemptScalarWhereInput[]
+    NOT?: ExamAttemptScalarWhereInput | ExamAttemptScalarWhereInput[]
+    id?: StringFilter<"ExamAttempt"> | string
+    examId?: StringFilter<"ExamAttempt"> | string
+    studentId?: StringFilter<"ExamAttempt"> | string
+    startTime?: DateTimeFilter<"ExamAttempt"> | Date | string
+    endTime?: DateTimeNullableFilter<"ExamAttempt"> | Date | string | null
+    status?: EnumAttemptStatusFilter<"ExamAttempt"> | $Enums.AttemptStatus
+    score?: IntNullableFilter<"ExamAttempt"> | number | null
+    cheatWarnings?: IntFilter<"ExamAttempt"> | number
+  }
+
   export type UserCreateWithoutUserNotesInput = {
     id?: string
     name: string
@@ -44572,6 +51062,8 @@ export namespace Prisma {
     documents?: DocumentCreateNestedManyWithoutUserInput
     discussionThreads?: DiscussionThreadCreateNestedManyWithoutAuthorInput
     discussionReplies?: DiscussionReplyCreateNestedManyWithoutAuthorInput
+    teacherExams?: ExamCreateNestedManyWithoutTeacherInput
+    examAttempts?: ExamAttemptCreateNestedManyWithoutStudentInput
   }
 
   export type UserUncheckedCreateWithoutUserNotesInput = {
@@ -44622,6 +51114,8 @@ export namespace Prisma {
     documents?: DocumentUncheckedCreateNestedManyWithoutUserInput
     discussionThreads?: DiscussionThreadUncheckedCreateNestedManyWithoutAuthorInput
     discussionReplies?: DiscussionReplyUncheckedCreateNestedManyWithoutAuthorInput
+    teacherExams?: ExamUncheckedCreateNestedManyWithoutTeacherInput
+    examAttempts?: ExamAttemptUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type UserCreateOrConnectWithoutUserNotesInput = {
@@ -44677,6 +51171,8 @@ export namespace Prisma {
     documents?: DocumentCreateNestedManyWithoutUserInput
     discussionThreads?: DiscussionThreadCreateNestedManyWithoutAuthorInput
     discussionReplies?: DiscussionReplyCreateNestedManyWithoutAuthorInput
+    teacherExams?: ExamCreateNestedManyWithoutTeacherInput
+    examAttempts?: ExamAttemptCreateNestedManyWithoutStudentInput
   }
 
   export type UserUncheckedCreateWithoutAuthoredNotesInput = {
@@ -44727,6 +51223,8 @@ export namespace Prisma {
     documents?: DocumentUncheckedCreateNestedManyWithoutUserInput
     discussionThreads?: DiscussionThreadUncheckedCreateNestedManyWithoutAuthorInput
     discussionReplies?: DiscussionReplyUncheckedCreateNestedManyWithoutAuthorInput
+    teacherExams?: ExamUncheckedCreateNestedManyWithoutTeacherInput
+    examAttempts?: ExamAttemptUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type UserCreateOrConnectWithoutAuthoredNotesInput = {
@@ -44793,6 +51291,8 @@ export namespace Prisma {
     documents?: DocumentUpdateManyWithoutUserNestedInput
     discussionThreads?: DiscussionThreadUpdateManyWithoutAuthorNestedInput
     discussionReplies?: DiscussionReplyUpdateManyWithoutAuthorNestedInput
+    teacherExams?: ExamUpdateManyWithoutTeacherNestedInput
+    examAttempts?: ExamAttemptUpdateManyWithoutStudentNestedInput
   }
 
   export type UserUncheckedUpdateWithoutUserNotesInput = {
@@ -44843,6 +51343,8 @@ export namespace Prisma {
     documents?: DocumentUncheckedUpdateManyWithoutUserNestedInput
     discussionThreads?: DiscussionThreadUncheckedUpdateManyWithoutAuthorNestedInput
     discussionReplies?: DiscussionReplyUncheckedUpdateManyWithoutAuthorNestedInput
+    teacherExams?: ExamUncheckedUpdateManyWithoutTeacherNestedInput
+    examAttempts?: ExamAttemptUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type UserUpsertWithoutAuthoredNotesInput = {
@@ -44904,6 +51406,8 @@ export namespace Prisma {
     documents?: DocumentUpdateManyWithoutUserNestedInput
     discussionThreads?: DiscussionThreadUpdateManyWithoutAuthorNestedInput
     discussionReplies?: DiscussionReplyUpdateManyWithoutAuthorNestedInput
+    teacherExams?: ExamUpdateManyWithoutTeacherNestedInput
+    examAttempts?: ExamAttemptUpdateManyWithoutStudentNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAuthoredNotesInput = {
@@ -44954,6 +51458,8 @@ export namespace Prisma {
     documents?: DocumentUncheckedUpdateManyWithoutUserNestedInput
     discussionThreads?: DiscussionThreadUncheckedUpdateManyWithoutAuthorNestedInput
     discussionReplies?: DiscussionReplyUncheckedUpdateManyWithoutAuthorNestedInput
+    teacherExams?: ExamUncheckedUpdateManyWithoutTeacherNestedInput
+    examAttempts?: ExamAttemptUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type UserCreateWithoutAttendancesInput = {
@@ -45004,6 +51510,8 @@ export namespace Prisma {
     documents?: DocumentCreateNestedManyWithoutUserInput
     discussionThreads?: DiscussionThreadCreateNestedManyWithoutAuthorInput
     discussionReplies?: DiscussionReplyCreateNestedManyWithoutAuthorInput
+    teacherExams?: ExamCreateNestedManyWithoutTeacherInput
+    examAttempts?: ExamAttemptCreateNestedManyWithoutStudentInput
   }
 
   export type UserUncheckedCreateWithoutAttendancesInput = {
@@ -45054,6 +51562,8 @@ export namespace Prisma {
     documents?: DocumentUncheckedCreateNestedManyWithoutUserInput
     discussionThreads?: DiscussionThreadUncheckedCreateNestedManyWithoutAuthorInput
     discussionReplies?: DiscussionReplyUncheckedCreateNestedManyWithoutAuthorInput
+    teacherExams?: ExamUncheckedCreateNestedManyWithoutTeacherInput
+    examAttempts?: ExamAttemptUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type UserCreateOrConnectWithoutAttendancesInput = {
@@ -45120,6 +51630,8 @@ export namespace Prisma {
     documents?: DocumentUpdateManyWithoutUserNestedInput
     discussionThreads?: DiscussionThreadUpdateManyWithoutAuthorNestedInput
     discussionReplies?: DiscussionReplyUpdateManyWithoutAuthorNestedInput
+    teacherExams?: ExamUpdateManyWithoutTeacherNestedInput
+    examAttempts?: ExamAttemptUpdateManyWithoutStudentNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAttendancesInput = {
@@ -45170,6 +51682,8 @@ export namespace Prisma {
     documents?: DocumentUncheckedUpdateManyWithoutUserNestedInput
     discussionThreads?: DiscussionThreadUncheckedUpdateManyWithoutAuthorNestedInput
     discussionReplies?: DiscussionReplyUncheckedUpdateManyWithoutAuthorNestedInput
+    teacherExams?: ExamUncheckedUpdateManyWithoutTeacherNestedInput
+    examAttempts?: ExamAttemptUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type AssignmentCreateWithoutClassInput = {
@@ -45300,6 +51814,8 @@ export namespace Prisma {
     documents?: DocumentCreateNestedManyWithoutUserInput
     discussionThreads?: DiscussionThreadCreateNestedManyWithoutAuthorInput
     discussionReplies?: DiscussionReplyCreateNestedManyWithoutAuthorInput
+    teacherExams?: ExamCreateNestedManyWithoutTeacherInput
+    examAttempts?: ExamAttemptCreateNestedManyWithoutStudentInput
   }
 
   export type UserUncheckedCreateWithoutClassInput = {
@@ -45350,6 +51866,8 @@ export namespace Prisma {
     documents?: DocumentUncheckedCreateNestedManyWithoutUserInput
     discussionThreads?: DiscussionThreadUncheckedCreateNestedManyWithoutAuthorInput
     discussionReplies?: DiscussionReplyUncheckedCreateNestedManyWithoutAuthorInput
+    teacherExams?: ExamUncheckedCreateNestedManyWithoutTeacherInput
+    examAttempts?: ExamAttemptUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type UserCreateOrConnectWithoutClassInput = {
@@ -45423,6 +51941,50 @@ export namespace Prisma {
 
   export type DiscussionThreadCreateManyClassInputEnvelope = {
     data: DiscussionThreadCreateManyClassInput | DiscussionThreadCreateManyClassInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ExamCreateWithoutClassInput = {
+    id?: string
+    title: string
+    description?: string | null
+    startTime: Date | string
+    endTime: Date | string
+    durationMin?: number
+    isStrict?: boolean
+    status?: $Enums.ExamStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    subject: SubjectCreateNestedOneWithoutExamsInput
+    teacher: UserCreateNestedOneWithoutTeacherExamsInput
+    questions?: ExamQuestionCreateNestedManyWithoutExamInput
+    attempts?: ExamAttemptCreateNestedManyWithoutExamInput
+  }
+
+  export type ExamUncheckedCreateWithoutClassInput = {
+    id?: string
+    title: string
+    description?: string | null
+    subjectId: string
+    teacherId: string
+    startTime: Date | string
+    endTime: Date | string
+    durationMin?: number
+    isStrict?: boolean
+    status?: $Enums.ExamStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    questions?: ExamQuestionUncheckedCreateNestedManyWithoutExamInput
+    attempts?: ExamAttemptUncheckedCreateNestedManyWithoutExamInput
+  }
+
+  export type ExamCreateOrConnectWithoutClassInput = {
+    where: ExamWhereUniqueInput
+    create: XOR<ExamCreateWithoutClassInput, ExamUncheckedCreateWithoutClassInput>
+  }
+
+  export type ExamCreateManyClassInputEnvelope = {
+    data: ExamCreateManyClassInput | ExamCreateManyClassInput[]
     skipDuplicates?: boolean
   }
 
@@ -45535,6 +52097,22 @@ export namespace Prisma {
   export type DiscussionThreadUpdateManyWithWhereWithoutClassInput = {
     where: DiscussionThreadScalarWhereInput
     data: XOR<DiscussionThreadUpdateManyMutationInput, DiscussionThreadUncheckedUpdateManyWithoutClassInput>
+  }
+
+  export type ExamUpsertWithWhereUniqueWithoutClassInput = {
+    where: ExamWhereUniqueInput
+    update: XOR<ExamUpdateWithoutClassInput, ExamUncheckedUpdateWithoutClassInput>
+    create: XOR<ExamCreateWithoutClassInput, ExamUncheckedCreateWithoutClassInput>
+  }
+
+  export type ExamUpdateWithWhereUniqueWithoutClassInput = {
+    where: ExamWhereUniqueInput
+    data: XOR<ExamUpdateWithoutClassInput, ExamUncheckedUpdateWithoutClassInput>
+  }
+
+  export type ExamUpdateManyWithWhereWithoutClassInput = {
+    where: ExamScalarWhereInput
+    data: XOR<ExamUpdateManyMutationInput, ExamUncheckedUpdateManyWithoutClassInput>
   }
 
   export type AssignmentCreateWithoutSubjectInput = {
@@ -45665,6 +52243,8 @@ export namespace Prisma {
     documents?: DocumentCreateNestedManyWithoutUserInput
     discussionThreads?: DiscussionThreadCreateNestedManyWithoutAuthorInput
     discussionReplies?: DiscussionReplyCreateNestedManyWithoutAuthorInput
+    teacherExams?: ExamCreateNestedManyWithoutTeacherInput
+    examAttempts?: ExamAttemptCreateNestedManyWithoutStudentInput
   }
 
   export type UserUncheckedCreateWithoutTeacherSubjectsInput = {
@@ -45715,6 +52295,8 @@ export namespace Prisma {
     documents?: DocumentUncheckedCreateNestedManyWithoutUserInput
     discussionThreads?: DiscussionThreadUncheckedCreateNestedManyWithoutAuthorInput
     discussionReplies?: DiscussionReplyUncheckedCreateNestedManyWithoutAuthorInput
+    teacherExams?: ExamUncheckedCreateNestedManyWithoutTeacherInput
+    examAttempts?: ExamAttemptUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type UserCreateOrConnectWithoutTeacherSubjectsInput = {
@@ -45814,6 +52396,50 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type ExamCreateWithoutSubjectInput = {
+    id?: string
+    title: string
+    description?: string | null
+    startTime: Date | string
+    endTime: Date | string
+    durationMin?: number
+    isStrict?: boolean
+    status?: $Enums.ExamStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    class?: ClassCreateNestedOneWithoutExamsInput
+    teacher: UserCreateNestedOneWithoutTeacherExamsInput
+    questions?: ExamQuestionCreateNestedManyWithoutExamInput
+    attempts?: ExamAttemptCreateNestedManyWithoutExamInput
+  }
+
+  export type ExamUncheckedCreateWithoutSubjectInput = {
+    id?: string
+    title: string
+    description?: string | null
+    classId?: string | null
+    teacherId: string
+    startTime: Date | string
+    endTime: Date | string
+    durationMin?: number
+    isStrict?: boolean
+    status?: $Enums.ExamStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    questions?: ExamQuestionUncheckedCreateNestedManyWithoutExamInput
+    attempts?: ExamAttemptUncheckedCreateNestedManyWithoutExamInput
+  }
+
+  export type ExamCreateOrConnectWithoutSubjectInput = {
+    where: ExamWhereUniqueInput
+    create: XOR<ExamCreateWithoutSubjectInput, ExamUncheckedCreateWithoutSubjectInput>
+  }
+
+  export type ExamCreateManySubjectInputEnvelope = {
+    data: ExamCreateManySubjectInput | ExamCreateManySubjectInput[]
+    skipDuplicates?: boolean
+  }
+
   export type AssignmentUpsertWithWhereUniqueWithoutSubjectInput = {
     where: AssignmentWhereUniqueInput
     update: XOR<AssignmentUpdateWithoutSubjectInput, AssignmentUncheckedUpdateWithoutSubjectInput>
@@ -45905,6 +52531,8 @@ export namespace Prisma {
     documents?: DocumentUpdateManyWithoutUserNestedInput
     discussionThreads?: DiscussionThreadUpdateManyWithoutAuthorNestedInput
     discussionReplies?: DiscussionReplyUpdateManyWithoutAuthorNestedInput
+    teacherExams?: ExamUpdateManyWithoutTeacherNestedInput
+    examAttempts?: ExamAttemptUpdateManyWithoutStudentNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTeacherSubjectsInput = {
@@ -45955,6 +52583,8 @@ export namespace Prisma {
     documents?: DocumentUncheckedUpdateManyWithoutUserNestedInput
     discussionThreads?: DiscussionThreadUncheckedUpdateManyWithoutAuthorNestedInput
     discussionReplies?: DiscussionReplyUncheckedUpdateManyWithoutAuthorNestedInput
+    teacherExams?: ExamUncheckedUpdateManyWithoutTeacherNestedInput
+    examAttempts?: ExamAttemptUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type TopicUpsertWithWhereUniqueWithoutSubjectInput = {
@@ -46018,6 +52648,22 @@ export namespace Prisma {
   export type MaterialUpdateManyWithWhereWithoutSubjectInput = {
     where: MaterialScalarWhereInput
     data: XOR<MaterialUpdateManyMutationInput, MaterialUncheckedUpdateManyWithoutSubjectInput>
+  }
+
+  export type ExamUpsertWithWhereUniqueWithoutSubjectInput = {
+    where: ExamWhereUniqueInput
+    update: XOR<ExamUpdateWithoutSubjectInput, ExamUncheckedUpdateWithoutSubjectInput>
+    create: XOR<ExamCreateWithoutSubjectInput, ExamUncheckedCreateWithoutSubjectInput>
+  }
+
+  export type ExamUpdateWithWhereUniqueWithoutSubjectInput = {
+    where: ExamWhereUniqueInput
+    data: XOR<ExamUpdateWithoutSubjectInput, ExamUncheckedUpdateWithoutSubjectInput>
+  }
+
+  export type ExamUpdateManyWithWhereWithoutSubjectInput = {
+    where: ExamScalarWhereInput
+    data: XOR<ExamUpdateManyMutationInput, ExamUncheckedUpdateManyWithoutSubjectInput>
   }
 
   export type ProgressLogCreateWithoutTopicInput = {
@@ -46107,6 +52753,7 @@ export namespace Prisma {
     teacher?: UserCreateNestedOneWithoutTeacherSubjectsInput
     userSubjects?: UserSubjectCreateNestedManyWithoutSubjectInput
     materials?: MaterialCreateNestedManyWithoutSubjectInput
+    exams?: ExamCreateNestedManyWithoutSubjectInput
   }
 
   export type SubjectUncheckedCreateWithoutTopicsInput = {
@@ -46122,6 +52769,7 @@ export namespace Prisma {
     schedules?: ClassScheduleUncheckedCreateNestedManyWithoutSubjectInput
     userSubjects?: UserSubjectUncheckedCreateNestedManyWithoutSubjectInput
     materials?: MaterialUncheckedCreateNestedManyWithoutSubjectInput
+    exams?: ExamUncheckedCreateNestedManyWithoutSubjectInput
   }
 
   export type SubjectCreateOrConnectWithoutTopicsInput = {
@@ -46185,6 +52833,7 @@ export namespace Prisma {
     teacher?: UserUpdateOneWithoutTeacherSubjectsNestedInput
     userSubjects?: UserSubjectUpdateManyWithoutSubjectNestedInput
     materials?: MaterialUpdateManyWithoutSubjectNestedInput
+    exams?: ExamUpdateManyWithoutSubjectNestedInput
   }
 
   export type SubjectUncheckedUpdateWithoutTopicsInput = {
@@ -46200,6 +52849,7 @@ export namespace Prisma {
     schedules?: ClassScheduleUncheckedUpdateManyWithoutSubjectNestedInput
     userSubjects?: UserSubjectUncheckedUpdateManyWithoutSubjectNestedInput
     materials?: MaterialUncheckedUpdateManyWithoutSubjectNestedInput
+    exams?: ExamUncheckedUpdateManyWithoutSubjectNestedInput
   }
 
   export type TopicCreateWithoutLogsInput = {
@@ -46281,6 +52931,8 @@ export namespace Prisma {
     documents?: DocumentCreateNestedManyWithoutUserInput
     discussionThreads?: DiscussionThreadCreateNestedManyWithoutAuthorInput
     discussionReplies?: DiscussionReplyCreateNestedManyWithoutAuthorInput
+    teacherExams?: ExamCreateNestedManyWithoutTeacherInput
+    examAttempts?: ExamAttemptCreateNestedManyWithoutStudentInput
   }
 
   export type UserUncheckedCreateWithoutProgressLogsInput = {
@@ -46331,6 +52983,8 @@ export namespace Prisma {
     documents?: DocumentUncheckedCreateNestedManyWithoutUserInput
     discussionThreads?: DiscussionThreadUncheckedCreateNestedManyWithoutAuthorInput
     discussionReplies?: DiscussionReplyUncheckedCreateNestedManyWithoutAuthorInput
+    teacherExams?: ExamUncheckedCreateNestedManyWithoutTeacherInput
+    examAttempts?: ExamAttemptUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type UserCreateOrConnectWithoutProgressLogsInput = {
@@ -46434,6 +53088,8 @@ export namespace Prisma {
     documents?: DocumentUpdateManyWithoutUserNestedInput
     discussionThreads?: DiscussionThreadUpdateManyWithoutAuthorNestedInput
     discussionReplies?: DiscussionReplyUpdateManyWithoutAuthorNestedInput
+    teacherExams?: ExamUpdateManyWithoutTeacherNestedInput
+    examAttempts?: ExamAttemptUpdateManyWithoutStudentNestedInput
   }
 
   export type UserUncheckedUpdateWithoutProgressLogsInput = {
@@ -46484,6 +53140,8 @@ export namespace Prisma {
     documents?: DocumentUncheckedUpdateManyWithoutUserNestedInput
     discussionThreads?: DiscussionThreadUncheckedUpdateManyWithoutAuthorNestedInput
     discussionReplies?: DiscussionReplyUncheckedUpdateManyWithoutAuthorNestedInput
+    teacherExams?: ExamUncheckedUpdateManyWithoutTeacherNestedInput
+    examAttempts?: ExamAttemptUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type SubjectCreateWithoutUserSubjectsInput = {
@@ -46499,6 +53157,7 @@ export namespace Prisma {
     teacher?: UserCreateNestedOneWithoutTeacherSubjectsInput
     topics?: TopicCreateNestedManyWithoutSubjectInput
     materials?: MaterialCreateNestedManyWithoutSubjectInput
+    exams?: ExamCreateNestedManyWithoutSubjectInput
   }
 
   export type SubjectUncheckedCreateWithoutUserSubjectsInput = {
@@ -46514,6 +53173,7 @@ export namespace Prisma {
     schedules?: ClassScheduleUncheckedCreateNestedManyWithoutSubjectInput
     topics?: TopicUncheckedCreateNestedManyWithoutSubjectInput
     materials?: MaterialUncheckedCreateNestedManyWithoutSubjectInput
+    exams?: ExamUncheckedCreateNestedManyWithoutSubjectInput
   }
 
   export type SubjectCreateOrConnectWithoutUserSubjectsInput = {
@@ -46569,6 +53229,8 @@ export namespace Prisma {
     documents?: DocumentCreateNestedManyWithoutUserInput
     discussionThreads?: DiscussionThreadCreateNestedManyWithoutAuthorInput
     discussionReplies?: DiscussionReplyCreateNestedManyWithoutAuthorInput
+    teacherExams?: ExamCreateNestedManyWithoutTeacherInput
+    examAttempts?: ExamAttemptCreateNestedManyWithoutStudentInput
   }
 
   export type UserUncheckedCreateWithoutUserSubjectsInput = {
@@ -46619,6 +53281,8 @@ export namespace Prisma {
     documents?: DocumentUncheckedCreateNestedManyWithoutUserInput
     discussionThreads?: DiscussionThreadUncheckedCreateNestedManyWithoutAuthorInput
     discussionReplies?: DiscussionReplyUncheckedCreateNestedManyWithoutAuthorInput
+    teacherExams?: ExamUncheckedCreateNestedManyWithoutTeacherInput
+    examAttempts?: ExamAttemptUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type UserCreateOrConnectWithoutUserSubjectsInput = {
@@ -46650,6 +53314,7 @@ export namespace Prisma {
     teacher?: UserUpdateOneWithoutTeacherSubjectsNestedInput
     topics?: TopicUpdateManyWithoutSubjectNestedInput
     materials?: MaterialUpdateManyWithoutSubjectNestedInput
+    exams?: ExamUpdateManyWithoutSubjectNestedInput
   }
 
   export type SubjectUncheckedUpdateWithoutUserSubjectsInput = {
@@ -46665,6 +53330,7 @@ export namespace Prisma {
     schedules?: ClassScheduleUncheckedUpdateManyWithoutSubjectNestedInput
     topics?: TopicUncheckedUpdateManyWithoutSubjectNestedInput
     materials?: MaterialUncheckedUpdateManyWithoutSubjectNestedInput
+    exams?: ExamUncheckedUpdateManyWithoutSubjectNestedInput
   }
 
   export type UserUpsertWithoutUserSubjectsInput = {
@@ -46726,6 +53392,8 @@ export namespace Prisma {
     documents?: DocumentUpdateManyWithoutUserNestedInput
     discussionThreads?: DiscussionThreadUpdateManyWithoutAuthorNestedInput
     discussionReplies?: DiscussionReplyUpdateManyWithoutAuthorNestedInput
+    teacherExams?: ExamUpdateManyWithoutTeacherNestedInput
+    examAttempts?: ExamAttemptUpdateManyWithoutStudentNestedInput
   }
 
   export type UserUncheckedUpdateWithoutUserSubjectsInput = {
@@ -46776,6 +53444,8 @@ export namespace Prisma {
     documents?: DocumentUncheckedUpdateManyWithoutUserNestedInput
     discussionThreads?: DiscussionThreadUncheckedUpdateManyWithoutAuthorNestedInput
     discussionReplies?: DiscussionReplyUncheckedUpdateManyWithoutAuthorNestedInput
+    teacherExams?: ExamUncheckedUpdateManyWithoutTeacherNestedInput
+    examAttempts?: ExamAttemptUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type ClassCreateWithoutSchedulesInput = {
@@ -46788,6 +53458,7 @@ export namespace Prisma {
     students?: UserCreateNestedManyWithoutClassInput
     materials?: MaterialCreateNestedManyWithoutClassInput
     discussionThreads?: DiscussionThreadCreateNestedManyWithoutClassInput
+    exams?: ExamCreateNestedManyWithoutClassInput
   }
 
   export type ClassUncheckedCreateWithoutSchedulesInput = {
@@ -46800,6 +53471,7 @@ export namespace Prisma {
     students?: UserUncheckedCreateNestedManyWithoutClassInput
     materials?: MaterialUncheckedCreateNestedManyWithoutClassInput
     discussionThreads?: DiscussionThreadUncheckedCreateNestedManyWithoutClassInput
+    exams?: ExamUncheckedCreateNestedManyWithoutClassInput
   }
 
   export type ClassCreateOrConnectWithoutSchedulesInput = {
@@ -46820,6 +53492,7 @@ export namespace Prisma {
     topics?: TopicCreateNestedManyWithoutSubjectInput
     userSubjects?: UserSubjectCreateNestedManyWithoutSubjectInput
     materials?: MaterialCreateNestedManyWithoutSubjectInput
+    exams?: ExamCreateNestedManyWithoutSubjectInput
   }
 
   export type SubjectUncheckedCreateWithoutSchedulesInput = {
@@ -46835,6 +53508,7 @@ export namespace Prisma {
     topics?: TopicUncheckedCreateNestedManyWithoutSubjectInput
     userSubjects?: UserSubjectUncheckedCreateNestedManyWithoutSubjectInput
     materials?: MaterialUncheckedCreateNestedManyWithoutSubjectInput
+    exams?: ExamUncheckedCreateNestedManyWithoutSubjectInput
   }
 
   export type SubjectCreateOrConnectWithoutSchedulesInput = {
@@ -46890,6 +53564,8 @@ export namespace Prisma {
     documents?: DocumentCreateNestedManyWithoutUserInput
     discussionThreads?: DiscussionThreadCreateNestedManyWithoutAuthorInput
     discussionReplies?: DiscussionReplyCreateNestedManyWithoutAuthorInput
+    teacherExams?: ExamCreateNestedManyWithoutTeacherInput
+    examAttempts?: ExamAttemptCreateNestedManyWithoutStudentInput
   }
 
   export type UserUncheckedCreateWithoutTeacherSchedulesInput = {
@@ -46940,6 +53616,8 @@ export namespace Prisma {
     documents?: DocumentUncheckedCreateNestedManyWithoutUserInput
     discussionThreads?: DiscussionThreadUncheckedCreateNestedManyWithoutAuthorInput
     discussionReplies?: DiscussionReplyUncheckedCreateNestedManyWithoutAuthorInput
+    teacherExams?: ExamUncheckedCreateNestedManyWithoutTeacherInput
+    examAttempts?: ExamAttemptUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type UserCreateOrConnectWithoutTeacherSchedulesInput = {
@@ -46968,6 +53646,7 @@ export namespace Prisma {
     students?: UserUpdateManyWithoutClassNestedInput
     materials?: MaterialUpdateManyWithoutClassNestedInput
     discussionThreads?: DiscussionThreadUpdateManyWithoutClassNestedInput
+    exams?: ExamUpdateManyWithoutClassNestedInput
   }
 
   export type ClassUncheckedUpdateWithoutSchedulesInput = {
@@ -46980,6 +53659,7 @@ export namespace Prisma {
     students?: UserUncheckedUpdateManyWithoutClassNestedInput
     materials?: MaterialUncheckedUpdateManyWithoutClassNestedInput
     discussionThreads?: DiscussionThreadUncheckedUpdateManyWithoutClassNestedInput
+    exams?: ExamUncheckedUpdateManyWithoutClassNestedInput
   }
 
   export type SubjectUpsertWithoutSchedulesInput = {
@@ -47006,6 +53686,7 @@ export namespace Prisma {
     topics?: TopicUpdateManyWithoutSubjectNestedInput
     userSubjects?: UserSubjectUpdateManyWithoutSubjectNestedInput
     materials?: MaterialUpdateManyWithoutSubjectNestedInput
+    exams?: ExamUpdateManyWithoutSubjectNestedInput
   }
 
   export type SubjectUncheckedUpdateWithoutSchedulesInput = {
@@ -47021,6 +53702,7 @@ export namespace Prisma {
     topics?: TopicUncheckedUpdateManyWithoutSubjectNestedInput
     userSubjects?: UserSubjectUncheckedUpdateManyWithoutSubjectNestedInput
     materials?: MaterialUncheckedUpdateManyWithoutSubjectNestedInput
+    exams?: ExamUncheckedUpdateManyWithoutSubjectNestedInput
   }
 
   export type UserUpsertWithoutTeacherSchedulesInput = {
@@ -47082,6 +53764,8 @@ export namespace Prisma {
     documents?: DocumentUpdateManyWithoutUserNestedInput
     discussionThreads?: DiscussionThreadUpdateManyWithoutAuthorNestedInput
     discussionReplies?: DiscussionReplyUpdateManyWithoutAuthorNestedInput
+    teacherExams?: ExamUpdateManyWithoutTeacherNestedInput
+    examAttempts?: ExamAttemptUpdateManyWithoutStudentNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTeacherSchedulesInput = {
@@ -47132,6 +53816,8 @@ export namespace Prisma {
     documents?: DocumentUncheckedUpdateManyWithoutUserNestedInput
     discussionThreads?: DiscussionThreadUncheckedUpdateManyWithoutAuthorNestedInput
     discussionReplies?: DiscussionReplyUncheckedUpdateManyWithoutAuthorNestedInput
+    teacherExams?: ExamUncheckedUpdateManyWithoutTeacherNestedInput
+    examAttempts?: ExamAttemptUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type ClassCreateWithoutMaterialsInput = {
@@ -47144,6 +53830,7 @@ export namespace Prisma {
     schedules?: ClassScheduleCreateNestedManyWithoutClassInput
     students?: UserCreateNestedManyWithoutClassInput
     discussionThreads?: DiscussionThreadCreateNestedManyWithoutClassInput
+    exams?: ExamCreateNestedManyWithoutClassInput
   }
 
   export type ClassUncheckedCreateWithoutMaterialsInput = {
@@ -47156,6 +53843,7 @@ export namespace Prisma {
     schedules?: ClassScheduleUncheckedCreateNestedManyWithoutClassInput
     students?: UserUncheckedCreateNestedManyWithoutClassInput
     discussionThreads?: DiscussionThreadUncheckedCreateNestedManyWithoutClassInput
+    exams?: ExamUncheckedCreateNestedManyWithoutClassInput
   }
 
   export type ClassCreateOrConnectWithoutMaterialsInput = {
@@ -47176,6 +53864,7 @@ export namespace Prisma {
     teacher?: UserCreateNestedOneWithoutTeacherSubjectsInput
     topics?: TopicCreateNestedManyWithoutSubjectInput
     userSubjects?: UserSubjectCreateNestedManyWithoutSubjectInput
+    exams?: ExamCreateNestedManyWithoutSubjectInput
   }
 
   export type SubjectUncheckedCreateWithoutMaterialsInput = {
@@ -47191,6 +53880,7 @@ export namespace Prisma {
     schedules?: ClassScheduleUncheckedCreateNestedManyWithoutSubjectInput
     topics?: TopicUncheckedCreateNestedManyWithoutSubjectInput
     userSubjects?: UserSubjectUncheckedCreateNestedManyWithoutSubjectInput
+    exams?: ExamUncheckedCreateNestedManyWithoutSubjectInput
   }
 
   export type SubjectCreateOrConnectWithoutMaterialsInput = {
@@ -47246,6 +53936,8 @@ export namespace Prisma {
     documents?: DocumentCreateNestedManyWithoutUserInput
     discussionThreads?: DiscussionThreadCreateNestedManyWithoutAuthorInput
     discussionReplies?: DiscussionReplyCreateNestedManyWithoutAuthorInput
+    teacherExams?: ExamCreateNestedManyWithoutTeacherInput
+    examAttempts?: ExamAttemptCreateNestedManyWithoutStudentInput
   }
 
   export type UserUncheckedCreateWithoutTeacherMaterialsInput = {
@@ -47296,6 +53988,8 @@ export namespace Prisma {
     documents?: DocumentUncheckedCreateNestedManyWithoutUserInput
     discussionThreads?: DiscussionThreadUncheckedCreateNestedManyWithoutAuthorInput
     discussionReplies?: DiscussionReplyUncheckedCreateNestedManyWithoutAuthorInput
+    teacherExams?: ExamUncheckedCreateNestedManyWithoutTeacherInput
+    examAttempts?: ExamAttemptUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type UserCreateOrConnectWithoutTeacherMaterialsInput = {
@@ -47324,6 +54018,7 @@ export namespace Prisma {
     schedules?: ClassScheduleUpdateManyWithoutClassNestedInput
     students?: UserUpdateManyWithoutClassNestedInput
     discussionThreads?: DiscussionThreadUpdateManyWithoutClassNestedInput
+    exams?: ExamUpdateManyWithoutClassNestedInput
   }
 
   export type ClassUncheckedUpdateWithoutMaterialsInput = {
@@ -47336,6 +54031,7 @@ export namespace Prisma {
     schedules?: ClassScheduleUncheckedUpdateManyWithoutClassNestedInput
     students?: UserUncheckedUpdateManyWithoutClassNestedInput
     discussionThreads?: DiscussionThreadUncheckedUpdateManyWithoutClassNestedInput
+    exams?: ExamUncheckedUpdateManyWithoutClassNestedInput
   }
 
   export type SubjectUpsertWithoutMaterialsInput = {
@@ -47362,6 +54058,7 @@ export namespace Prisma {
     teacher?: UserUpdateOneWithoutTeacherSubjectsNestedInput
     topics?: TopicUpdateManyWithoutSubjectNestedInput
     userSubjects?: UserSubjectUpdateManyWithoutSubjectNestedInput
+    exams?: ExamUpdateManyWithoutSubjectNestedInput
   }
 
   export type SubjectUncheckedUpdateWithoutMaterialsInput = {
@@ -47377,6 +54074,7 @@ export namespace Prisma {
     schedules?: ClassScheduleUncheckedUpdateManyWithoutSubjectNestedInput
     topics?: TopicUncheckedUpdateManyWithoutSubjectNestedInput
     userSubjects?: UserSubjectUncheckedUpdateManyWithoutSubjectNestedInput
+    exams?: ExamUncheckedUpdateManyWithoutSubjectNestedInput
   }
 
   export type UserUpsertWithoutTeacherMaterialsInput = {
@@ -47438,6 +54136,8 @@ export namespace Prisma {
     documents?: DocumentUpdateManyWithoutUserNestedInput
     discussionThreads?: DiscussionThreadUpdateManyWithoutAuthorNestedInput
     discussionReplies?: DiscussionReplyUpdateManyWithoutAuthorNestedInput
+    teacherExams?: ExamUpdateManyWithoutTeacherNestedInput
+    examAttempts?: ExamAttemptUpdateManyWithoutStudentNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTeacherMaterialsInput = {
@@ -47488,6 +54188,8 @@ export namespace Prisma {
     documents?: DocumentUncheckedUpdateManyWithoutUserNestedInput
     discussionThreads?: DiscussionThreadUncheckedUpdateManyWithoutAuthorNestedInput
     discussionReplies?: DiscussionReplyUncheckedUpdateManyWithoutAuthorNestedInput
+    teacherExams?: ExamUncheckedUpdateManyWithoutTeacherNestedInput
+    examAttempts?: ExamAttemptUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type UserCreateWithoutEkskulLeaderInput = {
@@ -47538,6 +54240,8 @@ export namespace Prisma {
     documents?: DocumentCreateNestedManyWithoutUserInput
     discussionThreads?: DiscussionThreadCreateNestedManyWithoutAuthorInput
     discussionReplies?: DiscussionReplyCreateNestedManyWithoutAuthorInput
+    teacherExams?: ExamCreateNestedManyWithoutTeacherInput
+    examAttempts?: ExamAttemptCreateNestedManyWithoutStudentInput
   }
 
   export type UserUncheckedCreateWithoutEkskulLeaderInput = {
@@ -47588,6 +54292,8 @@ export namespace Prisma {
     documents?: DocumentUncheckedCreateNestedManyWithoutUserInput
     discussionThreads?: DiscussionThreadUncheckedCreateNestedManyWithoutAuthorInput
     discussionReplies?: DiscussionReplyUncheckedCreateNestedManyWithoutAuthorInput
+    teacherExams?: ExamUncheckedCreateNestedManyWithoutTeacherInput
+    examAttempts?: ExamAttemptUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type UserCreateOrConnectWithoutEkskulLeaderInput = {
@@ -47643,6 +54349,8 @@ export namespace Prisma {
     documents?: DocumentCreateNestedManyWithoutUserInput
     discussionThreads?: DiscussionThreadCreateNestedManyWithoutAuthorInput
     discussionReplies?: DiscussionReplyCreateNestedManyWithoutAuthorInput
+    teacherExams?: ExamCreateNestedManyWithoutTeacherInput
+    examAttempts?: ExamAttemptCreateNestedManyWithoutStudentInput
   }
 
   export type UserUncheckedCreateWithoutEkskulCoachInput = {
@@ -47693,6 +54401,8 @@ export namespace Prisma {
     documents?: DocumentUncheckedCreateNestedManyWithoutUserInput
     discussionThreads?: DiscussionThreadUncheckedCreateNestedManyWithoutAuthorInput
     discussionReplies?: DiscussionReplyUncheckedCreateNestedManyWithoutAuthorInput
+    teacherExams?: ExamUncheckedCreateNestedManyWithoutTeacherInput
+    examAttempts?: ExamAttemptUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type UserCreateOrConnectWithoutEkskulCoachInput = {
@@ -47811,6 +54521,8 @@ export namespace Prisma {
     documents?: DocumentUpdateManyWithoutUserNestedInput
     discussionThreads?: DiscussionThreadUpdateManyWithoutAuthorNestedInput
     discussionReplies?: DiscussionReplyUpdateManyWithoutAuthorNestedInput
+    teacherExams?: ExamUpdateManyWithoutTeacherNestedInput
+    examAttempts?: ExamAttemptUpdateManyWithoutStudentNestedInput
   }
 
   export type UserUncheckedUpdateWithoutEkskulLeaderInput = {
@@ -47861,6 +54573,8 @@ export namespace Prisma {
     documents?: DocumentUncheckedUpdateManyWithoutUserNestedInput
     discussionThreads?: DiscussionThreadUncheckedUpdateManyWithoutAuthorNestedInput
     discussionReplies?: DiscussionReplyUncheckedUpdateManyWithoutAuthorNestedInput
+    teacherExams?: ExamUncheckedUpdateManyWithoutTeacherNestedInput
+    examAttempts?: ExamAttemptUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type UserUpsertWithoutEkskulCoachInput = {
@@ -47922,6 +54636,8 @@ export namespace Prisma {
     documents?: DocumentUpdateManyWithoutUserNestedInput
     discussionThreads?: DiscussionThreadUpdateManyWithoutAuthorNestedInput
     discussionReplies?: DiscussionReplyUpdateManyWithoutAuthorNestedInput
+    teacherExams?: ExamUpdateManyWithoutTeacherNestedInput
+    examAttempts?: ExamAttemptUpdateManyWithoutStudentNestedInput
   }
 
   export type UserUncheckedUpdateWithoutEkskulCoachInput = {
@@ -47972,6 +54688,8 @@ export namespace Prisma {
     documents?: DocumentUncheckedUpdateManyWithoutUserNestedInput
     discussionThreads?: DiscussionThreadUncheckedUpdateManyWithoutAuthorNestedInput
     discussionReplies?: DiscussionReplyUncheckedUpdateManyWithoutAuthorNestedInput
+    teacherExams?: ExamUncheckedUpdateManyWithoutTeacherNestedInput
+    examAttempts?: ExamAttemptUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type ExtracurricularMemberUpsertWithWhereUniqueWithoutExtracurricularInput = {
@@ -48067,6 +54785,8 @@ export namespace Prisma {
     documents?: DocumentCreateNestedManyWithoutUserInput
     discussionThreads?: DiscussionThreadCreateNestedManyWithoutAuthorInput
     discussionReplies?: DiscussionReplyCreateNestedManyWithoutAuthorInput
+    teacherExams?: ExamCreateNestedManyWithoutTeacherInput
+    examAttempts?: ExamAttemptCreateNestedManyWithoutStudentInput
   }
 
   export type UserUncheckedCreateWithoutEkskulMembersInput = {
@@ -48117,6 +54837,8 @@ export namespace Prisma {
     documents?: DocumentUncheckedCreateNestedManyWithoutUserInput
     discussionThreads?: DiscussionThreadUncheckedCreateNestedManyWithoutAuthorInput
     discussionReplies?: DiscussionReplyUncheckedCreateNestedManyWithoutAuthorInput
+    teacherExams?: ExamUncheckedCreateNestedManyWithoutTeacherInput
+    examAttempts?: ExamAttemptUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type UserCreateOrConnectWithoutEkskulMembersInput = {
@@ -48212,6 +54934,8 @@ export namespace Prisma {
     documents?: DocumentUpdateManyWithoutUserNestedInput
     discussionThreads?: DiscussionThreadUpdateManyWithoutAuthorNestedInput
     discussionReplies?: DiscussionReplyUpdateManyWithoutAuthorNestedInput
+    teacherExams?: ExamUpdateManyWithoutTeacherNestedInput
+    examAttempts?: ExamAttemptUpdateManyWithoutStudentNestedInput
   }
 
   export type UserUncheckedUpdateWithoutEkskulMembersInput = {
@@ -48262,6 +54986,8 @@ export namespace Prisma {
     documents?: DocumentUncheckedUpdateManyWithoutUserNestedInput
     discussionThreads?: DiscussionThreadUncheckedUpdateManyWithoutAuthorNestedInput
     discussionReplies?: DiscussionReplyUncheckedUpdateManyWithoutAuthorNestedInput
+    teacherExams?: ExamUncheckedUpdateManyWithoutTeacherNestedInput
+    examAttempts?: ExamAttemptUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type ExtracurricularUpsertWithoutMembersInput = {
@@ -48476,6 +55202,8 @@ export namespace Prisma {
     documents?: DocumentCreateNestedManyWithoutUserInput
     discussionThreads?: DiscussionThreadCreateNestedManyWithoutAuthorInput
     discussionReplies?: DiscussionReplyCreateNestedManyWithoutAuthorInput
+    teacherExams?: ExamCreateNestedManyWithoutTeacherInput
+    examAttempts?: ExamAttemptCreateNestedManyWithoutStudentInput
   }
 
   export type UserUncheckedCreateWithoutEkskulAttendancesInput = {
@@ -48526,6 +55254,8 @@ export namespace Prisma {
     documents?: DocumentUncheckedCreateNestedManyWithoutUserInput
     discussionThreads?: DiscussionThreadUncheckedCreateNestedManyWithoutAuthorInput
     discussionReplies?: DiscussionReplyUncheckedCreateNestedManyWithoutAuthorInput
+    teacherExams?: ExamUncheckedCreateNestedManyWithoutTeacherInput
+    examAttempts?: ExamAttemptUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type UserCreateOrConnectWithoutEkskulAttendancesInput = {
@@ -48623,6 +55353,8 @@ export namespace Prisma {
     documents?: DocumentUpdateManyWithoutUserNestedInput
     discussionThreads?: DiscussionThreadUpdateManyWithoutAuthorNestedInput
     discussionReplies?: DiscussionReplyUpdateManyWithoutAuthorNestedInput
+    teacherExams?: ExamUpdateManyWithoutTeacherNestedInput
+    examAttempts?: ExamAttemptUpdateManyWithoutStudentNestedInput
   }
 
   export type UserUncheckedUpdateWithoutEkskulAttendancesInput = {
@@ -48673,6 +55405,8 @@ export namespace Prisma {
     documents?: DocumentUncheckedUpdateManyWithoutUserNestedInput
     discussionThreads?: DiscussionThreadUncheckedUpdateManyWithoutAuthorNestedInput
     discussionReplies?: DiscussionReplyUncheckedUpdateManyWithoutAuthorNestedInput
+    teacherExams?: ExamUncheckedUpdateManyWithoutTeacherNestedInput
+    examAttempts?: ExamAttemptUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type ClassCreateWithoutAssignmentsInput = {
@@ -48685,6 +55419,7 @@ export namespace Prisma {
     students?: UserCreateNestedManyWithoutClassInput
     materials?: MaterialCreateNestedManyWithoutClassInput
     discussionThreads?: DiscussionThreadCreateNestedManyWithoutClassInput
+    exams?: ExamCreateNestedManyWithoutClassInput
   }
 
   export type ClassUncheckedCreateWithoutAssignmentsInput = {
@@ -48697,6 +55432,7 @@ export namespace Prisma {
     students?: UserUncheckedCreateNestedManyWithoutClassInput
     materials?: MaterialUncheckedCreateNestedManyWithoutClassInput
     discussionThreads?: DiscussionThreadUncheckedCreateNestedManyWithoutClassInput
+    exams?: ExamUncheckedCreateNestedManyWithoutClassInput
   }
 
   export type ClassCreateOrConnectWithoutAssignmentsInput = {
@@ -48717,6 +55453,7 @@ export namespace Prisma {
     topics?: TopicCreateNestedManyWithoutSubjectInput
     userSubjects?: UserSubjectCreateNestedManyWithoutSubjectInput
     materials?: MaterialCreateNestedManyWithoutSubjectInput
+    exams?: ExamCreateNestedManyWithoutSubjectInput
   }
 
   export type SubjectUncheckedCreateWithoutAssignmentsInput = {
@@ -48732,6 +55469,7 @@ export namespace Prisma {
     topics?: TopicUncheckedCreateNestedManyWithoutSubjectInput
     userSubjects?: UserSubjectUncheckedCreateNestedManyWithoutSubjectInput
     materials?: MaterialUncheckedCreateNestedManyWithoutSubjectInput
+    exams?: ExamUncheckedCreateNestedManyWithoutSubjectInput
   }
 
   export type SubjectCreateOrConnectWithoutAssignmentsInput = {
@@ -48818,6 +55556,8 @@ export namespace Prisma {
     documents?: DocumentCreateNestedManyWithoutUserInput
     discussionThreads?: DiscussionThreadCreateNestedManyWithoutAuthorInput
     discussionReplies?: DiscussionReplyCreateNestedManyWithoutAuthorInput
+    teacherExams?: ExamCreateNestedManyWithoutTeacherInput
+    examAttempts?: ExamAttemptCreateNestedManyWithoutStudentInput
   }
 
   export type UserUncheckedCreateWithoutTeacherAssignmentsInput = {
@@ -48868,6 +55608,8 @@ export namespace Prisma {
     documents?: DocumentUncheckedCreateNestedManyWithoutUserInput
     discussionThreads?: DiscussionThreadUncheckedCreateNestedManyWithoutAuthorInput
     discussionReplies?: DiscussionReplyUncheckedCreateNestedManyWithoutAuthorInput
+    teacherExams?: ExamUncheckedCreateNestedManyWithoutTeacherInput
+    examAttempts?: ExamAttemptUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type UserCreateOrConnectWithoutTeacherAssignmentsInput = {
@@ -48956,6 +55698,7 @@ export namespace Prisma {
     students?: UserUpdateManyWithoutClassNestedInput
     materials?: MaterialUpdateManyWithoutClassNestedInput
     discussionThreads?: DiscussionThreadUpdateManyWithoutClassNestedInput
+    exams?: ExamUpdateManyWithoutClassNestedInput
   }
 
   export type ClassUncheckedUpdateWithoutAssignmentsInput = {
@@ -48968,6 +55711,7 @@ export namespace Prisma {
     students?: UserUncheckedUpdateManyWithoutClassNestedInput
     materials?: MaterialUncheckedUpdateManyWithoutClassNestedInput
     discussionThreads?: DiscussionThreadUncheckedUpdateManyWithoutClassNestedInput
+    exams?: ExamUncheckedUpdateManyWithoutClassNestedInput
   }
 
   export type SubjectUpsertWithoutAssignmentsInput = {
@@ -48994,6 +55738,7 @@ export namespace Prisma {
     topics?: TopicUpdateManyWithoutSubjectNestedInput
     userSubjects?: UserSubjectUpdateManyWithoutSubjectNestedInput
     materials?: MaterialUpdateManyWithoutSubjectNestedInput
+    exams?: ExamUpdateManyWithoutSubjectNestedInput
   }
 
   export type SubjectUncheckedUpdateWithoutAssignmentsInput = {
@@ -49009,6 +55754,7 @@ export namespace Prisma {
     topics?: TopicUncheckedUpdateManyWithoutSubjectNestedInput
     userSubjects?: UserSubjectUncheckedUpdateManyWithoutSubjectNestedInput
     materials?: MaterialUncheckedUpdateManyWithoutSubjectNestedInput
+    exams?: ExamUncheckedUpdateManyWithoutSubjectNestedInput
   }
 
   export type TopicUpsertWithoutAssignmentsInput = {
@@ -49107,6 +55853,8 @@ export namespace Prisma {
     documents?: DocumentUpdateManyWithoutUserNestedInput
     discussionThreads?: DiscussionThreadUpdateManyWithoutAuthorNestedInput
     discussionReplies?: DiscussionReplyUpdateManyWithoutAuthorNestedInput
+    teacherExams?: ExamUpdateManyWithoutTeacherNestedInput
+    examAttempts?: ExamAttemptUpdateManyWithoutStudentNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTeacherAssignmentsInput = {
@@ -49157,6 +55905,8 @@ export namespace Prisma {
     documents?: DocumentUncheckedUpdateManyWithoutUserNestedInput
     discussionThreads?: DiscussionThreadUncheckedUpdateManyWithoutAuthorNestedInput
     discussionReplies?: DiscussionReplyUncheckedUpdateManyWithoutAuthorNestedInput
+    teacherExams?: ExamUncheckedUpdateManyWithoutTeacherNestedInput
+    examAttempts?: ExamAttemptUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type AssignmentSubmissionUpsertWithWhereUniqueWithoutAssignmentInput = {
@@ -49280,6 +56030,8 @@ export namespace Prisma {
     documents?: DocumentCreateNestedManyWithoutUserInput
     discussionThreads?: DiscussionThreadCreateNestedManyWithoutAuthorInput
     discussionReplies?: DiscussionReplyCreateNestedManyWithoutAuthorInput
+    teacherExams?: ExamCreateNestedManyWithoutTeacherInput
+    examAttempts?: ExamAttemptCreateNestedManyWithoutStudentInput
   }
 
   export type UserUncheckedCreateWithoutStudentSubmissionsInput = {
@@ -49330,6 +56082,8 @@ export namespace Prisma {
     documents?: DocumentUncheckedCreateNestedManyWithoutUserInput
     discussionThreads?: DiscussionThreadUncheckedCreateNestedManyWithoutAuthorInput
     discussionReplies?: DiscussionReplyUncheckedCreateNestedManyWithoutAuthorInput
+    teacherExams?: ExamUncheckedCreateNestedManyWithoutTeacherInput
+    examAttempts?: ExamAttemptUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type UserCreateOrConnectWithoutStudentSubmissionsInput = {
@@ -49469,6 +56223,8 @@ export namespace Prisma {
     documents?: DocumentUpdateManyWithoutUserNestedInput
     discussionThreads?: DiscussionThreadUpdateManyWithoutAuthorNestedInput
     discussionReplies?: DiscussionReplyUpdateManyWithoutAuthorNestedInput
+    teacherExams?: ExamUpdateManyWithoutTeacherNestedInput
+    examAttempts?: ExamAttemptUpdateManyWithoutStudentNestedInput
   }
 
   export type UserUncheckedUpdateWithoutStudentSubmissionsInput = {
@@ -49519,6 +56275,8 @@ export namespace Prisma {
     documents?: DocumentUncheckedUpdateManyWithoutUserNestedInput
     discussionThreads?: DiscussionThreadUncheckedUpdateManyWithoutAuthorNestedInput
     discussionReplies?: DiscussionReplyUncheckedUpdateManyWithoutAuthorNestedInput
+    teacherExams?: ExamUncheckedUpdateManyWithoutTeacherNestedInput
+    examAttempts?: ExamAttemptUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type CommentUpsertWithWhereUniqueWithoutSubmissionInput = {
@@ -49585,6 +56343,8 @@ export namespace Prisma {
     documents?: DocumentCreateNestedManyWithoutUserInput
     discussionThreads?: DiscussionThreadCreateNestedManyWithoutAuthorInput
     discussionReplies?: DiscussionReplyCreateNestedManyWithoutAuthorInput
+    teacherExams?: ExamCreateNestedManyWithoutTeacherInput
+    examAttempts?: ExamAttemptCreateNestedManyWithoutStudentInput
   }
 
   export type UserUncheckedCreateWithoutCommentsInput = {
@@ -49635,6 +56395,8 @@ export namespace Prisma {
     documents?: DocumentUncheckedCreateNestedManyWithoutUserInput
     discussionThreads?: DiscussionThreadUncheckedCreateNestedManyWithoutAuthorInput
     discussionReplies?: DiscussionReplyUncheckedCreateNestedManyWithoutAuthorInput
+    teacherExams?: ExamUncheckedCreateNestedManyWithoutTeacherInput
+    examAttempts?: ExamAttemptUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type UserCreateOrConnectWithoutCommentsInput = {
@@ -49771,6 +56533,8 @@ export namespace Prisma {
     documents?: DocumentUpdateManyWithoutUserNestedInput
     discussionThreads?: DiscussionThreadUpdateManyWithoutAuthorNestedInput
     discussionReplies?: DiscussionReplyUpdateManyWithoutAuthorNestedInput
+    teacherExams?: ExamUpdateManyWithoutTeacherNestedInput
+    examAttempts?: ExamAttemptUpdateManyWithoutStudentNestedInput
   }
 
   export type UserUncheckedUpdateWithoutCommentsInput = {
@@ -49821,6 +56585,8 @@ export namespace Prisma {
     documents?: DocumentUncheckedUpdateManyWithoutUserNestedInput
     discussionThreads?: DiscussionThreadUncheckedUpdateManyWithoutAuthorNestedInput
     discussionReplies?: DiscussionReplyUncheckedUpdateManyWithoutAuthorNestedInput
+    teacherExams?: ExamUncheckedUpdateManyWithoutTeacherNestedInput
+    examAttempts?: ExamAttemptUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type AssignmentUpsertWithoutCommentsInput = {
@@ -49953,6 +56719,8 @@ export namespace Prisma {
     documents?: DocumentCreateNestedManyWithoutUserInput
     discussionThreads?: DiscussionThreadCreateNestedManyWithoutAuthorInput
     discussionReplies?: DiscussionReplyCreateNestedManyWithoutAuthorInput
+    teacherExams?: ExamCreateNestedManyWithoutTeacherInput
+    examAttempts?: ExamAttemptCreateNestedManyWithoutStudentInput
   }
 
   export type UserUncheckedCreateWithoutNotificationsInput = {
@@ -50003,6 +56771,8 @@ export namespace Prisma {
     documents?: DocumentUncheckedCreateNestedManyWithoutUserInput
     discussionThreads?: DiscussionThreadUncheckedCreateNestedManyWithoutAuthorInput
     discussionReplies?: DiscussionReplyUncheckedCreateNestedManyWithoutAuthorInput
+    teacherExams?: ExamUncheckedCreateNestedManyWithoutTeacherInput
+    examAttempts?: ExamAttemptUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type UserCreateOrConnectWithoutNotificationsInput = {
@@ -50090,6 +56860,8 @@ export namespace Prisma {
     documents?: DocumentUpdateManyWithoutUserNestedInput
     discussionThreads?: DiscussionThreadUpdateManyWithoutAuthorNestedInput
     discussionReplies?: DiscussionReplyUpdateManyWithoutAuthorNestedInput
+    teacherExams?: ExamUpdateManyWithoutTeacherNestedInput
+    examAttempts?: ExamAttemptUpdateManyWithoutStudentNestedInput
   }
 
   export type UserUncheckedUpdateWithoutNotificationsInput = {
@@ -50140,6 +56912,8 @@ export namespace Prisma {
     documents?: DocumentUncheckedUpdateManyWithoutUserNestedInput
     discussionThreads?: DiscussionThreadUncheckedUpdateManyWithoutAuthorNestedInput
     discussionReplies?: DiscussionReplyUncheckedUpdateManyWithoutAuthorNestedInput
+    teacherExams?: ExamUncheckedUpdateManyWithoutTeacherNestedInput
+    examAttempts?: ExamAttemptUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type AnnouncementUpsertWithoutNotificationsInput = {
@@ -50263,6 +57037,8 @@ export namespace Prisma {
     documents?: DocumentCreateNestedManyWithoutUserInput
     discussionThreads?: DiscussionThreadCreateNestedManyWithoutAuthorInput
     discussionReplies?: DiscussionReplyCreateNestedManyWithoutAuthorInput
+    teacherExams?: ExamCreateNestedManyWithoutTeacherInput
+    examAttempts?: ExamAttemptCreateNestedManyWithoutStudentInput
   }
 
   export type UserUncheckedCreateWithoutOperatorInput = {
@@ -50313,6 +57089,8 @@ export namespace Prisma {
     documents?: DocumentUncheckedCreateNestedManyWithoutUserInput
     discussionThreads?: DiscussionThreadUncheckedCreateNestedManyWithoutAuthorInput
     discussionReplies?: DiscussionReplyUncheckedCreateNestedManyWithoutAuthorInput
+    teacherExams?: ExamUncheckedCreateNestedManyWithoutTeacherInput
+    examAttempts?: ExamAttemptUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type UserCreateOrConnectWithoutOperatorInput = {
@@ -50379,6 +57157,8 @@ export namespace Prisma {
     documents?: DocumentUpdateManyWithoutUserNestedInput
     discussionThreads?: DiscussionThreadUpdateManyWithoutAuthorNestedInput
     discussionReplies?: DiscussionReplyUpdateManyWithoutAuthorNestedInput
+    teacherExams?: ExamUpdateManyWithoutTeacherNestedInput
+    examAttempts?: ExamAttemptUpdateManyWithoutStudentNestedInput
   }
 
   export type UserUncheckedUpdateWithoutOperatorInput = {
@@ -50429,6 +57209,8 @@ export namespace Prisma {
     documents?: DocumentUncheckedUpdateManyWithoutUserNestedInput
     discussionThreads?: DiscussionThreadUncheckedUpdateManyWithoutAuthorNestedInput
     discussionReplies?: DiscussionReplyUncheckedUpdateManyWithoutAuthorNestedInput
+    teacherExams?: ExamUncheckedUpdateManyWithoutTeacherNestedInput
+    examAttempts?: ExamAttemptUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type UserCreateWithoutAccountsInput = {
@@ -50479,6 +57261,8 @@ export namespace Prisma {
     documents?: DocumentCreateNestedManyWithoutUserInput
     discussionThreads?: DiscussionThreadCreateNestedManyWithoutAuthorInput
     discussionReplies?: DiscussionReplyCreateNestedManyWithoutAuthorInput
+    teacherExams?: ExamCreateNestedManyWithoutTeacherInput
+    examAttempts?: ExamAttemptCreateNestedManyWithoutStudentInput
   }
 
   export type UserUncheckedCreateWithoutAccountsInput = {
@@ -50529,6 +57313,8 @@ export namespace Prisma {
     documents?: DocumentUncheckedCreateNestedManyWithoutUserInput
     discussionThreads?: DiscussionThreadUncheckedCreateNestedManyWithoutAuthorInput
     discussionReplies?: DiscussionReplyUncheckedCreateNestedManyWithoutAuthorInput
+    teacherExams?: ExamUncheckedCreateNestedManyWithoutTeacherInput
+    examAttempts?: ExamAttemptUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type UserCreateOrConnectWithoutAccountsInput = {
@@ -50595,6 +57381,8 @@ export namespace Prisma {
     documents?: DocumentUpdateManyWithoutUserNestedInput
     discussionThreads?: DiscussionThreadUpdateManyWithoutAuthorNestedInput
     discussionReplies?: DiscussionReplyUpdateManyWithoutAuthorNestedInput
+    teacherExams?: ExamUpdateManyWithoutTeacherNestedInput
+    examAttempts?: ExamAttemptUpdateManyWithoutStudentNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -50645,6 +57433,8 @@ export namespace Prisma {
     documents?: DocumentUncheckedUpdateManyWithoutUserNestedInput
     discussionThreads?: DiscussionThreadUncheckedUpdateManyWithoutAuthorNestedInput
     discussionReplies?: DiscussionReplyUncheckedUpdateManyWithoutAuthorNestedInput
+    teacherExams?: ExamUncheckedUpdateManyWithoutTeacherNestedInput
+    examAttempts?: ExamAttemptUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type UserCreateWithoutSessionsInput = {
@@ -50695,6 +57485,8 @@ export namespace Prisma {
     documents?: DocumentCreateNestedManyWithoutUserInput
     discussionThreads?: DiscussionThreadCreateNestedManyWithoutAuthorInput
     discussionReplies?: DiscussionReplyCreateNestedManyWithoutAuthorInput
+    teacherExams?: ExamCreateNestedManyWithoutTeacherInput
+    examAttempts?: ExamAttemptCreateNestedManyWithoutStudentInput
   }
 
   export type UserUncheckedCreateWithoutSessionsInput = {
@@ -50745,6 +57537,8 @@ export namespace Prisma {
     documents?: DocumentUncheckedCreateNestedManyWithoutUserInput
     discussionThreads?: DiscussionThreadUncheckedCreateNestedManyWithoutAuthorInput
     discussionReplies?: DiscussionReplyUncheckedCreateNestedManyWithoutAuthorInput
+    teacherExams?: ExamUncheckedCreateNestedManyWithoutTeacherInput
+    examAttempts?: ExamAttemptUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type UserCreateOrConnectWithoutSessionsInput = {
@@ -50811,6 +57605,8 @@ export namespace Prisma {
     documents?: DocumentUpdateManyWithoutUserNestedInput
     discussionThreads?: DiscussionThreadUpdateManyWithoutAuthorNestedInput
     discussionReplies?: DiscussionReplyUpdateManyWithoutAuthorNestedInput
+    teacherExams?: ExamUpdateManyWithoutTeacherNestedInput
+    examAttempts?: ExamAttemptUpdateManyWithoutStudentNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -50861,6 +57657,8 @@ export namespace Prisma {
     documents?: DocumentUncheckedUpdateManyWithoutUserNestedInput
     discussionThreads?: DiscussionThreadUncheckedUpdateManyWithoutAuthorNestedInput
     discussionReplies?: DiscussionReplyUncheckedUpdateManyWithoutAuthorNestedInput
+    teacherExams?: ExamUncheckedUpdateManyWithoutTeacherNestedInput
+    examAttempts?: ExamAttemptUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type UserCreateWithoutCalendarRemindersInput = {
@@ -50911,6 +57709,8 @@ export namespace Prisma {
     documents?: DocumentCreateNestedManyWithoutUserInput
     discussionThreads?: DiscussionThreadCreateNestedManyWithoutAuthorInput
     discussionReplies?: DiscussionReplyCreateNestedManyWithoutAuthorInput
+    teacherExams?: ExamCreateNestedManyWithoutTeacherInput
+    examAttempts?: ExamAttemptCreateNestedManyWithoutStudentInput
   }
 
   export type UserUncheckedCreateWithoutCalendarRemindersInput = {
@@ -50961,6 +57761,8 @@ export namespace Prisma {
     documents?: DocumentUncheckedCreateNestedManyWithoutUserInput
     discussionThreads?: DiscussionThreadUncheckedCreateNestedManyWithoutAuthorInput
     discussionReplies?: DiscussionReplyUncheckedCreateNestedManyWithoutAuthorInput
+    teacherExams?: ExamUncheckedCreateNestedManyWithoutTeacherInput
+    examAttempts?: ExamAttemptUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type UserCreateOrConnectWithoutCalendarRemindersInput = {
@@ -51027,6 +57829,8 @@ export namespace Prisma {
     documents?: DocumentUpdateManyWithoutUserNestedInput
     discussionThreads?: DiscussionThreadUpdateManyWithoutAuthorNestedInput
     discussionReplies?: DiscussionReplyUpdateManyWithoutAuthorNestedInput
+    teacherExams?: ExamUpdateManyWithoutTeacherNestedInput
+    examAttempts?: ExamAttemptUpdateManyWithoutStudentNestedInput
   }
 
   export type UserUncheckedUpdateWithoutCalendarRemindersInput = {
@@ -51077,6 +57881,8 @@ export namespace Prisma {
     documents?: DocumentUncheckedUpdateManyWithoutUserNestedInput
     discussionThreads?: DiscussionThreadUncheckedUpdateManyWithoutAuthorNestedInput
     discussionReplies?: DiscussionReplyUncheckedUpdateManyWithoutAuthorNestedInput
+    teacherExams?: ExamUncheckedUpdateManyWithoutTeacherNestedInput
+    examAttempts?: ExamAttemptUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type UserCreateWithoutDocumentsInput = {
@@ -51127,6 +57933,8 @@ export namespace Prisma {
     teacherMaterials?: MaterialCreateNestedManyWithoutTeacherInput
     discussionThreads?: DiscussionThreadCreateNestedManyWithoutAuthorInput
     discussionReplies?: DiscussionReplyCreateNestedManyWithoutAuthorInput
+    teacherExams?: ExamCreateNestedManyWithoutTeacherInput
+    examAttempts?: ExamAttemptCreateNestedManyWithoutStudentInput
   }
 
   export type UserUncheckedCreateWithoutDocumentsInput = {
@@ -51177,6 +57985,8 @@ export namespace Prisma {
     teacherMaterials?: MaterialUncheckedCreateNestedManyWithoutTeacherInput
     discussionThreads?: DiscussionThreadUncheckedCreateNestedManyWithoutAuthorInput
     discussionReplies?: DiscussionReplyUncheckedCreateNestedManyWithoutAuthorInput
+    teacherExams?: ExamUncheckedCreateNestedManyWithoutTeacherInput
+    examAttempts?: ExamAttemptUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type UserCreateOrConnectWithoutDocumentsInput = {
@@ -51306,6 +58116,8 @@ export namespace Prisma {
     teacherMaterials?: MaterialUpdateManyWithoutTeacherNestedInput
     discussionThreads?: DiscussionThreadUpdateManyWithoutAuthorNestedInput
     discussionReplies?: DiscussionReplyUpdateManyWithoutAuthorNestedInput
+    teacherExams?: ExamUpdateManyWithoutTeacherNestedInput
+    examAttempts?: ExamAttemptUpdateManyWithoutStudentNestedInput
   }
 
   export type UserUncheckedUpdateWithoutDocumentsInput = {
@@ -51356,6 +58168,8 @@ export namespace Prisma {
     teacherMaterials?: MaterialUncheckedUpdateManyWithoutTeacherNestedInput
     discussionThreads?: DiscussionThreadUncheckedUpdateManyWithoutAuthorNestedInput
     discussionReplies?: DiscussionReplyUncheckedUpdateManyWithoutAuthorNestedInput
+    teacherExams?: ExamUncheckedUpdateManyWithoutTeacherNestedInput
+    examAttempts?: ExamAttemptUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type DocumentUpsertWithoutSubDocsInput = {
@@ -51457,6 +58271,8 @@ export namespace Prisma {
     teacherMaterials?: MaterialCreateNestedManyWithoutTeacherInput
     documents?: DocumentCreateNestedManyWithoutUserInput
     discussionReplies?: DiscussionReplyCreateNestedManyWithoutAuthorInput
+    teacherExams?: ExamCreateNestedManyWithoutTeacherInput
+    examAttempts?: ExamAttemptCreateNestedManyWithoutStudentInput
   }
 
   export type UserUncheckedCreateWithoutDiscussionThreadsInput = {
@@ -51507,6 +58323,8 @@ export namespace Prisma {
     teacherMaterials?: MaterialUncheckedCreateNestedManyWithoutTeacherInput
     documents?: DocumentUncheckedCreateNestedManyWithoutUserInput
     discussionReplies?: DiscussionReplyUncheckedCreateNestedManyWithoutAuthorInput
+    teacherExams?: ExamUncheckedCreateNestedManyWithoutTeacherInput
+    examAttempts?: ExamAttemptUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type UserCreateOrConnectWithoutDiscussionThreadsInput = {
@@ -51524,6 +58342,7 @@ export namespace Prisma {
     schedules?: ClassScheduleCreateNestedManyWithoutClassInput
     students?: UserCreateNestedManyWithoutClassInput
     materials?: MaterialCreateNestedManyWithoutClassInput
+    exams?: ExamCreateNestedManyWithoutClassInput
   }
 
   export type ClassUncheckedCreateWithoutDiscussionThreadsInput = {
@@ -51536,6 +58355,7 @@ export namespace Prisma {
     schedules?: ClassScheduleUncheckedCreateNestedManyWithoutClassInput
     students?: UserUncheckedCreateNestedManyWithoutClassInput
     materials?: MaterialUncheckedCreateNestedManyWithoutClassInput
+    exams?: ExamUncheckedCreateNestedManyWithoutClassInput
   }
 
   export type ClassCreateOrConnectWithoutDiscussionThreadsInput = {
@@ -51628,6 +58448,8 @@ export namespace Prisma {
     teacherMaterials?: MaterialUpdateManyWithoutTeacherNestedInput
     documents?: DocumentUpdateManyWithoutUserNestedInput
     discussionReplies?: DiscussionReplyUpdateManyWithoutAuthorNestedInput
+    teacherExams?: ExamUpdateManyWithoutTeacherNestedInput
+    examAttempts?: ExamAttemptUpdateManyWithoutStudentNestedInput
   }
 
   export type UserUncheckedUpdateWithoutDiscussionThreadsInput = {
@@ -51678,6 +58500,8 @@ export namespace Prisma {
     teacherMaterials?: MaterialUncheckedUpdateManyWithoutTeacherNestedInput
     documents?: DocumentUncheckedUpdateManyWithoutUserNestedInput
     discussionReplies?: DiscussionReplyUncheckedUpdateManyWithoutAuthorNestedInput
+    teacherExams?: ExamUncheckedUpdateManyWithoutTeacherNestedInput
+    examAttempts?: ExamAttemptUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type ClassUpsertWithoutDiscussionThreadsInput = {
@@ -51701,6 +58525,7 @@ export namespace Prisma {
     schedules?: ClassScheduleUpdateManyWithoutClassNestedInput
     students?: UserUpdateManyWithoutClassNestedInput
     materials?: MaterialUpdateManyWithoutClassNestedInput
+    exams?: ExamUpdateManyWithoutClassNestedInput
   }
 
   export type ClassUncheckedUpdateWithoutDiscussionThreadsInput = {
@@ -51713,6 +58538,7 @@ export namespace Prisma {
     schedules?: ClassScheduleUncheckedUpdateManyWithoutClassNestedInput
     students?: UserUncheckedUpdateManyWithoutClassNestedInput
     materials?: MaterialUncheckedUpdateManyWithoutClassNestedInput
+    exams?: ExamUncheckedUpdateManyWithoutClassNestedInput
   }
 
   export type DiscussionReplyUpsertWithWhereUniqueWithoutThreadInput = {
@@ -51804,6 +58630,8 @@ export namespace Prisma {
     teacherMaterials?: MaterialCreateNestedManyWithoutTeacherInput
     documents?: DocumentCreateNestedManyWithoutUserInput
     discussionThreads?: DiscussionThreadCreateNestedManyWithoutAuthorInput
+    teacherExams?: ExamCreateNestedManyWithoutTeacherInput
+    examAttempts?: ExamAttemptCreateNestedManyWithoutStudentInput
   }
 
   export type UserUncheckedCreateWithoutDiscussionRepliesInput = {
@@ -51854,6 +58682,8 @@ export namespace Prisma {
     teacherMaterials?: MaterialUncheckedCreateNestedManyWithoutTeacherInput
     documents?: DocumentUncheckedCreateNestedManyWithoutUserInput
     discussionThreads?: DiscussionThreadUncheckedCreateNestedManyWithoutAuthorInput
+    teacherExams?: ExamUncheckedCreateNestedManyWithoutTeacherInput
+    examAttempts?: ExamAttemptUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type UserCreateOrConnectWithoutDiscussionRepliesInput = {
@@ -51951,6 +58781,8 @@ export namespace Prisma {
     teacherMaterials?: MaterialUpdateManyWithoutTeacherNestedInput
     documents?: DocumentUpdateManyWithoutUserNestedInput
     discussionThreads?: DiscussionThreadUpdateManyWithoutAuthorNestedInput
+    teacherExams?: ExamUpdateManyWithoutTeacherNestedInput
+    examAttempts?: ExamAttemptUpdateManyWithoutStudentNestedInput
   }
 
   export type UserUncheckedUpdateWithoutDiscussionRepliesInput = {
@@ -52001,6 +58833,1098 @@ export namespace Prisma {
     teacherMaterials?: MaterialUncheckedUpdateManyWithoutTeacherNestedInput
     documents?: DocumentUncheckedUpdateManyWithoutUserNestedInput
     discussionThreads?: DiscussionThreadUncheckedUpdateManyWithoutAuthorNestedInput
+    teacherExams?: ExamUncheckedUpdateManyWithoutTeacherNestedInput
+    examAttempts?: ExamAttemptUncheckedUpdateManyWithoutStudentNestedInput
+  }
+
+  export type ClassCreateWithoutExamsInput = {
+    id?: string
+    name: string
+    school: string
+    gradeYear: number
+    createdAt?: Date | string
+    assignments?: AssignmentCreateNestedManyWithoutClassInput
+    schedules?: ClassScheduleCreateNestedManyWithoutClassInput
+    students?: UserCreateNestedManyWithoutClassInput
+    materials?: MaterialCreateNestedManyWithoutClassInput
+    discussionThreads?: DiscussionThreadCreateNestedManyWithoutClassInput
+  }
+
+  export type ClassUncheckedCreateWithoutExamsInput = {
+    id?: string
+    name: string
+    school: string
+    gradeYear: number
+    createdAt?: Date | string
+    assignments?: AssignmentUncheckedCreateNestedManyWithoutClassInput
+    schedules?: ClassScheduleUncheckedCreateNestedManyWithoutClassInput
+    students?: UserUncheckedCreateNestedManyWithoutClassInput
+    materials?: MaterialUncheckedCreateNestedManyWithoutClassInput
+    discussionThreads?: DiscussionThreadUncheckedCreateNestedManyWithoutClassInput
+  }
+
+  export type ClassCreateOrConnectWithoutExamsInput = {
+    where: ClassWhereUniqueInput
+    create: XOR<ClassCreateWithoutExamsInput, ClassUncheckedCreateWithoutExamsInput>
+  }
+
+  export type SubjectCreateWithoutExamsInput = {
+    id?: string
+    name: string
+    color?: string
+    icon?: string
+    description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    assignments?: AssignmentCreateNestedManyWithoutSubjectInput
+    schedules?: ClassScheduleCreateNestedManyWithoutSubjectInput
+    teacher?: UserCreateNestedOneWithoutTeacherSubjectsInput
+    topics?: TopicCreateNestedManyWithoutSubjectInput
+    userSubjects?: UserSubjectCreateNestedManyWithoutSubjectInput
+    materials?: MaterialCreateNestedManyWithoutSubjectInput
+  }
+
+  export type SubjectUncheckedCreateWithoutExamsInput = {
+    id?: string
+    name: string
+    color?: string
+    icon?: string
+    description?: string | null
+    teacherId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    assignments?: AssignmentUncheckedCreateNestedManyWithoutSubjectInput
+    schedules?: ClassScheduleUncheckedCreateNestedManyWithoutSubjectInput
+    topics?: TopicUncheckedCreateNestedManyWithoutSubjectInput
+    userSubjects?: UserSubjectUncheckedCreateNestedManyWithoutSubjectInput
+    materials?: MaterialUncheckedCreateNestedManyWithoutSubjectInput
+  }
+
+  export type SubjectCreateOrConnectWithoutExamsInput = {
+    where: SubjectWhereUniqueInput
+    create: XOR<SubjectCreateWithoutExamsInput, SubjectUncheckedCreateWithoutExamsInput>
+  }
+
+  export type UserCreateWithoutTeacherExamsInput = {
+    id?: string
+    name: string
+    email: string
+    password?: string | null
+    role?: $Enums.Role
+    school?: string | null
+    isActive?: boolean
+    lastActiveAt?: Date | string | null
+    reminderTime?: string | null
+    notificationPrefs?: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    image?: string | null
+    nis?: string | null
+    noAbsen?: number | null
+    phone?: string | null
+    gender?: string | null
+    address?: string | null
+    emailVerified?: Date | string | null
+    parentPin?: string | null
+    position?: string | null
+    affiliations?: UserCreateaffiliationsInput | string[]
+    canEditMaterials?: boolean
+    canEditAssignments?: boolean
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    teacherAssignments?: AssignmentCreateNestedManyWithoutTeacherInput
+    studentSubmissions?: AssignmentSubmissionCreateNestedManyWithoutStudentInput
+    teacherSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    operator?: OperatorCreateNestedOneWithoutUserInput
+    progressLogs?: ProgressLogCreateNestedManyWithoutUserInput
+    teacherSubjects?: SubjectCreateNestedManyWithoutTeacherInput
+    class?: ClassCreateNestedOneWithoutStudentsInput
+    userNotes?: UserNoteCreateNestedManyWithoutUserInput
+    authoredNotes?: UserNoteCreateNestedManyWithoutAuthorInput
+    attendances?: AttendanceCreateNestedManyWithoutUserInput
+    userSubjects?: UserSubjectCreateNestedManyWithoutUserInput
+    comments?: CommentCreateNestedManyWithoutAuthorInput
+    calendarReminders?: CalendarReminderCreateNestedManyWithoutUserInput
+    ekskulLeader?: ExtracurricularCreateNestedManyWithoutLeaderInput
+    ekskulCoach?: ExtracurricularCreateNestedManyWithoutCoachInput
+    ekskulMembers?: ExtracurricularMemberCreateNestedManyWithoutStudentInput
+    ekskulAttendances?: ExtracurricularAttendanceCreateNestedManyWithoutStudentInput
+    teacherMaterials?: MaterialCreateNestedManyWithoutTeacherInput
+    documents?: DocumentCreateNestedManyWithoutUserInput
+    discussionThreads?: DiscussionThreadCreateNestedManyWithoutAuthorInput
+    discussionReplies?: DiscussionReplyCreateNestedManyWithoutAuthorInput
+    examAttempts?: ExamAttemptCreateNestedManyWithoutStudentInput
+  }
+
+  export type UserUncheckedCreateWithoutTeacherExamsInput = {
+    id?: string
+    name: string
+    email: string
+    password?: string | null
+    role?: $Enums.Role
+    school?: string | null
+    isActive?: boolean
+    lastActiveAt?: Date | string | null
+    reminderTime?: string | null
+    notificationPrefs?: JsonNullValueInput | InputJsonValue
+    classId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    image?: string | null
+    nis?: string | null
+    noAbsen?: number | null
+    phone?: string | null
+    gender?: string | null
+    address?: string | null
+    emailVerified?: Date | string | null
+    parentPin?: string | null
+    position?: string | null
+    affiliations?: UserCreateaffiliationsInput | string[]
+    canEditMaterials?: boolean
+    canEditAssignments?: boolean
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    teacherAssignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
+    studentSubmissions?: AssignmentSubmissionUncheckedCreateNestedManyWithoutStudentInput
+    teacherSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    operator?: OperatorUncheckedCreateNestedOneWithoutUserInput
+    progressLogs?: ProgressLogUncheckedCreateNestedManyWithoutUserInput
+    teacherSubjects?: SubjectUncheckedCreateNestedManyWithoutTeacherInput
+    userNotes?: UserNoteUncheckedCreateNestedManyWithoutUserInput
+    authoredNotes?: UserNoteUncheckedCreateNestedManyWithoutAuthorInput
+    attendances?: AttendanceUncheckedCreateNestedManyWithoutUserInput
+    userSubjects?: UserSubjectUncheckedCreateNestedManyWithoutUserInput
+    comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
+    calendarReminders?: CalendarReminderUncheckedCreateNestedManyWithoutUserInput
+    ekskulLeader?: ExtracurricularUncheckedCreateNestedManyWithoutLeaderInput
+    ekskulCoach?: ExtracurricularUncheckedCreateNestedManyWithoutCoachInput
+    ekskulMembers?: ExtracurricularMemberUncheckedCreateNestedManyWithoutStudentInput
+    ekskulAttendances?: ExtracurricularAttendanceUncheckedCreateNestedManyWithoutStudentInput
+    teacherMaterials?: MaterialUncheckedCreateNestedManyWithoutTeacherInput
+    documents?: DocumentUncheckedCreateNestedManyWithoutUserInput
+    discussionThreads?: DiscussionThreadUncheckedCreateNestedManyWithoutAuthorInput
+    discussionReplies?: DiscussionReplyUncheckedCreateNestedManyWithoutAuthorInput
+    examAttempts?: ExamAttemptUncheckedCreateNestedManyWithoutStudentInput
+  }
+
+  export type UserCreateOrConnectWithoutTeacherExamsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutTeacherExamsInput, UserUncheckedCreateWithoutTeacherExamsInput>
+  }
+
+  export type ExamQuestionCreateWithoutExamInput = {
+    id?: string
+    questionText: string
+    type?: string
+    options?: JsonNullValueInput | InputJsonValue
+    correctAnswer: string
+    points?: number
+    order?: number
+    answers?: ExamAnswerCreateNestedManyWithoutQuestionInput
+  }
+
+  export type ExamQuestionUncheckedCreateWithoutExamInput = {
+    id?: string
+    questionText: string
+    type?: string
+    options?: JsonNullValueInput | InputJsonValue
+    correctAnswer: string
+    points?: number
+    order?: number
+    answers?: ExamAnswerUncheckedCreateNestedManyWithoutQuestionInput
+  }
+
+  export type ExamQuestionCreateOrConnectWithoutExamInput = {
+    where: ExamQuestionWhereUniqueInput
+    create: XOR<ExamQuestionCreateWithoutExamInput, ExamQuestionUncheckedCreateWithoutExamInput>
+  }
+
+  export type ExamQuestionCreateManyExamInputEnvelope = {
+    data: ExamQuestionCreateManyExamInput | ExamQuestionCreateManyExamInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ExamAttemptCreateWithoutExamInput = {
+    id?: string
+    startTime?: Date | string
+    endTime?: Date | string | null
+    status?: $Enums.AttemptStatus
+    score?: number | null
+    cheatWarnings?: number
+    student: UserCreateNestedOneWithoutExamAttemptsInput
+    answers?: ExamAnswerCreateNestedManyWithoutAttemptInput
+  }
+
+  export type ExamAttemptUncheckedCreateWithoutExamInput = {
+    id?: string
+    studentId: string
+    startTime?: Date | string
+    endTime?: Date | string | null
+    status?: $Enums.AttemptStatus
+    score?: number | null
+    cheatWarnings?: number
+    answers?: ExamAnswerUncheckedCreateNestedManyWithoutAttemptInput
+  }
+
+  export type ExamAttemptCreateOrConnectWithoutExamInput = {
+    where: ExamAttemptWhereUniqueInput
+    create: XOR<ExamAttemptCreateWithoutExamInput, ExamAttemptUncheckedCreateWithoutExamInput>
+  }
+
+  export type ExamAttemptCreateManyExamInputEnvelope = {
+    data: ExamAttemptCreateManyExamInput | ExamAttemptCreateManyExamInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ClassUpsertWithoutExamsInput = {
+    update: XOR<ClassUpdateWithoutExamsInput, ClassUncheckedUpdateWithoutExamsInput>
+    create: XOR<ClassCreateWithoutExamsInput, ClassUncheckedCreateWithoutExamsInput>
+    where?: ClassWhereInput
+  }
+
+  export type ClassUpdateToOneWithWhereWithoutExamsInput = {
+    where?: ClassWhereInput
+    data: XOR<ClassUpdateWithoutExamsInput, ClassUncheckedUpdateWithoutExamsInput>
+  }
+
+  export type ClassUpdateWithoutExamsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    school?: StringFieldUpdateOperationsInput | string
+    gradeYear?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    assignments?: AssignmentUpdateManyWithoutClassNestedInput
+    schedules?: ClassScheduleUpdateManyWithoutClassNestedInput
+    students?: UserUpdateManyWithoutClassNestedInput
+    materials?: MaterialUpdateManyWithoutClassNestedInput
+    discussionThreads?: DiscussionThreadUpdateManyWithoutClassNestedInput
+  }
+
+  export type ClassUncheckedUpdateWithoutExamsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    school?: StringFieldUpdateOperationsInput | string
+    gradeYear?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    assignments?: AssignmentUncheckedUpdateManyWithoutClassNestedInput
+    schedules?: ClassScheduleUncheckedUpdateManyWithoutClassNestedInput
+    students?: UserUncheckedUpdateManyWithoutClassNestedInput
+    materials?: MaterialUncheckedUpdateManyWithoutClassNestedInput
+    discussionThreads?: DiscussionThreadUncheckedUpdateManyWithoutClassNestedInput
+  }
+
+  export type SubjectUpsertWithoutExamsInput = {
+    update: XOR<SubjectUpdateWithoutExamsInput, SubjectUncheckedUpdateWithoutExamsInput>
+    create: XOR<SubjectCreateWithoutExamsInput, SubjectUncheckedCreateWithoutExamsInput>
+    where?: SubjectWhereInput
+  }
+
+  export type SubjectUpdateToOneWithWhereWithoutExamsInput = {
+    where?: SubjectWhereInput
+    data: XOR<SubjectUpdateWithoutExamsInput, SubjectUncheckedUpdateWithoutExamsInput>
+  }
+
+  export type SubjectUpdateWithoutExamsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    color?: StringFieldUpdateOperationsInput | string
+    icon?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    assignments?: AssignmentUpdateManyWithoutSubjectNestedInput
+    schedules?: ClassScheduleUpdateManyWithoutSubjectNestedInput
+    teacher?: UserUpdateOneWithoutTeacherSubjectsNestedInput
+    topics?: TopicUpdateManyWithoutSubjectNestedInput
+    userSubjects?: UserSubjectUpdateManyWithoutSubjectNestedInput
+    materials?: MaterialUpdateManyWithoutSubjectNestedInput
+  }
+
+  export type SubjectUncheckedUpdateWithoutExamsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    color?: StringFieldUpdateOperationsInput | string
+    icon?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    teacherId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    assignments?: AssignmentUncheckedUpdateManyWithoutSubjectNestedInput
+    schedules?: ClassScheduleUncheckedUpdateManyWithoutSubjectNestedInput
+    topics?: TopicUncheckedUpdateManyWithoutSubjectNestedInput
+    userSubjects?: UserSubjectUncheckedUpdateManyWithoutSubjectNestedInput
+    materials?: MaterialUncheckedUpdateManyWithoutSubjectNestedInput
+  }
+
+  export type UserUpsertWithoutTeacherExamsInput = {
+    update: XOR<UserUpdateWithoutTeacherExamsInput, UserUncheckedUpdateWithoutTeacherExamsInput>
+    create: XOR<UserCreateWithoutTeacherExamsInput, UserUncheckedCreateWithoutTeacherExamsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutTeacherExamsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutTeacherExamsInput, UserUncheckedUpdateWithoutTeacherExamsInput>
+  }
+
+  export type UserUpdateWithoutTeacherExamsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    school?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    lastActiveAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reminderTime?: NullableStringFieldUpdateOperationsInput | string | null
+    notificationPrefs?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    nis?: NullableStringFieldUpdateOperationsInput | string | null
+    noAbsen?: NullableIntFieldUpdateOperationsInput | number | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    affiliations?: UserUpdateaffiliationsInput | string[]
+    canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
+    canEditAssignments?: BoolFieldUpdateOperationsInput | boolean
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    teacherAssignments?: AssignmentUpdateManyWithoutTeacherNestedInput
+    studentSubmissions?: AssignmentSubmissionUpdateManyWithoutStudentNestedInput
+    teacherSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    operator?: OperatorUpdateOneWithoutUserNestedInput
+    progressLogs?: ProgressLogUpdateManyWithoutUserNestedInput
+    teacherSubjects?: SubjectUpdateManyWithoutTeacherNestedInput
+    class?: ClassUpdateOneWithoutStudentsNestedInput
+    userNotes?: UserNoteUpdateManyWithoutUserNestedInput
+    authoredNotes?: UserNoteUpdateManyWithoutAuthorNestedInput
+    attendances?: AttendanceUpdateManyWithoutUserNestedInput
+    userSubjects?: UserSubjectUpdateManyWithoutUserNestedInput
+    comments?: CommentUpdateManyWithoutAuthorNestedInput
+    calendarReminders?: CalendarReminderUpdateManyWithoutUserNestedInput
+    ekskulLeader?: ExtracurricularUpdateManyWithoutLeaderNestedInput
+    ekskulCoach?: ExtracurricularUpdateManyWithoutCoachNestedInput
+    ekskulMembers?: ExtracurricularMemberUpdateManyWithoutStudentNestedInput
+    ekskulAttendances?: ExtracurricularAttendanceUpdateManyWithoutStudentNestedInput
+    teacherMaterials?: MaterialUpdateManyWithoutTeacherNestedInput
+    documents?: DocumentUpdateManyWithoutUserNestedInput
+    discussionThreads?: DiscussionThreadUpdateManyWithoutAuthorNestedInput
+    discussionReplies?: DiscussionReplyUpdateManyWithoutAuthorNestedInput
+    examAttempts?: ExamAttemptUpdateManyWithoutStudentNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutTeacherExamsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    school?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    lastActiveAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reminderTime?: NullableStringFieldUpdateOperationsInput | string | null
+    notificationPrefs?: JsonNullValueInput | InputJsonValue
+    classId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    nis?: NullableStringFieldUpdateOperationsInput | string | null
+    noAbsen?: NullableIntFieldUpdateOperationsInput | number | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    affiliations?: UserUpdateaffiliationsInput | string[]
+    canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
+    canEditAssignments?: BoolFieldUpdateOperationsInput | boolean
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    teacherAssignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
+    studentSubmissions?: AssignmentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
+    teacherSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    operator?: OperatorUncheckedUpdateOneWithoutUserNestedInput
+    progressLogs?: ProgressLogUncheckedUpdateManyWithoutUserNestedInput
+    teacherSubjects?: SubjectUncheckedUpdateManyWithoutTeacherNestedInput
+    userNotes?: UserNoteUncheckedUpdateManyWithoutUserNestedInput
+    authoredNotes?: UserNoteUncheckedUpdateManyWithoutAuthorNestedInput
+    attendances?: AttendanceUncheckedUpdateManyWithoutUserNestedInput
+    userSubjects?: UserSubjectUncheckedUpdateManyWithoutUserNestedInput
+    comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
+    calendarReminders?: CalendarReminderUncheckedUpdateManyWithoutUserNestedInput
+    ekskulLeader?: ExtracurricularUncheckedUpdateManyWithoutLeaderNestedInput
+    ekskulCoach?: ExtracurricularUncheckedUpdateManyWithoutCoachNestedInput
+    ekskulMembers?: ExtracurricularMemberUncheckedUpdateManyWithoutStudentNestedInput
+    ekskulAttendances?: ExtracurricularAttendanceUncheckedUpdateManyWithoutStudentNestedInput
+    teacherMaterials?: MaterialUncheckedUpdateManyWithoutTeacherNestedInput
+    documents?: DocumentUncheckedUpdateManyWithoutUserNestedInput
+    discussionThreads?: DiscussionThreadUncheckedUpdateManyWithoutAuthorNestedInput
+    discussionReplies?: DiscussionReplyUncheckedUpdateManyWithoutAuthorNestedInput
+    examAttempts?: ExamAttemptUncheckedUpdateManyWithoutStudentNestedInput
+  }
+
+  export type ExamQuestionUpsertWithWhereUniqueWithoutExamInput = {
+    where: ExamQuestionWhereUniqueInput
+    update: XOR<ExamQuestionUpdateWithoutExamInput, ExamQuestionUncheckedUpdateWithoutExamInput>
+    create: XOR<ExamQuestionCreateWithoutExamInput, ExamQuestionUncheckedCreateWithoutExamInput>
+  }
+
+  export type ExamQuestionUpdateWithWhereUniqueWithoutExamInput = {
+    where: ExamQuestionWhereUniqueInput
+    data: XOR<ExamQuestionUpdateWithoutExamInput, ExamQuestionUncheckedUpdateWithoutExamInput>
+  }
+
+  export type ExamQuestionUpdateManyWithWhereWithoutExamInput = {
+    where: ExamQuestionScalarWhereInput
+    data: XOR<ExamQuestionUpdateManyMutationInput, ExamQuestionUncheckedUpdateManyWithoutExamInput>
+  }
+
+  export type ExamQuestionScalarWhereInput = {
+    AND?: ExamQuestionScalarWhereInput | ExamQuestionScalarWhereInput[]
+    OR?: ExamQuestionScalarWhereInput[]
+    NOT?: ExamQuestionScalarWhereInput | ExamQuestionScalarWhereInput[]
+    id?: StringFilter<"ExamQuestion"> | string
+    examId?: StringFilter<"ExamQuestion"> | string
+    questionText?: StringFilter<"ExamQuestion"> | string
+    type?: StringFilter<"ExamQuestion"> | string
+    options?: JsonFilter<"ExamQuestion">
+    correctAnswer?: StringFilter<"ExamQuestion"> | string
+    points?: IntFilter<"ExamQuestion"> | number
+    order?: IntFilter<"ExamQuestion"> | number
+  }
+
+  export type ExamAttemptUpsertWithWhereUniqueWithoutExamInput = {
+    where: ExamAttemptWhereUniqueInput
+    update: XOR<ExamAttemptUpdateWithoutExamInput, ExamAttemptUncheckedUpdateWithoutExamInput>
+    create: XOR<ExamAttemptCreateWithoutExamInput, ExamAttemptUncheckedCreateWithoutExamInput>
+  }
+
+  export type ExamAttemptUpdateWithWhereUniqueWithoutExamInput = {
+    where: ExamAttemptWhereUniqueInput
+    data: XOR<ExamAttemptUpdateWithoutExamInput, ExamAttemptUncheckedUpdateWithoutExamInput>
+  }
+
+  export type ExamAttemptUpdateManyWithWhereWithoutExamInput = {
+    where: ExamAttemptScalarWhereInput
+    data: XOR<ExamAttemptUpdateManyMutationInput, ExamAttemptUncheckedUpdateManyWithoutExamInput>
+  }
+
+  export type ExamCreateWithoutQuestionsInput = {
+    id?: string
+    title: string
+    description?: string | null
+    startTime: Date | string
+    endTime: Date | string
+    durationMin?: number
+    isStrict?: boolean
+    status?: $Enums.ExamStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    class?: ClassCreateNestedOneWithoutExamsInput
+    subject: SubjectCreateNestedOneWithoutExamsInput
+    teacher: UserCreateNestedOneWithoutTeacherExamsInput
+    attempts?: ExamAttemptCreateNestedManyWithoutExamInput
+  }
+
+  export type ExamUncheckedCreateWithoutQuestionsInput = {
+    id?: string
+    title: string
+    description?: string | null
+    classId?: string | null
+    subjectId: string
+    teacherId: string
+    startTime: Date | string
+    endTime: Date | string
+    durationMin?: number
+    isStrict?: boolean
+    status?: $Enums.ExamStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    attempts?: ExamAttemptUncheckedCreateNestedManyWithoutExamInput
+  }
+
+  export type ExamCreateOrConnectWithoutQuestionsInput = {
+    where: ExamWhereUniqueInput
+    create: XOR<ExamCreateWithoutQuestionsInput, ExamUncheckedCreateWithoutQuestionsInput>
+  }
+
+  export type ExamAnswerCreateWithoutQuestionInput = {
+    id?: string
+    answerText: string
+    isCorrect?: boolean
+    pointsAwarded?: number
+    attempt: ExamAttemptCreateNestedOneWithoutAnswersInput
+  }
+
+  export type ExamAnswerUncheckedCreateWithoutQuestionInput = {
+    id?: string
+    attemptId: string
+    answerText: string
+    isCorrect?: boolean
+    pointsAwarded?: number
+  }
+
+  export type ExamAnswerCreateOrConnectWithoutQuestionInput = {
+    where: ExamAnswerWhereUniqueInput
+    create: XOR<ExamAnswerCreateWithoutQuestionInput, ExamAnswerUncheckedCreateWithoutQuestionInput>
+  }
+
+  export type ExamAnswerCreateManyQuestionInputEnvelope = {
+    data: ExamAnswerCreateManyQuestionInput | ExamAnswerCreateManyQuestionInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ExamUpsertWithoutQuestionsInput = {
+    update: XOR<ExamUpdateWithoutQuestionsInput, ExamUncheckedUpdateWithoutQuestionsInput>
+    create: XOR<ExamCreateWithoutQuestionsInput, ExamUncheckedCreateWithoutQuestionsInput>
+    where?: ExamWhereInput
+  }
+
+  export type ExamUpdateToOneWithWhereWithoutQuestionsInput = {
+    where?: ExamWhereInput
+    data: XOR<ExamUpdateWithoutQuestionsInput, ExamUncheckedUpdateWithoutQuestionsInput>
+  }
+
+  export type ExamUpdateWithoutQuestionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    durationMin?: IntFieldUpdateOperationsInput | number
+    isStrict?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumExamStatusFieldUpdateOperationsInput | $Enums.ExamStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    class?: ClassUpdateOneWithoutExamsNestedInput
+    subject?: SubjectUpdateOneRequiredWithoutExamsNestedInput
+    teacher?: UserUpdateOneRequiredWithoutTeacherExamsNestedInput
+    attempts?: ExamAttemptUpdateManyWithoutExamNestedInput
+  }
+
+  export type ExamUncheckedUpdateWithoutQuestionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    classId?: NullableStringFieldUpdateOperationsInput | string | null
+    subjectId?: StringFieldUpdateOperationsInput | string
+    teacherId?: StringFieldUpdateOperationsInput | string
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    durationMin?: IntFieldUpdateOperationsInput | number
+    isStrict?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumExamStatusFieldUpdateOperationsInput | $Enums.ExamStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    attempts?: ExamAttemptUncheckedUpdateManyWithoutExamNestedInput
+  }
+
+  export type ExamAnswerUpsertWithWhereUniqueWithoutQuestionInput = {
+    where: ExamAnswerWhereUniqueInput
+    update: XOR<ExamAnswerUpdateWithoutQuestionInput, ExamAnswerUncheckedUpdateWithoutQuestionInput>
+    create: XOR<ExamAnswerCreateWithoutQuestionInput, ExamAnswerUncheckedCreateWithoutQuestionInput>
+  }
+
+  export type ExamAnswerUpdateWithWhereUniqueWithoutQuestionInput = {
+    where: ExamAnswerWhereUniqueInput
+    data: XOR<ExamAnswerUpdateWithoutQuestionInput, ExamAnswerUncheckedUpdateWithoutQuestionInput>
+  }
+
+  export type ExamAnswerUpdateManyWithWhereWithoutQuestionInput = {
+    where: ExamAnswerScalarWhereInput
+    data: XOR<ExamAnswerUpdateManyMutationInput, ExamAnswerUncheckedUpdateManyWithoutQuestionInput>
+  }
+
+  export type ExamAnswerScalarWhereInput = {
+    AND?: ExamAnswerScalarWhereInput | ExamAnswerScalarWhereInput[]
+    OR?: ExamAnswerScalarWhereInput[]
+    NOT?: ExamAnswerScalarWhereInput | ExamAnswerScalarWhereInput[]
+    id?: StringFilter<"ExamAnswer"> | string
+    attemptId?: StringFilter<"ExamAnswer"> | string
+    questionId?: StringFilter<"ExamAnswer"> | string
+    answerText?: StringFilter<"ExamAnswer"> | string
+    isCorrect?: BoolFilter<"ExamAnswer"> | boolean
+    pointsAwarded?: IntFilter<"ExamAnswer"> | number
+  }
+
+  export type ExamCreateWithoutAttemptsInput = {
+    id?: string
+    title: string
+    description?: string | null
+    startTime: Date | string
+    endTime: Date | string
+    durationMin?: number
+    isStrict?: boolean
+    status?: $Enums.ExamStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    class?: ClassCreateNestedOneWithoutExamsInput
+    subject: SubjectCreateNestedOneWithoutExamsInput
+    teacher: UserCreateNestedOneWithoutTeacherExamsInput
+    questions?: ExamQuestionCreateNestedManyWithoutExamInput
+  }
+
+  export type ExamUncheckedCreateWithoutAttemptsInput = {
+    id?: string
+    title: string
+    description?: string | null
+    classId?: string | null
+    subjectId: string
+    teacherId: string
+    startTime: Date | string
+    endTime: Date | string
+    durationMin?: number
+    isStrict?: boolean
+    status?: $Enums.ExamStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    questions?: ExamQuestionUncheckedCreateNestedManyWithoutExamInput
+  }
+
+  export type ExamCreateOrConnectWithoutAttemptsInput = {
+    where: ExamWhereUniqueInput
+    create: XOR<ExamCreateWithoutAttemptsInput, ExamUncheckedCreateWithoutAttemptsInput>
+  }
+
+  export type UserCreateWithoutExamAttemptsInput = {
+    id?: string
+    name: string
+    email: string
+    password?: string | null
+    role?: $Enums.Role
+    school?: string | null
+    isActive?: boolean
+    lastActiveAt?: Date | string | null
+    reminderTime?: string | null
+    notificationPrefs?: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    image?: string | null
+    nis?: string | null
+    noAbsen?: number | null
+    phone?: string | null
+    gender?: string | null
+    address?: string | null
+    emailVerified?: Date | string | null
+    parentPin?: string | null
+    position?: string | null
+    affiliations?: UserCreateaffiliationsInput | string[]
+    canEditMaterials?: boolean
+    canEditAssignments?: boolean
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    teacherAssignments?: AssignmentCreateNestedManyWithoutTeacherInput
+    studentSubmissions?: AssignmentSubmissionCreateNestedManyWithoutStudentInput
+    teacherSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    operator?: OperatorCreateNestedOneWithoutUserInput
+    progressLogs?: ProgressLogCreateNestedManyWithoutUserInput
+    teacherSubjects?: SubjectCreateNestedManyWithoutTeacherInput
+    class?: ClassCreateNestedOneWithoutStudentsInput
+    userNotes?: UserNoteCreateNestedManyWithoutUserInput
+    authoredNotes?: UserNoteCreateNestedManyWithoutAuthorInput
+    attendances?: AttendanceCreateNestedManyWithoutUserInput
+    userSubjects?: UserSubjectCreateNestedManyWithoutUserInput
+    comments?: CommentCreateNestedManyWithoutAuthorInput
+    calendarReminders?: CalendarReminderCreateNestedManyWithoutUserInput
+    ekskulLeader?: ExtracurricularCreateNestedManyWithoutLeaderInput
+    ekskulCoach?: ExtracurricularCreateNestedManyWithoutCoachInput
+    ekskulMembers?: ExtracurricularMemberCreateNestedManyWithoutStudentInput
+    ekskulAttendances?: ExtracurricularAttendanceCreateNestedManyWithoutStudentInput
+    teacherMaterials?: MaterialCreateNestedManyWithoutTeacherInput
+    documents?: DocumentCreateNestedManyWithoutUserInput
+    discussionThreads?: DiscussionThreadCreateNestedManyWithoutAuthorInput
+    discussionReplies?: DiscussionReplyCreateNestedManyWithoutAuthorInput
+    teacherExams?: ExamCreateNestedManyWithoutTeacherInput
+  }
+
+  export type UserUncheckedCreateWithoutExamAttemptsInput = {
+    id?: string
+    name: string
+    email: string
+    password?: string | null
+    role?: $Enums.Role
+    school?: string | null
+    isActive?: boolean
+    lastActiveAt?: Date | string | null
+    reminderTime?: string | null
+    notificationPrefs?: JsonNullValueInput | InputJsonValue
+    classId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    image?: string | null
+    nis?: string | null
+    noAbsen?: number | null
+    phone?: string | null
+    gender?: string | null
+    address?: string | null
+    emailVerified?: Date | string | null
+    parentPin?: string | null
+    position?: string | null
+    affiliations?: UserCreateaffiliationsInput | string[]
+    canEditMaterials?: boolean
+    canEditAssignments?: boolean
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    teacherAssignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
+    studentSubmissions?: AssignmentSubmissionUncheckedCreateNestedManyWithoutStudentInput
+    teacherSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    operator?: OperatorUncheckedCreateNestedOneWithoutUserInput
+    progressLogs?: ProgressLogUncheckedCreateNestedManyWithoutUserInput
+    teacherSubjects?: SubjectUncheckedCreateNestedManyWithoutTeacherInput
+    userNotes?: UserNoteUncheckedCreateNestedManyWithoutUserInput
+    authoredNotes?: UserNoteUncheckedCreateNestedManyWithoutAuthorInput
+    attendances?: AttendanceUncheckedCreateNestedManyWithoutUserInput
+    userSubjects?: UserSubjectUncheckedCreateNestedManyWithoutUserInput
+    comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
+    calendarReminders?: CalendarReminderUncheckedCreateNestedManyWithoutUserInput
+    ekskulLeader?: ExtracurricularUncheckedCreateNestedManyWithoutLeaderInput
+    ekskulCoach?: ExtracurricularUncheckedCreateNestedManyWithoutCoachInput
+    ekskulMembers?: ExtracurricularMemberUncheckedCreateNestedManyWithoutStudentInput
+    ekskulAttendances?: ExtracurricularAttendanceUncheckedCreateNestedManyWithoutStudentInput
+    teacherMaterials?: MaterialUncheckedCreateNestedManyWithoutTeacherInput
+    documents?: DocumentUncheckedCreateNestedManyWithoutUserInput
+    discussionThreads?: DiscussionThreadUncheckedCreateNestedManyWithoutAuthorInput
+    discussionReplies?: DiscussionReplyUncheckedCreateNestedManyWithoutAuthorInput
+    teacherExams?: ExamUncheckedCreateNestedManyWithoutTeacherInput
+  }
+
+  export type UserCreateOrConnectWithoutExamAttemptsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutExamAttemptsInput, UserUncheckedCreateWithoutExamAttemptsInput>
+  }
+
+  export type ExamAnswerCreateWithoutAttemptInput = {
+    id?: string
+    answerText: string
+    isCorrect?: boolean
+    pointsAwarded?: number
+    question: ExamQuestionCreateNestedOneWithoutAnswersInput
+  }
+
+  export type ExamAnswerUncheckedCreateWithoutAttemptInput = {
+    id?: string
+    questionId: string
+    answerText: string
+    isCorrect?: boolean
+    pointsAwarded?: number
+  }
+
+  export type ExamAnswerCreateOrConnectWithoutAttemptInput = {
+    where: ExamAnswerWhereUniqueInput
+    create: XOR<ExamAnswerCreateWithoutAttemptInput, ExamAnswerUncheckedCreateWithoutAttemptInput>
+  }
+
+  export type ExamAnswerCreateManyAttemptInputEnvelope = {
+    data: ExamAnswerCreateManyAttemptInput | ExamAnswerCreateManyAttemptInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ExamUpsertWithoutAttemptsInput = {
+    update: XOR<ExamUpdateWithoutAttemptsInput, ExamUncheckedUpdateWithoutAttemptsInput>
+    create: XOR<ExamCreateWithoutAttemptsInput, ExamUncheckedCreateWithoutAttemptsInput>
+    where?: ExamWhereInput
+  }
+
+  export type ExamUpdateToOneWithWhereWithoutAttemptsInput = {
+    where?: ExamWhereInput
+    data: XOR<ExamUpdateWithoutAttemptsInput, ExamUncheckedUpdateWithoutAttemptsInput>
+  }
+
+  export type ExamUpdateWithoutAttemptsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    durationMin?: IntFieldUpdateOperationsInput | number
+    isStrict?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumExamStatusFieldUpdateOperationsInput | $Enums.ExamStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    class?: ClassUpdateOneWithoutExamsNestedInput
+    subject?: SubjectUpdateOneRequiredWithoutExamsNestedInput
+    teacher?: UserUpdateOneRequiredWithoutTeacherExamsNestedInput
+    questions?: ExamQuestionUpdateManyWithoutExamNestedInput
+  }
+
+  export type ExamUncheckedUpdateWithoutAttemptsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    classId?: NullableStringFieldUpdateOperationsInput | string | null
+    subjectId?: StringFieldUpdateOperationsInput | string
+    teacherId?: StringFieldUpdateOperationsInput | string
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    durationMin?: IntFieldUpdateOperationsInput | number
+    isStrict?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumExamStatusFieldUpdateOperationsInput | $Enums.ExamStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    questions?: ExamQuestionUncheckedUpdateManyWithoutExamNestedInput
+  }
+
+  export type UserUpsertWithoutExamAttemptsInput = {
+    update: XOR<UserUpdateWithoutExamAttemptsInput, UserUncheckedUpdateWithoutExamAttemptsInput>
+    create: XOR<UserCreateWithoutExamAttemptsInput, UserUncheckedCreateWithoutExamAttemptsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutExamAttemptsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutExamAttemptsInput, UserUncheckedUpdateWithoutExamAttemptsInput>
+  }
+
+  export type UserUpdateWithoutExamAttemptsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    school?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    lastActiveAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reminderTime?: NullableStringFieldUpdateOperationsInput | string | null
+    notificationPrefs?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    nis?: NullableStringFieldUpdateOperationsInput | string | null
+    noAbsen?: NullableIntFieldUpdateOperationsInput | number | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    affiliations?: UserUpdateaffiliationsInput | string[]
+    canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
+    canEditAssignments?: BoolFieldUpdateOperationsInput | boolean
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    teacherAssignments?: AssignmentUpdateManyWithoutTeacherNestedInput
+    studentSubmissions?: AssignmentSubmissionUpdateManyWithoutStudentNestedInput
+    teacherSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    operator?: OperatorUpdateOneWithoutUserNestedInput
+    progressLogs?: ProgressLogUpdateManyWithoutUserNestedInput
+    teacherSubjects?: SubjectUpdateManyWithoutTeacherNestedInput
+    class?: ClassUpdateOneWithoutStudentsNestedInput
+    userNotes?: UserNoteUpdateManyWithoutUserNestedInput
+    authoredNotes?: UserNoteUpdateManyWithoutAuthorNestedInput
+    attendances?: AttendanceUpdateManyWithoutUserNestedInput
+    userSubjects?: UserSubjectUpdateManyWithoutUserNestedInput
+    comments?: CommentUpdateManyWithoutAuthorNestedInput
+    calendarReminders?: CalendarReminderUpdateManyWithoutUserNestedInput
+    ekskulLeader?: ExtracurricularUpdateManyWithoutLeaderNestedInput
+    ekskulCoach?: ExtracurricularUpdateManyWithoutCoachNestedInput
+    ekskulMembers?: ExtracurricularMemberUpdateManyWithoutStudentNestedInput
+    ekskulAttendances?: ExtracurricularAttendanceUpdateManyWithoutStudentNestedInput
+    teacherMaterials?: MaterialUpdateManyWithoutTeacherNestedInput
+    documents?: DocumentUpdateManyWithoutUserNestedInput
+    discussionThreads?: DiscussionThreadUpdateManyWithoutAuthorNestedInput
+    discussionReplies?: DiscussionReplyUpdateManyWithoutAuthorNestedInput
+    teacherExams?: ExamUpdateManyWithoutTeacherNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutExamAttemptsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    school?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    lastActiveAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reminderTime?: NullableStringFieldUpdateOperationsInput | string | null
+    notificationPrefs?: JsonNullValueInput | InputJsonValue
+    classId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    nis?: NullableStringFieldUpdateOperationsInput | string | null
+    noAbsen?: NullableIntFieldUpdateOperationsInput | number | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    affiliations?: UserUpdateaffiliationsInput | string[]
+    canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
+    canEditAssignments?: BoolFieldUpdateOperationsInput | boolean
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    teacherAssignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
+    studentSubmissions?: AssignmentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
+    teacherSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    operator?: OperatorUncheckedUpdateOneWithoutUserNestedInput
+    progressLogs?: ProgressLogUncheckedUpdateManyWithoutUserNestedInput
+    teacherSubjects?: SubjectUncheckedUpdateManyWithoutTeacherNestedInput
+    userNotes?: UserNoteUncheckedUpdateManyWithoutUserNestedInput
+    authoredNotes?: UserNoteUncheckedUpdateManyWithoutAuthorNestedInput
+    attendances?: AttendanceUncheckedUpdateManyWithoutUserNestedInput
+    userSubjects?: UserSubjectUncheckedUpdateManyWithoutUserNestedInput
+    comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
+    calendarReminders?: CalendarReminderUncheckedUpdateManyWithoutUserNestedInput
+    ekskulLeader?: ExtracurricularUncheckedUpdateManyWithoutLeaderNestedInput
+    ekskulCoach?: ExtracurricularUncheckedUpdateManyWithoutCoachNestedInput
+    ekskulMembers?: ExtracurricularMemberUncheckedUpdateManyWithoutStudentNestedInput
+    ekskulAttendances?: ExtracurricularAttendanceUncheckedUpdateManyWithoutStudentNestedInput
+    teacherMaterials?: MaterialUncheckedUpdateManyWithoutTeacherNestedInput
+    documents?: DocumentUncheckedUpdateManyWithoutUserNestedInput
+    discussionThreads?: DiscussionThreadUncheckedUpdateManyWithoutAuthorNestedInput
+    discussionReplies?: DiscussionReplyUncheckedUpdateManyWithoutAuthorNestedInput
+    teacherExams?: ExamUncheckedUpdateManyWithoutTeacherNestedInput
+  }
+
+  export type ExamAnswerUpsertWithWhereUniqueWithoutAttemptInput = {
+    where: ExamAnswerWhereUniqueInput
+    update: XOR<ExamAnswerUpdateWithoutAttemptInput, ExamAnswerUncheckedUpdateWithoutAttemptInput>
+    create: XOR<ExamAnswerCreateWithoutAttemptInput, ExamAnswerUncheckedCreateWithoutAttemptInput>
+  }
+
+  export type ExamAnswerUpdateWithWhereUniqueWithoutAttemptInput = {
+    where: ExamAnswerWhereUniqueInput
+    data: XOR<ExamAnswerUpdateWithoutAttemptInput, ExamAnswerUncheckedUpdateWithoutAttemptInput>
+  }
+
+  export type ExamAnswerUpdateManyWithWhereWithoutAttemptInput = {
+    where: ExamAnswerScalarWhereInput
+    data: XOR<ExamAnswerUpdateManyMutationInput, ExamAnswerUncheckedUpdateManyWithoutAttemptInput>
+  }
+
+  export type ExamAttemptCreateWithoutAnswersInput = {
+    id?: string
+    startTime?: Date | string
+    endTime?: Date | string | null
+    status?: $Enums.AttemptStatus
+    score?: number | null
+    cheatWarnings?: number
+    exam: ExamCreateNestedOneWithoutAttemptsInput
+    student: UserCreateNestedOneWithoutExamAttemptsInput
+  }
+
+  export type ExamAttemptUncheckedCreateWithoutAnswersInput = {
+    id?: string
+    examId: string
+    studentId: string
+    startTime?: Date | string
+    endTime?: Date | string | null
+    status?: $Enums.AttemptStatus
+    score?: number | null
+    cheatWarnings?: number
+  }
+
+  export type ExamAttemptCreateOrConnectWithoutAnswersInput = {
+    where: ExamAttemptWhereUniqueInput
+    create: XOR<ExamAttemptCreateWithoutAnswersInput, ExamAttemptUncheckedCreateWithoutAnswersInput>
+  }
+
+  export type ExamQuestionCreateWithoutAnswersInput = {
+    id?: string
+    questionText: string
+    type?: string
+    options?: JsonNullValueInput | InputJsonValue
+    correctAnswer: string
+    points?: number
+    order?: number
+    exam: ExamCreateNestedOneWithoutQuestionsInput
+  }
+
+  export type ExamQuestionUncheckedCreateWithoutAnswersInput = {
+    id?: string
+    examId: string
+    questionText: string
+    type?: string
+    options?: JsonNullValueInput | InputJsonValue
+    correctAnswer: string
+    points?: number
+    order?: number
+  }
+
+  export type ExamQuestionCreateOrConnectWithoutAnswersInput = {
+    where: ExamQuestionWhereUniqueInput
+    create: XOR<ExamQuestionCreateWithoutAnswersInput, ExamQuestionUncheckedCreateWithoutAnswersInput>
+  }
+
+  export type ExamAttemptUpsertWithoutAnswersInput = {
+    update: XOR<ExamAttemptUpdateWithoutAnswersInput, ExamAttemptUncheckedUpdateWithoutAnswersInput>
+    create: XOR<ExamAttemptCreateWithoutAnswersInput, ExamAttemptUncheckedCreateWithoutAnswersInput>
+    where?: ExamAttemptWhereInput
+  }
+
+  export type ExamAttemptUpdateToOneWithWhereWithoutAnswersInput = {
+    where?: ExamAttemptWhereInput
+    data: XOR<ExamAttemptUpdateWithoutAnswersInput, ExamAttemptUncheckedUpdateWithoutAnswersInput>
+  }
+
+  export type ExamAttemptUpdateWithoutAnswersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumAttemptStatusFieldUpdateOperationsInput | $Enums.AttemptStatus
+    score?: NullableIntFieldUpdateOperationsInput | number | null
+    cheatWarnings?: IntFieldUpdateOperationsInput | number
+    exam?: ExamUpdateOneRequiredWithoutAttemptsNestedInput
+    student?: UserUpdateOneRequiredWithoutExamAttemptsNestedInput
+  }
+
+  export type ExamAttemptUncheckedUpdateWithoutAnswersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    examId?: StringFieldUpdateOperationsInput | string
+    studentId?: StringFieldUpdateOperationsInput | string
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumAttemptStatusFieldUpdateOperationsInput | $Enums.AttemptStatus
+    score?: NullableIntFieldUpdateOperationsInput | number | null
+    cheatWarnings?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ExamQuestionUpsertWithoutAnswersInput = {
+    update: XOR<ExamQuestionUpdateWithoutAnswersInput, ExamQuestionUncheckedUpdateWithoutAnswersInput>
+    create: XOR<ExamQuestionCreateWithoutAnswersInput, ExamQuestionUncheckedCreateWithoutAnswersInput>
+    where?: ExamQuestionWhereInput
+  }
+
+  export type ExamQuestionUpdateToOneWithWhereWithoutAnswersInput = {
+    where?: ExamQuestionWhereInput
+    data: XOR<ExamQuestionUpdateWithoutAnswersInput, ExamQuestionUncheckedUpdateWithoutAnswersInput>
+  }
+
+  export type ExamQuestionUpdateWithoutAnswersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    questionText?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    options?: JsonNullValueInput | InputJsonValue
+    correctAnswer?: StringFieldUpdateOperationsInput | string
+    points?: IntFieldUpdateOperationsInput | number
+    order?: IntFieldUpdateOperationsInput | number
+    exam?: ExamUpdateOneRequiredWithoutQuestionsNestedInput
+  }
+
+  export type ExamQuestionUncheckedUpdateWithoutAnswersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    examId?: StringFieldUpdateOperationsInput | string
+    questionText?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    options?: JsonNullValueInput | InputJsonValue
+    correctAnswer?: StringFieldUpdateOperationsInput | string
+    points?: IntFieldUpdateOperationsInput | number
+    order?: IntFieldUpdateOperationsInput | number
   }
 
   export type AccountCreateManyUserInput = {
@@ -52210,6 +60134,31 @@ export namespace Prisma {
     threadId: string
     createdAt?: Date | string
     updatedAt?: Date | string
+  }
+
+  export type ExamCreateManyTeacherInput = {
+    id?: string
+    title: string
+    description?: string | null
+    classId?: string | null
+    subjectId: string
+    startTime: Date | string
+    endTime: Date | string
+    durationMin?: number
+    isStrict?: boolean
+    status?: $Enums.ExamStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ExamAttemptCreateManyStudentInput = {
+    id?: string
+    examId: string
+    startTime?: Date | string
+    endTime?: Date | string | null
+    status?: $Enums.AttemptStatus
+    score?: number | null
+    cheatWarnings?: number
   }
 
   export type AccountUpdateWithoutUserInput = {
@@ -52465,6 +60414,7 @@ export namespace Prisma {
     topics?: TopicUpdateManyWithoutSubjectNestedInput
     userSubjects?: UserSubjectUpdateManyWithoutSubjectNestedInput
     materials?: MaterialUpdateManyWithoutSubjectNestedInput
+    exams?: ExamUpdateManyWithoutSubjectNestedInput
   }
 
   export type SubjectUncheckedUpdateWithoutTeacherInput = {
@@ -52480,6 +60430,7 @@ export namespace Prisma {
     topics?: TopicUncheckedUpdateManyWithoutSubjectNestedInput
     userSubjects?: UserSubjectUncheckedUpdateManyWithoutSubjectNestedInput
     materials?: MaterialUncheckedUpdateManyWithoutSubjectNestedInput
+    exams?: ExamUncheckedUpdateManyWithoutSubjectNestedInput
   }
 
   export type SubjectUncheckedUpdateManyWithoutTeacherInput = {
@@ -52867,6 +60818,87 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type ExamUpdateWithoutTeacherInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    durationMin?: IntFieldUpdateOperationsInput | number
+    isStrict?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumExamStatusFieldUpdateOperationsInput | $Enums.ExamStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    class?: ClassUpdateOneWithoutExamsNestedInput
+    subject?: SubjectUpdateOneRequiredWithoutExamsNestedInput
+    questions?: ExamQuestionUpdateManyWithoutExamNestedInput
+    attempts?: ExamAttemptUpdateManyWithoutExamNestedInput
+  }
+
+  export type ExamUncheckedUpdateWithoutTeacherInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    classId?: NullableStringFieldUpdateOperationsInput | string | null
+    subjectId?: StringFieldUpdateOperationsInput | string
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    durationMin?: IntFieldUpdateOperationsInput | number
+    isStrict?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumExamStatusFieldUpdateOperationsInput | $Enums.ExamStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    questions?: ExamQuestionUncheckedUpdateManyWithoutExamNestedInput
+    attempts?: ExamAttemptUncheckedUpdateManyWithoutExamNestedInput
+  }
+
+  export type ExamUncheckedUpdateManyWithoutTeacherInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    classId?: NullableStringFieldUpdateOperationsInput | string | null
+    subjectId?: StringFieldUpdateOperationsInput | string
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    durationMin?: IntFieldUpdateOperationsInput | number
+    isStrict?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumExamStatusFieldUpdateOperationsInput | $Enums.ExamStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ExamAttemptUpdateWithoutStudentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumAttemptStatusFieldUpdateOperationsInput | $Enums.AttemptStatus
+    score?: NullableIntFieldUpdateOperationsInput | number | null
+    cheatWarnings?: IntFieldUpdateOperationsInput | number
+    exam?: ExamUpdateOneRequiredWithoutAttemptsNestedInput
+    answers?: ExamAnswerUpdateManyWithoutAttemptNestedInput
+  }
+
+  export type ExamAttemptUncheckedUpdateWithoutStudentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    examId?: StringFieldUpdateOperationsInput | string
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumAttemptStatusFieldUpdateOperationsInput | $Enums.AttemptStatus
+    score?: NullableIntFieldUpdateOperationsInput | number | null
+    cheatWarnings?: IntFieldUpdateOperationsInput | number
+    answers?: ExamAnswerUncheckedUpdateManyWithoutAttemptNestedInput
+  }
+
+  export type ExamAttemptUncheckedUpdateManyWithoutStudentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    examId?: StringFieldUpdateOperationsInput | string
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumAttemptStatusFieldUpdateOperationsInput | $Enums.AttemptStatus
+    score?: NullableIntFieldUpdateOperationsInput | number | null
+    cheatWarnings?: IntFieldUpdateOperationsInput | number
+  }
+
   export type AssignmentCreateManyClassInput = {
     id?: string
     title: string
@@ -52939,6 +60971,21 @@ export namespace Prisma {
     title: string
     content: string
     authorId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ExamCreateManyClassInput = {
+    id?: string
+    title: string
+    description?: string | null
+    subjectId: string
+    teacherId: string
+    startTime: Date | string
+    endTime: Date | string
+    durationMin?: number
+    isStrict?: boolean
+    status?: $Enums.ExamStatus
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -53079,6 +61126,8 @@ export namespace Prisma {
     documents?: DocumentUpdateManyWithoutUserNestedInput
     discussionThreads?: DiscussionThreadUpdateManyWithoutAuthorNestedInput
     discussionReplies?: DiscussionReplyUpdateManyWithoutAuthorNestedInput
+    teacherExams?: ExamUpdateManyWithoutTeacherNestedInput
+    examAttempts?: ExamAttemptUpdateManyWithoutStudentNestedInput
   }
 
   export type UserUncheckedUpdateWithoutClassInput = {
@@ -53129,6 +61178,8 @@ export namespace Prisma {
     documents?: DocumentUncheckedUpdateManyWithoutUserNestedInput
     discussionThreads?: DiscussionThreadUncheckedUpdateManyWithoutAuthorNestedInput
     discussionReplies?: DiscussionReplyUncheckedUpdateManyWithoutAuthorNestedInput
+    teacherExams?: ExamUncheckedUpdateManyWithoutTeacherNestedInput
+    examAttempts?: ExamAttemptUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type UserUncheckedUpdateManyWithoutClassInput = {
@@ -53223,6 +61274,55 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type ExamUpdateWithoutClassInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    durationMin?: IntFieldUpdateOperationsInput | number
+    isStrict?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumExamStatusFieldUpdateOperationsInput | $Enums.ExamStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    subject?: SubjectUpdateOneRequiredWithoutExamsNestedInput
+    teacher?: UserUpdateOneRequiredWithoutTeacherExamsNestedInput
+    questions?: ExamQuestionUpdateManyWithoutExamNestedInput
+    attempts?: ExamAttemptUpdateManyWithoutExamNestedInput
+  }
+
+  export type ExamUncheckedUpdateWithoutClassInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    subjectId?: StringFieldUpdateOperationsInput | string
+    teacherId?: StringFieldUpdateOperationsInput | string
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    durationMin?: IntFieldUpdateOperationsInput | number
+    isStrict?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumExamStatusFieldUpdateOperationsInput | $Enums.ExamStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    questions?: ExamQuestionUncheckedUpdateManyWithoutExamNestedInput
+    attempts?: ExamAttemptUncheckedUpdateManyWithoutExamNestedInput
+  }
+
+  export type ExamUncheckedUpdateManyWithoutClassInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    subjectId?: StringFieldUpdateOperationsInput | string
+    teacherId?: StringFieldUpdateOperationsInput | string
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    durationMin?: IntFieldUpdateOperationsInput | number
+    isStrict?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumExamStatusFieldUpdateOperationsInput | $Enums.ExamStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type AssignmentCreateManySubjectInput = {
     id?: string
     title: string
@@ -53276,6 +61376,21 @@ export namespace Prisma {
     classId?: string | null
     attachments?: NullableJsonNullValueInput | InputJsonValue
     status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ExamCreateManySubjectInput = {
+    id?: string
+    title: string
+    description?: string | null
+    classId?: string | null
+    teacherId: string
+    startTime: Date | string
+    endTime: Date | string
+    durationMin?: number
+    isStrict?: boolean
+    status?: $Enums.ExamStatus
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -53455,6 +61570,55 @@ export namespace Prisma {
     classId?: NullableStringFieldUpdateOperationsInput | string | null
     attachments?: NullableJsonNullValueInput | InputJsonValue
     status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ExamUpdateWithoutSubjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    durationMin?: IntFieldUpdateOperationsInput | number
+    isStrict?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumExamStatusFieldUpdateOperationsInput | $Enums.ExamStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    class?: ClassUpdateOneWithoutExamsNestedInput
+    teacher?: UserUpdateOneRequiredWithoutTeacherExamsNestedInput
+    questions?: ExamQuestionUpdateManyWithoutExamNestedInput
+    attempts?: ExamAttemptUpdateManyWithoutExamNestedInput
+  }
+
+  export type ExamUncheckedUpdateWithoutSubjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    classId?: NullableStringFieldUpdateOperationsInput | string | null
+    teacherId?: StringFieldUpdateOperationsInput | string
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    durationMin?: IntFieldUpdateOperationsInput | number
+    isStrict?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumExamStatusFieldUpdateOperationsInput | $Enums.ExamStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    questions?: ExamQuestionUncheckedUpdateManyWithoutExamNestedInput
+    attempts?: ExamAttemptUncheckedUpdateManyWithoutExamNestedInput
+  }
+
+  export type ExamUncheckedUpdateManyWithoutSubjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    classId?: NullableStringFieldUpdateOperationsInput | string | null
+    teacherId?: StringFieldUpdateOperationsInput | string
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    durationMin?: IntFieldUpdateOperationsInput | number
+    isStrict?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumExamStatusFieldUpdateOperationsInput | $Enums.ExamStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -53881,6 +62045,154 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type ExamQuestionCreateManyExamInput = {
+    id?: string
+    questionText: string
+    type?: string
+    options?: JsonNullValueInput | InputJsonValue
+    correctAnswer: string
+    points?: number
+    order?: number
+  }
+
+  export type ExamAttemptCreateManyExamInput = {
+    id?: string
+    studentId: string
+    startTime?: Date | string
+    endTime?: Date | string | null
+    status?: $Enums.AttemptStatus
+    score?: number | null
+    cheatWarnings?: number
+  }
+
+  export type ExamQuestionUpdateWithoutExamInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    questionText?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    options?: JsonNullValueInput | InputJsonValue
+    correctAnswer?: StringFieldUpdateOperationsInput | string
+    points?: IntFieldUpdateOperationsInput | number
+    order?: IntFieldUpdateOperationsInput | number
+    answers?: ExamAnswerUpdateManyWithoutQuestionNestedInput
+  }
+
+  export type ExamQuestionUncheckedUpdateWithoutExamInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    questionText?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    options?: JsonNullValueInput | InputJsonValue
+    correctAnswer?: StringFieldUpdateOperationsInput | string
+    points?: IntFieldUpdateOperationsInput | number
+    order?: IntFieldUpdateOperationsInput | number
+    answers?: ExamAnswerUncheckedUpdateManyWithoutQuestionNestedInput
+  }
+
+  export type ExamQuestionUncheckedUpdateManyWithoutExamInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    questionText?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    options?: JsonNullValueInput | InputJsonValue
+    correctAnswer?: StringFieldUpdateOperationsInput | string
+    points?: IntFieldUpdateOperationsInput | number
+    order?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ExamAttemptUpdateWithoutExamInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumAttemptStatusFieldUpdateOperationsInput | $Enums.AttemptStatus
+    score?: NullableIntFieldUpdateOperationsInput | number | null
+    cheatWarnings?: IntFieldUpdateOperationsInput | number
+    student?: UserUpdateOneRequiredWithoutExamAttemptsNestedInput
+    answers?: ExamAnswerUpdateManyWithoutAttemptNestedInput
+  }
+
+  export type ExamAttemptUncheckedUpdateWithoutExamInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    studentId?: StringFieldUpdateOperationsInput | string
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumAttemptStatusFieldUpdateOperationsInput | $Enums.AttemptStatus
+    score?: NullableIntFieldUpdateOperationsInput | number | null
+    cheatWarnings?: IntFieldUpdateOperationsInput | number
+    answers?: ExamAnswerUncheckedUpdateManyWithoutAttemptNestedInput
+  }
+
+  export type ExamAttemptUncheckedUpdateManyWithoutExamInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    studentId?: StringFieldUpdateOperationsInput | string
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumAttemptStatusFieldUpdateOperationsInput | $Enums.AttemptStatus
+    score?: NullableIntFieldUpdateOperationsInput | number | null
+    cheatWarnings?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ExamAnswerCreateManyQuestionInput = {
+    id?: string
+    attemptId: string
+    answerText: string
+    isCorrect?: boolean
+    pointsAwarded?: number
+  }
+
+  export type ExamAnswerUpdateWithoutQuestionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    answerText?: StringFieldUpdateOperationsInput | string
+    isCorrect?: BoolFieldUpdateOperationsInput | boolean
+    pointsAwarded?: IntFieldUpdateOperationsInput | number
+    attempt?: ExamAttemptUpdateOneRequiredWithoutAnswersNestedInput
+  }
+
+  export type ExamAnswerUncheckedUpdateWithoutQuestionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    attemptId?: StringFieldUpdateOperationsInput | string
+    answerText?: StringFieldUpdateOperationsInput | string
+    isCorrect?: BoolFieldUpdateOperationsInput | boolean
+    pointsAwarded?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ExamAnswerUncheckedUpdateManyWithoutQuestionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    attemptId?: StringFieldUpdateOperationsInput | string
+    answerText?: StringFieldUpdateOperationsInput | string
+    isCorrect?: BoolFieldUpdateOperationsInput | boolean
+    pointsAwarded?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ExamAnswerCreateManyAttemptInput = {
+    id?: string
+    questionId: string
+    answerText: string
+    isCorrect?: boolean
+    pointsAwarded?: number
+  }
+
+  export type ExamAnswerUpdateWithoutAttemptInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    answerText?: StringFieldUpdateOperationsInput | string
+    isCorrect?: BoolFieldUpdateOperationsInput | boolean
+    pointsAwarded?: IntFieldUpdateOperationsInput | number
+    question?: ExamQuestionUpdateOneRequiredWithoutAnswersNestedInput
+  }
+
+  export type ExamAnswerUncheckedUpdateWithoutAttemptInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    questionId?: StringFieldUpdateOperationsInput | string
+    answerText?: StringFieldUpdateOperationsInput | string
+    isCorrect?: BoolFieldUpdateOperationsInput | boolean
+    pointsAwarded?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ExamAnswerUncheckedUpdateManyWithoutAttemptInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    questionId?: StringFieldUpdateOperationsInput | string
+    answerText?: StringFieldUpdateOperationsInput | string
+    isCorrect?: BoolFieldUpdateOperationsInput | boolean
+    pointsAwarded?: IntFieldUpdateOperationsInput | number
+  }
+
 
 
   /**
@@ -53930,6 +62242,18 @@ export namespace Prisma {
      * @deprecated Use DiscussionThreadCountOutputTypeDefaultArgs instead
      */
     export type DiscussionThreadCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = DiscussionThreadCountOutputTypeDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use ExamCountOutputTypeDefaultArgs instead
+     */
+    export type ExamCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ExamCountOutputTypeDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use ExamQuestionCountOutputTypeDefaultArgs instead
+     */
+    export type ExamQuestionCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ExamQuestionCountOutputTypeDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use ExamAttemptCountOutputTypeDefaultArgs instead
+     */
+    export type ExamAttemptCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ExamAttemptCountOutputTypeDefaultArgs<ExtArgs>
     /**
      * @deprecated Use UserDefaultArgs instead
      */
@@ -54046,6 +62370,22 @@ export namespace Prisma {
      * @deprecated Use DiscussionReplyDefaultArgs instead
      */
     export type DiscussionReplyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = DiscussionReplyDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use ExamDefaultArgs instead
+     */
+    export type ExamArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ExamDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use ExamQuestionDefaultArgs instead
+     */
+    export type ExamQuestionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ExamQuestionDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use ExamAttemptDefaultArgs instead
+     */
+    export type ExamAttemptArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ExamAttemptDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use ExamAnswerDefaultArgs instead
+     */
+    export type ExamAnswerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ExamAnswerDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany
