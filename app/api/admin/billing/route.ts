@@ -64,3 +64,67 @@ export async function PATCH(req: Request) {
     return NextResponse.json({ error: "Terjadi kesalahan internal" }, { status: 500 })
   }
 }
+
+// Edit billing details
+export async function PUT(req: Request) {
+  try {
+    const session = await auth()
+    const role = (session?.user as any)?.role
+    if (role !== "ADMIN" && role !== "TEACHER") {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+    }
+
+    const { id, title, description, amount, dueDate, status } = await req.json()
+
+    if (!id || !title || !amount || !dueDate) {
+      return NextResponse.json({ error: "Data tidak lengkap" }, { status: 400 })
+    }
+
+    await prisma.billing.update({
+      where: { id },
+      data: {
+        title,
+        description,
+        amount: Number(amount),
+        dueDate: new Date(dueDate),
+        status: status || undefined,
+        paymentDate: status === "PAID" ? new Date() : undefined
+      }
+    })
+
+    return NextResponse.json({ success: true })
+  } catch (error) {
+    console.error("Edit billing error:", error)
+    return NextResponse.json({ error: "Terjadi kesalahan internal" }, { status: 500 })
+  }
+}
+
+// Delete billing
+export async function DELETE(req: Request) {
+  try {
+    const session = await auth()
+    const role = (session?.user as any)?.role
+    if (role !== "ADMIN" && role !== "TEACHER") {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+    }
+
+    const { id, ids } = await req.json()
+
+    if (ids && Array.isArray(ids)) {
+      await prisma.billing.deleteMany({
+        where: { id: { in: ids } }
+      })
+    } else if (id) {
+      await prisma.billing.delete({
+        where: { id }
+      })
+    } else {
+      return NextResponse.json({ error: "ID tidak ditemukan" }, { status: 400 })
+    }
+
+    return NextResponse.json({ success: true })
+  } catch (error) {
+    console.error("Delete billing error:", error)
+    return NextResponse.json({ error: "Terjadi kesalahan internal" }, { status: 500 })
+  }
+}

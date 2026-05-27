@@ -134,6 +134,18 @@ export default async function ParentDashboardPage() {
         <div className="absolute right-0 top-0 h-full w-1/3 bg-white/5 skew-x-12 translate-x-10 pointer-events-none" />
       </div>
 
+      {student.nis === '12345678' && (
+        <div className="bg-yellow-500/10 border border-yellow-500/50 rounded-2xl p-4 flex items-start gap-4">
+          <AlertCircle className="h-6 w-6 text-yellow-600 shrink-0" />
+          <div className="space-y-1">
+            <h4 className="text-sm font-bold text-yellow-800 dark:text-yellow-500">Mode Akun Demo</h4>
+            <p className="text-xs text-yellow-700 dark:text-yellow-400">
+              Anda sedang masuk menggunakan akun Parent Demo. Beberapa aksi mungkin dibatasi, dan data yang ditampilkan di sini hanyalah contoh untuk keperluan demonstrasi.
+            </p>
+          </div>
+        </div>
+      )}
+
       <Tabs defaultValue="academic" className="w-full">
         <TabsList className="w-full justify-start border-b border-[var(--border)] rounded-none bg-transparent h-auto p-0 gap-6">
           <TabsTrigger value="academic" className="data-[state=active]:border-b-2 data-[state=active]:border-[#5483B3] data-[state=active]:text-[#5483B3] data-[state=active]:shadow-none rounded-none px-2 py-3 bg-transparent font-bold text-[var(--muted-foreground)]">
