@@ -29,7 +29,7 @@ export function AdminPpdbClient({ initialRegistrations }: AdminPpdbClientProps) 
   const [statusVal, setStatusVal] = useState('PENDING')
   const [revisionNotes, setRevisionNotes] = useState('')
 
-  const [activeTab, setActiveTab] = useState<'VERIFY' | 'SCORE' | 'SELECTION'>('VERIFY')
+  const [activeTab, setActiveTab] = useState<'BIODATA' | 'VERIFY' | 'SCORE' | 'SELECTION'>('BIODATA')
 
   const filtered = registrations.filter(r => 
     r.user?.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -219,6 +219,14 @@ export function AdminPpdbClient({ initialRegistrations }: AdminPpdbClientProps) 
               {/* Sub tabs for Verify, Score, Selection */}
               <div className="flex gap-2 border-b border-[#F1F5F9] pb-px">
                 <button
+                  onClick={() => setActiveTab('BIODATA')}
+                  className={`pb-3 text-xs font-bold border-b-2 transition-all px-2 ${
+                    activeTab === 'BIODATA' ? 'border-[#5483B3] text-[#5483B3]' : 'border-transparent text-slate-500 hover:text-slate-800'
+                  }`}
+                >
+                  Biodata Calon Siswa
+                </button>
+                <button
                   onClick={() => setActiveTab('VERIFY')}
                   className={`pb-3 text-xs font-bold border-b-2 transition-all px-2 ${
                     activeTab === 'VERIFY' ? 'border-[#5483B3] text-[#5483B3]' : 'border-transparent text-slate-500 hover:text-slate-800'
@@ -243,6 +251,85 @@ export function AdminPpdbClient({ initialRegistrations }: AdminPpdbClientProps) 
                   Status Kelulusan
                 </button>
               </div>
+
+              {activeTab === 'BIODATA' && (
+                <div className="space-y-6">
+                  <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 space-y-4">
+                    <h3 className="text-xs font-extrabold text-slate-800 uppercase tracking-wider">Detail Pribadi Calon Siswa</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                      <div>
+                        <span className="text-slate-400 font-semibold block">NIK (Nomor Induk Kependudukan)</span>
+                        <span className="font-bold text-slate-800">{selectedReg.nik || '-'}</span>
+                      </div>
+                      <div>
+                        <span className="text-slate-400 font-semibold block">NISN (Nomor Induk Siswa Nasional)</span>
+                        <span className="font-bold text-slate-800">{selectedReg.nisn || '-'}</span>
+                      </div>
+                      <div>
+                        <span className="text-slate-400 font-semibold block">Tempat & Tanggal Lahir</span>
+                        <span className="font-bold text-slate-800">
+                          {selectedReg.birthPlace || '-'}, {selectedReg.birthDate ? new Date(selectedReg.birthDate).toLocaleDateString('id-ID') : '-'}
+                        </span>
+                      </div>
+                      <div>
+                        <span className="text-slate-400 font-semibold block">Sekolah Asal (SMP / MTs)</span>
+                        <span className="font-bold text-slate-800">{selectedReg.originSchool || '-'}</span>
+                      </div>
+                      <div>
+                        <span className="text-slate-400 font-semibold block">Jenis Kelamin</span>
+                        <span className="font-bold text-slate-800">{selectedReg.user?.gender || '-'}</span>
+                      </div>
+                      <div>
+                        <span className="text-slate-400 font-semibold block">Email Pendaftar</span>
+                        <span className="font-bold text-slate-800">{selectedReg.user?.email || '-'}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 space-y-4">
+                    <h3 className="text-xs font-extrabold text-slate-800 uppercase tracking-wider">Detail Orang Tua / Wali</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs">
+                      <div className="space-y-2 border-b md:border-b-0 md:border-r border-slate-200 pb-4 md:pb-0 md:pr-4">
+                        <p className="font-bold text-slate-700 border-b border-slate-100 pb-1">Data Ayah Kandung</p>
+                        <div>
+                          <span className="text-slate-400 font-semibold block">Nama Lengkap</span>
+                          <span className="font-bold text-slate-800">{selectedReg.fatherName || '-'}</span>
+                        </div>
+                        <div>
+                          <span className="text-slate-400 font-semibold block">Pekerjaan</span>
+                          <span className="font-bold text-slate-800">{selectedReg.fatherOccupation || '-'}</span>
+                        </div>
+                        <div>
+                          <span className="text-slate-400 font-semibold block">No Telepon / WA</span>
+                          <span className="font-bold text-[#5483B3] flex items-center gap-1">
+                            <Phone className="h-3.5 w-3.5" />
+                            {selectedReg.fatherPhone || '-'}
+                          </span>
+                        </div>
+                      </div>
+
+                      <div className="space-y-2">
+                        <p className="font-bold text-slate-700 border-b border-slate-100 pb-1">Data Ibu Kandung</p>
+                        <div>
+                          <span className="text-slate-400 font-semibold block">Nama Lengkap</span>
+                          <span className="font-bold text-slate-800">{selectedReg.motherName || '-'}</span>
+                        </div>
+                        <div>
+                          <span className="text-slate-400 font-semibold block">Pekerjaan</span>
+                          <span className="font-bold text-slate-800">{selectedReg.motherOccupation || '-'}</span>
+                        </div>
+                        <div>
+                          <span className="text-slate-400 font-semibold block">No Telepon / WA</span>
+                          <span className="font-bold text-[#5483B3] flex items-center gap-1">
+                            <Phone className="h-3.5 w-3.5" />
+                            {selectedReg.motherPhone || '-'}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
 
               {activeTab === 'VERIFY' && (
                 <div className="space-y-6">

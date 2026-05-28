@@ -83,7 +83,12 @@ export function PpdbDashboardClient({
   ]
 
   const handleInputChange = (field: string, value: string) => {
-    setRegistration({ ...registration, [field]: value })
+    if (['nik', 'nisn', 'fatherPhone', 'motherPhone'].includes(field)) {
+      const numericValue = value.replace(/\D/g, '')
+      setRegistration({ ...registration, [field]: numericValue })
+    } else {
+      setRegistration({ ...registration, [field]: value })
+    }
   }
 
   const handleFileUpload = async (field: string, file: File) => {
