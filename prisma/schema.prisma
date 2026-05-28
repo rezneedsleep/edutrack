@@ -368,6 +368,11 @@ model Settings {
   bankName            String  @default("BCA")
   bankAccount         String  @default("1234567890")
   bankAccountName     String  @default("EduTrack Academy")
+  ppdbOpen            Boolean @default(true)
+  enableLibrary       Boolean @default(true)
+  enableSarpras       Boolean @default(true)
+  enableTataUsaha     Boolean @default(true)
+  enableBendahara     Boolean @default(true)
 }
 
 model Account {

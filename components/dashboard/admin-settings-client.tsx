@@ -27,6 +27,11 @@ export function AdminSettingsClient({ initialSettings }: any) {
     bankName: initialSettings?.bankName || 'BCA',
     bankAccount: initialSettings?.bankAccount || '1234567890',
     bankAccountName: initialSettings?.bankAccountName || 'EduTrack Academy',
+    ppdbOpen: initialSettings?.ppdbOpen ?? true,
+    enableLibrary: initialSettings?.enableLibrary ?? true,
+    enableSarpras: initialSettings?.enableSarpras ?? true,
+    enableTataUsaha: initialSettings?.enableTataUsaha ?? true,
+    enableBendahara: initialSettings?.enableBendahara ?? true,
     confirmPassword: '',
   })
 
@@ -196,6 +201,74 @@ export function AdminSettingsClient({ initialSettings }: any) {
                                  className="data-[state=checked]:bg-rose-500" 
                               />
                            </div>
+                        </div>
+
+                        {/* Manajemen Fitur & PPDB */}
+                        <div className="pt-8 mt-8 border-t border-[var(--border)] space-y-5">
+                            <h3 className="text-lg font-bold text-[var(--foreground)]">Manajemen Fitur & PPDB</h3>
+                            <p className="text-xs text-[var(--muted-foreground)]">Aktifkan atau nonaktifkan modul penerimaan dan akses fitur untuk peran-peran staf.</p>
+                            
+                            <div className="flex items-center justify-between p-6 bg-[#5483B3]/5 border border-[#5483B3]/20 rounded-xl">
+                               <div className="space-y-1">
+                                  <p className="text-sm font-bold text-[var(--foreground)]">Pendaftaran Peserta Didik Baru (PPDB)</p>
+                                  <p className="text-xs text-[var(--muted-foreground)]">Aktifkan untuk membuka pendaftaran siswa baru secara online.</p>
+                               </div>
+                               <Switch 
+                                  checked={formData.ppdbOpen}
+                                  onCheckedChange={(v) => setFormData({...formData, ppdbOpen: v})}
+                                  className="data-[state=checked]:bg-[#5483B3]" 
+                               />
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                               <div className="flex items-center justify-between p-5 border border-[var(--border)] rounded-xl bg-[var(--background)]">
+                                  <div className="space-y-0.5">
+                                     <p className="text-xs font-bold text-[var(--foreground)]">Modul Perpustakaan</p>
+                                     <p className="text-[10px] text-[var(--muted-foreground)]">Akses kelola buku untuk Pustakawan.</p>
+                                  </div>
+                                  <Switch 
+                                     checked={formData.enableLibrary}
+                                     onCheckedChange={(v) => setFormData({...formData, enableLibrary: v})}
+                                     className="data-[state=checked]:bg-[#5483B3]" 
+                                  />
+                               </div>
+
+                               <div className="flex items-center justify-between p-5 border border-[var(--border)] rounded-xl bg-[var(--background)]">
+                                  <div className="space-y-0.5">
+                                     <p className="text-xs font-bold text-[var(--foreground)]">Modul Sarana Prasarana</p>
+                                     <p className="text-[10px] text-[var(--muted-foreground)]">Kelola inventaris untuk Staf Sarpras.</p>
+                                  </div>
+                                  <Switch 
+                                     checked={formData.enableSarpras}
+                                     onCheckedChange={(v) => setFormData({...formData, enableSarpras: v})}
+                                     className="data-[state=checked]:bg-[#5483B3]" 
+                                  />
+                               </div>
+
+                               <div className="flex items-center justify-between p-5 border border-[var(--border)] rounded-xl bg-[var(--background)]">
+                                  <div className="space-y-0.5">
+                                     <p className="text-xs font-bold text-[var(--foreground)]">Modul Tata Usaha</p>
+                                     <p className="text-[10px] text-[var(--muted-foreground)]">Akses administrasi umum untuk Staf TU.</p>
+                                  </div>
+                                  <Switch 
+                                     checked={formData.enableTataUsaha}
+                                     onCheckedChange={(v) => setFormData({...formData, enableTataUsaha: v})}
+                                     className="data-[state=checked]:bg-[#5483B3]" 
+                                  />
+                               </div>
+
+                               <div className="flex items-center justify-between p-5 border border-[var(--border)] rounded-xl bg-[var(--background)]">
+                                  <div className="space-y-0.5">
+                                     <p className="text-xs font-bold text-[var(--foreground)]">Modul Bendahara / Keuangan</p>
+                                     <p className="text-[10px] text-[var(--muted-foreground)]">Kelola tagihan & SPP untuk Bendahara.</p>
+                                  </div>
+                                  <Switch 
+                                     checked={formData.enableBendahara}
+                                     onCheckedChange={(v) => setFormData({...formData, enableBendahara: v})}
+                                     className="data-[state=checked]:bg-[#5483B3]" 
+                                  />
+                               </div>
+                            </div>
                         </div>
                      </CardContent>
                   </Card>

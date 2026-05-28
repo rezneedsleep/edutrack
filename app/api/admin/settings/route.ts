@@ -24,6 +24,11 @@ export async function PATCH(req: Request) {
       bankName,
       bankAccount,
       bankAccountName,
+      ppdbOpen,
+      enableLibrary,
+      enableSarpras,
+      enableTataUsaha,
+      enableBendahara,
       confirmPassword
     } = await req.json()
 
@@ -59,7 +64,12 @@ export async function PATCH(req: Request) {
         securityLog,
         bankName,
         bankAccount,
-        bankAccountName
+        bankAccountName,
+        ppdbOpen,
+        enableLibrary,
+        enableSarpras,
+        enableTataUsaha,
+        enableBendahara
       },
       create: { 
         id: 'global', 
@@ -74,7 +84,12 @@ export async function PATCH(req: Request) {
         securityLog,
         bankName,
         bankAccount,
-        bankAccountName
+        bankAccountName,
+        ppdbOpen,
+        enableLibrary,
+        enableSarpras,
+        enableTataUsaha,
+        enableBendahara
       }
     })
 
