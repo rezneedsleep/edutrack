@@ -744,7 +744,7 @@ export function AdminUsersClient({ initialUsers, classes, subjects = [], fixedRo
 
       {/* Dialogs mapping */}
       <Dialog open={isAddOpen} onOpenChange={setIsAddOpen}>
-               <DialogContent className="bg-[var(--card)] border-[var(--border)] text-[var(--foreground)] max-w-3xl rounded-2xl shadow-xl p-0 overflow-hidden max-h-[90vh]">
+               <DialogContent className="bg-[var(--card)] border-[var(--border)] text-[var(--foreground)] sm:max-w-3xl md:max-w-4xl rounded-2xl shadow-xl p-0 overflow-hidden max-h-[90vh]">
                  <div className="p-6 md:p-8 overflow-y-auto max-h-[85vh] custom-scrollbar">
                   <DialogHeader className="mb-6">
                     <DialogTitle className="text-2xl font-extrabold tracking-tight">
@@ -979,7 +979,7 @@ export function AdminUsersClient({ initialUsers, classes, subjects = [], fixedRo
       </Dialog>
       
       <Dialog open={isEditOpen} onOpenChange={setIsEditOpen}>
-        <DialogContent className="bg-[var(--card)] border-[var(--border)] text-[var(--foreground)] max-w-3xl rounded-2xl shadow-xl p-0 overflow-hidden max-h-[90vh]">
+        <DialogContent className="bg-[var(--card)] border-[var(--border)] text-[var(--foreground)] sm:max-w-3xl md:max-w-4xl rounded-2xl shadow-xl p-0 overflow-hidden max-h-[90vh]">
           <div className="p-6 md:p-8 overflow-y-auto max-h-[85vh] custom-scrollbar">
             <DialogHeader className="mb-6">
               <DialogTitle className="text-2xl font-extrabold tracking-tight">Edit Profil</DialogTitle>

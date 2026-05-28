@@ -39,23 +39,74 @@ export function AdminOverview({ stats, recentUsers, chartData }: any) {
     { name: 'Admin', count: stats.userCount - stats.studentCount - stats.teacherCount, fill: '#ef4444' }
   ]
 
+  const ROLE_COLORS: Record<string, string> = {
+    SUPER_ADMIN: '#DC2626',
+    KETUA_YAYASAN: '#B91C1C',
+    KEPALA_SEKOLAH: '#991B1B',
+    WAKASEK_KURIKULUM: '#2563EB',
+    WAKASEK_KESISWAAN: '#1D4ED8',
+    WAKASEK_HUBIN: '#1E3A8A',
+    KAPROG: '#0891B2',
+    KEPALA_LAB: '#0D9488',
+    TATA_USAHA: '#4F46E5',
+    BENDAHARA_YAYASAN: '#059669',
+    BENDAHARA_SEKOLAH: '#10B981',
+    PANITIA_PPDB: '#DB2777',
+    GURU_MAPEL: '#16A34A',
+    WALI_KELAS: '#15803D',
+    GURU_BK: '#84CC16',
+    PUSTAKAWAN: '#CA8A04',
+    PETUGAS_UKS: '#E11D48',
+    STAF_SARPRAS: '#78350F',
+    SISWA: '#3B82F6',
+    ORANG_TUA: '#F59E0B',
+    ALUMNI: '#6B7280',
+    STUDENT: '#5483B3',
+    TEACHER: '#22C55E',
+    ADMIN: '#EF4444',
+    COACH: '#8B5CF6',
+    USER: '#94A3B8',
+    PARENT: '#F59E0B'
+  }
+
+  const ROLE_NAMES: Record<string, string> = {
+    STUDENT: 'Siswa',
+    TEACHER: 'Guru',
+    PARENT: 'Wali/Orang Tua',
+    COACH: 'Pelatih',
+    ADMIN: 'Admin',
+    SUPER_ADMIN: 'Super Admin',
+    KETUA_YAYASAN: 'Ketua Yayasan',
+    KEPALA_SEKOLAH: 'Kepala Sekolah',
+    WAKASEK_KURIKULUM: 'Wakasek Kurikulum',
+    WAKASEK_KESISWAAN: 'Wakasek Kesiswaan',
+    WAKASEK_HUBIN: 'Wakasek Hubin',
+    KAPROG: 'Kaprog',
+    KEPALA_LAB: 'Kepala Lab',
+    TATA_USAHA: 'Tata Usaha',
+    BENDAHARA_YAYASAN: 'Bendahara Yayasan',
+    BENDAHARA_SEKOLAH: 'Bendahara Sekolah',
+    PANITIA_PPDB: 'Panitia PPDB',
+    GURU_MAPEL: 'Guru Mapel',
+    WALI_KELAS: 'Wali Kelas',
+    GURU_BK: 'Guru BK',
+    PUSTAKAWAN: 'Pustakawan',
+    PETUGAS_UKS: 'Petugas UKS',
+    STAF_SARPRAS: 'Staf Sarpras',
+    SISWA: 'Siswa',
+    ORANG_TUA: 'Orang Tua',
+    ALUMNI: 'Alumni',
+    USER: 'User'
+  }
+
   const aggregatedRoles: Record<string, { count: number, fill: string }> = {}
 
   if (chartData) {
     chartData.forEach((d: any) => {
-      let roleName = 'Tamu'
-      let fill = '#64748b'
-      
-      if (d.name === 'STUDENT') { roleName = 'Siswa'; fill = '#5483B3' }
-      else if (d.name === 'TEACHER') { roleName = 'Guru'; fill = '#22C55E' }
-      else if (d.name === 'PARENT') { roleName = 'Wali/Orang Tua'; fill = '#f59e0b' }
-      else if (d.name === 'COACH') { roleName = 'Pelatih'; fill = '#8b5cf6' }
-      else if (d.name === 'ADMIN') { roleName = 'Admin'; fill = '#ef4444' }
-      else if (d.name === 'SUPER_ADMIN') { roleName = 'Super Admin'; fill = '#dc2626' }
-      else {
-        // Show actual role name for the 21 roles, nicely formatted
-        roleName = d.name.split('_').map((word: string) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ')
-      }
+      // Normalize name to map back to uppercase config keys (e.g., 'Wakasek Kurikulum' -> 'WAKASEK_KURIKULUM')
+      const rawKey = d.name.toUpperCase().replace(/[\s\-]/g, '_')
+      const roleName = ROLE_NAMES[rawKey] || d.name
+      const fill = d.fill || ROLE_COLORS[rawKey] || '#64748B'
 
       if (!aggregatedRoles[roleName]) {
         aggregatedRoles[roleName] = { count: 0, fill }
