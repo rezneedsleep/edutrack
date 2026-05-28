@@ -177,7 +177,7 @@ const sidebarLinks = {
   ],
   PANITIA_PPDB: [
     { label: 'Beranda', icon: LayoutDashboard, href: '/dashboard/admin' },
-    { label: 'Pendaftar PPDB', icon: Users, href: '/dashboard/admin/students' },
+    { label: 'Kelola PPDB', icon: Users, href: '/dashboard/admin/students' },
     { label: 'Jadwal Seleksi', icon: Calendar, href: '/dashboard/admin/schedules' },
     { label: 'Pengumuman', icon: Megaphone, href: '/dashboard/admin/announcements' },
     { label: 'Kalender', icon: Calendar, href: '/dashboard/calendar' },
