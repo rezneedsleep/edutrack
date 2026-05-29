@@ -120,8 +120,12 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         }
 
         return true
-      } catch (error) {
-        console.error("Error in NextAuth signIn callback:", error)
+      } catch (error: any) {
+        if (error.message?.includes("Can't reach database server") || error.message?.includes("PrismaClientInitializationError")) {
+          console.warn("\x1b[33m⚠️ [Auth SignIn] Database is offline during sign in callback.\x1b[0m")
+        } else {
+          console.error("Error in NextAuth signIn callback:", error)
+        }
         return false
       }
     },
@@ -147,8 +151,12 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             token.classId = dbUser.classId
             token.image = dbUser.image
           }
-        } catch (error) {
-          console.error("Error fetching dbUser in jwt callback:", error)
+        } catch (error: any) {
+          if (error.message?.includes("Can't reach database server") || error.message?.includes("PrismaClientInitializationError")) {
+            console.warn("\x1b[33m⚠️ [Auth JWT] Database is offline. Skipping dbUser enrichment.\x1b[0m")
+          } else {
+            console.error("Error fetching dbUser in jwt callback:", error)
+          }
         }
       }
       

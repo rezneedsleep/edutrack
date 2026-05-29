@@ -84,8 +84,12 @@ export default async function RootLayout({
   try {
     session = await auth()
     role = (session?.user as any)?.role
-  } catch (error) {
-    console.error('Database connection or auth error in RootLayout:', error)
+  } catch (error: any) {
+    if (error.message?.includes("Can't reach database server") || error.message?.includes("PrismaClientInitializationError")) {
+      console.warn("\x1b[33m⚠️ [RootLayout] Database is offline. Rendering database-offline warning page.\x1b[0m")
+    } else {
+      console.error('Database connection or auth error in RootLayout:', error)
+    }
     isDatabaseOffline = true
   }
 
@@ -97,8 +101,12 @@ export default async function RootLayout({
       settings = await prisma.settings.findUnique({
         where: { id: 'global' }
       })
-    } catch (error) {
-      console.error('Database connection error in RootLayout:', error)
+    } catch (error: any) {
+      if (error.message?.includes("Can't reach database server") || error.message?.includes("PrismaClientInitializationError")) {
+        console.warn("\x1b[33m⚠️ [RootLayout] Database is offline (Prisma Settings query failed).\x1b[0m")
+      } else {
+        console.error('Database connection error in RootLayout settings query:', error)
+      }
       isDatabaseOffline = true
     }
   }
